@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
-    <string name="app_name">MovieManager</string>
-    <string name="makeown">"I'll make my own, thanks"</string>
-    <string name="director1">You have chosen the script </string>
-    <string name="director2">Choose a Director to approach:</string>
+	<string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
+	<string name="app_name">MovieManager</string>
+	<string name="makeown">"I'll make my own, thanks"</string>
+	<string name="director1">You have chosen the script </string>
+	<string name="director2">Choose a Director to approach:</string>
+	<string-array name="directors">
+		<item>Steven Spielberg</item>
+		<item>M. Night Shylaman</item>
+		<item>Ron Howard</item>
+		<item>Tommy Wiseau</item>
+		<item>Michael Bay</item>
+	</string-array>
+	<string name="directorPrice">Price to hire: %s</string>
+	<string name="cashmoney">You earned a grand total of: %s</string>
 </resources>

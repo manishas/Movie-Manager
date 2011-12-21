@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:weightSum="1" android:orientation="vertical">
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/makefilm"
-    />
-<Button android:text="Button" android:id="@+id/script1" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
-<Button android:text="Button" android:id="@+id/script2" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
-<Button android:text="Button" android:id="@+id/script3" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
-<Button android:id="@+id/makeOwn" android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="@string/makeown"></Button>
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:weightSum="1" >
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/makefilm" />
+	<Button
+		android:id="@+id/script1"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Button" >
+	</Button>
+	<Button
+		android:id="@+id/script2"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Button" >
+	</Button>
+	<Button
+		android:id="@+id/script3"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Button" >
+	</Button>
+	<Button
+		android:id="@+id/makeOwn"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/makeown" >
+	</Button>
 </LinearLayout>

@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent">
-    <TextView android:text="@string/director1" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-    <TextView android:id="@+id/chosen" android:text="TextView" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content"></TextView>
-    <TextView android:text="@string/director2" android:id="@+id/textView3" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-    
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical" >
+	<TextView
+		android:id="@+id/textView1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/director1" >
+	</TextView>
+	<TextView
+		android:id="@+id/chosen"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="TextView"
+		android:textAppearance="?android:attr/textAppearanceLarge" >
+	</TextView>
+	<TextView
+		android:id="@+id/textView3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/director2" >
+	</TextView>
+	<Spinner
+		android:id="@+id/spinner1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:entries="@array/directors" />
+	<TextView
+		android:id="@+id/directorPrice"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/directorPrice" />
+	<Button
+		android:id="@+id/produceFilm"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Make this Film!" />
 </LinearLayout>
