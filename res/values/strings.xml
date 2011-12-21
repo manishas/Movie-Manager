@@ -3,6 +3,7 @@
 	<string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
 	<string name="app_name">MovieManager</string>
 	<string name="makeown">"I'll make my own, thanks"</string>
+	<string name="getmore">"I'll make my own, thanks"</string>
 	<string name="director1">You have chosen the script </string>
 	<string name="director2">Choose a Director to approach:</string>
 	<string-array name="directors">

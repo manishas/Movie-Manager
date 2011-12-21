@@ -30,6 +30,6 @@
 		android:id="@+id/makeOwn"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/makeown" >
+		android:text="@string/getmore" >
 	</Button>
 </LinearLayout>
