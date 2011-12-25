@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="start">Make Movies!</string>
+	<string name="seeboxoffice">All-time Box office</string>
 	<string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
-	<string name="app_name">MovieManager</string>
+	<string name="app_name">Movie Manager</string>
 	<string name="makeown">"I'll make my own, thanks"</string>
-	<string name="getmore">"I'll make my own, thanks"</string>
+	<string name="getmore">Get more scripts...</string>
 	<string name="director1">You have chosen the script </string>
 	<string name="director2">Choose a Director to approach:</string>
 	<string-array name="directors">
@@ -15,4 +17,5 @@
 	</string-array>
 	<string name="directorPrice">Price to hire: %s</string>
 	<string name="cashmoney">You earned a grand total of: %s</string>
+	
 </resources>
