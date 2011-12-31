@@ -5,11 +5,13 @@ import ie.simo.movies.domain.MovieInfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class OwnFilmActivity extends Activity {
 	
@@ -26,17 +28,25 @@ public class OwnFilmActivity extends Activity {
 		findAllViewsById();
 		
 		Genre [] genres = Genre.values();
-		ArrayAdapter<Genre> adapter = new ArrayAdapter<Genre>(this, R.layout.makeownfilm, genres);
+		ArrayAdapter<Genre> adapter = new ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, genres);
 		spinner.setAdapter(adapter);
 		
 		director.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				info.setTitle(text.getText().toString());
-				info.setGenre((Genre)spinner.getSelectedItem());
-				Intent intent = new Intent(getApplicationContext(), GetDirector.class);
-				intent.putExtra("chosen", info);
+				if(text.getText() != null && !("".equals(text.getText().toString()))){
+					info = new MovieInfo();
+					info.setTitle(text.getText().toString());
+					info.setGenre((Genre)spinner.getSelectedItem());
+					Intent intent = new Intent(getApplicationContext(), GetDirector.class);
+					intent.putExtra("chosen", info);
+					startActivity(intent);
+				}
+				else{
+					Log.v(getLocalClassName(), "empty title");
+					Toast.makeText(getApplicationContext(), "Enter a name for your script!", Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 		

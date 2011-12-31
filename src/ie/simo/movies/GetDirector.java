@@ -3,6 +3,7 @@ package ie.simo.movies;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
 import android.app.Activity;
 import android.content.Intent;
@@ -38,7 +39,13 @@ public class GetDirector extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
+				Director chosenDirector = new Director();
 				
+				chosenDirector.setName(spinner.getSelectedItem().toString());
+				chosenDirector.setPriceToHire(20000000/(spinner.getSelectedItemPosition() + 1));
+				
+				chosenFilm.setDirector(chosenDirector);
+				//format the amount
 				NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
 				String msg = getString(R.string.directorPrice , nf.format(20000000/(spinner.getSelectedItemPosition() + 1)));
 				GetDirector.this.price.setText(msg);				
@@ -58,6 +65,7 @@ public class GetDirector extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent();
 				i.setClass(GetDirector.this, Result.class);
+				i.putExtra("chosen", chosenFilm);
 				startActivity(i);
 				
 			}

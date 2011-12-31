@@ -1,26 +1,26 @@
 package ie.simo.movies.domain;
 
-public abstract class Person {
-	private String firstName;
-	private String surname;
+import java.io.Serializable;
+
+public abstract class Person implements Serializable{
+
+	private static final long serialVersionUID = -5518642644274052849L;
+	//private String firstName;
+	//private String surname;
+	private String name;
 	private int priceToHire;
 	
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getSurname() {
-		return surname;
-	}
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+	
 	public int getPriceToHire() {
 		return priceToHire;
 	}
 	public void setPriceToHire(int priceToHire) {
 		this.priceToHire = priceToHire;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }

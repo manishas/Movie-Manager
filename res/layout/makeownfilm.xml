@@ -10,6 +10,6 @@
     </EditText>
     <TextView android:text="@+string/selectgenre" android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
     <Spinner android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/genrespinner"></Spinner>
-    <Button android:layout_height="wrap_content" android:id="@+id/getdirectorbutton" android:text="Button" android:layout_gravity="center" android:layout_width="138dp"></Button>
+    <Button android:layout_height="wrap_content" android:id="@+id/getdirectorbutton" android:text="@+string/makethisfilm" android:layout_gravity="center" android:layout_width="138dp"></Button>
     
 </LinearLayout>

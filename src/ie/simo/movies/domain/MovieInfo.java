@@ -64,4 +64,20 @@ public String toButtonText(){
 return String.format("%s (%s)", getTitle(), getGenre());
 }
 
+public Director getDirector() {
+	return director;
+}
+
+public void setDirector(Director director) {
+	this.director = director;
+}
+
+public Cast getCast() {
+	return cast;
+}
+
+public void setCast(Cast cast) {
+	this.cast = cast;
+}
+
 }
