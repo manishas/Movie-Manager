@@ -45,7 +45,7 @@ public class BoxOfficeDbAdapter {
 	}
 
 	/**
-	 * Update the todo
+	 * Update the movie
 	 */
 	public boolean updateMovie(long rowId, String title, String genre,String director,
 			String earnings) {
@@ -56,7 +56,7 @@ public class BoxOfficeDbAdapter {
 	}
 
 	/**
-	 * Deletes todo
+	 * Deletes movie
 	 */
 	public boolean deleteMovie(long rowId) {
 		return db.delete(DB_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
@@ -73,7 +73,7 @@ public class BoxOfficeDbAdapter {
 	}
 
 	/**
-	 * Return a Cursor positioned at the defined todo
+	 * Return a Cursor positioned at the defined movie
 	 */
 	public Cursor fetchMovie(long rowId) throws SQLException {
 		Cursor mCursor = db.query(true, DB_TABLE, new String[] { KEY_ROWID,

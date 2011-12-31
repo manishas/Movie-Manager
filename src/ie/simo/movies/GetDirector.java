@@ -3,7 +3,7 @@ package ie.simo.movies;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import ie.simo.movies.domain.MovieMetadata;
+import ie.simo.movies.domain.MovieInfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class GetDirector extends Activity {
 
-	private MovieMetadata chosenFilm;
+	private MovieInfo chosenFilm;
 	private TextView chosen;
 	private TextView price;
 	private Spinner spinner;
@@ -28,7 +28,7 @@ public class GetDirector extends Activity {
 
 		findAllViewsById();
 		Intent i = getIntent();
-		chosenFilm = (MovieMetadata) i.getSerializableExtra("chosen");
+		chosenFilm = (MovieInfo) i.getSerializableExtra("chosen");
 		chosen.setText(chosenFilm.toButtonText());
 		String msg = getString(R.string.directorPrice , 20000000/(spinner.getSelectedItemPosition() + 1));
 		price.setText(msg);

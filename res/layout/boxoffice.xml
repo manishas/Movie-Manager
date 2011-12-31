@@ -4,41 +4,6 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
-    <TableLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/tableLayout1">
-        <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content">
-        	<TextView> 1. 	Avatar (2009) 	$760,505,847 </TextView> 
-        </TableRow>
-        <TableRow android:id="@+id/tableRow2" android:layout_width="wrap_content" android:layout_height="wrap_content">
-        	<TextView>2. 	Titanic (1997) 	$600,779,824</TextView> 
- 		</TableRow>
-        <TableRow android:id="@+id/tableRow3" android:layout_width="wrap_content" android:layout_height="wrap_content">
-        	<TextView>3. 	The Dark Knight (2008) 	$533,316,061</TextView> 
-        </TableRow>
-        <TableRow android:id="@+id/tableRow4" android:layout_width="wrap_content" android:layout_height="wrap_content">
-        	<TextView>4. 	Star Wars: Episode IV - A New Hope (1977) 	$460,935,665</TextView> 
-        </TableRow>
-        <TableRow >
-        	<TextView>5. 	Shrek 2 (2004) 	$436,471,036</TextView> 
-		</TableRow>
-        <TableRow >
-        	<TextView>6. 	E.T.: The Extra-Terrestrial (1982) 	$434,949,459</TextView> 
-        </TableRow>
-        <TableRow >
-			<TextView>7. 	Star Wars: Episode I - The Phantom Menace (1999) 	$431,065,444</TextView>        
-        </TableRow>
-        <TableRow >
-        	<TextView>8. 	Pirates of the Caribbean: Dead Man's Chest (2006) 	$423,032,628</TextView> 
-        </TableRow>
-        <TableRow >
-			<TextView>9. 	Toy Story 3 (2010) 	$414,984,497</TextView>       
-        </TableRow>
-        <TableRow >
-			<TextView>10. 	Spider-Man (2002) 	$403,706,375</TextView>           
-        </TableRow>
-        
-    </TableLayout>
-  
-  
-  
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Not Implemented yet!" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/textView1"></TextView>
     
 </LinearLayout>

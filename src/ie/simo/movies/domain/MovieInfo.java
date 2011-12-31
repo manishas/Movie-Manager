@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 import ie.simo.movies.generator.FilmNameGenerator;
 
-public class MovieMetadata implements Serializable {
+public class MovieInfo implements Serializable {
 
 private static final long serialVersionUID = -8148935241980798753L;
 private String title;
 private String tagline;
 private Genre genre;
+private Director director;
+private Cast cast;
 
 /*
 * Getters & Setters
@@ -41,9 +43,9 @@ this.genre = genre;
 /*
 * Constructors
 */
-public MovieMetadata(){}
+public MovieInfo(){}
 
-public MovieMetadata(String title, Genre genre){
+public MovieInfo(String title, Genre genre){
 this.title = title;
 this.genre = genre;
 this.tagline = "Film event of the year!";

@@ -1,6 +1,7 @@
 package ie.simo.movies;
 
-import ie.simo.movies.domain.MovieMetadata;
+import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.util.GetImage;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +16,9 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 	private Button script2;
 	private Button script3;
 	private Button makeOwn;
-	private MovieMetadata meta1;
-	private MovieMetadata meta2;
-	private MovieMetadata meta3;
+	private MovieInfo meta1;
+	private MovieInfo meta2;
+	private MovieInfo meta3;
 	private Intent intent;
 
 	@Override
@@ -28,7 +29,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		findAllViewsById();
 
 		generateScripts();
-
+		
 		OnClickListener notImplYetListener = new OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -68,9 +69,9 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 	}
 
 	private void generateScripts() {
-		meta1 = new MovieMetadata();
-		meta2 = new MovieMetadata();
-		meta3 = new MovieMetadata();
+		meta1 = new MovieInfo();
+		meta2 = new MovieInfo();
+		meta3 = new MovieInfo();
 		changeButtonText(script1, meta1);
 		changeButtonText(script2, meta2);
 		changeButtonText(script3, meta3);
@@ -88,7 +89,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 	}
 
-	private void changeButtonText(Button myButton, MovieMetadata meta) {
+	private void changeButtonText(Button myButton, MovieInfo meta) {
 		meta.newScript();
 		myButton.setText(meta.toButtonText());
 	}
