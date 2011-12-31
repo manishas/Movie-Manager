@@ -15,6 +15,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 	private Button script1;
 	private Button script2;
 	private Button script3;
+	private Button getMore;
 	private Button makeOwn;
 	private MovieInfo meta1;
 	private MovieInfo meta2;
@@ -43,12 +44,21 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		script2.setOnClickListener(this);
 		script3.setOnClickListener(this);
 
-		makeOwn.setOnClickListener(new View.OnClickListener() {
+		getMore.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				MakeFilmActivity.this.generateScripts();
 				
+			}
+		});
+		
+		makeOwn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				intent = new Intent(getApplicationContext(), OwnFilmActivity.class);		
+				startActivity(intent);
 			}
 		});
 	}
@@ -81,8 +91,8 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		script1 = (Button) this.findViewById(R.id.script1);
 		script2 = (Button) this.findViewById(R.id.script2);
 		script3 = (Button) this.findViewById(R.id.script3);
-
-		makeOwn = (Button) this.findViewById(R.id.makeOwn);
+		getMore = (Button) this.findViewById(R.id.makeOwn);
+		makeOwn = (Button) this.findViewById(R.id.makeownfilm);
 	}
 
 	public void longToast(CharSequence message) {

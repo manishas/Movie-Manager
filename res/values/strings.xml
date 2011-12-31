@@ -17,5 +17,7 @@
 	</string-array>
 	<string name="directorPrice">Price to hire: %s</string>
 	<string name="cashmoney">You earned a grand total of: %s</string>
+	<string name="enterfilmname">Enter the name of your film:</string>
+	<string name="selectgenre">Select your genre: </string>
 	
 </resources>

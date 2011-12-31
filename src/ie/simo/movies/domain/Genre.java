@@ -7,7 +7,7 @@ import java.util.Random;
 *
 */
 public enum Genre{
-Action (1.0), Horror(0.6), Romance(0.7), Comedy(0.8), Drama(0.8);
+Action (1.0), Horror(0.6), Romance(0.7), Comedy(0.8), Drama(0.8), ScienceFiction(0.6);
 
 private final double boxOffice;
 

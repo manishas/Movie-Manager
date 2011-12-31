@@ -32,4 +32,5 @@
 		android:layout_height="wrap_content"
 		android:text="@string/getmore" >
 	</Button>
+	<Button android:layout_height="wrap_content" android:id="@+id/makeownfilm" android:text="@+string/makeown" android:layout_gravity="center|bottom" android:layout_width="match_parent"></Button>
 </LinearLayout>
