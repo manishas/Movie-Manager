@@ -24,9 +24,13 @@ public class StartActivity extends Activity {
 		
 		findAllViewsById();
 		
+		setUpListeners();
+	}
+
+	private void setUpListeners() {
 		startGame.setOnClickListener(new View.OnClickListener() {
 
-			@Override
+			
 			public void onClick(View v) {
 				Intent i = new Intent();
 				i.setClass(StartActivity.this, MakeFilmActivity.class);
@@ -36,7 +40,7 @@ public class StartActivity extends Activity {
 		
 		boxOffice.setOnClickListener(new View.OnClickListener() {
 
-			@Override
+	
 			public void onClick(View v) {
 				Intent i = new Intent();
 				i.setClass(StartActivity.this, BoxOffice.class);
