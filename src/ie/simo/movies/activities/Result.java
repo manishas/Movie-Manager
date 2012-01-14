@@ -1,5 +1,9 @@
-package ie.simo.movies;
+package ie.simo.movies.activities;
 
+import ie.simo.movies.R;
+import ie.simo.movies.R.id;
+import ie.simo.movies.R.layout;
+import ie.simo.movies.R.string;
 import ie.simo.movies.domain.MovieInfo;
 
 import java.text.ChoiceFormat;
