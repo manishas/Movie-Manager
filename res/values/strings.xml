@@ -10,15 +10,23 @@
 	<string name="director2">Choose a Director to approach:</string>
 	<string-array name="directors">
 		<item>Steven Spielberg</item>
-		<item>M. Night Shylaman</item>
+		<item>M. Night Shyamalan</item>
+		<item>Tim Burton</item>
 		<item>Ron Howard</item>
-		<item>Tommy Wiseau</item>
+		<item>Chris Columbus</item>
+		<item>Quentin Tarantino</item>
+		<item>Martin Scorsese</item>
+		<item>David Lynch</item>
+		<item>Peter Jackson</item>
 		<item>Michael Bay</item>
+		<item>Tommy Wiseau</item>
 	</string-array>
 	<string name="directorPrice">Price to hire: %s</string>
 	<string name="cashmoney">You earned a grand total of: %s</string>
 	<string name="enterfilmname">Enter the name of your film:</string>
 	<string name="selectgenre">Select your genre: </string>
 	<string name="makethisfilm">Make this film!</string>
+	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add updates at least every two weeks. If you have a suggestion please contact me or leave a comment!</string>
+	<string name="updates">Updates in this version: This "updates" dialog(!), box-office screen, fixed screen orientations, Conor\'s refactoring, Learned how to spell M. Night Shyamalan.  </string>
 	
 </resources>

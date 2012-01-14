@@ -1,5 +1,6 @@
 package ie.simo.movies;
 
+import ie.simo.movies.util.SimpleEula;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ public class StartActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
+		
+		new SimpleEula(this).show(); 
 		
 		findAllViewsById();
 		
