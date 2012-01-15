@@ -9,6 +9,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "moviemanager";
 	private static final int DATABASE_VERSION = 1;
 	// Database creation sql statement
+	
+	public static final String inserts = "insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Avatar', 'Enter the world', 1, 760, 310, 1, 1, 1);"
+			+ "insert into director (director_name, director_hire_cost, director_reputation) values ('James Cameron', 25, 80);"
+			+ "insert into producer (producer_name, producer_reputation) values ('James Cameron', 80);"
+			+ "insert into distributor (distributor_name, distributor_desc) values ('20th Century Fox', 'Lovely chaps');" 
+			+ "insert into genre (genre_name) values ('Science Fiction');";
+	
 	private static final String DATABASE_CREATE = "create table director " +
 			"(director_id integer primary key autoincrement, "
 			+ "director_name text not null,"
@@ -51,11 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			+ "distributor_name text);" + inserts;
 
 	
-	public static final String inserts = "insert into movie values ('Avatar', 'tagline', '1', '760', '310', 'producer', '1', '1');"
-									+ "insert into director values ('James Cameron', '25', '80');"
-									+ "insert into producer values ('James Cameron', '80');"
-									+ "insert into distributor values ('20th Century Fox', 'Lovely chaps');" +
-									"insert into genre values ('Science Fiction');";
 									
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
