@@ -1,7 +1,5 @@
 package ie.simo.movies.activities;
 
-import ie.simo.movies.R;
-import ie.simo.movies.R.layout;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import android.app.Activity;
 import android.content.Intent;
