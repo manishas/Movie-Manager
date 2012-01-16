@@ -1,0 +1,74 @@
+<sql>
+
+<statement>
+	create table if not exists director 
+	(_id integer primary key autoincrement, 
+	director_name text not null, director_hire_cost integer,
+	director_reputation integer)
+</statement>
+
+<statement>
+	create table if not exists actor 
+	(_id integer primary key autoincrement, 
+	actor_name text not null,
+	actor_hire_cost integer,
+	actor_reputation integer)
+</statement>
+			
+<statement>
+	create table if not exists movie 
+	(_id integer primary key autoincrement,  
+	movie_name text,
+	tagline text,
+	genre_id integer,
+	earnings integer,
+	cost integer,
+	producer_id integer,
+	director_id integer,
+	distributor_id integer)
+</statement>
+			
+<statement>
+	create table if not exists genre
+	(_id integer primary key autoincrement,
+	genre_name text)
+</statement>
+			
+<statement>
+	create table if not exists producer
+	(_id integer primary key autoincrement, 
+	producer_name text,
+	producer_reputation integer) 
+</statement>	
+
+<statement>
+	create table if not exists cast 
+	(_id integer,
+	movie_id integer, 
+	actor_id integer)
+</statement>
+
+<statement>
+	create table if not exists distributor 
+	(_id integer primary key autoincrement, 
+	distributor_desc text, 
+	distributor_name text)
+</statement>
+
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Avatar', 'Enter the world', 1, 760, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Titanic', 'Nothing On Earth Could Come Between Them.', 1, 600, 200, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('The Dark Knight', 'Why so serious?', 1, 533, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Star Wars Episode IV: A New Hope', 'A long time ago in a galaxy far, far away...', 1, 460, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Shrek 2', 'Once upon another time... ', 1, 436, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('E.T. The Extra Terrestrial', 'He is afraid. He is totally alone. He is 3 million light years from home.', 1, 433, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Star Wars Episode 1: The Phantom Menace', 'Every generation has a legend. Every journey has a first step. Every saga has a beginning', 1, 431, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Pirates Of The Carribean: Dead Man's Chest', 'Captain Jack is back', 1, 423, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Toy Story 3', 'No toy gets left behind.', 1, 414, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Spider-man', 'Go for the ultimate spin', 1, 403, 310, 1, 1, 1)</statement>
+
+
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('James Cameron', 25, 80)</statement>
+<statement>insert into producer (producer_name, producer_reputation) values ('James Cameron', 80)</statement>
+<statement>insert into distributor (distributor_name, distributor_desc) values ('20th Century Fox', 'Lovely chaps')</statement> 
+<statement>insert into genre (genre_name) values ('Science Fiction')</statement>
+</sql>
