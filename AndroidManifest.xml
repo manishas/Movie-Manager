@@ -23,6 +23,6 @@
 		</activity>
 		<activity android:label="Result" android:name=".Result">
 		</activity>
-		<activity android:label="db test" android:name="."></activity>
+		<activity android:label="db test" android:name=".TestDatabaseActivity"></activity>
 	</application>
 </manifest>

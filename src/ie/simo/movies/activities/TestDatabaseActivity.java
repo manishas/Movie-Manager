@@ -1,6 +1,5 @@
 package ie.simo.movies.activities;
 
-import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 
 import java.util.Random;
@@ -27,13 +26,7 @@ public class TestDatabaseActivity extends ListActivity {
 		db = new BoxOfficeDbAdapter(this);
 		db.open();
 
-		// Create a new comment every time the activity is started
-		//String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
-		//int nextInt = new Random().nextInt(3);
-		// Save the new comment to the database
-		//db.createCommen(comments[nextInt]);
-
-		// Read all comments
+		// Read all movies
 		Cursor c = db.fetchAllMovies();
 
 		// Use the SimpleCursorAdapter to show the

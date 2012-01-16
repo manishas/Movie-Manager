@@ -23,7 +23,7 @@ public class BoxOfficeDbAdapter {
 
 	public BoxOfficeDbAdapter open() throws SQLException {
 		dbHelper = new DatabaseHelper(context);
-		database = dbHelper.getWritableDatabase();
+		database = dbHelper.getReadableDatabase();
 		return this;
 	}
 
@@ -38,8 +38,7 @@ public class BoxOfficeDbAdapter {
 	}
 
 	public Cursor fetchAllMovies() {
-		return database.query(DATABASE_TABLE, new String[] {MOVIE_NAME, EARNINGS}, null, null, null,
-				null, EARNINGS);
+		return database.rawQuery( "select rowid _id,movie_name, earnings from movie", null);
 	}
 	
 }

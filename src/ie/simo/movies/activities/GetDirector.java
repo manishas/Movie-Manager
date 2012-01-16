@@ -3,10 +3,6 @@ package ie.simo.movies.activities;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import ie.simo.movies.R;
-import ie.simo.movies.R.id;
-import ie.simo.movies.R.layout;
-import ie.simo.movies.R.string;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
 import android.app.Activity;

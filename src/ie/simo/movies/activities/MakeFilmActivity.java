@@ -1,8 +1,5 @@
 package ie.simo.movies.activities;
 
-import ie.simo.movies.R;
-import ie.simo.movies.R.id;
-import ie.simo.movies.R.layout;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.GetImage;
 import android.app.Activity;

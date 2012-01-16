@@ -1,76 +1,64 @@
 package ie.simo.movies.dao;
 
+import ie.simo.movies.activities.R;
+
+import java.io.InputStream;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+	
 	private static final String DATABASE_NAME = "moviemanager";
 	private static final int DATABASE_VERSION = 1;
-	// Database creation sql statement
-	
-	public static final String inserts = "insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Avatar', 'Enter the world', 1, 760, 310, 1, 1, 1);"
-			+ "insert into director (director_name, director_hire_cost, director_reputation) values ('James Cameron', 25, 80);"
-			+ "insert into producer (producer_name, producer_reputation) values ('James Cameron', 80);"
-			+ "insert into distributor (distributor_name, distributor_desc) values ('20th Century Fox', 'Lovely chaps');" 
-			+ "insert into genre (genre_name) values ('Science Fiction');";
-	
-	private static final String DATABASE_CREATE = "create table director " +
-			"(director_id integer primary key autoincrement, "
-			+ "director_name text not null,"
-			+ "director_hire_cost integer,"
-			+ "director_reputation integer);"
-			
-			+ "create table actor " 
-			+ "(actor integer primary key autoincrement, "
-			+ "actor_name text not null,"
-			+ "actor_hire_cost integer,"
-			+ "actor_reputation integer);"
-			
-			+ "create table movie "
-			+ "(movie_id integer primary key autoincrement, " 
-			+ "movie_name text,"
-			+ "tagline text,"
-			+ "genre_id number,"
-			+ "earnings number,"
-			+ "cost number,"
-			+ "producer_id number,"
-			+ "director_id number,"
-			+ "distributor_id number);" 
-			
-			+ "create table genre "
-			+ "(genre_id integer primary key autoincrement," 
-			+ "genre_name text);" 
-			
-			+ "create table producer " 
-			+ "(producer_id integer primary key autoincrement," 
-			+ "producer_name text," 
-			+ "producer_reputation integer);" 
-			
-			+ "create table cast "
-			+ "(movie_id number," 
-			+ "actor_id number);"
-			
-			+ "create table distributor " 
-			+ "(distributor_id integer primary key autoincrement," 
-			+ "distributor_desc text," 
-			+ "distributor_name text);" + inserts;
 
-	
-									
-	public DatabaseHelper(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-	}
+	 protected Context context;
+	        
+        public DatabaseHelper(Context context) {
+                super(context, DATABASE_NAME, null, 1);
+                this.context = context;
+        }
 
-	@Override
-	public void onCreate(SQLiteDatabase database) {
-		database.execSQL(DATABASE_CREATE);
-	}
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+                String s;
+                try {
+                        Toast.makeText(context, "1", 2000).show();
+                        InputStream in = context.getResources().openRawResource(R.raw.sql);
+                        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                        Document doc = builder.parse(in, null);
+                        NodeList statements = doc.getElementsByTagName("statement");
+                        for (int i=0; i<statements.getLength(); i++) {
+                                s = statements.item(i).getChildNodes().item(0).getNodeValue();
+                                db.execSQL(s);
+                                Log.d("DBHELPER","sql executed");
+                        }
+                } catch (Throwable t) {
+                        Toast.makeText(context, t.toString(), 50000).show();
+                }
+        }
 
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// Not implemented
-	}
-
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+                db.execSQL("DROP TABLE IF EXISTS movie");
+                db.execSQL("DROP TABLE IF EXISTS actor");
+                db.execSQL("DROP TABLE IF EXISTS director");
+                db.execSQL("DROP TABLE IF EXISTS genre");
+                //db.execSQL("DROP TABLE IF EXISTS producer");
+                db.execSQL("DROP TABLE IF EXISTS cast");
+                db.execSQL("DROP TABLE IF EXISTS distributor");
+                
+                onCreate(db);
+        }
+        
 }

@@ -1,8 +1,5 @@
 package ie.simo.movies.activities;
 
-import ie.simo.movies.R;
-import ie.simo.movies.R.id;
-import ie.simo.movies.R.layout;
 import ie.simo.movies.util.SimpleEula;
 import android.app.Activity;
 import android.content.Intent;
