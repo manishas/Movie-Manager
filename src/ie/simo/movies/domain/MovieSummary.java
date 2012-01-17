@@ -6,8 +6,7 @@ public class MovieSummary {
 	private int totalCost;
 	private int totalEarnings;
 	private MovieInfo info;
-	
-	
+	private MovieMetadata metadata;
 	
 	public MovieInfo getInfo() {
 		return info;
@@ -26,6 +25,12 @@ public class MovieSummary {
 	}
 	public void setTotalCost(int totalCost) {
 		this.totalCost = totalCost;
+	}
+	public MovieMetadata getMetadata() {
+		return metadata;
+	}
+	public void setMetadata(MovieMetadata metadata) {
+		this.metadata = metadata;
 	}
 	
 	
