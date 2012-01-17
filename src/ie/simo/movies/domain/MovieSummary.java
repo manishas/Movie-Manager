@@ -1,9 +1,12 @@
 package ie.simo.movies.domain;
 
+import java.util.Date;
+
 public class MovieSummary {
 	private int totalCost;
 	private int totalEarnings;
 	private MovieInfo info;
+	
 	
 	
 	public MovieInfo getInfo() {
@@ -24,5 +27,6 @@ public class MovieSummary {
 	public void setTotalCost(int totalCost) {
 		this.totalCost = totalCost;
 	}
+	
 	
 }
