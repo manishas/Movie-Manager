@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+	<!-- common -->
+	<string name="cancel">Cancel Production</string>
+	
+	<!-- EULA/whats new -->
+	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add updates at least every two weeks. If you have a suggestion please contact me or leave a comment!</string>
+	<string name="updates">Updates in this version: This "updates" dialog(!), box-office screen, fixed screen orientations, Conor\'s refactoring, Learned how to spell M. Night Shyamalan.  </string>
+	
+	<!-- start screen -->
 	<string name="start">Make Movies!</string>
 	<string name="seeboxoffice">All-time Box office</string>
+	
+	<!-- choose film screen -->
 	<string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
 	<string name="app_name">Movie Manager</string>
 	<string name="makeown">"I'll make my own, thanks"</string>
 	<string name="getmore">Get more scripts...</string>
+	
+	<!-- make own film screen -->
+	<string name="enterfilmname">Enter the name of your film:</string>
+	<string name="selectgenre">Select your genre: </string>
+	<string name="makethisfilm">Make this film!</string>
+	
+	<!-- choose director screen -->
 	<string name="director1">You have chosen the script </string>
-	<string name="director2">Choose a Director to approach:</string>
+	<string name="director2">Choose a Director to approach:</string>	
+	<string name="directorPrice">Price to hire: %s</string>
+	<!-- TODO move directors to db -->
 	<string-array name="directors">
 		<item>Steven Spielberg</item>
 		<item>M. Night Shyamalan</item>
@@ -21,15 +41,14 @@
 		<item>Michael Bay</item>
 		<item>Tommy Wiseau</item>
 	</string-array>
-	<string name="directorPrice">Price to hire: %s</string>
+	
+	<!-- result screen -->
 	<string name="cashmoney">You earned a grand total of: %s</string>
-	<string name="enterfilmname">Enter the name of your film:</string>
-	<string name="selectgenre">Select your genre: </string>
-	<string name="makethisfilm">Make this film!</string>
-	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add updates at least every two weeks. If you have a suggestion please contact me or leave a comment!</string>
-	<string name="updates">Updates in this version: This "updates" dialog(!), box-office screen, fixed screen orientations, Conor\'s refactoring, Learned how to spell M. Night Shyamalan.  </string>
+	
+	<!-- new game screen -->
 	<string name="choosecompanyname">Choose the name of your production company: </string>
-	<string name="ask">Ask</string>
-	<string name="cancel">Cancel Production</string>
 	<string name="enterchairmanname">Enter your name</string>
+	<!-- pitch movie screen -->
+	<string name="ask">Ask</string>
+	
 </resources>
