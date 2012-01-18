@@ -7,6 +7,7 @@ import java.util.Random;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
 
 public class TestDatabaseActivity extends ListActivity {
@@ -19,21 +20,24 @@ public class TestDatabaseActivity extends ListActivity {
 
 		// Define the columns of the table
 		// which should be used in the ListView
-		String[] from = new String[] { BoxOfficeDbAdapter.MOVIE_NAME, BoxOfficeDbAdapter.EARNINGS };
+		String[] from = new String[] { "_id", BoxOfficeDbAdapter.MOVIE_NAME, BoxOfficeDbAdapter.EARNINGS };
 		// Define the view elements to which the
 		// columns will be mapped
-		int[] to = new int[] { android.R.id.text1 };
+		int[] to = new int[] {R.id.rank, R.id.boxofficename, R.id.boxofficeearnings };
 		db = new BoxOfficeDbAdapter(this);
 		db.open();
 
 		// Read all movies
 		Cursor c = db.fetchAllMovies();
-
 		// Use the SimpleCursorAdapter to show the
 		// elements in a ListView
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-				android.R.layout.simple_list_item_1, c, from, to);
-		setListAdapter(adapter);
+		
+		ListAdapter adapter = new SimpleCursorAdapter(this,
+				R.layout.boxofficeentry, c, from, to);
+		
+        setListAdapter(adapter);
+
+		
 	}
 
 	@Override
@@ -41,5 +45,11 @@ public class TestDatabaseActivity extends ListActivity {
 		db.close();
 		super.onPause();
 	}
-
+	
+	@Override
+	protected void onDestroy(){
+	
+		db.close();
+		super.onDestroy();
+	}
 }

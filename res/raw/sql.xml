@@ -54,38 +54,38 @@
 	distributor_desc text, 
 	distributor_name text)
 </statement>
-<!-- 																																					genre/earned/cost/prod/dir/dist		 -->
+<!--genre/earned/cost/prod/dir/dist -->
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Avatar', 'Enter the world', 1, 760, 310, 1, 1, 1)</statement>
-<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Titanic', 'Nothing On Earth Could Come Between Them.', 1, 600, 200, 1, 1, 1)</statement>
-<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('The Dark Knight', 'Why so serious?', 1, 533, 310, 1, 1, 1)</statement>
-<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Star Wars Episode IV: A New Hope', 'A long time ago in a galaxy far, far away...', 1, 460, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Titanic', 'Nothing On Earth Could Come Between Them.', 6, 600, 200, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('The Dark Knight', 'Why so serious?', 2, 533, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Star Wars Episode IV: A New Hope', 'A long time ago in a galaxy far, far away...', 1, 460, 310, 1, 3, 1)</statement>
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Shrek 2', 'Once upon another time... ', 1, 436, 310, 1, 1, 1)</statement>
-<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('E.T. The Extra Terrestrial', 'He is afraid. He is totally alone. He is 3 million light years from home.', 1, 433, 310, 1, 1, 1)</statement>
-<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Star Wars Episode 1: The Phantom Menace', 'Every generation has a legend. Every journey has a first step. Every saga has a beginning', 1, 431, 310, 1, 1, 1)</statement>
-<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Pirates Of The Carribean: Dead Man's Chest', 'Captain Jack is back', 1, 423, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('E.T. The Extra Terrestrial', 'He is afraid. He is totally alone. He is 3 million light years from home.', 1, 433, 310, 1, 2, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Star Wars Episode 1: The Phantom Menace', 'Every generation has a legend. Every journey has a first step. Every saga has a beginning', 1, 431, 310, 1, 3, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Pirates Of The Carribean: Dead Mans Chest', 'Captain Jack is back', 1, 423, 310, 1, 1, 1)</statement>
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Toy Story 3', 'No toy gets left behind.', 1, 414, 310, 1, 1, 1)</statement>
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Spider-man', 'Go for the ultimate spin', 1, 403, 310, 1, 1, 1)</statement>
 
 
+<statement>insert into producer (producer_name, producer_reputation) values ('James Cameron', 80)</statement> <!-- 1 -->
 
-<statement>insert into producer (producer_name, producer_reputation) values ('James Cameron', 80)</statement>
-
-<statement>insert into distributor (distributor_name, distributor_desc) values ('20th Century Fox', 'Lovely chaps')</statement><!-- 1 -->
-<statement>insert into distributor (distributor_name, distributor_desc) values ('Pixar', 'Lovely chaps')</statement> <!-- 2 -->
-<statement>insert into distributor (distributor_name, distributor_desc) values ('Dreamworks', 'Lovely chaps')</statement><!-- 3 -->
-<statement>insert into distributor (distributor_name, distributor_desc) values ('Disney', 'Lovely chaps')</statement>
-<statement>insert into distributor (distributor_name, distributor_desc) values ('Lucasarts', 'Lovely chaps')</statement>
+<statement>insert into distributor (distributor_name, distributor_desc) values ('20th Century Fox', 'Lovely chaps')</statement>	<!-- 1 -->
+<statement>insert into distributor (distributor_name, distributor_desc) values ('Pixar', 'Lovely chaps')</statement> 			<!-- 2 -->
+<statement>insert into distributor (distributor_name, distributor_desc) values ('Dreamworks', 'Lovely chaps')</statement>		<!-- 3 -->
+<statement>insert into distributor (distributor_name, distributor_desc) values ('Disney', 'Lovely chaps')</statement>			<!-- 4 -->
+<statement>insert into distributor (distributor_name, distributor_desc) values ('Lucasarts', 'Lovely chaps')</statement>		<!-- 5 -->
 
 <!-- Genres -->
-<statement>insert into genre (genre_name) values ('Science Fiction')</statement>
-<statement>insert into genre (genre_name) values ('Action')</statement>
-<statement>insert into genre (genre_name) values ('Horror')</statement>
-<statement>insert into genre (genre_name) values ('Kids')</statement>
-<statement>insert into genre (genre_name) values ('Romance')</statement>
-<statement>insert into genre (genre_name) values ('Drama')</statement>
+<statement>insert into genre (genre_name) values ('Science Fiction')</statement>	<!-- 1 -->
+<statement>insert into genre (genre_name) values ('Action')</statement>				<!-- 2 -->
+<statement>insert into genre (genre_name) values ('Horror')</statement>				<!-- 3 -->
+<statement>insert into genre (genre_name) values ('Kids')</statement>				<!-- 4 -->
+<statement>insert into genre (genre_name) values ('Romance')</statement>			<!-- 5 -->
+<statement>insert into genre (genre_name) values ('Drama')</statement>				<!-- 6 -->
 
-<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('James Cameron', 25, 80)</statement>
-<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Steven Spielberg', 25, 85)</statement>
-<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('George Lucas', 20, 75)</statement>
-<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Peter Jackson', 25, 80)</statement>
+<!-- Directors -->
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('James Cameron', 25, 80)</statement>		<!-- 1 -->
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Steven Spielberg', 25, 85)</statement>	<!-- 2 -->
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('George Lucas', 20, 75)</statement>		<!-- 3 -->
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Peter Jackson', 25, 80)</statement>		<!-- 4 -->
 </sql>
