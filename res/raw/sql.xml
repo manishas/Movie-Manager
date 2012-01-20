@@ -74,14 +74,18 @@
 <statement>insert into distributor (distributor_name, distributor_desc) values ('Dreamworks', 'Lovely chaps')</statement>		<!-- 3 -->
 <statement>insert into distributor (distributor_name, distributor_desc) values ('Disney', 'Lovely chaps')</statement>			<!-- 4 -->
 <statement>insert into distributor (distributor_name, distributor_desc) values ('Lucasarts', 'Lovely chaps')</statement>		<!-- 5 -->
+<statement>insert into distributor (distributor_name, distributor_desc) values ('Sony Pictures', 'Lovely chaps')</statement>		<!-- 5 -->
+<statement>insert into distributor (distributor_name, distributor_desc) values ('Paramount', 'Lovely chaps')</statement>		<!-- 5 -->
+
 
 <!-- Genres -->
-<statement>insert into genre (genre_name) values ('Science Fiction')</statement>	<!-- 1 -->
-<statement>insert into genre (genre_name) values ('Action')</statement>				<!-- 2 -->
-<statement>insert into genre (genre_name) values ('Horror')</statement>				<!-- 3 -->
-<statement>insert into genre (genre_name) values ('Kids')</statement>				<!-- 4 -->
-<statement>insert into genre (genre_name) values ('Romance')</statement>			<!-- 5 -->
-<statement>insert into genre (genre_name) values ('Drama')</statement>				<!-- 6 -->
+<statement>insert into genre (genre_name) values ('Action')</statement>		<!-- 1 -->			
+<statement>insert into genre (genre_name) values ('Horror')</statement> 	<!-- 2 -->
+<statement>insert into genre (genre_name) values ('Romance')</statement> 	<!-- 3 -->
+<statement>insert into genre (genre_name) values ('Comedy')</statement>		<!-- 4 -->
+<statement>insert into genre (genre_name) values ('Drama')</statement>		<!-- 5 -->
+<statement>insert into genre (genre_name) values ('Science Fiction')</statement><!-- 6 -->
+<statement>insert into genre (genre_name) values ('Kids')</statement>		<!-- 7 -->
 
 <!-- Directors -->
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('James Cameron', 25, 80)</statement>		<!-- 1 -->

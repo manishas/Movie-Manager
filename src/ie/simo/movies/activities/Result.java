@@ -1,6 +1,8 @@
 package ie.simo.movies.activities;
 
+import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.domain.MovieSummary;
 
 import java.text.ChoiceFormat;
 import java.text.NumberFormat;
@@ -39,6 +41,13 @@ public class Result extends Activity {
 		String msg = getString(R.string.cashmoney, nf.format(money));
 		
 		cash.setText(msg);
+		
+		MovieSummary summary = new MovieSummary();
+		summary.setTotalEarnings(money/1000000);
+		summary.setInfo(finishedFilm);
+		
+		BoxOfficeDbAdapter db = new BoxOfficeDbAdapter(this);
+		db.createMovie(summary);
 		
 		tryAgain.setOnClickListener(new View.OnClickListener() {
 			

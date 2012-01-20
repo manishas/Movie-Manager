@@ -12,7 +12,9 @@ public class BoxOfficeDbAdapter {
 	// Database fields
 	public static final String MOVIE_NAME = "movie_name";
 	public static final String EARNINGS = "earnings";
+	public static final String GENRE = "genre_id";
 	private static final String DATABASE_TABLE = "movie";
+	
 	private Context context;
 	private SQLiteDatabase database;
 	private DatabaseHelper dbHelper;
@@ -23,7 +25,7 @@ public class BoxOfficeDbAdapter {
 
 	public BoxOfficeDbAdapter open() throws SQLException {
 		dbHelper = new DatabaseHelper(context);
-		database = dbHelper.getReadableDatabase();
+		database = dbHelper.getWritableDatabase();
 		return this;
 	}
 
@@ -34,11 +36,13 @@ public class BoxOfficeDbAdapter {
 	public long createMovie(MovieSummary movie) {
 		ContentValues values = new ContentValues();
 		values.put(MOVIE_NAME, movie.getInfo().getTitle());
+		values.put(EARNINGS, movie.getTotalEarnings());
+		values.put(GENRE, movie.getInfo().getGenre().ordinal());
 		return database.insert(DATABASE_TABLE, null, values);
 	}
 
 	public Cursor fetchAllMovies() {
-		return database.rawQuery( "select rowid _id,movie_name, earnings from movie", null);
+		return database.rawQuery( "select rowid _id,movie_name, earnings from movie order by earnings", null);
 	}
 	
 }
