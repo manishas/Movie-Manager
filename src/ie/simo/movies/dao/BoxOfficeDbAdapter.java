@@ -13,7 +13,12 @@ public class BoxOfficeDbAdapter {
 	public static final String MOVIE_NAME = "movie_name";
 	public static final String EARNINGS = "earnings";
 	public static final String GENRE = "genre_id";
-	private static final String DATABASE_TABLE = "movie";
+	public static final String DATABASE_TABLE = "movie";
+	public static final String TAGLINE = "tagline";
+	public static final String COST = "cost";
+	public static final String PRODUCER = "producer_id";
+	public static final String DIRECTOR = "director_id";
+	public static final String DISTRIBUTOR ="distributor_id";
 	
 	private Context context;
 	private SQLiteDatabase database;
@@ -38,11 +43,16 @@ public class BoxOfficeDbAdapter {
 		values.put(MOVIE_NAME, movie.getInfo().getTitle());
 		values.put(EARNINGS, movie.getTotalEarnings());
 		values.put(GENRE, movie.getInfo().getGenre().ordinal());
+		values.put(TAGLINE, movie.getInfo().getTagline());
+		values.put(DIRECTOR,1);
+		values.put(COST, movie.getInfo().getDirector().getPriceToHire());
+		values.put(DISTRIBUTOR, 1);
+		
 		return database.insert(DATABASE_TABLE, null, values);
 	}
 
-	public Cursor fetchAllMovies() {
-		return database.rawQuery( "select rowid _id,movie_name, earnings from movie order by earnings", null);
+	public Cursor fetchAllMovies() {	//need to order
+		return database.rawQuery( "select rowid _id, movie_name, earnings from movie order by earnings desc limit 10", null);
 	}
 	
 }

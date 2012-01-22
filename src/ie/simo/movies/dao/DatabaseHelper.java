@@ -46,6 +46,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 } catch (Throwable t) {
                         Toast.makeText(context, t.toString(), 50000).show();
                 }
+                finally{
+                	close();
+                }
         }
 
         @Override

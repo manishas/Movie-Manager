@@ -1,17 +1,13 @@
 package ie.simo.movies.dao;
 
+import ie.simo.movies.domain.MovieSummary;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DirectorDbAdapter {
-
-	// Database fields
-	public static final String DIRECTOR_NAME = "director_name";
-	public static final String HIRE_COST = "director_hire_cost";
-	public static final String REPUTATION = "director_reputation";
-	private static final String DATABASE_TABLE = "director";
 	
 	private Context context;
 	private SQLiteDatabase database;
@@ -32,9 +28,7 @@ public class DirectorDbAdapter {
 	}
 
 	public Cursor fetchAllDirectors() {
-		return database.rawQuery( "select rowid _id," + DIRECTOR_NAME + " ," + 
-									HIRE_COST + ", "+ REPUTATION +" from " +
-									DATABASE_TABLE, null);
+		return database.rawQuery( "select _id, director_name, director_hire_cost, director_reputation from director order by earnings desc", null);
 	}
 	
 }

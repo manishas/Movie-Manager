@@ -3,6 +3,8 @@ package ie.simo.movies.activities;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
+import ie.simo.movies.earnings.EarningsCalculator;
+import ie.simo.movies.earnings.EarningsCalculatorFirstImpl;
 
 import java.text.ChoiceFormat;
 import java.text.NumberFormat;
@@ -23,9 +25,13 @@ public class Result extends Activity {
 	private RatingBar rating;
 	private Button tryAgain;
 	private TextView cash;
+	
+	private EarningsCalculator calculator;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.result);
+		
+		calculator = new EarningsCalculatorFirstImpl();
 		
 		findAllViewsById();
 		
@@ -33,10 +39,12 @@ public class Result extends Activity {
 		finishedFilm = (MovieInfo) i.getSerializableExtra("chosen");
 		
 		Random r = new Random();
-		float f = 0.5f * r.nextInt(10);
-		rating.setRating(f);
 		
-		int money = (int) (((20 + r.nextInt(80) * f)*(finishedFilm.getDirector().getPriceToHire()/1000000) * (100000 * finishedFilm.getGenre().boxOffice())));
+		//                        number between 0 and 10
+		float starRating = 0.5f * r.nextInt(11);
+		rating.setRating(starRating);
+		
+		int money = calculator.calculate(finishedFilm, starRating);
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
 		String msg = getString(R.string.cashmoney, nf.format(money));
 		
@@ -47,7 +55,9 @@ public class Result extends Activity {
 		summary.setInfo(finishedFilm);
 		
 		BoxOfficeDbAdapter db = new BoxOfficeDbAdapter(this);
+		db.open();
 		db.createMovie(summary);
+		db.close();
 		
 		tryAgain.setOnClickListener(new View.OnClickListener() {
 			
