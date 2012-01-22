@@ -28,7 +28,7 @@ public class DirectorDbAdapter {
 	}
 
 	public Cursor fetchAllDirectors() {
-		return database.rawQuery( "select _id, director_name, director_hire_cost, director_reputation from director order by earnings desc", null);
+		return database.rawQuery( "select _id, director_name, director_hire_cost, director_reputation from director order by director_hire_cost desc", null);
 	}
 	
 }

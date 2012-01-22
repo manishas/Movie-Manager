@@ -3,15 +3,18 @@ package ie.simo.movies.activities;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import ie.simo.movies.dao.DirectorDbAdapter;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,6 +32,7 @@ public class GetDirector extends Activity {
 
 		findAllViewsById();
 		Intent i = getIntent();
+		fillSpinner();
 		chosenFilm = (MovieInfo) i.getSerializableExtra("chosen");
 		chosen.setText(chosenFilm.toButtonText());
 		String msg = getString(R.string.directorPrice , 20000000/(spinner.getSelectedItemPosition() + 1));
@@ -79,5 +83,24 @@ public class GetDirector extends Activity {
 		price = (TextView) this.findViewById(R.id.directorPrice);
 		spinner = (Spinner) this.findViewById(R.id.spinner1);
 		produceFilm = (Button) this.findViewById(R.id.produceFilm);
+	}
+	
+	private void fillSpinner(){
+		 DirectorDbAdapter db = new DirectorDbAdapter(this);
+		 db.open();
+		Cursor c = db.fetchAllDirectors();
+		startManagingCursor(c);
+		
+		
+		// create an array to specify which fields we want to display
+		String[] from = new String[]{"director_name"};
+		// create an array of the display item we want to bind our data to
+		int[] to = new int[]{android.R.id.text1};
+		// create simple cursor adapter
+		SimpleCursorAdapter adapter =
+		  new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, c, from, to );
+		adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+		// get reference to our spinner
+		spinner.setAdapter(adapter);
 	}
 }
