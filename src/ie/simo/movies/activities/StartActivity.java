@@ -42,16 +42,15 @@ public class StartActivity extends Activity {
 		});
 		
 		boxOffice.setOnClickListener(new View.OnClickListener() {
-
 	
 			public void onClick(View v) {
 				Intent i = new Intent();
-				i.setClass(StartActivity.this, TestDatabaseActivity.class);
+				i.setClass(StartActivity.this, BoxOffice.class);
 				startActivity(i);
 			}
 		});
 	}
-	
+
 	private void findAllViewsById() {
 		startGame = (Button) this.findViewById(R.id.startgameButton);
 		boxOffice = (Button) this.findViewById(R.id.boxofficeButton);

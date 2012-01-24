@@ -1,5 +1,6 @@
 package ie.simo.movies.dao;
 
+
 import ie.simo.movies.domain.MovieSummary;
 import android.content.ContentValues;
 import android.content.Context;

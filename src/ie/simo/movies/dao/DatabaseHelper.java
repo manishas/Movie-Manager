@@ -33,24 +33,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public void onCreate(SQLiteDatabase db) {
                 String s;
                 try {
-                        Toast.makeText(context, "1", 2000).show();
-                        InputStream in = context.getResources().openRawResource(R.raw.sql);
-                        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-                        Document doc = builder.parse(in, null);
-                        NodeList statements = doc.getElementsByTagName("statement");
-                        for (int i=0; i<statements.getLength(); i++) {
-                                s = statements.item(i).getChildNodes().item(0).getNodeValue();
-                                db.execSQL(s);
-                                Log.d("DBHELPER","sql executed");
-                        }
+                	Toast.makeText(context, "Building database...", 2000);
+                    InputStream in = context.getResources().openRawResource(R.raw.sql);
+                    DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                    Document doc = builder.parse(in, null);
+                    NodeList statements = doc.getElementsByTagName("statement");
+                    for (int i=0; i<statements.getLength(); i++) {
+                            s = statements.item(i).getChildNodes().item(0).getNodeValue();
+                            db.execSQL(s);
+                            Log.d("DBHELPER","sql executed");
+                    }
                 } catch (Throwable t) {
                         Toast.makeText(context, t.toString(), 50000).show();
                 }
-                finally{
-                	close();
-                }
         }
-
+        //TODO make sure upgrade doesn't interfere wth existing save games
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
                 db.execSQL("DROP TABLE IF EXISTS movie");

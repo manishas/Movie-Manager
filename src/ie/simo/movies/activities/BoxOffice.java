@@ -1,25 +1,44 @@
 package ie.simo.movies.activities;
 
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
-import android.app.Activity;
-import android.content.Intent;
+import ie.simo.movies.dao.cursor.BoxOfficeCursorAdapter;
+
+import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TableLayout;
+import android.widget.ListAdapter;
 
-public class BoxOffice extends Activity {
-	
-	private BoxOfficeDbAdapter dbHelper;
-	private static final int ACTIVITY_CREATE = 0;
-	private static final int ACTIVITY_EDIT = 1;
-	private static final int DELETE_ID = 0; //Menu.FIRST + 1;
-	private Cursor cursor;
+public class BoxOffice extends ListActivity {
+	private BoxOfficeDbAdapter db;
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.boxoffice);
+		setContentView(R.layout.dbtest);
+
+		db = new BoxOfficeDbAdapter(this);
+		db.open();
+
+		// Read all movies
+		Cursor c = db.fetchAllMovies();
+				
+		ListAdapter adapter = new BoxOfficeCursorAdapter(this,c);
+        setListAdapter(adapter);
+                
+        db.close();
+	}
+
+	
+	@Override
+	protected void onPause() {
+		db.close();
+		super.onPause();
+	}
+	
+	@Override
+	protected void onDestroy(){
+	
+		db.close();
+		super.onDestroy();
 	}
 }

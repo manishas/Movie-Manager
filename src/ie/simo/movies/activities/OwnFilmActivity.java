@@ -6,6 +6,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -57,4 +60,29 @@ public class OwnFilmActivity extends Activity {
 		spinner = (Spinner) this.findViewById(R.id.genrespinner);
 		director = (Button) this.findViewById(R.id.getdirectorbutton);
 	}
+	
+	 // Initiating Menu XML file (menu.xml)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+ 
+    /**
+     * Event Handling for Individual menu item selected
+     * Identify single menu item by it's id
+     * */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+ 
+        //Doesn't check to see if different button selected
+    	Intent intent = new Intent();
+
+		intent.setClass(OwnFilmActivity.this, BoxOffice.class);
+    	
+        return true;
+    }    
 }

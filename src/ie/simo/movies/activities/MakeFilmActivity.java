@@ -5,6 +5,9 @@ import ie.simo.movies.util.GetImage;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -103,5 +106,30 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		meta.newScript();
 		myButton.setText(meta.toButtonText());
 	}
+	
+	 // Initiating Menu XML file (menu.xml)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+ 
+    /**
+     * Event Handling for Individual menu item selected
+     * Identify single menu item by it's id
+     * */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+ 
+        //Doesn't check to see if different button selected
+    	Intent intent = new Intent();
+
+		intent.setClass(MakeFilmActivity.this, BoxOffice.class);
+    	
+        return true;
+    }    
 
 }

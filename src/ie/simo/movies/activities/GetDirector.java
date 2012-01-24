@@ -1,11 +1,12 @@
 package ie.simo.movies.activities;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import ie.simo.movies.dao.DirectorDbAdapter;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -90,8 +91,7 @@ public class GetDirector extends Activity {
 		 db.open();
 		Cursor c = db.fetchAllDirectors();
 		startManagingCursor(c);
-		
-		
+				
 		// create an array to specify which fields we want to display
 		String[] from = new String[]{"director_name"};
 		// create an array of the display item we want to bind our data to
