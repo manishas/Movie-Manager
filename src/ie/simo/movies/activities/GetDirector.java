@@ -11,6 +11,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -103,4 +106,29 @@ public class GetDirector extends Activity {
 		// get reference to our spinner
 		spinner.setAdapter(adapter);
 	}
+	
+	 // Initiating Menu XML file (menu.xml)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+ 
+    /**
+     * Event Handling for Individual menu item selected
+     * Identify single menu item by it's id
+     * */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+ 
+        //Doesn't check to see if different button selected
+    	Intent intent = new Intent();
+
+		intent.setClass(this, BoxOffice.class);
+    	
+        return true;
+    }    
 }

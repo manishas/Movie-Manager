@@ -127,9 +127,11 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
         //Doesn't check to see if different button selected
     	Intent intent = new Intent();
 
-		intent.setClass(MakeFilmActivity.this, BoxOffice.class);
+		intent.setClass(this, BoxOffice.class);
     	
-        return true;
+		startActivity(intent);
+		
+        return false;
     }    
 
 }

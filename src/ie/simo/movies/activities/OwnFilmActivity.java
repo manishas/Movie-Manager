@@ -81,8 +81,10 @@ public class OwnFilmActivity extends Activity {
         //Doesn't check to see if different button selected
     	Intent intent = new Intent();
 
-		intent.setClass(OwnFilmActivity.this, BoxOffice.class);
+		intent.setClass(this, BoxOffice.class);
     	
-        return true;
+		startActivity(intent);
+		
+        return false;
     }    
 }
