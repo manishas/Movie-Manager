@@ -7,7 +7,7 @@
 	
 	<!-- EULA/whats new -->
 	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add updates at least every two weeks. If you have a suggestion please contact me or leave a comment!</string>
-	<string name="updates">Updates in this version: This "updates" dialog(!), box-office screen, fixed screen orientations, Conor\'s refactoring, Learned how to spell M. Night Shyamalan.  </string>
+	<string name="updates">Updates in this version (26th Jan): Your top movies get added to the all time box office</string>
 	
 	<!-- start screen -->
 	<string name="start">Make Movies!</string>
@@ -28,20 +28,6 @@
 	<string name="director1">You have chosen the script </string>
 	<string name="director2">Choose a Director to approach:</string>	
 	<string name="directorPrice">Price to hire: %s</string>
-	<!-- TODO move directors to db -->
-	<string-array name="directors">
-		<item>Steven Spielberg</item>
-		<item>M. Night Shyamalan</item>
-		<item>Tim Burton</item>
-		<item>Ron Howard</item>
-		<item>Chris Columbus</item>
-		<item>Quentin Tarantino</item>
-		<item>Martin Scorsese</item>
-		<item>David Lynch</item>
-		<item>Peter Jackson</item>
-		<item>Michael Bay</item>
-		<item>Tommy Wiseau</item>
-	</string-array>
 	
 	<!-- result screen -->
 	<string name="cashmoney">You earned a grand total of: %s</string>
@@ -49,6 +35,7 @@
 	<!-- new game screen -->
 	<string name="choosecompanyname">Choose the name of your production company: </string>
 	<string name="enterchairmanname">Enter your name</string>
+	
 	<!-- pitch movie screen -->
 	<string name="ask">Ask</string>
 	
