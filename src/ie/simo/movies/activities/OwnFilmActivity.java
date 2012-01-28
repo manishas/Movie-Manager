@@ -1,5 +1,6 @@
 package ie.simo.movies.activities;
 
+import ie.simo.movies.R;
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.MovieInfo;
 import android.app.Activity;

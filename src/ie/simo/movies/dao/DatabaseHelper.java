@@ -1,6 +1,6 @@
 package ie.simo.movies.dao;
 
-import ie.simo.movies.activities.R;
+import ie.simo.movies.R;
 
 import java.io.InputStream;
 

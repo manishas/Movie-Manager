@@ -1,5 +1,6 @@
 package ie.simo.movies.activities;
 
+import ie.simo.movies.R;
 import ie.simo.movies.dao.DirectorDbAdapter;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;

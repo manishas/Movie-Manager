@@ -1,5 +1,6 @@
 package ie.simo.movies.activities;
 
+import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.dao.cursor.BoxOfficeCursorAdapter;
 

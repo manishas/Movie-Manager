@@ -42,10 +42,10 @@ final String eulaKey = EULA_PREFIX + versionInfo.versionCode;
         if(hasBeenShown == false){
 
          // Show the Eula
-            String title = mActivity.getString(ie.simo.movies.activities.R.string.app_name) + " v" + versionInfo.versionName;
+            String title = mActivity.getString(ie.simo.movies.R.string.app_name) + " v" + versionInfo.versionName;
             
             //Includes the updates as well so users know what changed.
-            String message = mActivity.getString(ie.simo.movies.activities.R.string.eula) + "\n\n" + mActivity.getString(ie.simo.movies.activities.R.string.updates);
+            String message = mActivity.getString(ie.simo.movies.R.string.eula) + "\n\n" + mActivity.getString(ie.simo.movies.R.string.updates);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
                     .setTitle(title)

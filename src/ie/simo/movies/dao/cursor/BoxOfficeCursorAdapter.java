@@ -1,12 +1,9 @@
 package ie.simo.movies.dao.cursor;
 
-import ie.simo.movies.activities.R;
-import ie.simo.movies.dao.BoxOfficeDbAdapter;
+import ie.simo.movies.R;
 import android.content.Context;
 import android.database.Cursor;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
