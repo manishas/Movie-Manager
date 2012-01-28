@@ -11,8 +11,10 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class BoxOffice extends ListActivity {
 	private BoxOfficeDbAdapter db;
@@ -28,18 +30,39 @@ public class BoxOffice extends ListActivity {
 
 		// Read all movies
 		Cursor c = db.fetchAllMovies();
-				
+					
 		ListAdapter adapter = new BoxOfficeCursorAdapter(this,c);
         setListAdapter(adapter);
+        
+//        ListView list = getListView();
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position,
+//                    long id) {
+//            	parent.
+//            	Cursor cursor = (Cursor) parent.getAdapter();
+//            	cursor.moveToPosition(position);
+//            	//long categoryId = cursor.getLong(cursor.getColumnIndex(CategoryDataHelper.ID));
+//
+//            }});
+
                 
         db.close();
 	}
-
+/*
     @Override  
     protected void onListItemClick(ListView l, View v, int position, long id) {  
+    	
+    	super.onListItemClick(l, v, position, id);
+    	
+    	Cursor c = (Cursor) getListView().getItemAtPosition(position);
+    	
+    	
+    	
     	AlertDialog.Builder builder = new AlertDialog.Builder(this)
-        .setTitle("Hello")
-        .setMessage("film details")
+        .setTitle(c.getString(c.getColumnIndex("movie_name")))//l.getSelectedItemPosition())
+        .setMessage("Directed by: "+ c.getString(c.getColumnIndex("director_id")))
         .setPositiveButton(android.R.string.ok, new Dialog.OnClickListener() {
 
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -51,9 +74,10 @@ public class BoxOffice extends ListActivity {
     	
     	builder.create().show();
       
-      super.onListItemClick(l, v, position, id);  
+  
     }  
 	
+    */
 	@Override
 	protected void onPause() {
 		db.close();

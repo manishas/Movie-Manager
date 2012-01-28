@@ -3,7 +3,8 @@
 <statement>
 	create table if not exists director 
 	(_id integer primary key autoincrement, 
-	director_name text not null, director_hire_cost integer,
+	director_name text not null, 
+	director_hire_cost integer,
 	director_reputation integer)
 </statement>
 
@@ -20,6 +21,7 @@
 	(_id integer primary key autoincrement,  
 	movie_name text,
 	tagline text,
+	description text,
 	genre_id integer,
 	earnings integer,
 	cost integer,
@@ -43,8 +45,7 @@
 
 <statement>
 	create table if not exists cast 
-	(_id integer,
-	movie_id integer, 
+	(movie_id integer, 
 	actor_id integer)
 </statement>
 
@@ -59,7 +60,7 @@
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Titanic', 'Nothing On Earth Could Come Between Them.', 6, 600, 200, 1, 1, 1)</statement>
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('The Dark Knight', 'Why so serious?', 2, 533, 310, 1, 1, 1)</statement>
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Star Wars Episode IV: A New Hope', 'A long time ago in a galaxy far, far away...', 1, 460, 310, 1, 3, 1)</statement>
-<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Shrek 2', 'Once upon another time... ', 1, 436, 310, 1, 1, 1)</statement>
+<statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Shrek 2', 'Once upon another time... ', 6, 436, 310, 1, 1, 1)</statement>
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('E.T. The Extra Terrestrial', 'He is afraid. He is totally alone. He is 3 million light years from home.', 1, 433, 310, 1, 2, 1)</statement>
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Star Wars Episode 1: The Phantom Menace', 'Every generation has a legend. Every journey has a first step. Every saga has a beginning', 1, 431, 310, 1, 3, 1)</statement>
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Pirates Of The Carribean: Dead Mans Chest', 'Captain Jack is back', 1, 423, 310, 1, 1, 1)</statement>
@@ -84,7 +85,7 @@
 <statement>insert into genre (genre_name) values ('Romance')</statement> 	<!-- 3 -->
 <statement>insert into genre (genre_name) values ('Comedy')</statement>		<!-- 4 -->
 <statement>insert into genre (genre_name) values ('Drama')</statement>		<!-- 5 -->
-<statement>insert into genre (genre_name) values ('Science Fiction')</statement><!-- 6 -->
+<statement>insert into genre (genre_name) values ('SciFi/Fantasy')</statement><!-- 6 -->
 <statement>insert into genre (genre_name) values ('Kids')</statement>		<!-- 7 -->
 
 <!-- Directors -->
@@ -92,4 +93,65 @@
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Steven Spielberg', 25, 85)</statement>	<!-- 2 -->
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('George Lucas', 20, 75)</statement>		<!-- 3 -->
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Peter Jackson', 25, 80)</statement>		<!-- 4 -->
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Gore Verbinski', 15, 55)</statement>		<!-- 5 -->
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Christopher Nolan', 15, 55)</statement>		<!-- 6 -->
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Andrew Adamson', 6, 50)</statement>		<!-- 7 -->
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Lee Unkrich', 6, 50)</statement>		<!-- 8 -->
+<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Sam Raimi', 14, 65)</statement>		<!-- 5 -->
+
+
+
+<!-- Actors -->
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sam Worthington', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Will Smith', 25, 90)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Johnny Depp', 23, 85)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Leonardo DiCaprio', 20, 85)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Brad Pitt', 20, 80)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tom Hanks', 20, 80)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('George Clooney', 18, 75)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Denzel Washington', 18, 75)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Rob Schneider', 1, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kate Winslet', 10, 60)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Christian Bale', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Harrison Ford', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Mark Hamill', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Mike Myers', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Eddie Murphy', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Cameron Diaz', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Drew Barrymore', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ewan McGregor', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Liam Neeson', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Orlando Bloom', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Toby Maguire', 8, 50)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kirsten Dunst', 8, 50)</statement>
+
+<!-- Cast -->
+
+<statement>insert into cast (movie_id, actor_id) values (1, 1)</statement> <!-- avatar -->
+<statement>insert into cast (movie_id, actor_id) values (2, 4)</statement> <!-- titanic -->
+<statement>insert into cast (movie_id, actor_id) values (2, 10)</statement> <!-- titanic -->
+<statement>insert into cast (movie_id, actor_id) values (3, 11)</statement> <!-- dark knight -->
+<statement>insert into cast (movie_id, actor_id) values (4, 12)</statement> <!-- star wars -->
+<statement>insert into cast (movie_id, actor_id) values (4, 13)</statement> <!-- star wars -->
+<statement>insert into cast (movie_id, actor_id) values (5, 14)</statement> <!-- shrek -->
+<statement>insert into cast (movie_id, actor_id) values (5, 15)</statement> <!-- shrek -->
+<statement>insert into cast (movie_id, actor_id) values (5, 16)</statement> <!-- shrek -->
+<statement>insert into cast (movie_id, actor_id) values (6, 17)</statement> <!-- et -->
+<statement>insert into cast (movie_id, actor_id) values (7, 18)</statement> <!-- phantom menace -->
+<statement>insert into cast (movie_id, actor_id) values (7, 19)</statement> <!-- phantom menace -->
+<statement>insert into cast (movie_id, actor_id) values (8, 3)</statement> <!-- pirates -->
+<statement>insert into cast (movie_id, actor_id) values (8, 20)</statement> <!-- pirates -->
+<statement>insert into cast (movie_id, actor_id) values (9, 6)</statement> <!-- toy story -->
+<statement>insert into cast (movie_id, actor_id) values (10, 3)</statement> <!-- spiderman -->
+<statement>insert into cast (movie_id, actor_id) values (10, 3)</statement> <!-- spiderman -->
+
+
+
+
+
+
+
+
+
+
 </sql>

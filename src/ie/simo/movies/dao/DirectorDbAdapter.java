@@ -1,9 +1,12 @@
 package ie.simo.movies.dao;
 
+import ie.simo.movies.domain.Director;
+import ie.simo.movies.util.DBConsts;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 
 public class DirectorDbAdapter {
 	
@@ -25,8 +28,11 @@ public class DirectorDbAdapter {
 		dbHelper.close();
 	}
 
-	public Cursor fetchAllDirectors() {
-		return database.rawQuery( "select _id, director_name, director_hire_cost, director_reputation from director order by director_hire_cost desc", null);
+	public Cursor fetchAllDirectors() {	
+		String query = String.format("select %s, %s, %s, %s from director order by %s desc", 
+				DBConsts.Director.id, DBConsts.Director.id, DBConsts.Director.name, 
+				DBConsts.Director.hire_cost, DBConsts.Director.reputation, DBConsts.Director.hire_cost);
+		return database.rawQuery(query, null);
 	}
 	
 }

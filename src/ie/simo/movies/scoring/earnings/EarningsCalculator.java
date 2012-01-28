@@ -1,4 +1,4 @@
-package ie.simo.movies.earnings;
+package ie.simo.movies.scoring.earnings;
 
 import ie.simo.movies.domain.MovieInfo;
 

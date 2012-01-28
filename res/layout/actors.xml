@@ -5,8 +5,9 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
     <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
-        <TextView android:text="Choose up to 3 actors: " android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>    
-    
+        <TextView android:text="Choose Your Cast: " android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+        <Spinner android:id="@+id/spinner1" android:layout_height="wrap_content" android:layout_width="match_parent"></Spinner>    
+    	
     </LinearLayout>
     
 </ScrollView>

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 public class BoxOfficeDbAdapter {
 
@@ -54,6 +55,11 @@ public class BoxOfficeDbAdapter {
 
 	public Cursor fetchAllMovies() {	//need to order
 		return database.rawQuery( "select rowid _id, movie_name, earnings from movie order by earnings desc limit 10", null);
+	}
+	
+	public void getMovieByName(String name){
+		Cursor c = database.rawQuery( "select movie_name, director_name, earnings from movie, director where movie_name='"+"' and director._id = movie.director_id", null);
+		Log.v("DIRECTORQUERY", c.getString(c.getColumnIndex(DIRECTOR)));	
 	}
 	
 }

@@ -3,6 +3,7 @@ package ie.simo.movies.activities;
 import ie.simo.movies.dao.DirectorDbAdapter;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.util.DBConsts;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -11,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,40 +31,46 @@ public class GetDirector extends Activity {
 	private TextView price;
 	private Spinner spinner;
 	private Button produceFilm;
+	private DirectorDbAdapter db;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.director);
+		
+		db = new DirectorDbAdapter(this);
+		db.open();
 
 		findAllViewsById();
 		Intent i = getIntent();
 		fillSpinner();
 		chosenFilm = (MovieInfo) i.getSerializableExtra("chosen");
 		chosen.setText(chosenFilm.toButtonText());
-		String msg = getString(R.string.directorPrice , 20000000/(spinner.getSelectedItemPosition() + 1));
+		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				Director chosenDirector = new Director();
+					int arg2, long arg3) {				
 				
-				chosenDirector.setName(spinner.getSelectedItem().toString());
-				chosenDirector.setPriceToHire(20000000/(spinner.getSelectedItemPosition() + 1));
-				
-				chosenFilm.setDirector(chosenDirector);
-				//format the amount
-				NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
-				String msg = getString(R.string.directorPrice , nf.format(20000000/(spinner.getSelectedItemPosition() + 1)));
-				GetDirector.this.price.setText(msg);				
+				if(spinner.getSelectedItem().toString() != null && !spinner.getSelectedItem().toString().equals("") )
+				{					
+					Cursor c = (Cursor) spinner.getSelectedItem();
+					Director chosenDirector = new Director();
+					chosenDirector.setName(c.getString(c.getColumnIndex(DBConsts.Director.name)));
+					chosenDirector.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Director.hire_cost))));
+					chosenFilm.setDirector(chosenDirector);
+					//format the amount
+					NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+					String msg = getString(R.string.directorPrice , nf.format(chosenDirector.getPriceToHire()*1000000));
+					GetDirector.this.price.setText(msg);
+				}
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-				GetDirector.this.spinner.setSelection(0);
-				
+				GetDirector.this.spinner.setSelection(0);				
 			}
 			
 		});
@@ -90,13 +98,12 @@ public class GetDirector extends Activity {
 	}
 	
 	private void fillSpinner(){
-		 DirectorDbAdapter db = new DirectorDbAdapter(this);
-		 db.open();
+		 
 		Cursor c = db.fetchAllDirectors();
 		startManagingCursor(c);
 				
 		// create an array to specify which fields we want to display
-		String[] from = new String[]{"director_name"};
+		String[] from = new String[]{DBConsts.Director.name};
 		// create an array of the display item we want to bind our data to
 		int[] to = new int[]{android.R.id.text1};
 		// create simple cursor adapter

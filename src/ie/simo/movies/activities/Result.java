@@ -3,8 +3,9 @@ package ie.simo.movies.activities;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
-import ie.simo.movies.earnings.EarningsCalculator;
-import ie.simo.movies.earnings.EarningsCalculatorFirstImpl;
+import ie.simo.movies.scoring.earnings.EarningsCalculator;
+import ie.simo.movies.scoring.earnings.EarningsCalculatorFirstImpl;
+import ie.simo.movies.scoring.rating.RatingCalculator;
 
 import java.text.ChoiceFormat;
 import java.text.NumberFormat;
@@ -30,24 +31,24 @@ public class Result extends Activity {
 	private TextView cash;
 	
 	private EarningsCalculator calculator;
+	private RatingCalculator ratingCalc;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.result);
 		
 		calculator = new EarningsCalculatorFirstImpl();
+		ratingCalc = new RatingCalculator();
 		
 		findAllViewsById();
 		
 		Intent i = getIntent();
 		finishedFilm = (MovieInfo) i.getSerializableExtra("chosen");
 		
-		Random r = new Random();
+		float criticRating = (float) ratingCalc.getRating(finishedFilm.getDirector().getReputation());
 		
-		//                        number between 0 and 10
-		float starRating = 0.5f * r.nextInt(11);
-		rating.setRating(starRating);
+		rating.setRating(criticRating);
 		
-		int money = calculator.calculate(finishedFilm, starRating);
+		int money = calculator.calculate(finishedFilm, criticRating);
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
 		String msg = getString(R.string.cashmoney, nf.format(money));
 		
