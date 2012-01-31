@@ -5,6 +5,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    	 <include layout="@layout/scorebar"/>
         <TextView android:text="Pitch your film to the Studios: " android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
         <TableLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
             <TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content" android:layout_height="wrap_content">
