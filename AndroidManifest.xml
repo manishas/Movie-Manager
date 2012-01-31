@@ -21,6 +21,8 @@
 		</activity>
 		<activity android:label="Create your film" android:name=".activities.OwnFilmActivity">
 		</activity>
+		<activity android:label="Pitch your Film" android:name=".activities.PitchFilm">
+		</activity>
 		<activity android:label="Result" android:name=".activities.Result">
 		</activity>
 	</application>

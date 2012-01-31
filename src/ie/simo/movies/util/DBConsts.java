@@ -21,5 +21,11 @@ public class DBConsts {
 		public static final String director = "director_id";
 		public static final String distributor = "distributor_id";
 	}
+	
+	public static class Distributor{
+		public static final String id = "_id"; 
+		public static final String desc = "distributor_desc";
+		public static final String name = "distributor_name";
+	}
 
 }
