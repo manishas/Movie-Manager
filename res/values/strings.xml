@@ -4,6 +4,7 @@
 	<!-- common -->
 	<string name="cancel">Cancel Production</string>
 	<string name="menu_boxoffice">Box Office</string>
+	<string name="budgetLabel">Budget:</string>
 	
 	<!-- EULA/whats new -->
 	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add updates at least every two weeks. If you have a suggestion please contact me or leave a comment!</string>

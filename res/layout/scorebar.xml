@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_height="match_parent" android:layout_width="fill_parent">
+    <TextView android:text="@+string/budgetlabel" android:id="@+id/budgetlabel" android:layout_height="wrap_content" android:layout_width="0dp" android:gravity="center_horizontal|right" android:layout_weight="5"></TextView>
+    <TextView android:text="$0" android:id="@+id/budgetValue"  android:layout_height="wrap_content" android:gravity="right" android:layout_width="0dp" android:layout_weight="1"></TextView>
+    
+</LinearLayout>
