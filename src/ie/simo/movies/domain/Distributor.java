@@ -1,6 +1,12 @@
 package ie.simo.movies.domain;
 
-public class Distributor {
+import java.io.Serializable;
+
+public class Distributor implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8589354959041174785L;
 	private String name;
 	private String description;
 	
