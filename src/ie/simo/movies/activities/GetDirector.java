@@ -30,9 +30,12 @@ public class GetDirector extends Activity {
 	private MovieInfo chosenFilm;
 	private TextView chosen;
 	private TextView price;
+	private TextView budgetView;
 	private Spinner spinner;
 	private Button produceFilm;
 	private DirectorDbAdapter db;
+	private String budget;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +47,9 @@ public class GetDirector extends Activity {
 		findAllViewsById();
 		Intent i = getIntent();
 		fillSpinner();
+		
+		budget = (String) i.getSerializableExtra("ie.simo.movies.budget");
+		
 		chosenFilm = (MovieInfo) i.getSerializableExtra("chosen");
 		chosen.setText(chosenFilm.toButtonText());
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
@@ -96,6 +102,7 @@ public class GetDirector extends Activity {
 		price = (TextView) this.findViewById(R.id.directorPrice);
 		spinner = (Spinner) this.findViewById(R.id.spinner1);
 		produceFilm = (Button) this.findViewById(R.id.produceFilm);
+		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 	}
 	
 	private void fillSpinner(){

@@ -5,6 +5,7 @@ import java.util.Random;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.DistributorDBAdapter;
 import ie.simo.movies.domain.Distributor;
+import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.DBConsts;
 import android.app.Activity;
 import android.content.Intent;
@@ -26,6 +27,8 @@ public class PitchFilm extends Activity {
 	
 	private Button cancel;
 	private TableLayout table;
+	
+	private MovieInfo chosenMovie;
 	Random generator;
 	
 	private DistributorDBAdapter db;
@@ -37,8 +40,22 @@ public class PitchFilm extends Activity {
 		generator = new Random();
 		findAllViewsById();
 		
+		Intent i = getIntent();
+		chosenMovie = (MovieInfo) i.getSerializableExtra("ie.simo.movies.chosen");
+		
+		
 		fillTable();
 		
+		cancel.setOnClickListener(new View.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent();
+				i.setClass(getApplicationContext(), MakeFilmActivity.class);
+				startActivity(i);
+			}
+			
+		});
 	}
 
 	private void fillTable() {
@@ -92,6 +109,7 @@ public class PitchFilm extends Activity {
 	        		
 	        		intent.putExtra("ie.simo.movies.distributor", d);
 	        		intent.putExtra("ie.simo.movies.budget", button.getText());
+	        		intent.putExtra("ie.simo.movies.chosen", chosenMovie);
 	        		startActivity(intent);
 	        	}
 	        }

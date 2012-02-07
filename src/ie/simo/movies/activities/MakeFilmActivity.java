@@ -70,13 +70,13 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View target) {
 
-		intent = new Intent(getApplicationContext(), GetDirector.class);
+		intent = new Intent(getApplicationContext(), PitchFilm.class);
 		if (target == script1)
-			intent.putExtra("chosen", meta1);
+			intent.putExtra("ie.simo.movies.chosen", meta1);
 		else if (target == script2)
-			intent.putExtra("chosen", meta2);
+			intent.putExtra("ie.simo.movies.chosen", meta2);
 		else if (target == script3)
-			intent.putExtra("chosen", meta3);
+			intent.putExtra("ie.simo.movies.chosen", meta3);
 
 		startActivity(intent);
 

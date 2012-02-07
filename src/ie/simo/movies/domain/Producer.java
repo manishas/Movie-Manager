@@ -9,6 +9,7 @@ public class Producer implements Serializable{
 	private String companyName;
 	private String chairmanName;
 	private int reputation;
+	private int cash;
 	private SavedGame[] savedGames;
 	
 	
@@ -35,5 +36,11 @@ public class Producer implements Serializable{
 	}
 	public void setSavedGames(SavedGame[] savedGames) {
 		this.savedGames = savedGames;
+	}
+	public int getCash() {
+		return cash;
+	}
+	public void setCash(int cash) {
+		this.cash = cash;
 	}
 }
