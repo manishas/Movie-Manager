@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GetDirector extends Activity {
 
@@ -34,7 +35,7 @@ public class GetDirector extends Activity {
 	private Spinner spinner;
 	private Button produceFilm;
 	private DirectorDbAdapter db;
-	private String budget;
+	private int budget;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,12 +49,13 @@ public class GetDirector extends Activity {
 		Intent i = getIntent();
 		fillSpinner();
 		
-		budget = (String) i.getSerializableExtra("ie.simo.movies.budget");
-		
-		chosenFilm = (MovieInfo) i.getSerializableExtra("chosen");
+		budget = (Integer)i.getSerializableExtra("ie.simo.movies.budget");		
+		chosenFilm = (MovieInfo) i.getSerializableExtra("ie.simo.movies.chosen");
 		chosen.setText(chosenFilm.toButtonText());
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
+		
+		budgetView.setText(budget+"");
 		
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -72,6 +74,8 @@ public class GetDirector extends Activity {
 					NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
 					String msg = getString(R.string.directorPrice , nf.format(chosenDirector.getPriceToHire()*1000000));
 					GetDirector.this.price.setText(msg);
+					
+					budgetView.setText("$" + (budget - chosenDirector.getPriceToHire()));
 				}
 			}
 
@@ -86,16 +90,36 @@ public class GetDirector extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent();
-				i.setClass(GetDirector.this, Result.class);
-				i.putExtra("chosen", chosenFilm);
-				startActivity(i);
+				
+				if(isValid()){
+					Intent i = new Intent();
+					i.setClass(GetDirector.this, Result.class);
+					i.putExtra("ie.simo.movies.chosen", chosenFilm);
+					i.putExtra("ie.simo.movies.budget", budget - chosenFilm.getDirector().getPriceToHire());
+					
+					startActivity(i);
+				}
+				else{
+					makeToast();
+				}
 				
 			}
 		});
 		
 		
 	}
+	
+	private void  makeToast(){
+		Toast.makeText(this, "You can't afford this director! Choose again", Toast.LENGTH_SHORT).show();
+
+	}
+	
+	private boolean isValid(){	
+		return (this.budget - chosenFilm.getDirector().getPriceToHire() >= 0)? true : false;
+	}
+	
+	
+	
 	
 	private void findAllViewsById() {
 		chosen = (TextView) this.findViewById(R.id.chosen);

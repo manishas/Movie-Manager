@@ -1,24 +1,24 @@
 package ie.simo.movies.activities;
 
-import java.util.Random;
-
 import ie.simo.movies.R;
 import ie.simo.movies.dao.DistributorDBAdapter;
 import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.DBConsts;
+
+import java.util.Random;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -70,7 +70,8 @@ public class PitchFilm extends Activity {
 			addNewRow(d);
 			c.moveToNext();
 		}
-		
+		c.close();
+		db.close();		
 	}
 	
 	private void findAllViewsById() {
@@ -108,7 +109,7 @@ public class PitchFilm extends Activity {
 	        		Intent intent = new Intent(getApplicationContext(), GetDirector.class);
 	        		
 	        		intent.putExtra("ie.simo.movies.distributor", d);
-	        		intent.putExtra("ie.simo.movies.budget", button.getText());
+	        		intent.putExtra("ie.simo.movies.budget", convertButtonLabelToInt(button.getText().toString()));
 	        		intent.putExtra("ie.simo.movies.chosen", chosenMovie);
 	        		startActivity(intent);
 	        	}
@@ -142,6 +143,12 @@ public class PitchFilm extends Activity {
 		startActivity(intent);
 		
         return false;
-    }    
+    }
+    
+    private int convertButtonLabelToInt(String label){
+    	label = label.substring(1,label.length()-1);
+    	Log.v("offer", label+"");
+    	return Integer.parseInt(label);
+    }
 	
 }

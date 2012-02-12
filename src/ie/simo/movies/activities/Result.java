@@ -8,10 +8,8 @@ import ie.simo.movies.scoring.earnings.EarningsCalculator;
 import ie.simo.movies.scoring.earnings.EarningsCalculatorFirstImpl;
 import ie.simo.movies.scoring.rating.RatingCalculator;
 
-import java.text.ChoiceFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.Random;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -31,6 +29,9 @@ public class Result extends Activity {
 	private Button tryAgain;
 	private TextView cash;
 	
+	private int budget;
+	private int shareOfEarnings;
+	
 	private EarningsCalculator calculator;
 	private RatingCalculator ratingCalc;
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,15 +44,17 @@ public class Result extends Activity {
 		findAllViewsById();
 		
 		Intent i = getIntent();
-		finishedFilm = (MovieInfo) i.getSerializableExtra("chosen");
+		finishedFilm = (MovieInfo) i.getSerializableExtra("ie.simo.movies.chosen");
 		
 		float criticRating = (float) ratingCalc.getRating(finishedFilm.getDirector().getReputation());
 		
 		rating.setRating(criticRating);
 		
 		int money = calculator.calculate(finishedFilm, criticRating);
+		
+		shareOfEarnings = getShareOfEarnings(money);
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
-		String msg = getString(R.string.cashmoney, nf.format(money));
+		String msg = getString(R.string.totalBoxOffice, nf.format(money));
 		
 		cash.setText(msg);
 		
@@ -68,11 +71,7 @@ public class Result extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent();
-				
-				i.setClass(Result.this, MakeFilmActivity.class);
-				
-				startActivity(i);
+				returnToMakeFilmScreen();
 			}
 		});
 		
@@ -81,8 +80,29 @@ public class Result extends Activity {
 	private void findAllViewsById() {
 		tryAgain = (Button) this.findViewById(R.id.tryAgain);
 		rating = (RatingBar) this.findViewById(R.id.ratingBar1);
-		cash = (TextView) this.findViewById(R.id.cashmoney);
+		cash = (TextView) this.findViewById(R.id.totalEarnings);
+	}
+	
+	@Override
+	public void onBackPressed(){
+		this.finish();
+		returnToMakeFilmScreen();
+	}
+	
+	private void returnToMakeFilmScreen(){
 		
+		Intent i = new Intent();
+		i.setClass(Result.this, MakeFilmActivity.class);
+		i.putExtra("ie.simo.movies.budget", budget + shareOfEarnings);
+		
+		startActivity(i);
+	}
+	
+	//currently, get 10% of earnings
+	//TODO will have to change how this works
+	private int getShareOfEarnings(int totalEarnings){
+		int profit = totalEarnings - finishedFilm.getTotalCost();
+		return ( profit > 0 )? 0 : profit / 2;
 	}
 	
 	 // Initiating Menu XML file (menu.xml)

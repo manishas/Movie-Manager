@@ -20,10 +20,16 @@
 			android:clickable="false"
 			android:isIndicator="true" />
 		<TextView
+			android:id="@+id/totalEarnings"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/totalBoxOffice"
+			android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView
 			android:id="@+id/cashmoney"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="@string/cashmoney"
+			android:text="@string/totalProfit"
 			android:textAppearance="?android:attr/textAppearanceMedium" />
 		<Button
 			android:id="@+id/tryAgain"

@@ -31,7 +31,8 @@
 	<string name="directorPrice">Price to hire: %s</string>
 	
 	<!-- result screen -->
-	<string name="cashmoney">You earned a grand total of: %s</string>
+	<string name="totalBoxOffice">The movie earned a grand total of: %s</string>
+	<string name="totalProfit">The movie earned a net profit of: %s</string>
 	
 	<!-- new game screen -->
 	<string name="choosecompanyname">Choose the name of your production company: </string>

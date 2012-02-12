@@ -80,4 +80,12 @@ public void setCast(Cast cast) {
 	this.cast = cast;
 }
 
+public int getTotalCost() {
+	int total = director.getPriceToHire();
+	if(cast != null){
+		total += cast.getCostOfActors();
+	}
+	return total;
+}
+
 }

@@ -38,6 +38,7 @@ public class StartActivity extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent();
 				i.setClass(StartActivity.this, MakeFilmActivity.class);
+				i.putExtra("ie.simo.movies.budget", 0);
 				startActivity(i);
 			}
 		});

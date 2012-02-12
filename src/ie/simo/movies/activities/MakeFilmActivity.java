@@ -25,6 +25,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 	private MovieInfo meta2;
 	private MovieInfo meta3;
 	private Intent intent;
+	private int budget;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,10 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.main);
 
 		findAllViewsById();
-
+		
+		Intent i = getIntent();
+		budget = (Integer) i.getSerializableExtra("ie.simo.movies.budget");
+		
 		generateScripts();
 		
 		OnClickListener notImplYetListener = new OnClickListener() {
