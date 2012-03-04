@@ -41,7 +41,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		
 		generateScripts();
 		
-		OnClickListener notImplYetListener = new OnClickListener() {
+		/*OnClickListener notImplYetListener = new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				longToast("Not implemented yet...");
@@ -49,7 +49,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 			}
 
 		};
-
+		*/
 		script1.setOnClickListener(this);
 		script2.setOnClickListener(this);
 		script3.setOnClickListener(this);

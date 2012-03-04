@@ -2,15 +2,12 @@ package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ActorDbAdapter;
-import ie.simo.movies.dao.DirectorDbAdapter;
 import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Cast;
-import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.DBConsts;
 
-import static ie.simo.movies.util.Consts.BUDGET;
-import static ie.simo.movies.util.Consts.CHOSEN;
+import static ie.simo.movies.util.Consts.*;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -19,7 +16,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;

@@ -16,6 +16,7 @@ import static ie.simo.movies.util.Consts.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -50,13 +51,18 @@ public class Result extends Activity {
 		
 		Intent i = getIntent();
 		finishedFilm = (MovieInfo) i.getSerializableExtra(CHOSEN);
+		Log.v(getLocalClassName(), "Film Details: " + finishedFilm.toString());
+		
 		budget = i.getIntExtra(BUDGET, 0);
+		Log.v(getLocalClassName(), "Remaining Budget is: " + budget);
 		
 		float criticRating = (float) ratingCalc.getRating(finishedFilm.getDirector().getReputation());
+		Log.v(getLocalClassName(), "Critic rating is: " + criticRating);
 		
 		rating.setRating(criticRating);
 		
 		int money = calculator.calculate(finishedFilm, criticRating);
+		Log.v(getLocalClassName(), "Gross Earnings: " + money);
 		
 		shareOfEarnings = getShareOfEarnings(money);
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
@@ -111,10 +117,11 @@ public class Result extends Activity {
 		startActivity(i);
 	}
 	
-	//currently, get 10% of earnings
 	//TODO will have to change how this works
 	private int getShareOfEarnings(int totalEarnings){
-		int profit = totalEarnings - finishedFilm.getTotalCost();
+		int profit = totalEarnings - (finishedFilm.getTotalCost() * 1000000);
+		Log.v(getLocalClassName(), "Profit: "+ profit);
+		
 		return ( profit > 0 )? 0 : profit / 2;
 	}
 	

@@ -46,9 +46,9 @@ public class PitchFilm extends Activity {
 		
 		Intent i = getIntent();
 		chosenMovie = (MovieInfo) i.getSerializableExtra(CHOSEN);
-		budget = (Integer) i.getIntExtra(BUDGET, 0);
+		budget = i.getIntExtra(BUDGET, 0);
 		
-		
+		budgetView.setText("$" + budget + "M");
 		
 		fillTable();
 		
@@ -117,7 +117,7 @@ public class PitchFilm extends Activity {
 	        		Intent intent = new Intent(getApplicationContext(), GetDirector.class);
 	        		
 	        		intent.putExtra(DISTRIBUTOR, d);
-	        		intent.putExtra(BUDGET, convertButtonLabelToInt(button.getText().toString()));
+	        		intent.putExtra(BUDGET, budget + convertButtonLabelToInt(button.getText().toString()));
 	        		intent.putExtra(CHOSEN, chosenMovie);
 	        		startActivity(intent);
 	        	}
