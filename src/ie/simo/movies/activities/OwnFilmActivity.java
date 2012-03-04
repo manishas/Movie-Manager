@@ -17,17 +17,29 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
+import static ie.simo.movies.util.Consts.BUDGET;
+import static ie.simo.movies.util.Consts.CHOSEN;
+
+
 public class OwnFilmActivity extends Activity {
 	
-	EditText text;
-	Spinner spinner;
-	Button director;
-	MovieInfo info;
+	private EditText text;
+	private Spinner spinner;
+	private Button director;
+	private MovieInfo info;
+	
+	private int budget;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.makeownfilm);
+		
+		Intent i = getIntent();
+		
+		budget = i.getIntExtra(BUDGET, 0);
+		
 		
 		findAllViewsById();
 		
@@ -44,7 +56,8 @@ public class OwnFilmActivity extends Activity {
 					info.setTitle(text.getText().toString());
 					info.setGenre((Genre)spinner.getSelectedItem());
 					Intent intent = new Intent(getApplicationContext(), GetDirector.class);
-					intent.putExtra("chosen", info);
+					intent.putExtra(CHOSEN, info);
+					intent.putExtra(BUDGET, budget);
 					startActivity(intent);
 				}
 				else{
@@ -83,6 +96,7 @@ public class OwnFilmActivity extends Activity {
     	Intent intent = new Intent();
 
 		intent.setClass(this, BoxOffice.class);
+		intent.putExtra(BUDGET, budget);
     	
 		startActivity(intent);
 		

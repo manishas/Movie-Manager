@@ -6,6 +6,9 @@ import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.DBConsts;
 
+import static ie.simo.movies.util.Consts.BUDGET;
+import static ie.simo.movies.util.Consts.CHOSEN;
+
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -49,8 +52,8 @@ public class GetDirector extends Activity {
 		Intent i = getIntent();
 		fillSpinner();
 		
-		budget = (Integer)i.getSerializableExtra("ie.simo.movies.budget");		
-		chosenFilm = (MovieInfo) i.getSerializableExtra("ie.simo.movies.chosen");
+		budget = i.getIntExtra(BUDGET, 0);		
+		chosenFilm = (MovieInfo) i.getSerializableExtra(CHOSEN);
 		chosen.setText(chosenFilm.toButtonText());
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
@@ -93,9 +96,9 @@ public class GetDirector extends Activity {
 				
 				if(isValid()){
 					Intent i = new Intent();
-					i.setClass(GetDirector.this, Result.class);
-					i.putExtra("ie.simo.movies.chosen", chosenFilm);
-					i.putExtra("ie.simo.movies.budget", budget - chosenFilm.getDirector().getPriceToHire());
+					i.setClass(GetDirector.this, GetActor.class);
+					i.putExtra(CHOSEN, chosenFilm);
+					i.putExtra(BUDGET, budget - chosenFilm.getDirector().getPriceToHire());
 					
 					startActivity(i);
 				}

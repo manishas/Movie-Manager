@@ -2,6 +2,13 @@ package ie.simo.movies.util;
 
 public class DBConsts {
 	
+	public static class Actor{
+		public static final String id = "_id";
+		public static final String name = "actor_name";
+		public static final String hire_cost = "actor_hire_cost";
+		public static final String reputation = "actor_reputation";	
+	}
+	
 	public static class Director{
 		public static final String id = "_id";
 		public static final String name = "director_name";

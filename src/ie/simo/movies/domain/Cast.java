@@ -1,8 +1,14 @@
 package ie.simo.movies.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Cast {
+public class Cast implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8756845311371945115L;
 	private List<Actor> actors;
 
 	public List<Actor> getActors() {
@@ -19,5 +25,9 @@ public class Cast {
 			total += a.getPriceToHire();
 		}
 		return total;
+	}
+	
+	public Cast(){
+		this.actors = new ArrayList<Actor>();
 	}
 }

@@ -12,6 +12,8 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+		
+		
 		<activity android:label="Choose Film" android:name=".activities.MakeFilmActivity">
 		</activity>
 		<activity android:label="Choose Director" android:name=".activities.GetDirector">
@@ -25,5 +27,8 @@
 		</activity>
 		<activity android:label="Result" android:name=".activities.Result">
 		</activity>
+		<activity android:label="Choose Actor" android:name=".activities.GetActor">
+		</activity>
+		
 	</application>
 </manifest>

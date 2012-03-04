@@ -43,21 +43,23 @@ this.genre = genre;
 /*
 * Constructors
 */
-public MovieInfo(){}
+public MovieInfo(){
+	this.cast = new Cast();
+}
 
 public MovieInfo(String title, Genre genre){
-this.title = title;
-this.genre = genre;
-this.tagline = "Film event of the year!";
+	this.title = title;
+	this.genre = genre;
+	this.tagline = "Film event of the year!";
 }
 
 /*
 * Instance Methods
 */
 public void newScript() {
-setTagline("Film event of the year!");
-setTitle(new FilmNameGenerator().newFilmTitle());
-setGenre(Genre.getRandomGenre());
+	setTagline("Film event of the year!");
+	setTitle(new FilmNameGenerator().newFilmTitle());
+	setGenre(Genre.getRandomGenre());
 }
 
 public String toButtonText(){

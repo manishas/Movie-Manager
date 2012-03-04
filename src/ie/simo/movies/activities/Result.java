@@ -11,6 +11,8 @@ import ie.simo.movies.scoring.rating.RatingCalculator;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import static ie.simo.movies.util.Consts.*;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,12 +30,15 @@ public class Result extends Activity {
 	private RatingBar rating;
 	private Button tryAgain;
 	private TextView cash;
+	private TextView profitView;
+	private TextView budgetView;
 	
 	private int budget;
 	private int shareOfEarnings;
 	
 	private EarningsCalculator calculator;
 	private RatingCalculator ratingCalc;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.result);
@@ -44,7 +49,8 @@ public class Result extends Activity {
 		findAllViewsById();
 		
 		Intent i = getIntent();
-		finishedFilm = (MovieInfo) i.getSerializableExtra("ie.simo.movies.chosen");
+		finishedFilm = (MovieInfo) i.getSerializableExtra(CHOSEN);
+		budget = i.getIntExtra(BUDGET, 0);
 		
 		float criticRating = (float) ratingCalc.getRating(finishedFilm.getDirector().getReputation());
 		
@@ -55,8 +61,13 @@ public class Result extends Activity {
 		shareOfEarnings = getShareOfEarnings(money);
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
 		String msg = getString(R.string.totalBoxOffice, nf.format(money));
+		String profit = getString(R.string.totalProfit, nf.format(money - (finishedFilm.getTotalCost() * 1000000)));
+		
+		budgetView.setText(budget + shareOfEarnings + "M");
 		
 		cash.setText(msg);
+		profitView.setText(profit);
+		
 		
 		MovieSummary summary = new MovieSummary();
 		summary.setTotalEarnings(money/1000000);
@@ -81,6 +92,8 @@ public class Result extends Activity {
 		tryAgain = (Button) this.findViewById(R.id.tryAgain);
 		rating = (RatingBar) this.findViewById(R.id.ratingBar1);
 		cash = (TextView) this.findViewById(R.id.totalEarnings);
+		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		profitView = (TextView) this.findViewById(R.id.cashmoney);
 	}
 	
 	@Override
@@ -93,7 +106,7 @@ public class Result extends Activity {
 		
 		Intent i = new Intent();
 		i.setClass(Result.this, MakeFilmActivity.class);
-		i.putExtra("ie.simo.movies.budget", budget + shareOfEarnings);
+		i.putExtra(BUDGET, budget + shareOfEarnings);
 		
 		startActivity(i);
 	}

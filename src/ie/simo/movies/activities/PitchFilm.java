@@ -5,6 +5,7 @@ import ie.simo.movies.dao.DistributorDBAdapter;
 import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.DBConsts;
+import static ie.simo.movies.util.Consts.*;
 
 import java.util.Random;
 
@@ -27,9 +28,12 @@ public class PitchFilm extends Activity {
 	
 	private Button cancel;
 	private TableLayout table;
+	private TextView budgetView;
+	
+	private int budget;
 	
 	private MovieInfo chosenMovie;
-	Random generator;
+	private Random generator;
 	
 	private DistributorDBAdapter db;
 
@@ -41,7 +45,9 @@ public class PitchFilm extends Activity {
 		findAllViewsById();
 		
 		Intent i = getIntent();
-		chosenMovie = (MovieInfo) i.getSerializableExtra("ie.simo.movies.chosen");
+		chosenMovie = (MovieInfo) i.getSerializableExtra(CHOSEN);
+		budget = (Integer) i.getIntExtra(BUDGET, 0);
+		
 		
 		
 		fillTable();
@@ -51,6 +57,7 @@ public class PitchFilm extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent();
+				i.putExtra(BUDGET, budget);
 				i.setClass(getApplicationContext(), MakeFilmActivity.class);
 				startActivity(i);
 			}
@@ -77,6 +84,7 @@ public class PitchFilm extends Activity {
 	private void findAllViewsById() {
 		table = (TableLayout) this.findViewById(R.id.pitchtable);
 		cancel = (Button) this.findViewById(R.id.pitchcancel);
+		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 	}
 	
 	
@@ -108,9 +116,9 @@ public class PitchFilm extends Activity {
 	        		d.setName(tag);
 	        		Intent intent = new Intent(getApplicationContext(), GetDirector.class);
 	        		
-	        		intent.putExtra("ie.simo.movies.distributor", d);
-	        		intent.putExtra("ie.simo.movies.budget", convertButtonLabelToInt(button.getText().toString()));
-	        		intent.putExtra("ie.simo.movies.chosen", chosenMovie);
+	        		intent.putExtra(DISTRIBUTOR, d);
+	        		intent.putExtra(BUDGET, convertButtonLabelToInt(button.getText().toString()));
+	        		intent.putExtra(CHOSEN, chosenMovie);
 	        		startActivity(intent);
 	        	}
 	        }

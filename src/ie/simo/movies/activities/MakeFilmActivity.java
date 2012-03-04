@@ -2,7 +2,6 @@ package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
 import ie.simo.movies.domain.MovieInfo;
-import ie.simo.movies.util.GetImage;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +12,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+
+import static ie.simo.movies.util.Consts.BUDGET;
+import static ie.simo.movies.util.Consts.CHOSEN;
 
 public class MakeFilmActivity extends Activity implements OnClickListener {
 	/** Called when the activity is first created. */
@@ -35,7 +37,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		findAllViewsById();
 		
 		Intent i = getIntent();
-		budget = (Integer) i.getSerializableExtra("ie.simo.movies.budget");
+		budget = i.getIntExtra(BUDGET, 0);
 		
 		generateScripts();
 		
@@ -75,12 +77,15 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 	public void onClick(View target) {
 
 		intent = new Intent(getApplicationContext(), PitchFilm.class);
+		
+		intent.putExtra(BUDGET, budget);
+		
 		if (target == script1)
-			intent.putExtra("ie.simo.movies.chosen", meta1);
+			intent.putExtra(CHOSEN, meta1);
 		else if (target == script2)
-			intent.putExtra("ie.simo.movies.chosen", meta2);
+			intent.putExtra(CHOSEN, meta2);
 		else if (target == script3)
-			intent.putExtra("ie.simo.movies.chosen", meta3);
+			intent.putExtra(CHOSEN, meta3);
 
 		startActivity(intent);
 
@@ -128,12 +133,11 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
- 
-        //Doesn't check to see if different button selected
+        //TODO Doesn't check to see if different button selected
     	Intent intent = new Intent();
 
 		intent.setClass(this, BoxOffice.class);
-    	
+    	intent.putExtra(BUDGET, budget);
 		startActivity(intent);
 		
         return false;
