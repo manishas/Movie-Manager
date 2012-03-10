@@ -12,6 +12,6 @@ import ie.simo.movies.domain.MovieInfo;
 public class EarningsCalculatorFirstImpl implements EarningsCalculator {
 	public int calculate(MovieInfo movie, float starRating){
 		Random r = new Random();
-		return (int) (((20 + r.nextInt(80) * starRating)*(movie.getDirector().getPriceToHire()) * (100000 * movie.getGenre().boxOffice())));
+		return (int) (((20 + r.nextInt(80) * starRating)*(movie.getDirector().getPriceToHire()) * (movie.getGenre().boxOffice())))/10;
 	}
 }

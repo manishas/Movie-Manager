@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,7 +53,9 @@ public class GetActor extends Activity {
 		fillSpinner();
 		
 		chosenFilm = (MovieInfo) i.getSerializableExtra(CHOSEN);
+		Log.v(getLocalClassName(), "film details: " + chosenFilm.toString());
 		budget = i.getIntExtra(BUDGET, 0);
+		Log.v(getLocalClassName(), "budget before actor: " +budget);
 		chosen.setText(chosenFilm.toButtonText());
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
@@ -79,7 +82,7 @@ public class GetActor extends Activity {
 					//chosenFilm.getCast().getActors().add(chosenActor);
 					//format the amount
 					NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
-					String msg = getString(R.string.actorPrice , nf.format(chosenActor.getPriceToHire()*1000000));
+					String msg = getString(R.string.actorPrice , "$"+ chosenActor.getPriceToHire() + "M");
 					GetActor.this.price.setText(msg);
 					
 					budgetView.setText("$" + (budget - chosenActor.getPriceToHire()));
@@ -102,7 +105,9 @@ public class GetActor extends Activity {
 					Intent i = new Intent();
 					i.setClass(GetActor.this, Result.class);
 					i.putExtra(CHOSEN, chosenFilm);
-					i.putExtra(BUDGET, budget - chosenFilm.getDirector().getPriceToHire());
+					Log.v(getLocalClassName(), "Chosen cast: " + chosenFilm.getCast().toString());
+					i.putExtra(BUDGET, budget - chosenFilm.getCast().getCostOfActors());
+					Log.v(getLocalClassName(), "budget after cast: " + (budget - chosenFilm.getCast().getCostOfActors()));
 					
 					startActivity(i);
 				}

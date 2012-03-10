@@ -75,7 +75,7 @@ public class GetDirector extends Activity {
 					chosenFilm.setDirector(chosenDirector);
 					//format the amount
 					NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
-					String msg = getString(R.string.directorPrice , nf.format(chosenDirector.getPriceToHire()*1000000));
+					String msg = getString(R.string.directorPrice , "$"+chosenDirector.getPriceToHire()+"M");
 					GetDirector.this.price.setText(msg);
 					
 					budgetView.setText("$" + (budget - chosenDirector.getPriceToHire()));
