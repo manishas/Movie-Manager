@@ -4,6 +4,7 @@ import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
+import ie.simo.movies.generator.ReviewGenerator;
 import ie.simo.movies.scoring.earnings.EarningsCalculator;
 import ie.simo.movies.scoring.earnings.EarningsCalculatorFirstImpl;
 import ie.simo.movies.scoring.rating.RatingCalculator;
@@ -33,9 +34,11 @@ public class Result extends Activity {
 	private TextView cash;
 	private TextView profitView;
 	private TextView budgetView;
+	private TextView review;
 
 	private int budget;
 	private int shareOfEarnings;
+	private ReviewGenerator reviewer;
 
 	private EarningsCalculator calculator;
 	private RatingCalculator ratingCalc;
@@ -43,6 +46,8 @@ public class Result extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.result);
+		
+		reviewer = new ReviewGenerator();
 
 		calculator = new EarningsCalculatorFirstImpl();
 		ratingCalc = new RatingCalculator();
@@ -72,6 +77,8 @@ public class Result extends Activity {
 				+ (money - (finishedFilm.getTotalCost())) + "M");
 
 		budgetView.setText(budget + shareOfEarnings + "M");
+		
+		review.setText(reviewer.writeReview(finishedFilm, criticRating));
 
 		cash.setText(msg);
 		profitView.setText(profit);
@@ -101,6 +108,8 @@ public class Result extends Activity {
 		cash = (TextView) this.findViewById(R.id.totalEarnings);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 		profitView = (TextView) this.findViewById(R.id.cashmoney);
+		review = (TextView) this.findViewById(R.id.review);
+		
 	}
 
 	@Override

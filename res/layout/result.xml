@@ -1,40 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
+	android:layout_width="match_parent" android:layout_height="match_parent">
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical" >
-		 <include layout="@layout/scorebar"/>
-		<TextView
-			android:id="@+id/textView1"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Movie Rating was: "
+		android:layout_width="match_parent" android:layout_height="match_parent"
+		android:orientation="vertical">
+		<include layout="@layout/scorebar" />
+		<TextView android:id="@+id/textView1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Movie Rating was: "
 			android:textAppearance="?android:attr/textAppearanceMedium" />
-		<RatingBar
-			android:id="@+id/ratingBar1"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:clickable="false"
-			android:isIndicator="true" />
-		<TextView
-			android:id="@+id/totalEarnings"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/totalBoxOffice"
+		<RatingBar android:id="@+id/ratingBar1"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:clickable="false" android:isIndicator="true" />
+		<TextView android:layout_height="wrap_content" android:id="@+id/review"
+			android:text="" android:layout_width="wrap_content"></TextView>
+		<TextView android:id="@+id/totalEarnings"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="@string/totalBoxOffice" android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView android:id="@+id/cashmoney" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/totalProfit"
 			android:textAppearance="?android:attr/textAppearanceMedium" />
-		<TextView
-			android:id="@+id/cashmoney"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/totalProfit"
-			android:textAppearance="?android:attr/textAppearanceMedium" />
-		<Button
-			android:id="@+id/tryAgain"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Try again?" />
+		<Button android:id="@+id/tryAgain" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Try again?" />
 	</LinearLayout>
 </ScrollView>

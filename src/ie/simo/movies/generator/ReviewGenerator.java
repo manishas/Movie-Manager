@@ -48,7 +48,8 @@ public class ReviewGenerator {
 			"dull",
 			"crap",
 			"disasterous",
-			"a waste of time"
+			"a waste of time",
+			"preposterous"
 	};
 	
 	String [] vanillaQualities = {
@@ -69,7 +70,7 @@ public class ReviewGenerator {
 		String actorReview2 = String.format(" delivering a %s performance... ", getWord(sentiments.get(1)));
 		String plotReview = String.format("The storyline was %s, but definitely became %s towards the end... ", getWord(sentiments.get(2)), getWord(sentiments.get(2)));
 		String directorReview = String.format("Director %s has produced a work which can only be described as %s... ", director, getWord(sentiments.get(3)));
-		String conclusion = String.format("In a word, %s.", getWord(sentiments.get(4)));
+		String conclusion = String.format("To sum up, '%s' was %s. ", info.getTitle(), getWord(sentiments.get(4)));
 		String reviewer = "- Boris Wackenheim, The Times";
 		
 		return actorReview + actorReview2 + plotReview + directorReview + conclusion + reviewer;
