@@ -107,7 +107,7 @@ public class PitchFilm extends Activity {
 	        public void onClick(View v) {
 	        	String tag = (String) button.getTag();
 	        	if(tag.charAt(0)=='!'){
-		        	int offer = generator.nextInt(40);
+		        	int offer = generator.nextInt(30);
 					button.setText("$" + offer+ "M");
 					button.setTag(tag.substring(1));
 				}
