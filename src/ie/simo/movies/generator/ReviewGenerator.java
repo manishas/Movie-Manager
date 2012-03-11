@@ -49,11 +49,19 @@ public class ReviewGenerator {
 			"crap",
 			"disasterous",
 			"a waste of time",
-			"preposterous"
+			"preposterous",
+			"absurd",
+			"improbable",
+			"shallow",
+			"superficial",
+			"incompetent"
 	};
 	
 	String [] vanillaQualities = {
-			"complete", "mediocre", "nice", "interesting", "dark", "watchable", "thoughful"
+			"complete", "mediocre", "nice", 
+			"interesting", "dark", "watchable", 
+			"thoughful", "alright", "dramatic",
+			""
 	};
 	
 	String [] weirdQualities = {
@@ -66,12 +74,12 @@ public class ReviewGenerator {
 		
 		List<Sentiment> sentiments = getSentimentsFromRating(rating);
 		
-		String actorReview = String.format("%s was %s in the lead role, ", actor, getWord(sentiments.get(0)));
+		String actorReview = String.format("\"...%s was %s in the lead role, ", actor, getWord(sentiments.get(0)));
 		String actorReview2 = String.format(" delivering a %s performance... ", getWord(sentiments.get(1)));
 		String plotReview = String.format("The storyline was %s, but definitely became %s towards the end... ", getWord(sentiments.get(2)), getWord(sentiments.get(2)));
 		String directorReview = String.format("Director %s has produced a work which can only be described as %s... ", director, getWord(sentiments.get(3)));
-		String conclusion = String.format("To sum up, '%s' was %s. ", info.getTitle(), getWord(sentiments.get(4)));
-		String reviewer = "- Boris Wackenheim, The Times";
+		String conclusion = String.format("To sum up, '%s' was %s.\" ", info.getTitle(), getWord(sentiments.get(4)));
+		String reviewer = String.format("- %s, The Times", new PersonNameGenerator().getMaleName());
 		
 		return actorReview + actorReview2 + plotReview + directorReview + conclusion + reviewer;
 	}

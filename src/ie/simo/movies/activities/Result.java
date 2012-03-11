@@ -16,6 +16,7 @@ import static ie.simo.movies.util.Consts.*;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -44,7 +45,9 @@ public class Result extends Activity {
 	private RatingCalculator ratingCalc;
 
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.result);
 		
 		reviewer = new ReviewGenerator();
@@ -76,9 +79,12 @@ public class Result extends Activity {
 		String profit = getString(R.string.totalProfit, "$"
 				+ (money - (finishedFilm.getTotalCost())) + "M");
 
-		budgetView.setText(budget + shareOfEarnings + "M");
+		budgetView.setText("$" + budget + shareOfEarnings + "M");
+		
+		Typeface font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf"); 
 		
 		review.setText(reviewer.writeReview(finishedFilm, criticRating));
+		review.setTypeface(font);
 
 		cash.setText(msg);
 		profitView.setText(profit);
