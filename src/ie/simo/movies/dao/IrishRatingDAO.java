@@ -1,7 +1,6 @@
 package ie.simo.movies.dao;
 
 import ie.simo.movies.R;
-import android.widget.ImageView;
 
 public class IrishRatingDAO implements RatingDao {
 

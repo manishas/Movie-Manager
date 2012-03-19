@@ -2,6 +2,8 @@ package ie.simo.movies.activities;
 
 import static ie.simo.movies.util.Consts.BUDGET;
 import ie.simo.movies.R;
+import ie.simo.movies.dao.IrishRatingDAO;
+import ie.simo.movies.dao.RatingDao;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -89,10 +91,25 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		setRatingImage();
 		
 	}
-	
+	//TODO fix levels
 	private void setRatingImage() {
-		// TODO Auto-generated method stub
+		RatingDao dao = new IrishRatingDAO();
 		
+		int total = sexLevel.getProgress() + violenceLevel.getProgress() + languageLevel.getProgress();
+		
+		if(total == 0){
+			rating.setImageDrawable(getResources().getDrawable(dao.getGId()));
+		}
+		else if(total == 1){
+			rating.setImageDrawable(getResources().getDrawable(dao.getPGId()));
+		}
+		else if(total >= 7)
+		{
+			rating.setImageDrawable(getResources().getDrawable(dao.get18Id()));
+		}
+		else{
+			rating.setImageDrawable(getResources().getDrawable(dao.get15Id()));
+		}
 	}
 
 	private void findAllViewsById() {
