@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent">
-    <TextView android:text="@string/contentDesc" android:id="@+id/contentDesc" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-    <TextView android:layout_height="wrap_content" android:text="@string/violence" android:id="@+id/textView1" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="match_parent" android:gravity="center"></TextView>
-    <SeekBar android:layout_height="wrap_content" android:id="@+id/violenceBar" android:layout_width="match_parent"></SeekBar>
-    <TextView android:layout_height="wrap_content" android:text="@string/sex" android:id="@+id/textView2" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="match_parent" android:gravity="center"></TextView>
-    <SeekBar android:layout_height="wrap_content" android:id="@+id/sexBar" android:layout_width="match_parent"></SeekBar>
-    <TextView android:layout_height="wrap_content" android:text="@string/language" android:id="@+id/textView3" android:textAppearance="?android:attr/textAppearanceMedium" android:layout_width="match_parent" android:gravity="center"></TextView>
-    <SeekBar android:layout_height="wrap_content" android:id="@+id/rudeBar" android:layout_width="match_parent"></SeekBar>
-    
-</LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent">
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical" android:layout_width="match_parent"
+		android:layout_height="match_parent" android:layout_margin="5dip">
+		<TextView android:text="@string/contentDesc" android:id="@+id/contentDesc"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+		<TextView android:layout_height="wrap_content" android:text="@string/violence"
+			android:id="@+id/textView1" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="match_parent" android:gravity="center"></TextView>
+		<SeekBar android:layout_height="wrap_content" android:id="@+id/violenceBar"
+			android:layout_width="match_parent" android:max="3" android:progress="1"></SeekBar>
+		<TextView android:id="@+id/violenceDesc"
+			android:layout_height="wrap_content" android:gravity="center|center_horizontal"
+			android:layout_width="match_parent"></TextView>
+		<TextView android:layout_height="wrap_content" android:text="@string/sex"
+			android:id="@+id/textView2" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="match_parent" android:gravity="center"></TextView>
+		<SeekBar android:layout_height="wrap_content" android:id="@+id/sexBar"
+			android:layout_width="match_parent" android:max="3" android:progress="1"></SeekBar>
+		<TextView android:id="@+id/sexDesc" android:layout_height="wrap_content"
+			android:layout_width="match_parent" android:gravity="center"></TextView>
+		<TextView android:layout_height="wrap_content" android:text="@string/language"
+			android:id="@+id/textView3" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="match_parent" android:gravity="center"></TextView>
+		<SeekBar android:layout_height="wrap_content" android:id="@+id/rudeBar"
+			android:layout_width="match_parent" android:max="3" android:progress="1"></SeekBar>
+		<TextView android:id="@+id/rudeDesc" android:layout_height="wrap_content"
+			android:layout_width="match_parent" android:gravity="center"></TextView>
+		<TextView android:layout_height="wrap_content" android:id="@+id/textView4"
+			android:text="" android:layout_width="match_parent"></TextView>
+		<ImageView android:id="@+id/ratingImage" android:src="@drawable/rated_g"
+			android:layout_height="wrap_content" android:layout_width="match_parent"
+			android:layout_gravity="center_vertical"></ImageView>
+
+	</LinearLayout>
+</ScrollView>

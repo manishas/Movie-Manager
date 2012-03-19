@@ -29,6 +29,8 @@
 		</activity>
 		<activity android:label="Choose Actor" android:name=".activities.GetActor">
 		</activity>
+		<activity android:label="Set Content" android:name=".activities.SetContent">
+		</activity>
 		
 	</application>
 </manifest>

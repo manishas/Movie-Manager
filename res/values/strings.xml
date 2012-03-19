@@ -48,7 +48,19 @@
 	<!-- content -->
 	<string name="contentDesc">Choose the type of content for your film. The stronger the content, the stricter the rating your film will get, which will reduce your potential audience. However, choose the content levels which would be appropriate for your movie\'s genre (e.g. a Kid\'s film with strong sex and violence would be a flop (as well as being a bit disturbing!) but a Horror film which is rated \'G\' will probably not be interesting enough to get movie-goers excited)</string>
 	<string name="violence">Violence</string>
+	<string name="violence0">None</string>
+	<string name="violence1">Mild</string>
+	<string name="violence2">Medium Violence</string>
+	<string name="violence3">Strong Violence and Gore</string>
 	<string name="sex">Sex</string>
+	<string name="sex0">None</string>
+	<string name="sex1">Mild/Innuendo</string>
+	<string name="sex2">Moderate Sex/Nudity</string>
+	<string name="sex3">Strong Sex and Nudity</string>
 	<string name="language">Profanity</string>
+	<string name="language0">None</string>
+	<string name="language1">Mild</string>
+	<string name="language2">Moderate Bad Language</string>
+	<string name="language3">Really Strong ****ing Language</string>
 	
 </resources>
