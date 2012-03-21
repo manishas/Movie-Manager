@@ -3,6 +3,7 @@ package ie.simo.movies.censor.factory;
 import ie.simo.movies.censor.Censor;
 import ie.simo.movies.censor.IrishCensor;
 import ie.simo.movies.censor.UkCensor;
+import ie.simo.movies.censor.UsaCensor;
 
 public class CensorFactory {
 	
