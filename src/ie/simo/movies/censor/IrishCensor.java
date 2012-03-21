@@ -1,8 +1,8 @@
-package ie.simo.movies.dao;
+package ie.simo.movies.censor;
 
 import ie.simo.movies.R;
 
-public class IrishRatingDAO implements RatingDao {
+public class IrishCensor implements Censor {
 
 	@Override
 	public int getGId() {

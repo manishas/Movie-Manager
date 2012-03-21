@@ -1,6 +1,6 @@
-package ie.simo.movies.dao;
+package ie.simo.movies.censor;
 
-public interface RatingDao {	
+public interface Censor {	
 	public int getGId();
 	public int getPGId();
 	public int get12Id();

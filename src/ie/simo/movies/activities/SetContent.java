@@ -2,8 +2,8 @@ package ie.simo.movies.activities;
 
 import static ie.simo.movies.util.Consts.BUDGET;
 import ie.simo.movies.R;
-import ie.simo.movies.dao.IrishRatingDAO;
-import ie.simo.movies.dao.RatingDao;
+import ie.simo.movies.censor.Censor;
+import ie.simo.movies.censor.IrishCensor;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -93,7 +93,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 	}
 	//TODO fix levels
 	private void setRatingImage() {
-		RatingDao dao = new IrishRatingDAO();
+		Censor dao = new IrishCensor();
 		
 		int total = sexLevel.getProgress() + violenceLevel.getProgress() + languageLevel.getProgress();
 		
