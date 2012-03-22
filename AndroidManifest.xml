@@ -13,7 +13,8 @@
 			</intent-filter>
 		</activity>
 		
-		
+		<activity android:label="Preferences" android:name=".activities.Preferences">
+		</activity>
 		<activity android:label="Choose Film" android:name=".activities.MakeFilmActivity">
 		</activity>
 		<activity android:label="Choose Director" android:name=".activities.GetDirector">

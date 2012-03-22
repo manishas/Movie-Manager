@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	
+	<string-array name="listArray">
+		<item name="one">1</item>
+		<item name="two">2</item>
+	</string-array>
+	<string-array name="listValues">
+		<item name="three">3</item>
+		<item name="four">4</item>
+	</string-array>
+	
 	<!-- common -->
 	<string name="cancel">Cancel Production</string>
 	<string name="menu_boxoffice">Box Office</string>
@@ -13,6 +22,11 @@
 	<!-- start screen -->
 	<string name="start">Make Movies!</string>
 	<string name="seeboxoffice">All-time Box office</string>
+	<string name="prefs">Preferences</string>
+	<string name="credits">Credits</string>
+	
+	<!-- credits dialogue -->
+	<string name="creditsText">Thanks to: Menu icons from @AndroidIcons. Paul, Dave and Conor for feedback. Niamh for putting up with me while I work on this app :-)</string>	
 	
 	<!-- choose film screen -->
 	<string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
