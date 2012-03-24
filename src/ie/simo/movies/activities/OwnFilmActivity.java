@@ -55,7 +55,7 @@ public class OwnFilmActivity extends Activity {
 					info = new MovieInfo();
 					info.setTitle(text.getText().toString());
 					info.setGenre((Genre)spinner.getSelectedItem());
-					Intent intent = new Intent(getApplicationContext(), PitchFilm.class);
+					Intent intent = new Intent(getApplicationContext(), SetContent.class);
 					intent.putExtra(CHOSEN, info);
 					intent.putExtra(BUDGET, budget);
 					startActivity(intent);

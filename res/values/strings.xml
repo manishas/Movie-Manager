@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	
-	<string-array name="listArray">
-		<item name="one">1</item>
-		<item name="two">2</item>
+	<string name="ratingTitle">Classification Style</string>
+	<string name="ratingSummary">Type of censor ratings to be displayed (NC-17 / 18\'s etc)</string>
+
+	<string-array name="ratingStyleArray">
+		<item name="ie">Irish</item>
+		<item name="uk">UK</item>
+		<item name="usa">USA</item>
 	</string-array>
-	<string-array name="listValues">
-		<item name="three">3</item>
-		<item name="four">4</item>
+	<string-array name="ratingStyleValues">
+		<item name="ie">ie</item>
+		<item name="uk">uk</item>
+		<item name="usa">usa</item>
 	</string-array>
 	
 	<!-- common -->
@@ -76,5 +80,6 @@
 	<string name="language1">Mild</string>
 	<string name="language2">Moderate Bad Language</string>
 	<string name="language3">Really Strong ****ing Language</string>
+	<string name="pitchFilmButton">Pitch your Movie</string>
 	
 </resources>

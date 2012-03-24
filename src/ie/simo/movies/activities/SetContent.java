@@ -4,12 +4,16 @@ import static ie.simo.movies.util.Consts.BUDGET;
 import ie.simo.movies.R;
 import ie.simo.movies.censor.Censor;
 import ie.simo.movies.censor.IrishCensor;
+import ie.simo.movies.censor.factory.CensorFactory;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -21,6 +25,8 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 
 	private int budget;
 	
+	private Censor censor;
+	
 	private TextView contentDesc;
 	private TextView violenceDesc;
 	private TextView sexDesc;
@@ -29,6 +35,8 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 	private SeekBar sexLevel;
 	private SeekBar languageLevel;
 	private ImageView rating;
+	
+	private Button pitchFilm;
 	
 	private String [] violence;
 	private String [] sex;
@@ -40,16 +48,36 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.content);
 		
+		 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		censor = new CensorFactory().getCensor(sharedPrefs.getString(Preferences.RATING_STYLE, "usa"));
 		getStrings();
 		
 		Intent i = getIntent();
 		budget = i.getIntExtra(BUDGET, 0);
-		
-		
-		
 		findAllViewsById();
+		
+		setListeners();
+		setRatingImage();
 	}
 	
+	private void setListeners() {
+		violenceLevel.setOnSeekBarChangeListener(this);
+		sexLevel.setOnSeekBarChangeListener(this);
+		languageLevel.setOnSeekBarChangeListener(this);
+		
+		pitchFilm.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent();
+				i.putExtra(BUDGET, budget);
+				i.setClass(SetContent.this, PitchFilm.class);
+				startActivity(i);
+			}
+		});
+	}
+
 	private void getStrings() {
 		String [] vTemp = { 	
 		getString(R.string.violence0), 
@@ -93,22 +121,24 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 	}
 	//TODO fix levels
 	private void setRatingImage() {
-		Censor dao = new IrishCensor();
 		
 		int total = sexLevel.getProgress() + violenceLevel.getProgress() + languageLevel.getProgress();
 		
 		if(total == 0){
-			rating.setImageDrawable(getResources().getDrawable(dao.getGId()));
+			rating.setImageDrawable(getResources().getDrawable(censor.getGId()));
 		}
 		else if(total == 1){
-			rating.setImageDrawable(getResources().getDrawable(dao.getPGId()));
+			rating.setImageDrawable(getResources().getDrawable(censor.getPGId()));
+		}
+		else if(sexLevel.getProgress() < 2 && violenceLevel.getProgress() < 2 && languageLevel.getProgress() < 2){
+			rating.setImageDrawable(getResources().getDrawable(censor.get12Id()));
 		}
 		else if(total >= 7)
 		{
-			rating.setImageDrawable(getResources().getDrawable(dao.get18Id()));
+			rating.setImageDrawable(getResources().getDrawable(censor.get18Id()));
 		}
 		else{
-			rating.setImageDrawable(getResources().getDrawable(dao.get15Id()));
+			rating.setImageDrawable(getResources().getDrawable(censor.get15Id()));
 		}
 	}
 
@@ -122,11 +152,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		sexLevel = (SeekBar) this.findViewById(R.id.sexBar);
 		languageLevel= (SeekBar) this.findViewById(R.id.rudeBar);
 		rating = (ImageView) this.findViewById(R.id.ratingImage);
-		
-		violenceLevel.setOnSeekBarChangeListener(this);
-		sexLevel.setOnSeekBarChangeListener(this);
-		languageLevel.setOnSeekBarChangeListener(this);
-		
+		pitchFilm = (Button) this.findViewById(R.id.pitchButton);
 	}
 
 	// Initiating Menu XML file (menu.xml)

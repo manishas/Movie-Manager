@@ -76,7 +76,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View target) {
 
-		intent = new Intent(getApplicationContext(), PitchFilm.class);
+		intent = new Intent(getApplicationContext(),SetContent.class);
 		
 		intent.putExtra(BUDGET, budget);
 		

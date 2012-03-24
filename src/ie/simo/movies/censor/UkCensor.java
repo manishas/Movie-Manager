@@ -6,7 +6,7 @@ public class UkCensor implements Censor {
 
 	@Override
 	public int getGId() {
-		return R.drawable.rated_g;
+		return R.drawable.rated_u;
 	}
 
 	@Override
