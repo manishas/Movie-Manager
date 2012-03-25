@@ -12,6 +12,7 @@ public class MovieInfo implements Serializable {
 	private Genre genre;
 	private Director director;
 	private Cast cast;
+	private Rating rating;
 	
 	/*
 	 * Getters & Setters
@@ -61,7 +62,10 @@ public class MovieInfo implements Serializable {
 		setTitle(new FilmNameGenerator().newFilmTitle());
 		setGenre(Genre.getRandomGenre());
 	}
-	
+	/**
+	 * Return movie in the form of name (genre)
+	 * @return string
+	 */
 	public String toButtonText(){
 	return String.format("%s (%s)", getTitle(), getGenre());
 	}
@@ -105,6 +109,14 @@ public class MovieInfo implements Serializable {
 		builder.append(cast);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
 	}
 
 }

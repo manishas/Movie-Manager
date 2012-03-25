@@ -1,8 +1,8 @@
 package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
-import ie.simo.movies.util.Credits;
-import ie.simo.movies.util.SimpleEula;
+import ie.simo.movies.popup.InfoDialog;
+import ie.simo.movies.popup.SimpleEula;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,7 +49,7 @@ public class StartActivity extends Activity {
 	
 			public void onClick(View v) {
 				Intent i = new Intent();
-				i.setClass(StartActivity.this, SetContent.class);
+				i.setClass(StartActivity.this, BoxOffice.class);
 				startActivity(i);
 			}
 		});
@@ -68,7 +68,9 @@ public class StartActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				new Credits(StartActivity.this).show();
+				
+				Activity a = StartActivity.this;
+				new InfoDialog(a, a.getString(ie.simo.movies.R.string.credits), a.getString(ie.simo.movies.R.string.creditsText)).show();
 			}
 		});
 	}

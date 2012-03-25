@@ -64,7 +64,9 @@
 	<string name="ask">Ask</string>
 	
 	<!-- content -->
-	<string name="contentDesc">Choose the type of content for your film. The stronger the content, the stricter the rating your film will get, which will reduce your potential audience. However, choose the content levels which would be appropriate for your movie\'s genre (e.g. a Kid\'s film with strong sex and violence would be a flop (as well as being a bit disturbing!) but a Horror film which is rated \'G\' will probably not be interesting enough to get movie-goers excited)</string>
+	<string name="contentTitle">Set the content level for </string>
+	<string name="contentHelp">Set Content Help</string>
+	<string name="contentHelpMessage">Choose the type of content for your film. The stronger the content, the stricter the rating your film will get, which will reduce your potential audience. However, choose the content levels which would be appropriate for your movie\'s genre (e.g. a Kid\'s film with strong sex and violence would be a flop (as well as being a bit disturbing!) but a Horror film which is rated \'G\' will probably not be interesting enough to get movie-goers excited)</string>
 	<string name="violence">Violence</string>
 	<string name="violence0">None</string>
 	<string name="violence1">Mild</string>

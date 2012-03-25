@@ -2,38 +2,51 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent" android:layout_height="match_parent">
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="vertical" android:layout_width="match_parent"
-		android:layout_height="match_parent" android:layout_margin="5dip">
-		<TextView android:text="@string/contentDesc" android:id="@+id/contentDesc"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-		<TextView android:layout_height="wrap_content" android:text="@string/violence"
+		android:layout_width="match_parent" android:layout_height="match_parent"
+		android:layout_margin="5dip" android:orientation="vertical">
+		<LinearLayout android:id="@+id/linearLayout1" android:baselineAligned="false"
+			android:layout_weight="1" android:layout_gravity="right" android:layout_height="match_parent" android:layout_width="wrap_content">
+			<ImageButton android:layout_height="wrap_content"
+				android:background="@drawable/help_icon" android:id="@+id/contentHelp"
+				android:layout_weight="0.0" android:layout_width="wrap_content"
+				android:layout_gravity="right"></ImageButton>
+		</LinearLayout>
+		<LinearLayout android:id="@+id/linearLayout2" android:layout_width="match_parent"
+			android:orientation="vertical" android:layout_weight="1" android:layout_height="0dp">
+			<TextView android:layout_height="wrap_content"
+				android:id="@+id/setContentActivityTitle"
+				android:layout_width="wrap_content"></TextView>	
+		</LinearLayout>
+		<TextView android:layout_width="match_parent"
+			android:layout_height="match_parent" android:layout_weight="1"></TextView>
+		<TextView android:text="@string/violence"
 			android:id="@+id/textView1" android:textAppearance="?android:attr/textAppearanceMedium"
-			android:layout_width="match_parent" android:gravity="center"></TextView>
-		<SeekBar android:layout_height="wrap_content" android:id="@+id/violenceBar"
-			android:layout_width="match_parent" android:max="3" android:progress="1"></SeekBar>
+			android:layout_width="match_parent" android:gravity="center" android:layout_weight="1" android:layout_height="0dp"></TextView>
+		<SeekBar android:id="@+id/violenceBar"
+			android:layout_width="match_parent" android:max="3" android:progress="0" android:layout_weight="1" android:layout_height="0dp"></SeekBar>
 		<TextView android:id="@+id/violenceDesc"
-			android:layout_height="wrap_content" android:gravity="center|center_horizontal"
-			android:layout_width="match_parent"></TextView>
-		<TextView android:layout_height="wrap_content" android:text="@string/sex"
+			android:gravity="center|center_horizontal"
+			android:layout_width="match_parent" android:layout_weight="1" android:layout_height="0dp"></TextView>
+		<TextView android:text="@string/sex"
 			android:id="@+id/textView2" android:textAppearance="?android:attr/textAppearanceMedium"
-			android:layout_width="match_parent" android:gravity="center"></TextView>
-		<SeekBar android:layout_height="wrap_content" android:id="@+id/sexBar"
-			android:layout_width="match_parent" android:max="3" android:progress="1"></SeekBar>
-		<TextView android:id="@+id/sexDesc" android:layout_height="wrap_content"
-			android:layout_width="match_parent" android:gravity="center"></TextView>
-		<TextView android:layout_height="wrap_content" android:text="@string/language"
+			android:layout_width="match_parent" android:gravity="center" android:layout_weight="1" android:layout_height="0dp"></TextView>
+		<SeekBar android:id="@+id/sexBar"
+			android:layout_width="match_parent" android:max="3" android:progress="0" android:layout_weight="1" android:layout_height="0dp"></SeekBar>
+		<TextView android:id="@+id/sexDesc" android:layout_width="match_parent" android:gravity="center" android:layout_weight="1" android:layout_height="0dp"></TextView>
+		<TextView android:text="@string/language"
 			android:id="@+id/textView3" android:textAppearance="?android:attr/textAppearanceMedium"
-			android:layout_width="match_parent" android:gravity="center"></TextView>
-		<SeekBar android:layout_height="wrap_content" android:id="@+id/rudeBar"
-			android:layout_width="match_parent" android:max="3" android:progress="1"></SeekBar>
-		<TextView android:id="@+id/rudeDesc" android:layout_height="wrap_content"
-			android:layout_width="match_parent" android:gravity="center"></TextView>
-		<TextView android:layout_height="wrap_content" android:id="@+id/textView4"
-			android:text="" android:layout_width="match_parent"></TextView>
-		<ImageView android:id="@+id/ratingImage" android:layout_height="wrap_content" android:layout_width="match_parent"
-			android:layout_gravity="center_vertical"></ImageView>
-		<TextView android:id="@+id/textView5" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-		<Button android:layout_height="wrap_content" android:text="@string/pitchFilmButton" android:id="@+id/pitchButton" android:layout_width="fill_parent"></Button>
+			android:layout_width="match_parent" android:gravity="center" android:layout_weight="1" android:layout_height="0dp"></TextView>
+		<SeekBar android:id="@+id/rudeBar"
+			android:layout_width="match_parent" android:max="3" android:progress="0" android:layout_weight="1" android:layout_height="0dp"></SeekBar>
+		<TextView android:id="@+id/rudeDesc" android:layout_width="match_parent" android:gravity="center" android:layout_weight="1" android:layout_height="0dp"></TextView>
+		<TextView android:id="@+id/textView4"
+			android:text="" android:layout_width="match_parent" android:layout_weight="1" android:layout_height="0dp"></TextView>
+		<ImageView android:id="@+id/ratingImage"
+			android:layout_width="match_parent"
+			android:layout_gravity="center_vertical" android:layout_weight="1" android:layout_height="0dp"></ImageView>
+		<TextView android:id="@+id/textView5" android:layout_weight="1" android:layout_width="wrap_content" android:layout_height="0dp"></TextView>
+		<Button android:text="@string/pitchFilmButton"
+			android:id="@+id/pitchButton" android:layout_width="fill_parent" android:layout_weight="1" android:layout_height="0dp"></Button>
 
 	</LinearLayout>
 </ScrollView>

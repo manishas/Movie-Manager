@@ -1,25 +1,25 @@
-package ie.simo.movies.util;
+package ie.simo.movies.popup;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 
-public class Credits {
+public class InfoDialog extends PopupDialog {
 	
-	private Activity activity;
-
-	public Credits(Activity context) {
-		activity = context;
+	private String title;
+	private String message;
+	
+	public InfoDialog(Activity context, String title, String message) {
+		mActivity = context;
+		this.title = title;
+		this.message = message;
 	}
-	
-	public void show() {
-    
-		String title = activity.getString(ie.simo.movies.R.string.credits);
-            
-        String message = activity.getString(ie.simo.movies.R.string.creditsText);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity)
+	@Override
+	public void show() {
+		
+        AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
 	        .setTitle(title)
 	        .setMessage(message)
 	        .setPositiveButton(android.R.string.ok, new Dialog.OnClickListener()
@@ -31,6 +31,6 @@ public class Credits {
 	        });
 	
         builder.create().show();
-    }
-
+	}
+	
 }

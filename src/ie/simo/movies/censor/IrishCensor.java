@@ -16,7 +16,7 @@ public class IrishCensor implements Censor {
 
 	@Override
 	public int get12Id() {
-		return R.drawable.irish_g;
+		return R.drawable.irish_12a;
 	}
 
 	@Override

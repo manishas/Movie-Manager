@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Result extends Activity {
 
@@ -105,6 +106,9 @@ public class Result extends Activity {
 				returnToMakeFilmScreen();
 			}
 		});
+		
+		
+		longToast("Your company earned $" + shareOfEarnings + " that can be used for your next production");
 
 	}
 
@@ -165,5 +169,9 @@ public class Result extends Activity {
 		startActivity(intent);
 
 		return false;
+	}
+	
+	public void longToast(CharSequence message) {
+		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 	}
 }
