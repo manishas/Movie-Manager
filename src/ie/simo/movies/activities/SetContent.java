@@ -8,6 +8,7 @@ import ie.simo.movies.censor.IrishCensor;
 import ie.simo.movies.censor.factory.CensorFactory;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.Rating;
+import ie.simo.movies.domain.RatingDetails;
 import ie.simo.movies.popup.InfoDialog;
 import android.app.Activity;
 import android.content.Intent;
@@ -40,7 +41,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 	private SeekBar violenceLevel;
 	private SeekBar sexLevel;
 	private SeekBar languageLevel;
-	private ImageView rating;
+	private ImageView ratingImg;
 	
 	private Button pitchFilm;
 	private ImageButton help;
@@ -146,43 +147,30 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 	//TODO sanity check levels
 	private void setRatingImage() {
 		
-		int total = sexLevel.getProgress() + violenceLevel.getProgress() + languageLevel.getProgress();
+		RatingDetails thisMovie = new RatingDetails();
+		thisMovie.setSex(sexLevel.getProgress());
+		thisMovie.setViolence(violenceLevel.getProgress());
+		thisMovie.setLanguage(languageLevel.getProgress());
+
+		setRatingImage(thisMovie.getRating());
 		
-		if(total == 0){
-			setMovieRating(Rating.GENERAL);
-		}
-		else if(total == 1){
-			setMovieRating(Rating.PG);
-		}
-		else if(sexLevel.getProgress() < 2 && violenceLevel.getProgress() < 2 && languageLevel.getProgress() < 2){
-			setMovieRating(Rating.TWELVES);
-		}
-		else if(total >= 7)
-		{
-			setMovieRating(Rating.EIGHTEENS);
-		}
-		else{
-			setMovieRating(Rating.FIFTEENS);
-		}
+		chosenMovie.setRatingDetails(thisMovie);
 	}
 
-	private void setMovieRating(Rating chosenRating) {
+	private void setRatingImage(Rating myRating) {
 
-		switch(chosenRating){
-			case GENERAL: 		rating.setImageDrawable(getResources().getDrawable(censor.getGId()));
+		switch(myRating){
+			case GENERAL: 		ratingImg.setImageDrawable(getResources().getDrawable(censor.getGId()));
 								break;
-			case PG: 			rating.setImageDrawable(getResources().getDrawable(censor.getPGId()));
+			case PG: 			ratingImg.setImageDrawable(getResources().getDrawable(censor.getPGId()));
 								break;
-			case TWELVES: 		rating.setImageDrawable(getResources().getDrawable(censor.get12Id()));
+			case TWELVES: 		ratingImg.setImageDrawable(getResources().getDrawable(censor.get12Id()));
 								break;
-			case FIFTEENS: 		rating.setImageDrawable(getResources().getDrawable(censor.get15Id()));
+			case FIFTEENS: 		ratingImg.setImageDrawable(getResources().getDrawable(censor.get15Id()));
 								break;
-			case EIGHTEENS: 	rating.setImageDrawable(getResources().getDrawable(censor.get18Id()));
+			case EIGHTEENS: 	ratingImg.setImageDrawable(getResources().getDrawable(censor.get18Id()));
 								break;
 		}
-		
-		chosenMovie.setRating(chosenRating);
-		
 	}
 
 	private void findAllViewsById() {
@@ -192,7 +180,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		violenceLevel = (SeekBar) this.findViewById(R.id.violenceBar);
 		sexLevel = (SeekBar) this.findViewById(R.id.sexBar);
 		languageLevel= (SeekBar) this.findViewById(R.id.rudeBar);
-		rating = (ImageView) this.findViewById(R.id.ratingImage);
+		ratingImg = (ImageView) this.findViewById(R.id.ratingImage);
 		pitchFilm = (Button) this.findViewById(R.id.pitchButton);
 		help = (ImageButton) this.findViewById(R.id.contentHelp);
 		title = (TextView) this.findViewById(R.id.setContentActivityTitle);

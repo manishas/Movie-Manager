@@ -80,7 +80,7 @@ public class Result extends Activity {
 		String profit = getString(R.string.totalProfit, "$"
 				+ (money - (finishedFilm.getTotalCost())) + "M");
 
-		budgetView.setText("$" + budget + shareOfEarnings + "M");
+		budgetView.setText("$" + (budget + shareOfEarnings) + "M");
 		
 		Typeface font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf"); 
 		

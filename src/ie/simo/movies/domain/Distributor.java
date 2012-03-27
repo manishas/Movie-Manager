@@ -30,19 +30,25 @@ public class Distributor implements Serializable{
 	}
 	
 	//TODO create composite object for rating + detailed levels
-	public int makeOffer(Genre genre, int sex, int violence, int language){
-		
+	public int makeOffer(Genre genre, RatingDetails r){
+		int offer = 0;
 		switch(genre){
-			case Kids:		if(sex > 1 || violence > 1 || language > 1){
+			case Kids:		if(r.getSex() > 1 || r.getViolence() > 1 || r.getLanguage() > 1){
 								return 0;
 							} 
 							else return defaultOffer();
 						
-			case Romance: 	int offer = (defaultOffer() - 3*violence);
+			case Romance: 	offer = (defaultOffer() - 3*r.getViolence());
 							return (offer > 0)? offer : 0;
 	
-			//case Action: 	
-			
+			case Action:    offer = (defaultOffer() - 3*r.getViolence());
+							return (offer > 0)? offer : 0;
+							
+			case Horror:	if(r.getSex() < 1 || r.getViolence() < 1 || r.getLanguage() < 1){
+								return defaultOffer()/4;
+							} 
+							else return defaultOffer();
+							
 			default:  return defaultOffer();
 		}
 	}

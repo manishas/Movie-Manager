@@ -12,7 +12,7 @@ public class MovieInfo implements Serializable {
 	private Genre genre;
 	private Director director;
 	private Cast cast;
-	private Rating rating;
+	private RatingDetails ratingDetails;
 	
 	/*
 	 * Getters & Setters
@@ -111,12 +111,12 @@ public class MovieInfo implements Serializable {
 		return builder.toString();
 	}
 
-	public Rating getRating() {
-		return rating;
+	public RatingDetails getRatingDetails() {
+		return ratingDetails;
 	}
 
-	public void setRating(Rating rating) {
-		this.rating = rating;
+	public void setRatingDetails(RatingDetails ratingDetails) {
+		this.ratingDetails = ratingDetails;
 	}
 
 }
