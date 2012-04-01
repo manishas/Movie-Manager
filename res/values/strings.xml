@@ -21,7 +21,7 @@
 	
 	<!-- EULA/whats new -->
 	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add updates at least every two weeks. If you have a suggestion please contact me or leave a comment!</string>
-	<string name="updates">Updates in this version (10th Mar): film reviews, pitch your script to a distributor to get your budget, hire an actor</string>
+	<string name="updates">Updates in this version (27th Mar): film reviews, set content levels for movie</string>
 	
 	<!-- start screen -->
 	<string name="start">Make Movies!</string>
