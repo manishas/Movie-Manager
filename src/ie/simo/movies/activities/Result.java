@@ -108,7 +108,7 @@ public class Result extends Activity {
 		});
 		
 		
-		longToast("Your company earned $" + shareOfEarnings + " that can be used for your next production");
+		longToast("Your company earned $" + shareOfEarnings + "M that can be used for your next production");
 
 	}
 
