@@ -8,20 +8,18 @@
 			android:layout_width="172dp" android:layout_height="261dp"
 			android:layout_gravity="center"></ImageView>
 			
-		<Button android:id="@+id/startgameButton" android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:text="@string/start">
+		<Button android:id="@+id/startgameButton" android:layout_height="wrap_content" android:text="@string/start" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
 		</Button>
 
-		<Button android:id="@+id/boxofficeButton" android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:text="@string/seeboxoffice">
+		<Button android:id="@+id/boxofficeButton" android:layout_height="wrap_content" android:text="@string/seeboxoffice" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
 		</Button>
 		
 		<Button android:id="@+id/prefsButton" android:layout_height="wrap_content"
-			android:text="@string/prefs" android:layout_width="fill_parent">
+			android:text="@string/prefs" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
 		</Button>
 		
 		<Button android:id="@+id/creditsButton" android:layout_height="wrap_content"
-			android:text="@string/credits" android:layout_width="fill_parent">
+			android:text="@string/credits" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
 		</Button>
 
 	</LinearLayout>
