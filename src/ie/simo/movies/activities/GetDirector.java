@@ -2,6 +2,7 @@ package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
 import ie.simo.movies.dao.DirectorDbAdapter;
+import ie.simo.movies.dao.viewbinder.DirectorSpinnerViewBinder;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.DBConsts;
@@ -138,13 +139,15 @@ public class GetDirector extends Activity {
 		startManagingCursor(c);
 				
 		// create an array to specify which fields we want to display
-		String[] from = new String[]{DBConsts.Director.name};
+		String[] from = new String[]{DBConsts.Director.name, DBConsts.Director.hire_cost};
 		// create an array of the display item we want to bind our data to
 		int[] to = new int[]{android.R.id.text1};
 		// create simple cursor adapter
 		SimpleCursorAdapter adapter =
 		  new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, c, from, to );
-		adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+		
+		adapter.setViewBinder(new DirectorSpinnerViewBinder());
+		//adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 		// get reference to our spinner
 		spinner.setAdapter(adapter);
 	}
