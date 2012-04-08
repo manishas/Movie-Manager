@@ -1,6 +1,7 @@
 package ie.simo.movies.dao.viewbinder;
 
 import android.database.Cursor;
+import android.util.Log;
 import android.view.View;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
@@ -18,7 +19,9 @@ public abstract class NamePriceSpinnerViewBinder implements ViewBinder {
 
 	    String name = cursor.getString(NAME_COLUMN);
 	    String price = "$"+cursor.getInt(PRICE_COLUMN) + "M";
-
+	    
+	    Log.v("viewbinder", cursor.toString());
+	    
 	    textView.setText(name + " - " + price);
 
 	    return true;

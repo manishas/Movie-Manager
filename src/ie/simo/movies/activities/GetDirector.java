@@ -145,9 +145,7 @@ public class GetDirector extends Activity {
 		// create simple cursor adapter
 		SimpleCursorAdapter adapter =
 		  new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, c, from, to );
-		
 		adapter.setViewBinder(new DirectorSpinnerViewBinder());
-		//adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 		// get reference to our spinner
 		spinner.setAdapter(adapter);
 	}

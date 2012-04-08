@@ -28,7 +28,7 @@ public class ActorDbAdapter {
 
 	public Cursor fetchAllActors() {	
 		String query = String.format("select %s, %s, %s, %s from actor order by %s desc", 
-				DBConsts.Actor.id, DBConsts.Actor.id, DBConsts.Actor.name, 
+				DBConsts.Actor.id, DBConsts.Actor.name, 
 				DBConsts.Actor.hire_cost, DBConsts.Actor.reputation, DBConsts.Actor.hire_cost);
 		return database.rawQuery(query, null);
 	}

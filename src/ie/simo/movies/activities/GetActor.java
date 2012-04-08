@@ -2,6 +2,7 @@ package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ActorDbAdapter;
+import ie.simo.movies.dao.viewbinder.ActorSpinnerViewBinder;
 import ie.simo.movies.dao.viewbinder.DirectorSpinnerViewBinder;
 import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Cast;
@@ -154,7 +155,7 @@ public class GetActor extends Activity {
 		// create simple cursor adapter
 		SimpleCursorAdapter adapter =
 		  new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, c, from, to );
-		adapter.setViewBinder(new DirectorSpinnerViewBinder());
+		adapter.setViewBinder(new ActorSpinnerViewBinder());
 		// get reference to our spinner
 		spinner.setAdapter(adapter);
 	}

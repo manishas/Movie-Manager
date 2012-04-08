@@ -57,6 +57,10 @@ public class BoxOfficeDbAdapter {
 		return database.rawQuery( "select rowid _id, movie_name, earnings from movie order by earnings desc limit 10", null);
 	}
 	
+	public Cursor fetchUserMovies() {	//need to order
+		return database.rawQuery( "select rowid _id, movie_name, earnings from movie where _id > 10 order by earnings desc", null);
+	}
+	
 	public void getMovieByName(String name){
 		Cursor c = database.rawQuery( "select movie_name, director_name, earnings from movie, director where movie_name='"+"' and director._id = movie.director_id", null);
 		Log.v("DIRECTORQUERY", c.getString(c.getColumnIndex(DIRECTOR)));	
