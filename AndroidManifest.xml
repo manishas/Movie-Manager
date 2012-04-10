@@ -13,24 +13,15 @@
 			</intent-filter>
 		</activity>
 		
-		<activity android:label="Preferences" android:name=".activities.Preferences">
-		</activity>
-		<activity android:label="Choose Film" android:name=".activities.MakeFilmActivity">
-		</activity>
-		<activity android:label="Choose Director" android:name=".activities.GetDirector">
-		</activity>
-		<activity android:label="Box Office" android:name=".activities.AllTimeBoxOffice">
-		</activity>
-		<activity android:label="Create your film" android:name=".activities.OwnFilmActivity">
-		</activity>
-		<activity android:label="Pitch your Film" android:name=".activities.PitchFilm">
-		</activity>
-		<activity android:label="Result" android:name=".activities.Result">
-		</activity>
-		<activity android:label="Choose Actor" android:name=".activities.GetActor">
-		</activity>
-		<activity android:label="Set Content" android:name=".activities.SetContent">
-		</activity>
+		<activity android:label="Preferences" android:name=".activities.Preferences"/>
+		<activity android:label="Choose Film" android:name=".activities.MakeFilmActivity"/>
+		<activity android:label="Choose Director" android:name=".activities.GetDirector"/>
+		<activity android:label="Box Office" android:name=".activities.AllTimeBoxOffice"/>
+		<activity android:label="Create your film" android:name=".activities.OwnFilmActivity"/>
+		<activity android:label="Pitch your Film" android:name=".activities.PitchFilm"/>
+		<activity android:label="Result" android:name=".activities.Result"/>
+		<activity android:label="Choose Actor" android:name=".activities.GetActor"/>
+		<activity android:label="Set Content" android:name=".activities.SetContent"/>
 		<activity android:label="Box Office" android:name=".activities.BoxOffice"/>
 		<activity android:label="Your Movies" android:name=".activities.PersonalBest"/>
 		

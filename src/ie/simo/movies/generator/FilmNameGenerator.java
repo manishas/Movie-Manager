@@ -4,6 +4,14 @@ import java.util.Random;
 
 public class FilmNameGenerator {
 
+String[] place = {"Space", "Paris", "LA", "New York", "Siberia", "Tokyo", 
+				"Japan", "a Cave", "the Bedroom", "the Kitchen", "the Street",
+				"a Hole", "Holland", "Hong Kong", "Spain", "Portugal", "Timbuktu",
+				"London", "Ireland", "the Bathroom", "the Attic", "the Basement",
+				"the Swamp", "the Forest", "the Mountains", "the Mountain",
+				"the Beach", "the Suburbs", "the Ghetto", "South Central",
+				"the Farm", "the Factory", "the Nuclear Plant"};	
+	
 String[] adjective = { "adorable", "adventurous", "aggressive", "alert",
 "attractive", "average", "beautiful", "blue-eyed", "bloody",
 "blushing", "bright", "clean", "clear", "cloudy", "colorful",
@@ -225,6 +233,8 @@ String[] noun = { "aardvark", "air", "airplane", "airport", "alarm",
 "xylophone", "yacht", "yak", "yard", "yogurt", "zebra", "zipper",
 "zoo" };
 
+
+
 public String getNoun() {
 Random r = new Random();
 return nounify(noun[r.nextInt(noun.length)]);
@@ -241,14 +251,29 @@ return firstLetter.toUpperCase() + word.substring(1);
 }
 
 public String newFilmTitle(){
-
-String [] types = {
-String.format("The %s %s" , getAdjective(), getNoun()),
-String.format("The %s" , getNoun()),
-String.format("%s" , getNoun()),
-String.format("The %s And The %s %s" , getNoun(), getAdjective(), getNoun())
-};
-Random r = new Random();
-return types[r.nextInt(types.length)];
+	
+	String [] types = {
+		String.format("The %s %s" , getAdjective(), getNoun()),
+		String.format("The %s" , getNoun()),
+		String.format("%s" , getNoun()),
+		String.format("%s of %s", getNoun(), getNoun()),
+		String.format("%s in %s", getPluralNoun(), getPlace()),
+		String.format("The %s from %", getNoun(), getPlace()),
+		String.format("The %s And The %s %s" , getNoun(), getAdjective(), getNoun())
+	};
+	
+	Random r = new Random();
+	return types[r.nextInt(types.length)];
+	}
+	
+	private Object getPlace() {
+		Random r = new Random();
+		return place[r.nextInt(place.length)];
 }
+
+	private Object getPluralNoun() {
+		String noun = getNoun();
+		
+		return (noun.charAt(noun.length()-1) == 's') ? noun + "es" : noun + "s"; 
+	}
 }
