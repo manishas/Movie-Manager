@@ -49,7 +49,7 @@ public class StartActivity extends Activity {
 	
 			public void onClick(View v) {
 				Intent i = new Intent();
-				i.setClass(StartActivity.this, BoxOfficeTab.class);
+				i.setClass(StartActivity.this, BoxOffice.class);
 				startActivity(i);
 			}
 		});

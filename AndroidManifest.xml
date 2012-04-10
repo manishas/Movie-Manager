@@ -19,8 +19,7 @@
 		</activity>
 		<activity android:label="Choose Director" android:name=".activities.GetDirector">
 		</activity>
-		<activity android:label="Box Office" android:name=".activities.BoxOffice"
-			android:screenOrientation="landscape">
+		<activity android:label="Box Office" android:name=".activities.AllTimeBoxOffice">
 		</activity>
 		<activity android:label="Create your film" android:name=".activities.OwnFilmActivity">
 		</activity>
@@ -32,7 +31,8 @@
 		</activity>
 		<activity android:label="Set Content" android:name=".activities.SetContent">
 		</activity>
-		<activity android:label="BoxOffice" android:name=".activities.BoxOfficeTab"/>
+		<activity android:label="Box Office" android:name=".activities.BoxOffice"/>
+		<activity android:label="Your Movies" android:name=".activities.PersonalBest"/>
 		
 	</application>
 </manifest>
