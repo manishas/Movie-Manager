@@ -20,9 +20,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PitchFilm extends Activity {
 	
@@ -108,9 +111,9 @@ public class PitchFilm extends Activity {
 	        	String tag = (String) button.getTag();
 	        	if(tag.charAt(0)=='!'){
 		        	int offer = new Distributor().makeOffer(chosenMovie.getGenre(), chosenMovie.getRatingDetails());
-
 					button.setText("$" + offer+ "M");
 					button.setTag(tag.substring(1));
+					toastOffer((String)button.getTag(),offer);
 				}
 	        	else{
 	        		Distributor d = new Distributor();
@@ -159,5 +162,21 @@ public class PitchFilm extends Activity {
     	Log.v("offer", label+"");
     	return Integer.parseInt(label);
     }
+    
+    private void toastOffer(String distributorName, int offer){
+    	Toast toast = Toast.makeText(getApplicationContext(),
+    			   getOfferText(distributorName, offer), Toast.LENGTH_SHORT);
+    			toast.setGravity(Gravity.CENTER, 0, 0);
+    			LinearLayout toastView = (LinearLayout) toast.getView();
+    			ImageView imageCodeProject = new ImageView(getApplicationContext());
+    			imageCodeProject.setImageResource(R.drawable.suits);
+    			toastView.addView(imageCodeProject, 0);
+    			toast.show();
+    	
+    }
+
+	private CharSequence getOfferText(String distName, int offer) {
+		return distName + ": We love the idea, best we can do is $" + offer + "M";
+	}
 	
 }

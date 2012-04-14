@@ -258,7 +258,7 @@ public String newFilmTitle(){
 		String.format("%s" , getNoun()),
 		String.format("%s of %s", getNoun(), getNoun()),
 		String.format("%s in %s", getPluralNoun(), getPlace()),
-		String.format("The %s from %", getNoun(), getPlace()),
+		String.format("The %s from %s", getNoun(), getPlace()),
 		String.format("The %s And The %s %s" , getNoun(), getAdjective(), getNoun())
 	};
 	
