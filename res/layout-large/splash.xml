@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent">
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical" android:layout_width="match_parent"
+		android:layout_height="match_parent" android:weightSum="1">
+		<ImageView android:id="@+id/imageView1" android:src="@drawable/popcornhi"
+			android:layout_width="172dp" android:layout_height="261dp"
+			android:layout_gravity="center"></ImageView>
+			
+		<Button android:id="@+id/startgameButton" android:layout_height="wrap_content" android:text="@string/start" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+		</Button>
+
+		<Button android:id="@+id/boxofficeButton" android:layout_height="wrap_content" android:text="@string/seeboxoffice" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+		</Button>
+		
+		<Button android:id="@+id/prefsButton" android:layout_height="wrap_content"
+			android:text="@string/prefs" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+		</Button>
+		
+		<Button android:id="@+id/creditsButton" android:layout_height="wrap_content"
+			android:text="@string/credits" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+		</Button>
+
+	</LinearLayout>
+</ScrollView>

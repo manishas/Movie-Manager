@@ -176,7 +176,29 @@ public class PitchFilm extends Activity {
     }
 
 	private CharSequence getOfferText(String distName, int offer) {
-		return distName + ": We love the idea, best we can do is $" + offer + "M";
+		
+		String text = "";
+		if(offer == 0){
+			text = getString(R.string.noOffer1);
+		}
+		else if(offer < 3){
+			text = getString(R.string.noOffer2);
+		}
+		else if (offer < 10){
+			text = getString(R.string.smallOffer);
+		}
+		else if (offer < 20){
+			text = getString(R.string.mediumOffer);
+		}
+		else if (offer < 30){
+			text = getString(R.string.goodOffer);
+		}
+		else{
+			text = getString(R.string.bestOffer);
+		}
+				
+		return distName + ": " + String.format(text, offer);
+		
 	}
 	
 }

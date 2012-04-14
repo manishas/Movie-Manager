@@ -32,7 +32,7 @@
 	<string name="credits">Credits</string>
 	
 	<!-- credits dialogue -->
-	<string name="creditsText">Thanks to: Menu icons from @AndroidIcons. Paul, Dave and Conor for feedback. Niamh for putting up with me while I work on this app :-)</string>	
+	<string name="creditsText">All development by Simon Wielens. Inspired by Sim-Cinema Deluxe by Shannon Schroeder. Thanks to: Menu icons from @AndroidIcons. Paul, Dave, Gary and Conor for feedback. Niamh for putting up with me while I work on this app :-)</string>	
 	
 	<!-- choose film screen -->
 	<string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
@@ -64,6 +64,12 @@
 	
 	<!-- pitch movie screen -->
 	<string name="ask">Ask</string>
+	<string name="noOffer1">Sorry, we aren\'t interested...</string>
+	<string name="noOffer2">We think your script is great. Best we can do is 20 bucks</string>
+	<string name="smallOffer">We aren\'t too sure, but we are willing to take a chance, here\'s $%dM</string> 
+	<string name="mediumOffer">We think the script has potential, here\'s $%dM</string> 
+	<string name="goodOffer">We really like the script, we can give you $%dM</string>  
+	<string name="bestOffer">We love it, now shut up and take our money.</string>
 	
 	<!-- content -->
 	<string name="contentTitle">Set the content level for: </string>
