@@ -10,14 +10,10 @@ import ie.simo.movies.util.DBConsts;
 import static ie.simo.movies.util.Consts.BUDGET;
 import static ie.simo.movies.util.Consts.CHOSEN;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -74,8 +70,7 @@ public class GetDirector extends Activity {
 					chosenDirector.setName(c.getString(c.getColumnIndex(DBConsts.Director.name)));
 					chosenDirector.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Director.hire_cost))));
 					chosenFilm.setDirector(chosenDirector);
-					//format the amount
-					NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+
 					String msg = getString(R.string.directorPrice , "$"+chosenDirector.getPriceToHire()+"M");
 					GetDirector.this.price.setText(msg);
 					

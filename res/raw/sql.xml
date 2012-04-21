@@ -554,7 +554,7 @@
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ludacris', 10, 40)</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Harry Connick', 10, 40)</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Bradley Cooper', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Peter O'Toole', 9, 39)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Peter O''Toole', 9, 39)</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jean-Claude Van Damme', 9, 39)</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Scott Speedman', 9, 39)</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Robert Carlyle', 9, 39)</statement>
@@ -570,7 +570,6 @@
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tommy Wiseau', 2, 10)</statement>
 
 <!-- Cast -->
-
 <statement>insert into cast (movie_id, actor_id) values (1, 1)</statement> <!-- avatar -->
 <statement>insert into cast (movie_id, actor_id) values (2, 4)</statement> <!-- titanic -->
 <statement>insert into cast (movie_id, actor_id) values (2, 10)</statement> <!-- titanic -->

@@ -3,16 +3,12 @@ package ie.simo.movies.activities;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ActorDbAdapter;
 import ie.simo.movies.dao.viewbinder.ActorSpinnerViewBinder;
-import ie.simo.movies.dao.viewbinder.DirectorSpinnerViewBinder;
 import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Cast;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.DBConsts;
 
 import static ie.simo.movies.util.Consts.*;
-
-import java.text.NumberFormat;
-import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -82,8 +78,6 @@ public class GetActor extends Activity {
 					chosenFilm.setCast(cast);
 					//TODO handle this better
 					//chosenFilm.getCast().getActors().add(chosenActor);
-					//format the amount
-					NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
 					String msg = getString(R.string.actorPrice , "$"+ chosenActor.getPriceToHire() + "M");
 					GetActor.this.price.setText(msg);
 					

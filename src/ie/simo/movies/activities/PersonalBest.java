@@ -4,7 +4,6 @@ import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.dao.cursor.BoxOfficeCursorAdapter;
 
-import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;

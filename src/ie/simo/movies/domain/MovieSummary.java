@@ -1,7 +1,5 @@
 package ie.simo.movies.domain;
 
-import java.util.Date;
-
 public class MovieSummary {
 	private int totalCost;
 	private int totalEarnings;

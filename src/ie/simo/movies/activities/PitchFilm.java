@@ -7,8 +7,6 @@ import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.DBConsts;
 import static ie.simo.movies.util.Consts.*;
 
-import java.util.Random;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -32,19 +30,14 @@ public class PitchFilm extends Activity {
 	private Button cancel;
 	private TableLayout table;
 	private TextView budgetView;
-	
 	private int budget;
-	
 	private MovieInfo chosenMovie;
-	private Random generator;
-	
 	private DistributorDBAdapter db;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pitch);
-		generator = new Random();
 		findAllViewsById();
 		
 		Intent i = getIntent();

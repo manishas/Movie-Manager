@@ -9,9 +9,6 @@ import ie.simo.movies.scoring.earnings.EarningsCalculator;
 import ie.simo.movies.scoring.earnings.EarningsCalculatorFirstImpl;
 import ie.simo.movies.scoring.rating.RatingCalculator;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import static ie.simo.movies.util.Consts.*;
 
 import android.app.Activity;
