@@ -20,12 +20,12 @@ import android.widget.Toast;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static final String DATABASE_NAME = "moviemanager";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	 protected Context context;
 	        
         public DatabaseHelper(Context context) {
-                super(context, DATABASE_NAME, null, 1);
+                super(context, DATABASE_NAME, null, DATABASE_VERSION);
                 this.context = context;
         }
 
