@@ -24,6 +24,7 @@
 		<activity android:label="Set Content" android:name=".activities.SetContent"/>
 		<activity android:label="Box Office" android:name=".activities.BoxOffice"/>
 		<activity android:label="Your Movies" android:name=".activities.PersonalBest"/>
+		<activity android:label="Load Game" android:name=".activities.ContinueGameActivity"/>
 		
 	</application>
 </manifest>

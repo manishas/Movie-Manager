@@ -14,7 +14,7 @@
 		android:id="@+id/chosen"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="TextView"
+		android:text=""
 		android:textAppearance="?android:attr/textAppearanceLarge" >
 	</TextView>
 	<TextView

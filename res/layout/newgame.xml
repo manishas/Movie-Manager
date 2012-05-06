@@ -6,7 +6,7 @@
   android:layout_height="match_parent">
     <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
         <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@+string/choosecompanyname" android:id="@+id/textView1"></TextView>
-        <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/editText1">
+        <EditText android:layout_height="wrap_content" android:inputType="textCapWords" android:layout_width="match_parent" android:id="@+id/editText1">
             <requestFocus></requestFocus>
         </EditText>
         <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@+string/enterchairmanname" android:id="@+id/textView2"></TextView>

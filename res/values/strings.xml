@@ -26,7 +26,8 @@
 	<string name="updates">Updates in this version (21th Apr): Loads of new directors and actors, layouts for large screens, personal best movies list on box office screen, distributor comments on offers</string>
 	
 	<!-- start screen -->
-	<string name="start">Make Movies!</string>
+	<string name="newgame">New Game</string>
+	<string name="continuegame">Continue Game</string>
 	<string name="seeboxoffice">All-time Box office</string>
 	<string name="prefs">Preferences</string>
 	<string name="credits">Credits</string>
@@ -38,7 +39,7 @@
 	<string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
 	<string name="app_name">Movie Manager</string>
 	<string name="makeown">"I'll make my own, thanks"</string>
-	<string name="getmore">Get more scripts...</string>
+	<string name="getmore">Get more scripts…</string>
 	
 	<!-- make own film screen -->
 	<string name="enterfilmname">Enter the name of your film:</string>
@@ -60,11 +61,11 @@
 	
 	<!-- new game screen -->
 	<string name="choosecompanyname">Choose the name of your production company: </string>
-	<string name="enterchairmanname">Enter your name</string>
+	<string name="newgamedialogtitle">New Game</string>
 	
 	<!-- pitch movie screen -->
 	<string name="ask">Ask</string>
-	<string name="noOffer1">Sorry, we aren\'t interested...</string>
+	<string name="noOffer1">Sorry, we aren\'t interested…</string>
 	<string name="noOffer2">We think your script is great. Best we can do is 20 bucks</string>
 	<string name="smallOffer">We aren\'t too sure, but we are willing to take a chance, here\'s $%dM</string> 
 	<string name="mediumOffer">We think the script has potential, here\'s $%dM</string> 
@@ -91,5 +92,6 @@
 	<string name="language2">Moderate Bad Language</string>
 	<string name="language3">Really Strong ****ing Language</string>
 	<string name="pitchFilmButton">Pitch your Movie</string>
+	<string name="load_game">Load Game</string>
 	
 </resources>

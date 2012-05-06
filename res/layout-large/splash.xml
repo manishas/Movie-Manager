@@ -8,7 +8,10 @@
 			android:layout_width="172dp" android:layout_height="261dp"
 			android:layout_gravity="center"></ImageView>
 			
-		<Button android:id="@+id/startgameButton" android:layout_height="wrap_content" android:text="@string/start" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+				
+		<Button android:id="@+id/newgameButton" android:text="@string/newgame" android:layout_height="wrap_content" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+		</Button>
+		<Button android:id="@+id/continuegameButton" android:text="@string/continuegame" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
 		</Button>
 
 		<Button android:id="@+id/boxofficeButton" android:layout_height="wrap_content" android:text="@string/seeboxoffice" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">

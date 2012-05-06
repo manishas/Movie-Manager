@@ -1,6 +1,8 @@
 package ie.simo.movies.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Producer implements Serializable{
 
@@ -10,8 +12,6 @@ public class Producer implements Serializable{
 	private String chairmanName;
 	private int reputation;
 	private int cash;
-	private SavedGame[] savedGames;
-	
 	
 	public String getCompanyName() {
 		return companyName;
@@ -30,12 +30,6 @@ public class Producer implements Serializable{
 	}
 	public void setReputation(int reputation) {
 		this.reputation = reputation;
-	}
-	public SavedGame[] getSavedGames() {
-		return savedGames;
-	}
-	public void setSavedGames(SavedGame[] savedGames) {
-		this.savedGames = savedGames;
 	}
 	public int getCash() {
 		return cash;

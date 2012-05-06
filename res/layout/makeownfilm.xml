@@ -9,7 +9,7 @@
 	  android:layout_height="match_parent">
 	  <include layout="@layout/scorebar"/>
 	    <TextView android:text="@+string/enterfilmname" android:id="@+id/enterfilmname" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-	    <EditText android:id="@+id/nametextfield" android:layout_height="wrap_content" android:layout_width="match_parent" android:maxLength="50">
+	    <EditText android:id="@+id/nametextfield" android:inputType="textCapWords" android:layout_width="match_parent" android:maxLength="50">
 	        <requestFocus></requestFocus>
 	    </EditText>
 	    <TextView android:text="@+string/selectgenre" android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
