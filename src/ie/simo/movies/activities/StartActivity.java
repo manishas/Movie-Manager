@@ -1,6 +1,8 @@
 package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
+import ie.simo.movies.dao.ProductionCompanyDbAdapter;
+import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.popup.InfoDialog;
 import ie.simo.movies.popup.NewGame;
 import ie.simo.movies.popup.SimpleEula;
@@ -9,7 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import static ie.simo.movies.util.Consts.COMPANY_NAME;
+import static ie.simo.movies.util.Consts.COMPANY;
 
 /**
  * First Activity which is opened when the game is started
@@ -25,6 +27,7 @@ public class StartActivity extends Activity {
 	private Button credits;
 	private Button prefs;
 	private NewGame dialog;
+	private ProductionCompanyDbAdapter db;
 	
 	
 	@Override
@@ -51,13 +54,19 @@ public class StartActivity extends Activity {
 				
 				dialog = new NewGame(StartActivity.this);
 				dialog.show();
+				
+				ProductionCompany pc = new ProductionCompany(dialog.getCompanyName());
+				
 				//TODO sort out activity being started before dialog is dismissed
 				//TODO Add to database
+				db.openWritable();
+				db.addCompany(pc);
+				db.close();
 				
 				Intent i = new Intent();
 				i.setClass(StartActivity.this, MakeFilmActivity.class);
 				
-				i.putExtra(COMPANY_NAME, dialog.getCompanyName());
+				i.putExtra(COMPANY, pc);
 				startActivity(i);
 			}
 		});

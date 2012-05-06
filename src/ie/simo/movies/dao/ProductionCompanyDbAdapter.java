@@ -1,10 +1,13 @@
 package ie.simo.movies.dao;
 
+import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import static ie.simo.movies.util.DBConsts.ProductionCompany.*;
 
 public class ProductionCompanyDbAdapter {
 	
@@ -40,10 +43,24 @@ public class ProductionCompanyDbAdapter {
 		return database.rawQuery(query, null);
 	}
 	*/
-	
-	public void addNewCompany(String name){
-		
+
+	public void addCompany(ProductionCompany pc) {	
+		ContentValues values = createValues(pc);
+		database.insert(productionCompanyTable, null, values);		
 	}
 	
 	
+	/**
+	 * Extract values from object and return in form of ContentValues
+	 * @param company a ProductionCompany instance
+	 * @return ContentValues object representing values from the param
+	 */
+	private ContentValues createValues(ProductionCompany company) {
+		ContentValues values = new ContentValues();
+		values.put(id, company.getUuid().toString());
+		values.put(name, company.getName());
+		values.put(reputation, company.getReputation());
+		values.put(budget, company.getBudget());
+		return values;
+	}
 }

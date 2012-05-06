@@ -37,10 +37,11 @@
 </statement>
 			
 <statement>
-	create table if not exists producer
-	(_id integer primary key autoincrement, 
-	producer_name text,
-	producer_reputation integer) 
+	create table if not exists production_company
+	(_id text primary key, 
+	name text,
+	reputation integer,
+	budget integer) 
 </statement>	
 
 <statement>

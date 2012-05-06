@@ -34,5 +34,13 @@ public class DBConsts {
 		public static final String desc = "distributor_desc";
 		public static final String name = "distributor_name";
 	}
+	
+	public static class ProductionCompany{
+		public static final String productionCompanyTable = "production_company";
+		public static final String id = "_id";
+		public static final String reputation = "reputation";
+		public static final String budget = "budget";
+		public static final String name = "name";
+	}
 
 }
