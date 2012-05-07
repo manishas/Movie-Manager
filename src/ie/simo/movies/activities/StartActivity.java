@@ -34,7 +34,7 @@ public class StartActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
-		
+		db = new ProductionCompanyDbAdapter(this);
 		new SimpleEula(this).show(); 
 		
 		findAllViewsById();	
@@ -54,20 +54,6 @@ public class StartActivity extends Activity {
 				
 				dialog = new NewGame(StartActivity.this);
 				dialog.show();
-				
-				ProductionCompany pc = new ProductionCompany(dialog.getCompanyName());
-				
-				//TODO sort out activity being started before dialog is dismissed
-				//TODO Add to database
-				db.openWritable();
-				db.addCompany(pc);
-				db.close();
-				
-				Intent i = new Intent();
-				i.setClass(StartActivity.this, MakeFilmActivity.class);
-				
-				i.putExtra(COMPANY, pc);
-				startActivity(i);
 			}
 		});
 
@@ -118,5 +104,21 @@ public class StartActivity extends Activity {
 		boxOffice = (Button) this.findViewById(R.id.boxofficeButton);
 		prefs = (Button) this.findViewById(R.id.prefsButton);
 		credits = (Button) this.findViewById(R.id.creditsButton);
+	}
+
+	public void createNewGame() {
+		ProductionCompany pc = new ProductionCompany(dialog.getCompanyName());
+		
+		//TODO sort out activity being started before dialog is dismissed
+		//TODO Add to database
+		db.openWritable();
+		db.addCompany(pc);
+		db.close();
+		
+		Intent i = new Intent();
+		i.setClass(StartActivity.this, MakeFilmActivity.class);
+		
+		i.putExtra(COMPANY, pc);
+		startActivity(i);
 	}
 }

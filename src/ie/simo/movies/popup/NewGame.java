@@ -1,6 +1,7 @@
 package ie.simo.movies.popup;
 
 import ie.simo.movies.R;
+import ie.simo.movies.activities.StartActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -22,6 +23,7 @@ public class NewGame extends PopupDialog {
 	private String message;
 	private EditText input;
 	private String companyName;
+	private boolean opened = false;
 	
 	public NewGame(Activity context) {
 		mActivity = context;
@@ -35,7 +37,7 @@ public class NewGame extends PopupDialog {
 			public CharSequence filter(CharSequence source, int start, int end,
 					Spanned dest, int dstart, int dend) {
 				for (int i = start; i < end; i++) { 
-				    if (!Character.isLetterOrDigit(source.charAt(i))) { 
+				    if (!(Character.isLetterOrDigit(source.charAt(i)) || Character.isSpace(source.charAt(i)))) { 
 			            return ""; 
 			        } 
 				}
@@ -52,6 +54,8 @@ public class NewGame extends PopupDialog {
 	@Override
 	public void show() {
 		
+		setOpened(true);
+		
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity)
 	        .setTitle(getTitle())
 	        .setMessage(getMessage())
@@ -65,8 +69,11 @@ public class NewGame extends PopupDialog {
 		        		
 	        			setCompanyName(input.getEditableText().toString());
 		        		Log.v("NEW COMPANY", getCompanyName());
-		        		
+		        		setOpened(false);
 		                dialogInterface.dismiss();
+		                
+		                StartActivity parent = (StartActivity) mActivity;
+		                parent.createNewGame();
 	        		}
 	        		else{
 	        			Toast.makeText(mActivity, "Invalid company name", Toast.LENGTH_LONG).show();
@@ -104,6 +111,14 @@ public class NewGame extends PopupDialog {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public boolean isOpened() {
+		return opened;
+	}
+
+	public void setOpened(boolean opened) {
+		this.opened = opened;
 	}
 	
 
