@@ -5,9 +5,10 @@ import ie.simo.movies.dao.DirectorDbAdapter;
 import ie.simo.movies.dao.viewbinder.DirectorSpinnerViewBinder;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 
-import static ie.simo.movies.util.Consts.BUDGET;
+import static ie.simo.movies.util.Consts.COMPANY;
 import static ie.simo.movies.util.Consts.CHOSEN;
 
 import android.app.Activity;
@@ -35,7 +36,7 @@ public class GetDirector extends Activity {
 	private Spinner spinner;
 	private Button produceFilm;
 	private DirectorDbAdapter db;
-	private int budget;
+	private ProductionCompany pc;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -49,13 +50,13 @@ public class GetDirector extends Activity {
 		Intent i = getIntent();
 		fillSpinner();
 		
-		budget = i.getIntExtra(BUDGET, 0);		
+		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);		
 		chosenFilm = (MovieInfo) i.getSerializableExtra(CHOSEN);
 		chosen.setText(chosenFilm.toButtonText());
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
-		budgetView.setText(budget+"");
+		budgetView.setText(pc.getBudget()+"");
 		
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -74,7 +75,7 @@ public class GetDirector extends Activity {
 					String msg = getString(R.string.directorPrice , "$"+chosenDirector.getPriceToHire()+"M");
 					GetDirector.this.price.setText(msg);
 					
-					budgetView.setText("$" + (budget - chosenDirector.getPriceToHire()));
+					budgetView.setText("$" + (pc.getBudget() - chosenDirector.getPriceToHire()));
 				}
 			}
 
@@ -94,7 +95,8 @@ public class GetDirector extends Activity {
 					Intent i = new Intent();
 					i.setClass(GetDirector.this, GetActor.class);
 					i.putExtra(CHOSEN, chosenFilm);
-					i.putExtra(BUDGET, budget - chosenFilm.getDirector().getPriceToHire());
+					pc.setBudget(pc.getBudget() - chosenFilm.getDirector().getPriceToHire());
+					i.putExtra(COMPANY, pc);
 					
 					startActivity(i);
 				}
@@ -114,7 +116,7 @@ public class GetDirector extends Activity {
 	}
 	
 	private boolean isValid(){	
-		return (this.budget - chosenFilm.getDirector().getPriceToHire() >= 0)? true : false;
+		return (pc.getBudget() - chosenFilm.getDirector().getPriceToHire() >= 0)? true : false;
 	}
 	
 	

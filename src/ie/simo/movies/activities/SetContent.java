@@ -1,11 +1,12 @@
 package ie.simo.movies.activities;
 
-import static ie.simo.movies.util.Consts.BUDGET;
+import static ie.simo.movies.util.Consts.COMPANY;
 import static ie.simo.movies.util.Consts.CHOSEN;
 import ie.simo.movies.R;
 import ie.simo.movies.censor.Censor;
 import ie.simo.movies.censor.factory.CensorFactory;
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.domain.Rating;
 import ie.simo.movies.domain.RatingDetails;
 import ie.simo.movies.popup.InfoDialog;
@@ -27,7 +28,7 @@ import android.widget.TextView;
 
 public class SetContent extends Activity implements OnSeekBarChangeListener{
 
-	private int budget;
+	private ProductionCompany pc;
 	private MovieInfo chosenMovie;
 	
 	private Censor censor;
@@ -61,7 +62,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		
 		Intent i = getIntent();
 		chosenMovie = (MovieInfo) i.getSerializableExtra(CHOSEN);
-		budget = i.getIntExtra(BUDGET, 0);
+		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		
 		findAllViewsById();
 		setListeners();
@@ -83,7 +84,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent();
-				i.putExtra(BUDGET, budget);
+				i.putExtra(COMPANY, pc);
 				i.putExtra(CHOSEN, chosenMovie);
 				i.setClass(SetContent.this, PitchFilm.class);
 				startActivity(i);
@@ -206,7 +207,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
     	Intent intent = new Intent();
 
 		intent.setClass(this, BoxOffice.class);
-		intent.putExtra(BUDGET, budget);
+		intent.putExtra(COMPANY, pc);
     	
 		startActivity(intent);
 		

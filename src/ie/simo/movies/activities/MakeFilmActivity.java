@@ -2,6 +2,7 @@ package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.domain.ProductionCompany;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-import static ie.simo.movies.util.Consts.BUDGET;
+import static ie.simo.movies.util.Consts.COMPANY;
 import static ie.simo.movies.util.Consts.CHOSEN;
 
 public class MakeFilmActivity extends Activity implements OnClickListener {
@@ -27,7 +28,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 	private MovieInfo meta2;
 	private MovieInfo meta3;
 	private Intent intent;
-	private int budget;
+	private ProductionCompany pc;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,8 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		findAllViewsById();
 		
 		Intent i = getIntent();
-		budget = i.getIntExtra(BUDGET, 0);
+		
+		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		
 		generateScripts();
 		
@@ -78,7 +80,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 
 		intent = new Intent(getApplicationContext(),SetContent.class);
 		
-		intent.putExtra(BUDGET, budget);
+		intent.putExtra(COMPANY, pc);
 		
 		if (target == script1)
 			intent.putExtra(CHOSEN, meta1);
@@ -137,7 +139,7 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
     	Intent intent = new Intent();
 
 		intent.setClass(this, BoxOffice.class);
-    	intent.putExtra(BUDGET, budget);
+    	intent.putExtra(COMPANY, pc);
 		startActivity(intent);
 		
         return false;

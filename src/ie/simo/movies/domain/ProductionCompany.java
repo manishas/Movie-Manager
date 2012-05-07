@@ -1,6 +1,8 @@
 package ie.simo.movies.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 /**
  * Class to represent a production company, ie a 'game'
@@ -16,12 +18,15 @@ public class ProductionCompany implements Serializable{
 	private int reputation;
 	private String name;
 	private int budget;
-	private final UUID uuid = UUID.randomUUID();	
+	private final UUID uuid = UUID.randomUUID();
+	private MovieInfo currentProject = null;
+	//previous releases
+	private List<MovieInfo> backCatalogue = new ArrayList<MovieInfo>();
 	
 	public ProductionCompany(String name){
 		this.name = name;
 		this.reputation = 0;
-		this.budget = 0;
+		this.budget = 0;	
 	}
 	
 	
@@ -54,5 +59,25 @@ public class ProductionCompany implements Serializable{
 
 	public void setBudget(int budget) {
 		this.budget = budget;
+	}
+
+
+	public List<MovieInfo> getBackCatalogue() {
+		return backCatalogue;
+	}
+
+
+	public void setBackCatalogue(List<MovieInfo> backCatalogue) {
+		this.backCatalogue = backCatalogue;
+	}
+
+
+	public MovieInfo getCurrentProject() {
+		return currentProject;
+	}
+
+
+	public void setCurrentProject(MovieInfo currentProject) {
+		this.currentProject = currentProject;
 	}
 }

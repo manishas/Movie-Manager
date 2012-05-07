@@ -4,6 +4,7 @@ import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
+import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.generator.ReviewGenerator;
 import ie.simo.movies.scoring.earnings.EarningsCalculator;
 import ie.simo.movies.scoring.earnings.EarningsCalculatorFirstImpl;
@@ -35,7 +36,7 @@ public class Result extends Activity {
 	private TextView budgetView;
 	private TextView review;
 
-	private int budget;
+	private ProductionCompany pc;
 	private int shareOfEarnings;
 	private ReviewGenerator reviewer;
 
@@ -59,9 +60,10 @@ public class Result extends Activity {
 		finishedFilm = (MovieInfo) i.getSerializableExtra(CHOSEN);
 		Log.v(getLocalClassName(), "Film Details: " + finishedFilm.toString());
 
-		budget = i.getIntExtra(BUDGET, 0);
-		Log.v(getLocalClassName(), "Remaining Budget is: " + budget);
+		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
+		Log.v(getLocalClassName(), "Remaining Budget is: " + pc.getBudget());
 
+		//HOLY SHIT need to refactor the shit out of this method
 		float criticRating = (float) ratingCalc.getRating(finishedFilm
 				.getDirector().getReputation(), finishedFilm.getCast());
 		Log.v(getLocalClassName(), "Critic rating is: " + criticRating);
@@ -77,7 +79,7 @@ public class Result extends Activity {
 		String profit = getString(R.string.totalProfit, "$"
 				+ (money - (finishedFilm.getTotalCost())) + "M");
 
-		budgetView.setText("$" + (budget + shareOfEarnings) + "M");
+		budgetView.setText("$" + (pc.getBudget() + shareOfEarnings) + "M");
 		
 		Typeface font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf"); 
 		
@@ -129,7 +131,8 @@ public class Result extends Activity {
 
 		Intent i = new Intent();
 		i.setClass(Result.this, MakeFilmActivity.class);
-		i.putExtra(BUDGET, budget + shareOfEarnings);
+		pc.setBudget(pc.getBudget() + shareOfEarnings);
+		i.putExtra(COMPANY, pc);
 
 		startActivity(i);
 	}

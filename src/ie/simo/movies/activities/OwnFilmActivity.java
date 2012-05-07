@@ -3,6 +3,7 @@ package ie.simo.movies.activities;
 import ie.simo.movies.R;
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.domain.ProductionCompany;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
-import static ie.simo.movies.util.Consts.BUDGET;
+import static ie.simo.movies.util.Consts.COMPANY;
 import static ie.simo.movies.util.Consts.CHOSEN;
 
 
@@ -29,7 +30,7 @@ public class OwnFilmActivity extends Activity {
 	private Button director;
 	private MovieInfo info;
 	
-	private int budget;
+	private ProductionCompany pc;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class OwnFilmActivity extends Activity {
 		
 		Intent i = getIntent();
 		
-		budget = i.getIntExtra(BUDGET, 0);
+		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		
 		
 		findAllViewsById();
@@ -57,7 +58,7 @@ public class OwnFilmActivity extends Activity {
 					info.setGenre((Genre)spinner.getSelectedItem());
 					Intent intent = new Intent(getApplicationContext(), SetContent.class);
 					intent.putExtra(CHOSEN, info);
-					intent.putExtra(BUDGET, budget);
+					intent.putExtra(COMPANY, pc);
 					startActivity(intent);
 				}
 				else{
@@ -96,7 +97,7 @@ public class OwnFilmActivity extends Activity {
     	Intent intent = new Intent();
 
 		intent.setClass(this, BoxOffice.class);
-		intent.putExtra(BUDGET, budget);
+		intent.putExtra(COMPANY, pc);
     	
 		startActivity(intent);
 		

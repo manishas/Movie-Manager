@@ -4,6 +4,7 @@ import ie.simo.movies.R;
 import ie.simo.movies.dao.DistributorDBAdapter;
 import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import static ie.simo.movies.util.Consts.*;
 
@@ -30,7 +31,7 @@ public class PitchFilm extends Activity {
 	private Button cancel;
 	private TableLayout table;
 	private TextView budgetView;
-	private int budget;
+	private ProductionCompany pc;
 	private MovieInfo chosenMovie;
 	private DistributorDBAdapter db;
 
@@ -42,9 +43,9 @@ public class PitchFilm extends Activity {
 		
 		Intent i = getIntent();
 		chosenMovie = (MovieInfo) i.getSerializableExtra(CHOSEN);
-		budget = i.getIntExtra(BUDGET, 0);
+		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		
-		budgetView.setText("$" + budget + "M");
+		budgetView.setText("$" + pc.getBudget() + "M");
 		
 		fillTable();
 		
@@ -53,7 +54,7 @@ public class PitchFilm extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent();
-				i.putExtra(BUDGET, budget);
+				i.putExtra(COMPANY, pc);
 				i.setClass(getApplicationContext(), MakeFilmActivity.class);
 				startActivity(i);
 			}
@@ -114,7 +115,8 @@ public class PitchFilm extends Activity {
 	        		Intent intent = new Intent(getApplicationContext(), GetDirector.class);
 	        		
 	        		intent.putExtra(DISTRIBUTOR, d);
-	        		intent.putExtra(BUDGET, budget + convertButtonLabelToInt(button.getText().toString()));
+	        		pc.setBudget(pc.getBudget() + convertButtonLabelToInt(button.getText().toString()));
+	        		intent.putExtra(COMPANY, pc);
 	        		intent.putExtra(CHOSEN, chosenMovie);
 	        		startActivity(intent);
 	        	}
