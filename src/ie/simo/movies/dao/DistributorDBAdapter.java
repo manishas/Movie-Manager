@@ -27,7 +27,7 @@ public class DistributorDBAdapter {
 	}
 
 	public Cursor fetchAllDistributors() {	
-		String query = String.format("select %s, %s from distributor", 
+		String query = String.format("select * from distributor", 
 				DBConsts.Distributor.name, DBConsts.Distributor.desc);
 		return database.rawQuery(query, null);
 	}

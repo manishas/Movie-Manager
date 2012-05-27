@@ -2,7 +2,6 @@ package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
-import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.generator.ReviewGenerator;
@@ -41,29 +40,34 @@ public class Result extends Activity {
 
 	private EarningsCalculator calculator;
 	private RatingCalculator ratingCalc;
+	
+	private Typeface font = Typeface.createFromAsset(getAssets(),
+			"OldNewspaperTypes.ttf");
 
 	public void onCreate(Bundle savedInstanceState) {
-		
-		super.onCreate(savedInstanceState);
-		
-		setContentView(R.layout.result);
-		
-		reviewer = new ReviewGenerator();
 
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.result);
+
+		reviewer = new ReviewGenerator();
 		calculator = new EarningsCalculatorFirstImpl();
 		ratingCalc = new RatingCalculator();
 
 		findAllViewsById();
 
 		Intent i = getIntent();
-		Log.v(getLocalClassName(), "Film Details: " + pc.getCurrentProject().toString());
-
 		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
+		
+		Log.v(getLocalClassName(), "Film Details: "
+				+ pc.getCurrentProject().toString());
 		Log.v(getLocalClassName(), "Remaining Budget is: " + pc.getBudget());
 
-		//HOLY SHIT need to refactor the shit out of this method
-		float criticRating = (float) ratingCalc.getRating(pc.getCurrentProject()
-				.getDirector().getReputation(), pc.getCurrentProject().getCast());
+		// HOLY SHIT need to refactor the shit out of this whole method
+		float criticRating = (float) ratingCalc.getRating(pc
+				.getCurrentProject().getDirector().getReputation(), pc
+				.getCurrentProject().getCast());
+		
 		Log.v(getLocalClassName(), "Critic rating is: " + criticRating);
 
 		rating.setRating(criticRating);
@@ -74,14 +78,13 @@ public class Result extends Activity {
 		shareOfEarnings = getShareOfEarnings(money);
 		Log.v(getLocalClassName(), "share of earnings: " + shareOfEarnings);
 		String msg = getString(R.string.totalBoxOffice, "$" + money + "M");
-		String profit = getString(R.string.totalProfit, "$"
-				+ (money - (pc.getCurrentProject().getTotalCost())) + "M");
+		String profit = getString(R.string.totalProfit,
+				"$" + (money - (pc.getCurrentProject().getTotalCost())) + "M");
 
 		budgetView.setText("$" + (pc.getBudget() + shareOfEarnings) + "M");
-		
-		Typeface font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf"); 
-		
-		review.setText(reviewer.writeReview(pc.getCurrentProject(), criticRating));
+
+		review.setText(reviewer.writeReview(pc.getCurrentProject(),
+				criticRating));
 		review.setTypeface(font);
 
 		cash.setText(msg);
@@ -103,9 +106,9 @@ public class Result extends Activity {
 				returnToMakeFilmScreen();
 			}
 		});
-		
-		
-		longToast("Your company earned $" + shareOfEarnings + "M that can be used for your next production");
+
+		longToast("Your company earned $" + shareOfEarnings
+				+ "M that can be used for your next production");
 
 	}
 
@@ -116,7 +119,6 @@ public class Result extends Activity {
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 		profitView = (TextView) this.findViewById(R.id.cashmoney);
 		review = (TextView) this.findViewById(R.id.review);
-		
 	}
 
 	@Override
@@ -126,7 +128,6 @@ public class Result extends Activity {
 	}
 
 	private void returnToMakeFilmScreen() {
-
 		Intent i = new Intent();
 		i.setClass(Result.this, MakeFilmActivity.class);
 		pc.setBudget(pc.getBudget() + shareOfEarnings);
@@ -160,7 +161,6 @@ public class Result extends Activity {
 	 * */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
 		// Doesn't check to see if different button selected
 		Intent intent = new Intent();
 
@@ -170,7 +170,7 @@ public class Result extends Activity {
 
 		return false;
 	}
-	
+
 	public void longToast(CharSequence message) {
 		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 	}

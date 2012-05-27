@@ -3,7 +3,6 @@ package ie.simo.movies.activities;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.DistributorDBAdapter;
 import ie.simo.movies.domain.Distributor;
-import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import static ie.simo.movies.util.Consts.*;
@@ -66,13 +65,15 @@ public class PitchFilm extends Activity {
 		db = new DistributorDBAdapter(this);
 		db.open();
 		Cursor c = db.fetchAllDistributors();
-		c.moveToFirst();
-		while(!c.isAfterLast()){
-			Distributor d  = new Distributor();
-			d.setName(c.getString(c.getColumnIndex(DBConsts.Distributor.name)));
-			d.setDescription(c.getString(c.getColumnIndex(DBConsts.Distributor.desc)));
-			addNewRow(d);
-			c.moveToNext();
+		if(c.getCount() > 0) {
+			c.moveToFirst();
+			while(!c.isAfterLast()){
+				Distributor d  = new Distributor();
+				d.setName(c.getString(c.getColumnIndex(DBConsts.Distributor.name)));
+				d.setDescription(c.getString(c.getColumnIndex(DBConsts.Distributor.desc)));
+				addNewRow(d);
+				c.moveToNext();
+			}
 		}
 		c.close();
 		db.close();		
