@@ -32,7 +32,6 @@ public class PitchFilm extends Activity {
 	private TableLayout table;
 	private TextView budgetView;
 	private ProductionCompany pc;
-	private MovieInfo chosenMovie;
 	private DistributorDBAdapter db;
 
 	@Override
@@ -42,7 +41,6 @@ public class PitchFilm extends Activity {
 		findAllViewsById();
 		
 		Intent i = getIntent();
-		chosenMovie = (MovieInfo) i.getSerializableExtra(CHOSEN);
 		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		
 		budgetView.setText("$" + pc.getBudget() + "M");
@@ -61,7 +59,9 @@ public class PitchFilm extends Activity {
 			
 		});
 	}
-
+	/**
+	 * Get Distributor data and add rows
+	 */
 	private void fillTable() {
 		db = new DistributorDBAdapter(this);
 		db.open();
@@ -104,7 +104,7 @@ public class PitchFilm extends Activity {
 	        public void onClick(View v) {
 	        	String tag = (String) button.getTag();
 	        	if(tag.charAt(0)=='!'){
-		        	int offer = new Distributor().makeOffer(chosenMovie.getGenre(), chosenMovie.getRatingDetails());
+		        	int offer = new Distributor().makeOffer(pc.getCurrentProject().getGenre(), pc.getCurrentProject().getRatingDetails());
 					button.setText("$" + offer+ "M");
 					button.setTag(tag.substring(1));
 					toastOffer((String)button.getTag(),offer);
@@ -117,7 +117,6 @@ public class PitchFilm extends Activity {
 	        		intent.putExtra(DISTRIBUTOR, d);
 	        		pc.setBudget(pc.getBudget() + convertButtonLabelToInt(button.getText().toString()));
 	        		intent.putExtra(COMPANY, pc);
-	        		intent.putExtra(CHOSEN, chosenMovie);
 	        		startActivity(intent);
 	        	}
 	        }

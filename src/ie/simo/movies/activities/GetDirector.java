@@ -9,7 +9,6 @@ import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 
 import static ie.simo.movies.util.Consts.COMPANY;
-import static ie.simo.movies.util.Consts.CHOSEN;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,8 +27,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class GetDirector extends Activity {
-
-	private MovieInfo chosenFilm;
 	private TextView chosen;
 	private TextView price;
 	private TextView budgetView;
@@ -51,8 +48,8 @@ public class GetDirector extends Activity {
 		fillSpinner();
 		
 		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);		
-		chosenFilm = (MovieInfo) i.getSerializableExtra(CHOSEN);
-		chosen.setText(chosenFilm.toButtonText());
+
+		chosen.setText(pc.getCurrentProject().toButtonText());
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
@@ -70,7 +67,7 @@ public class GetDirector extends Activity {
 					Director chosenDirector = new Director();
 					chosenDirector.setName(c.getString(c.getColumnIndex(DBConsts.Director.name)));
 					chosenDirector.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Director.hire_cost))));
-					chosenFilm.setDirector(chosenDirector);
+					pc.getCurrentProject().setDirector(chosenDirector);
 
 					String msg = getString(R.string.directorPrice , "$"+chosenDirector.getPriceToHire()+"M");
 					GetDirector.this.price.setText(msg);
@@ -94,8 +91,8 @@ public class GetDirector extends Activity {
 				if(isValid()){
 					Intent i = new Intent();
 					i.setClass(GetDirector.this, GetActor.class);
-					i.putExtra(CHOSEN, chosenFilm);
-					pc.setBudget(pc.getBudget() - chosenFilm.getDirector().getPriceToHire());
+					
+					pc.setBudget(pc.getBudget() - pc.getCurrentProject().getDirector().getPriceToHire());
 					i.putExtra(COMPANY, pc);
 					
 					startActivity(i);
@@ -116,7 +113,7 @@ public class GetDirector extends Activity {
 	}
 	
 	private boolean isValid(){	
-		return (pc.getBudget() - chosenFilm.getDirector().getPriceToHire() >= 0)? true : false;
+		return (pc.getBudget() - pc.getCurrentProject().getDirector().getPriceToHire() >= 0)? true : false;
 	}
 	
 	

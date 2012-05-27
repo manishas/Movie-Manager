@@ -18,10 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-
 import static ie.simo.movies.util.Consts.COMPANY;
-import static ie.simo.movies.util.Consts.CHOSEN;
-
 
 public class OwnFilmActivity extends Activity {
 	
@@ -57,7 +54,6 @@ public class OwnFilmActivity extends Activity {
 					info.setTitle(text.getText().toString());
 					info.setGenre((Genre)spinner.getSelectedItem());
 					Intent intent = new Intent(getApplicationContext(), SetContent.class);
-					intent.putExtra(CHOSEN, info);
 					intent.putExtra(COMPANY, pc);
 					startActivity(intent);
 				}

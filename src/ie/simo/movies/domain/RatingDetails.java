@@ -15,6 +15,7 @@ public class RatingDetails implements Serializable{
 	private void updateRating(){
 		
 		int total = sex + violence + language;
+		
 		if(total == 0){
 			rating = Rating.GENERAL;
 		}

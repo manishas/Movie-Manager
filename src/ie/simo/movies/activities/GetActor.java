@@ -5,11 +5,10 @@ import ie.simo.movies.dao.ActorDbAdapter;
 import ie.simo.movies.dao.viewbinder.ActorSpinnerViewBinder;
 import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Cast;
-import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 
-import static ie.simo.movies.util.Consts.*;
+import static ie.simo.movies.util.Consts.COMPANY;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,11 +27,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static ie.simo.movies.util.Consts.COMPANY;
-
 public class GetActor extends Activity {
-
-	private MovieInfo chosenFilm;
+	
 	private TextView chosen;
 	private TextView price;
 	private TextView budgetView;
@@ -53,11 +49,9 @@ public class GetActor extends Activity {
 		Intent i = getIntent();
 		fillSpinner();
 		
-		chosenFilm = (MovieInfo) i.getSerializableExtra(CHOSEN);
-		Log.v(getLocalClassName(), "film details: " + chosenFilm.toString());
 		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		Log.v(getLocalClassName(), "budget before actor: " + pc.getBudget());
-		chosen.setText(chosenFilm.toButtonText());
+		chosen.setText(pc.getCurrentProject().toButtonText());
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
@@ -78,7 +72,7 @@ public class GetActor extends Activity {
 					
 					Cast cast = new Cast();
 					cast.getActors().add(chosenActor);
-					chosenFilm.setCast(cast);
+					pc.getCurrentProject().setCast(cast);
 					//TODO handle this better
 					//chosenFilm.getCast().getActors().add(chosenActor);
 					String msg = getString(R.string.actorPrice , "$"+ chosenActor.getPriceToHire() + "M");
@@ -103,11 +97,10 @@ public class GetActor extends Activity {
 				if(isValid()){
 					Intent i = new Intent();
 					i.setClass(GetActor.this, Result.class);
-					i.putExtra(CHOSEN, chosenFilm);
-					Log.v(getLocalClassName(), "Chosen cast: " + chosenFilm.getCast().toString());
-					pc.setBudget(pc.getBudget()  - chosenFilm.getCast().getCostOfActors());
+					Log.v(getLocalClassName(), "Chosen cast: " + pc.getCurrentProject().getCast().toString());
+					pc.setBudget(pc.getBudget()  - pc.getCurrentProject().getCast().getCostOfActors());
 					i.putExtra(COMPANY, pc);
-					Log.v(getLocalClassName(), "budget after cast: " + (pc.getBudget() - chosenFilm.getCast().getCostOfActors()));
+					Log.v(getLocalClassName(), "budget after cast: " + (pc.getBudget() - pc.getCurrentProject().getCast().getCostOfActors()));
 					
 					startActivity(i);
 				}
@@ -127,7 +120,7 @@ public class GetActor extends Activity {
 	}
 	
 	private boolean isValid(){	
-		return (pc.getBudget() - chosenFilm.getCast().getCostOfActors() >= 0)? true : false;
+		return (pc.getBudget() - pc.getCurrentProject().getCast().getCostOfActors() >= 0)? true : false;
 	}
 	
 	

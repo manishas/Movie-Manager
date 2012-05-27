@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import static ie.simo.movies.util.Consts.COMPANY;
-import static ie.simo.movies.util.Consts.CHOSEN;
 
 public class MakeFilmActivity extends Activity implements OnClickListener {
 	/** Called when the activity is first created. */
@@ -80,15 +79,14 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 
 		intent = new Intent(getApplicationContext(),SetContent.class);
 		
-		intent.putExtra(COMPANY, pc);
-		
 		if (target == script1)
-			intent.putExtra(CHOSEN, meta1);
+			pc.setCurrentProject(meta1);
 		else if (target == script2)
-			intent.putExtra(CHOSEN, meta2);
+			pc.setCurrentProject(meta2);
 		else if (target == script3)
-			intent.putExtra(CHOSEN, meta3);
-
+			pc.setCurrentProject(meta3);
+		
+		intent.putExtra(COMPANY, pc);
 		startActivity(intent);
 
 	}

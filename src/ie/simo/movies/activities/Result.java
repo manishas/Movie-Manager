@@ -28,7 +28,6 @@ import android.widget.Toast;
 
 public class Result extends Activity {
 
-	private MovieInfo finishedFilm;
 	private RatingBar rating;
 	private Button tryAgain;
 	private TextView cash;
@@ -57,33 +56,32 @@ public class Result extends Activity {
 		findAllViewsById();
 
 		Intent i = getIntent();
-		finishedFilm = (MovieInfo) i.getSerializableExtra(CHOSEN);
-		Log.v(getLocalClassName(), "Film Details: " + finishedFilm.toString());
+		Log.v(getLocalClassName(), "Film Details: " + pc.getCurrentProject().toString());
 
 		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		Log.v(getLocalClassName(), "Remaining Budget is: " + pc.getBudget());
 
 		//HOLY SHIT need to refactor the shit out of this method
-		float criticRating = (float) ratingCalc.getRating(finishedFilm
-				.getDirector().getReputation(), finishedFilm.getCast());
+		float criticRating = (float) ratingCalc.getRating(pc.getCurrentProject()
+				.getDirector().getReputation(), pc.getCurrentProject().getCast());
 		Log.v(getLocalClassName(), "Critic rating is: " + criticRating);
 
 		rating.setRating(criticRating);
 
-		int money = calculator.calculate(finishedFilm, criticRating);
+		int money = calculator.calculate(pc.getCurrentProject(), criticRating);
 		Log.v(getLocalClassName(), "Gross Earnings: " + money);
 
 		shareOfEarnings = getShareOfEarnings(money);
 		Log.v(getLocalClassName(), "share of earnings: " + shareOfEarnings);
 		String msg = getString(R.string.totalBoxOffice, "$" + money + "M");
 		String profit = getString(R.string.totalProfit, "$"
-				+ (money - (finishedFilm.getTotalCost())) + "M");
+				+ (money - (pc.getCurrentProject().getTotalCost())) + "M");
 
 		budgetView.setText("$" + (pc.getBudget() + shareOfEarnings) + "M");
 		
 		Typeface font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf"); 
 		
-		review.setText(reviewer.writeReview(finishedFilm, criticRating));
+		review.setText(reviewer.writeReview(pc.getCurrentProject(), criticRating));
 		review.setTypeface(font);
 
 		cash.setText(msg);
@@ -91,7 +89,7 @@ public class Result extends Activity {
 
 		MovieSummary summary = new MovieSummary();
 		summary.setTotalEarnings(money);
-		summary.setInfo(finishedFilm);
+		summary.setInfo(pc.getCurrentProject());
 
 		BoxOfficeDbAdapter db = new BoxOfficeDbAdapter(this);
 		db.open();
@@ -132,6 +130,8 @@ public class Result extends Activity {
 		Intent i = new Intent();
 		i.setClass(Result.this, MakeFilmActivity.class);
 		pc.setBudget(pc.getBudget() + shareOfEarnings);
+		pc.getBackCatalogue().add(pc.getCurrentProject());
+		pc.setCurrentProject(null);
 		i.putExtra(COMPANY, pc);
 
 		startActivity(i);
@@ -140,7 +140,7 @@ public class Result extends Activity {
 	// TODO will have to change how this works
 	private int getShareOfEarnings(int totalEarnings) {
 
-		int profit = totalEarnings - (finishedFilm.getTotalCost());
+		int profit = totalEarnings - (pc.getCurrentProject().getTotalCost());
 		Log.v(getLocalClassName(), "Profit: " + profit);
 
 		return (profit > 0) ? (profit / 5) : 0;

@@ -1,7 +1,6 @@
 package ie.simo.movies.activities;
 
 import static ie.simo.movies.util.Consts.COMPANY;
-import static ie.simo.movies.util.Consts.CHOSEN;
 import ie.simo.movies.R;
 import ie.simo.movies.censor.Censor;
 import ie.simo.movies.censor.factory.CensorFactory;
@@ -29,7 +28,6 @@ import android.widget.TextView;
 public class SetContent extends Activity implements OnSeekBarChangeListener{
 
 	private ProductionCompany pc;
-	private MovieInfo chosenMovie;
 	
 	private Censor censor;
 	
@@ -61,7 +59,6 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		getStrings();
 		
 		Intent i = getIntent();
-		chosenMovie = (MovieInfo) i.getSerializableExtra(CHOSEN);
 		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		
 		findAllViewsById();
@@ -71,7 +68,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		onProgressChanged(sexLevel, 0, false);
 		onProgressChanged(languageLevel, 0, false);
 		
-		title.setText(getString(R.string.contentTitle) + chosenMovie.toButtonText());
+		title.setText(getString(R.string.contentTitle) + pc.getCurrentProject().toButtonText());
 	}
 	
 	private void setListeners() {
@@ -85,7 +82,6 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 			public void onClick(View v) {
 				Intent i = new Intent();
 				i.putExtra(COMPANY, pc);
-				i.putExtra(CHOSEN, chosenMovie);
 				i.setClass(SetContent.this, PitchFilm.class);
 				startActivity(i);
 			}
@@ -103,10 +99,10 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 
 	private void getStrings() {
 		String [] vTemp = { 	
-		getString(R.string.violence0), 
-		getString(R.string.violence1), 
-		getString(R.string.violence2), 
-		getString(R.string.violence3)
+			getString(R.string.violence0), 
+			getString(R.string.violence1), 
+			getString(R.string.violence2), 
+			getString(R.string.violence3)
 		};
 		violence = vTemp;
 		
@@ -143,7 +139,6 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		
 	}
 	
-	//TODO sanity check levels
 	private void setRatingImage() {
 		
 		RatingDetails thisMovie = new RatingDetails();
@@ -153,7 +148,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 
 		setRatingImage(thisMovie.getRating());
 		
-		chosenMovie.setRatingDetails(thisMovie);
+		pc.getCurrentProject().setRatingDetails(thisMovie);
 	}
 
 	private void setRatingImage(Rating myRating) {
