@@ -1,6 +1,17 @@
 package ie.simo.movies.domain;
 
-public class MovieSummary {
+import java.io.Serializable;
+
+/**
+ * Class to represent all finalised details of a movie
+ * @author Simon Wielens
+ *
+ */
+public class MovieSummary implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4120493963645386036L;
 	private int totalCost;
 	private int totalEarnings;
 	private MovieInfo info;

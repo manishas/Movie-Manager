@@ -1,16 +1,20 @@
 package ie.simo.movies.domain;
 
-import java.util.Date;
-
+/**
+ * Class to track hype and date released of a movie
+ * @author Simon Wielens
+ *
+ */
 public class MovieMetadata {
-	private Date dateReleased;
+	//
+	private String dateReleased;
 	private int positiveHype;
 	private int negativeHype;
 	
-	public Date getDateReleased() {
+	public String getDateReleased() {
 		return dateReleased;
 	}
-	public void setDateReleased(Date dateReleased) {
+	public void setDateReleased(String dateReleased) {
 		this.dateReleased = dateReleased;
 	}
 	public int getPositiveHype() {

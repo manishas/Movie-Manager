@@ -4,41 +4,61 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import android.text.format.Time;
+
 /**
  * Class to represent a production company, ie a 'game'
  * 
  * @author Simon Wielens
- *
+ * 
  */
-public class ProductionCompany implements Serializable{
-	
+public class ProductionCompany implements Serializable {
+
 	private static final long serialVersionUID = -4216556001748347643L;
-	// level of fame for company, will be used for determining who can be hired 
-	// and also the distribution of the movie, film festivals etc 
+	// level of fame for company, will be used for determining who can be hired
+	// and also the distribution of the movie, film festivals etc
 	private int reputation;
 	private String name;
 	private int budget;
-	private final UUID uuid = UUID.randomUUID();
+	private String lastModifiedDate;
+	private UUID uuid = UUID.randomUUID();
 	private MovieInfo currentProject = null;
-	//previous releases
-	private List<MovieInfo> backCatalogue = new ArrayList<MovieInfo>();
-	
-	public ProductionCompany(String name){
+	// previous releases
+	private List<MovieSummary> backCatalogue = new ArrayList<MovieSummary>();
+
+	public ProductionCompany(String name) {
+		Time now = new Time();
+		now.setToNow();
 		this.name = name;
 		this.reputation = 0;
-		this.budget = 0;	
+		this.budget = 0;
+		this.setLastAccessedDate(now.format3339(false));
 	}
-	
-	
+
+	public ProductionCompany(String name, int budget, int reputation, String lastModifiedDate,
+			UUID uuid, MovieInfo currentProject,
+			List<MovieSummary> backCatalogue) {
+		this.name = name;
+		this.budget = budget;
+		this.reputation = reputation;
+		this.lastModifiedDate = lastModifiedDate;
+		this.uuid = uuid;
+		this.currentProject = currentProject;
+		this.backCatalogue = backCatalogue;
+	}
+
 	/*
 	 * Getters & Setters
 	 */
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public UUID getUuid() {
 		return uuid;
 	}
@@ -51,33 +71,35 @@ public class ProductionCompany implements Serializable{
 		this.reputation = reputation;
 	}
 
-
 	public int getBudget() {
 		return budget;
 	}
-
 
 	public void setBudget(int budget) {
 		this.budget = budget;
 	}
 
-
-	public List<MovieInfo> getBackCatalogue() {
+	public List<MovieSummary> getBackCatalogue() {
 		return backCatalogue;
 	}
 
-
-	public void setBackCatalogue(List<MovieInfo> backCatalogue) {
+	public void setBackCatalogue(List<MovieSummary> backCatalogue) {
 		this.backCatalogue = backCatalogue;
 	}
-
 
 	public MovieInfo getCurrentProject() {
 		return currentProject;
 	}
 
-
 	public void setCurrentProject(MovieInfo currentProject) {
 		this.currentProject = currentProject;
+	}
+
+	public String getLastAccessedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastAccessedDate(String lastAccessedDate) {
+		this.lastModifiedDate = lastAccessedDate;
 	}
 }

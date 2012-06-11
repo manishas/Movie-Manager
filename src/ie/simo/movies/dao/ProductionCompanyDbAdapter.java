@@ -34,33 +34,50 @@ public class ProductionCompanyDbAdapter {
 	public void close() {
 		dbHelper.close();
 	}
+	
+	public boolean previousGames(){
+		Cursor c = database.query(productionCompanyTable, null, null, null, null, null, null, null);
+		boolean previous = c.getCount() > 8;
+		c.close();
+		return previous;
 
-	/*
-	public Cursor fetchAllActors() {	
-		String query = String.format("select %s, %s, %s, %s from actor order by %s desc", 
-				DBConsts.Actor.id, DBConsts.Actor.name, 
-				DBConsts.Actor.hire_cost, DBConsts.Actor.reputation, DBConsts.Actor.hire_cost);
-		return database.rawQuery(query, null);
 	}
-	*/
 
 	public void addCompany(ProductionCompany pc) {	
-		ContentValues values = createValues(pc);
+		ContentValues values = createFullValues(pc);
 		database.insert(productionCompanyTable, null, values);		
 	}
 	
+	public void updateCompanyDetails(ProductionCompany pc){
+		String strFilter = String.format("_id='%s'", pc.getUuid().toString());
+		ContentValues values = createBasicValues(pc);
+		database.update(productionCompanyTable, values, strFilter, null);	
+	}
 	
 	/**
 	 * Extract values from object and return in form of ContentValues
 	 * @param company a ProductionCompany instance
 	 * @return ContentValues object representing values from the param
 	 */
-	private ContentValues createValues(ProductionCompany company) {
-		ContentValues values = new ContentValues();
+	private ContentValues createFullValues(ProductionCompany company) {
+		ContentValues values = createBasicValues(company);
 		values.put(id, company.getUuid().toString());
 		values.put(name, company.getName());
+		return values;
+	}
+
+	private ContentValues createBasicValues(ProductionCompany company) {
+		ContentValues values = new ContentValues();
 		values.put(reputation, company.getReputation());
 		values.put(budget, company.getBudget());
+		values.put(lastModified, company.getLastAccessedDate());
 		return values;
+	}
+
+	public Cursor getUserGames() {
+		
+		String sql = "select * from " + productionCompanyTable + " where ? <> ''";
+		Cursor c = database.rawQuery(sql, new String []{ie.simo.movies.util.DBConsts.ProductionCompany.lastModified});
+		return c;
 	}
 }

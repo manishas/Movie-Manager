@@ -43,8 +43,11 @@ public class StartActivity extends Activity {
 	}
 
 	private void setContinueEnabled() {
-		//TODO add db query to see if this should be enabled or not
-		this.continueGame.setEnabled(false);
+		db.openReadable();
+		if(!db.previousGames()){
+			this.continueGame.setEnabled(false);
+		}
+		db.close();
 	}
 
 	private void setUpListeners() {
@@ -110,7 +113,6 @@ public class StartActivity extends Activity {
 		ProductionCompany pc = new ProductionCompany(dialog.getCompanyName());
 		
 		//TODO sort out activity being started before dialog is dismissed
-		//TODO Add to database
 		db.openWritable();
 		db.addCompany(pc);
 		db.close();

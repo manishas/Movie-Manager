@@ -2,6 +2,8 @@ package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
+import ie.simo.movies.dao.ProductionCompanyDbAdapter;
+import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.generator.ReviewGenerator;
@@ -41,14 +43,16 @@ public class Result extends Activity {
 	private EarningsCalculator calculator;
 	private RatingCalculator ratingCalc;
 	
-	private Typeface font = Typeface.createFromAsset(getAssets(),
-			"OldNewspaperTypes.ttf");
+	private int money;
+	
 
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.result);
+		Typeface font = Typeface.createFromAsset(getAssets(),
+				"OldNewspaperTypes.ttf");
 
 		reviewer = new ReviewGenerator();
 		calculator = new EarningsCalculatorFirstImpl();
@@ -72,7 +76,7 @@ public class Result extends Activity {
 
 		rating.setRating(criticRating);
 
-		int money = calculator.calculate(pc.getCurrentProject(), criticRating);
+		money = calculator.calculate(pc.getCurrentProject(), criticRating);
 		Log.v(getLocalClassName(), "Gross Earnings: " + money);
 
 		shareOfEarnings = getShareOfEarnings(money);
@@ -90,14 +94,9 @@ public class Result extends Activity {
 		cash.setText(msg);
 		profitView.setText(profit);
 
-		MovieSummary summary = new MovieSummary();
-		summary.setTotalEarnings(money);
-		summary.setInfo(pc.getCurrentProject());
+		MovieSummary summary = createMovieSummary(pc.getCurrentProject());
 
-		BoxOfficeDbAdapter db = new BoxOfficeDbAdapter(this);
-		db.open();
-		db.createMovie(summary);
-		db.close();
+		saveToDatabase(summary);
 
 		tryAgain.setOnClickListener(new View.OnClickListener() {
 
@@ -110,6 +109,18 @@ public class Result extends Activity {
 		longToast("Your company earned $" + shareOfEarnings
 				+ "M that can be used for your next production");
 
+	}
+
+	private void saveToDatabase(MovieSummary summary) {
+		BoxOfficeDbAdapter db = new BoxOfficeDbAdapter(this);
+		db.open();
+		db.createMovie(summary);
+		db.close();
+		
+		ProductionCompanyDbAdapter companyDb = new ProductionCompanyDbAdapter(this);
+		companyDb.openWritable();
+		companyDb.updateCompanyDetails(pc);
+		companyDb.close();
 	}
 
 	private void findAllViewsById() {
@@ -131,11 +142,21 @@ public class Result extends Activity {
 		Intent i = new Intent();
 		i.setClass(Result.this, MakeFilmActivity.class);
 		pc.setBudget(pc.getBudget() + shareOfEarnings);
-		pc.getBackCatalogue().add(pc.getCurrentProject());
+		
+		MovieSummary summary = createMovieSummary(pc.getCurrentProject());
+		pc.getBackCatalogue().add(summary);
 		pc.setCurrentProject(null);
 		i.putExtra(COMPANY, pc);
 
 		startActivity(i);
+	}
+
+	private MovieSummary createMovieSummary(MovieInfo info) {
+		MovieSummary summary = new MovieSummary();
+		summary.setInfo(info);
+		summary.setTotalCost(info.getTotalCost());
+		summary.setTotalEarnings(money);
+		return summary;
 	}
 
 	// TODO will have to change how this works

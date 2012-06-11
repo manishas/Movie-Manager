@@ -31,14 +31,16 @@ public class NewGame extends PopupDialog {
 		this.setMessage(context.getString(R.string.choosecompanyname));
 		input = new EditText(context);
 		
+		//Validate input
 		InputFilter filter = new InputFilter() { 
 		    
 			@Override
 			public CharSequence filter(CharSequence source, int start, int end,
 					Spanned dest, int dstart, int dend) {
-				for (int i = start; i < end; i++) { 
+				for (int i = start; i < end; i++) {
+					//TODO add more available punctuation
 				    if (!(Character.isLetterOrDigit(source.charAt(i)) || Character.isSpace(source.charAt(i)))) { 
-			            return ""; 
+				    	return source.subSequence(dstart, dend);
 			        } 
 				}
 					
@@ -89,6 +91,9 @@ public class NewGame extends PopupDialog {
         builder.create().show();
 	}
 
+	/*
+	 * Getters & Setters
+	 */
 	public String getCompanyName() {
 		return companyName;
 	}

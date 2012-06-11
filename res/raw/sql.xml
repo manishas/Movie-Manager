@@ -41,7 +41,8 @@
 	(_id text primary key, 
 	name text,
 	reputation integer,
-	budget integer) 
+	budget integer,
+	last_modified text) 
 </statement>	
 
 <statement>

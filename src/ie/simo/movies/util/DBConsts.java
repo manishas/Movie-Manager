@@ -41,6 +41,7 @@ public class DBConsts {
 		public static final String reputation = "reputation";
 		public static final String budget = "budget";
 		public static final String name = "name";
+		public static final String lastModified = "last_modified";
 	}
 
 }

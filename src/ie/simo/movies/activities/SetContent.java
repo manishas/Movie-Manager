@@ -4,7 +4,6 @@ import static ie.simo.movies.util.Consts.COMPANY;
 import ie.simo.movies.R;
 import ie.simo.movies.censor.Censor;
 import ie.simo.movies.censor.factory.CensorFactory;
-import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.domain.Rating;
 import ie.simo.movies.domain.RatingDetails;
@@ -54,7 +53,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		setContentView(R.layout.content);
 		
 		 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		
+		//If preference not set, use USA style ratings
 		censor = new CensorFactory().getCensor(sharedPrefs.getString(Preferences.RATING_STYLE, "usa"));
 		getStrings();
 		
@@ -198,7 +197,7 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
     public boolean onOptionsItemSelected(MenuItem item)
     {
  
-        //Doesn't check to see if different button selected
+        //TODO Doesn't check to see if different button selected
     	Intent intent = new Intent();
 
 		intent.setClass(this, BoxOffice.class);
@@ -211,13 +210,9 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-		
 	}    
 }
