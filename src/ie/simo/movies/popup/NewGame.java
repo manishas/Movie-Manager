@@ -32,7 +32,7 @@ public class NewGame extends PopupDialog {
 		input = new EditText(context);
 		
 		//Validate input
-		InputFilter filter = new InputFilter() { 
+		/*InputFilter filter = new InputFilter() { 
 		    
 			@Override
 			public CharSequence filter(CharSequence source, int start, int end,
@@ -50,7 +50,7 @@ public class NewGame extends PopupDialog {
 		}; 
 
 		input.setFilters(new InputFilter[]{filter}); 
-		
+		*/
 	}
 
 	@Override

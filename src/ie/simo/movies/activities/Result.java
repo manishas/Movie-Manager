@@ -45,14 +45,13 @@ public class Result extends Activity {
 	
 	private int money;
 	
+	Typeface font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf");
 
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.result);
-		Typeface font = Typeface.createFromAsset(getAssets(),
-				"OldNewspaperTypes.ttf");
 
 		reviewer = new ReviewGenerator();
 		calculator = new EarningsCalculatorFirstImpl();

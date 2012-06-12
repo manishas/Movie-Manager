@@ -76,8 +76,8 @@ public class ProductionCompanyDbAdapter {
 
 	public Cursor getUserGames() {
 		
-		String sql = "select * from " + productionCompanyTable + " where ? <> ''";
-		Cursor c = database.rawQuery(sql, new String []{ie.simo.movies.util.DBConsts.ProductionCompany.lastModified});
+		String sql = "select * from " + productionCompanyTable + " where length(_id) = 36";
+		Cursor c = database.rawQuery(sql, null);
 		return c;
 	}
 }

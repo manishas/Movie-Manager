@@ -1,7 +1,9 @@
 package ie.simo.movies.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,12 +30,13 @@ public class ProductionCompany implements Serializable {
 	private List<MovieSummary> backCatalogue = new ArrayList<MovieSummary>();
 
 	public ProductionCompany(String name) {
-		Time now = new Time();
-		now.setToNow();
+		SimpleDateFormat fmt = new SimpleDateFormat("kk:mm:ss dd-MM-yyyy");
+		Date date = new Date();
+		String dateString = fmt.format(date);
 		this.name = name;
 		this.reputation = 0;
 		this.budget = 0;
-		this.setLastAccessedDate(now.format3339(false));
+		this.setLastAccessedDate(dateString);
 	}
 
 	public ProductionCompany(String name, int budget, int reputation, String lastModifiedDate,
