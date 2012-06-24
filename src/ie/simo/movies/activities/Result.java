@@ -1,5 +1,7 @@
 package ie.simo.movies.activities;
 
+import java.util.ArrayList;
+
 import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.dao.ProductionCompanyDbAdapter;
@@ -151,6 +153,10 @@ public class Result extends Activity {
 		pc.setBudget(pc.getBudget() + shareOfEarnings);
 		
 		MovieSummary summary = createMovieSummary(pc.getCurrentProject());
+		//TODO see why this is coming back as null
+		if(pc.getBackCatalogue() == null){
+			pc.setBackCatalogue(new ArrayList<MovieSummary>());
+		}
 		pc.getBackCatalogue().add(summary);
 		pc.setCurrentProject(null);
 		i.putExtra(COMPANY, pc);
