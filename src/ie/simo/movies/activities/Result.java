@@ -45,22 +45,15 @@ public class Result extends Activity {
 	
 	private int money;
 	
-	Typeface font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf");
+	private Typeface font;
 
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.result);
-
-		reviewer = new ReviewGenerator();
-		calculator = new EarningsCalculatorFirstImpl();
-		ratingCalc = new RatingCalculator();
-
-		findAllViewsById();
-
-		Intent i = getIntent();
-		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
+		
+		init();
 		
 		Log.v(getLocalClassName(), "Film Details: "
 				+ pc.getCurrentProject().toString());
@@ -108,6 +101,21 @@ public class Result extends Activity {
 		longToast("Your company earned $" + shareOfEarnings
 				+ "M that can be used for your next production");
 
+	}
+
+	/**
+	 * method to set up instance variables from the onCreate method
+	 */
+	private void init() {
+		font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf");
+		reviewer = new ReviewGenerator();
+		calculator = new EarningsCalculatorFirstImpl();
+		ratingCalc = new RatingCalculator();
+
+		findAllViewsById();
+
+		Intent i = getIntent();
+		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 	}
 
 	private void saveToDatabase(MovieSummary summary) {
