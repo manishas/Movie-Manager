@@ -10,12 +10,14 @@
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_gravity="center"
-		    android:src="@drawable/mmtitle" />
+		    android:src="@drawable/m_m_head" />
 
-		<ImageView android:id="@+id/imageView1" android:src="@drawable/popcornhi"
-			android:layout_width="172dp" android:layout_height="261dp"
-			android:layout_gravity="center"></ImageView>
-			
+		<ImageView
+		    android:id="@+id/imageView1"
+		    android:layout_width="320dp"
+		    android:layout_height="314dp"
+		    android:layout_gravity="center"
+		    android:src="@drawable/film_reel" />
 				
 		<Button android:id="@+id/newgameButton" android:text="@string/newgame" android:layout_height="wrap_content" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
 		</Button>
