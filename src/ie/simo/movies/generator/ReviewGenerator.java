@@ -32,7 +32,34 @@ public class ReviewGenerator {
 			"thought-provoking",
 			"fascinating",
 			"magnificent",
-			"emotional"
+			"emotional",
+			"clever",
+
+			"entertaining",
+
+			"smart",
+
+			"funny",
+
+			"the kind of pleasure only my third wife could provide",
+
+			"beautiful, like watching butterfly's make out.",
+
+			"exciting, like a transsexual hooker from Thailand",
+
+			"brilliant, as if a magician had made my mother in-law disappear",
+
+			"soothing, similar to cuddling a pool of puppies",
+
+			"entertaining, more so then the usual donkey shows im partial too",
+
+			"enjoyable",
+
+			"lovable",
+
+			"sensual, like getting stroked by a flamingo",
+
+			"wonderful, it was as if i had parachuted into a flower in a field of dreams. "
 	};
 	
 	String [] badQualities = {
@@ -51,14 +78,78 @@ public class ReviewGenerator {
 			"improbable",
 			"shallow",
 			"superficial",
-			"incompetent"
+			"incompetent",
+			"as bad as expected",
+			"incomprehensible",
+
+			"well all i can say is during the screening, several people projectile vomited.",
+
+			"pretty offensive, blasphemous even",
+
+			"bad, there was a moment were i could see my sole leaving my body and flipping me off for putting it through that.",
+
+			"like being be tied to a chair and forced to listen to barry manilow tunes while having my tonsils removed with a rusty spoon.",
+
+			"reminded me of one time in korea, I ate a bee's nest.",
+			"Sure its all fun and games until a colony of bees wake up in their hydrochloric crypt.",
+
+			"almost identical to wrestleing a turkish truck driver.",
+
+			"about as real as cher",
+
+
+			"seriously the strangest shit i have ever seen and i once saw a man eat his own face.",
+
+			"very gay, i saw four dudes going down on each other ass to face in a circle, that was the gayest thing id ever seen until this",
+
+			"like a chinese labor camp",
+
+			"like being violated",
+
+			"a close second to having a porcupine inserted violently into my rectum...",
+
+			"the kind of thing that makes me re-think censorship",
+
+			"very similar to having my nipples chewed off by a bear",
+
+			"unsettling",
+
+			"like watching Adele and Rosie O'Donnell mud wrestle naked",
+
+
+			"worse then drinking a tramps piss",
+
+			"similar to cutting off the wings of a pigeon then feeding them to another pigeon, your left wondering, 'is this good for any party involved here?'",
+
+			"woeful",
+
+			"abysmal",
+
+			"mediocre at best",
+
+			"like dragging my face over broken glass",
+
+			"like licking a taxi drivers ass crack",
+
+			"distressing to say the least",
+
+			"comparable to rats fighting in a ditch over a streak of piss",
+
+			"comparable to punching a dwarf for stealing your shoes",
+
+			"comparable to taking every sharp from a needle exchange clinic and sticking them into your skin untill you resemble a hedgehog",
+
+			"comparable to eating my own arm",
+			"comparable to eating an egg and realising that it was actually a lightbulb and now your mouth is full of blood and broken glass.",
+			"if vomit could vomit",
+			"like watching my first child being born and not in a nice metaphoric way, i mean that literally. there were complications the misses had a c-section and refused meds she gave birth to several large antelope."
+			
 	};
 	
 	String [] vanillaQualities = {
 			"complete", "mediocre", "nice", 
 			"interesting", "dark", "watchable", 
-			"thoughful", "alright", "dramatic",
-			""
+			"thoughful", "alright", "dramatic"
 	};
 	
 	String [] weirdQualities = {
