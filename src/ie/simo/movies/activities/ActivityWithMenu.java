@@ -37,6 +37,8 @@ public abstract class ActivityWithMenu extends Activity {
     		intent.setClass(this, BoxOffice.class);
     	}
     	
+    	startActivity(intent);
+    	
         return true;
     }    
 	
