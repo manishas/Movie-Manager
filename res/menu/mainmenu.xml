@@ -4,4 +4,10 @@
     <item android:id="@+id/menu_boxoffice"
           android:icon="@drawable/ic_menu_movie"
           android:title="Box Office" />
+    <item android:id="@+id/menu_mainmenu"
+          android:icon="@android:drawable/ic_menu_revert"
+          android:title="Main Menu" />
+    <item android:id="@+id/menu_quit"
+          android:icon="@android:drawable/ic_menu_close_clear_cancel"
+          android:title="Quit" />
 </menu>

@@ -24,7 +24,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-public class SetContent extends Activity implements OnSeekBarChangeListener{
+public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListener{
 
 	private ProductionCompany pc;
 	
@@ -179,34 +179,6 @@ public class SetContent extends Activity implements OnSeekBarChangeListener{
 		title = (TextView) this.findViewById(R.id.setContentActivityTitle);
 		
 	}
-
-	// Initiating Menu XML file (menu.xml)
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.mainmenu, menu);
-        return true;
-    }
- 
-    /**
-     * Event Handling for Individual menu item selected
-     * Identify single menu item by it's id
-     * */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
- 
-        //TODO Doesn't check to see if different button selected
-    	Intent intent = new Intent();
-
-		intent.setClass(this, BoxOffice.class);
-		intent.putExtra(COMPANY, pc);
-    	
-		startActivity(intent);
-		
-        return false;
-    }
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {

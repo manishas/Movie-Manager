@@ -29,7 +29,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Result extends Activity {
+public class Result extends ActivityWithMenu {
 
 	private RatingBar rating;
 	private Button tryAgain;
@@ -179,30 +179,6 @@ public class Result extends Activity {
 		Log.v(getLocalClassName(), "Profit: " + profit);
 
 		return (profit > 0) ? (profit / 5) : 0;
-	}
-
-	// Initiating Menu XML file (menu.xml)
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.menu.mainmenu, menu);
-		return true;
-	}
-
-	/**
-	 * 50104 Event Handling for Individual menu item selected Identify single
-	 * menu item by it's id
-	 * */
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Doesn't check to see if different button selected
-		Intent intent = new Intent();
-
-		intent.setClass(this, BoxOffice.class);
-
-		startActivity(intent);
-
-		return false;
 	}
 
 	public void longToast(CharSequence message) {

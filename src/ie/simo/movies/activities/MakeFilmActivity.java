@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import static ie.simo.movies.util.Consts.COMPANY;
 
-public class MakeFilmActivity extends Activity implements OnClickListener {
+public class MakeFilmActivity extends ActivityWithMenu implements OnClickListener {
 	/** Called when the activity is first created. */
 	private Button script1;
 	private Button script2;
@@ -116,31 +116,4 @@ public class MakeFilmActivity extends Activity implements OnClickListener {
 		meta.newScript();
 		myButton.setText(meta.toButtonText());
 	}
-	
-	 // Initiating Menu XML file (menu.xml)
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.mainmenu, menu);
-        return true;
-    }
- 
-    /**
-     * Event Handling for Individual menu item selected
-     * Identify single menu item by it's id
-     * */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        //TODO Doesn't check to see if different button selected
-    	Intent intent = new Intent();
-
-		intent.setClass(this, BoxOffice.class);
-    	intent.putExtra(COMPANY, pc);
-		startActivity(intent);
-		
-        return false;
-    }    
-
 }

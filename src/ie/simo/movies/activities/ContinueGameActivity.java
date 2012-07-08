@@ -54,7 +54,7 @@ public class ContinueGameActivity extends ListActivity {
 				
 				AlertDialog.Builder builder = new AlertDialog.Builder(ContinueGameActivity.this)
 		        .setTitle(c.getString(c.getColumnIndex(ProductionCompany.name)))
-		        .setMessage("Company Reputation: "+ c.getString(c.getColumnIndex(ProductionCompany.reputation)))
+		        .setMessage("Company Budget: $"+ c.getString(c.getColumnIndex(ProductionCompany.budget))+ "M")
 		        .setPositiveButton("Load This Game", new Dialog.OnClickListener()
 		        {
 		        	@Override

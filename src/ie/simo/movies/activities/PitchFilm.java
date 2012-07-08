@@ -25,7 +25,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PitchFilm extends Activity {
+public class PitchFilm extends ActivityWithMenu {
 	
 	private Button cancel;
 	private TableLayout table;
@@ -123,34 +123,6 @@ public class PitchFilm extends Activity {
 	        }
 	    };
 	}
-
-	
-	 // Initiating Menu XML file (menu.xml)
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.mainmenu, menu);
-        return true;
-    }
- 
-    /**
-     * Event Handling for Individual menu item selected
-     * Identify single menu item by it's id
-     * */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
- 
-        //Doesn't check to see if different button selected
-    	Intent intent = new Intent();
-
-		intent.setClass(this, BoxOffice.class);
-    	
-		startActivity(intent);
-		
-        return false;
-    }
     
     private int convertButtonLabelToInt(String label){
     	label = label.substring(1,label.length()-1);
