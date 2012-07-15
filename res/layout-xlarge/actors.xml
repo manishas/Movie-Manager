@@ -9,36 +9,44 @@
 	android:orientation="vertical" >
 	
 	<include layout="@layout/scorebar"/>
-	
+
 	<TextView
-		android:id="@+id/chosen"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="TextView"
-		android:textAppearance="?android:attr/textAppearanceLarge" >
-	</TextView>
+	    android:id="@+id/chosen"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="TextView"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+
 	<TextView
-		android:id="@+id/textView3"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="@string/actor" 
-		android:textSize="15sp">
+	    android:id="@+id/textView3"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/actor" >
+
 	</TextView>
-	<TextView android:id="@+id/textView1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
 	<Spinner
-		android:id="@+id/spinner1"
-		android:layout_height="wrap_content" android:layout_width="550dp" android:layout_gravity="center"/>
-	<TextView android:id="@+id/textView2" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+	    android:id="@+id/spinner1"
+	    android:layout_width="350dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center" />
+
 	<TextView
-		android:id="@+id/actorPrice"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="@string/actorPrice" android:textSize="15sp"/>
+	    android:id="@+id/actorPrice"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="@string/actorPrice" />
+
 	<Button
-		android:id="@+id/produceFilm"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Make this Film!" android:layout_gravity="center" android:textSize="25sp"/>
+	    android:id="@+id/produceFilm"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:text="Make this Film!" />
+
 </LinearLayout>
 
 </ScrollView>

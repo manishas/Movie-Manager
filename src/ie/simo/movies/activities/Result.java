@@ -83,7 +83,9 @@ public class Result extends ActivityWithMenu {
 
 		review.setText(reviewer.writeReview(pc.getCurrentProject(),
 				criticRating));
+		review.setTextColor(getResources().getColor(android.R.color.black));
 		review.setTypeface(font);
+		review.setBackgroundColor(0xCCF8ECC2);
 
 		cash.setText(msg);
 		profitView.setText(profit);

@@ -13,7 +13,8 @@
 	(_id integer primary key autoincrement, 
 	actor_name text not null,
 	actor_hire_cost integer,
-	actor_reputation integer)
+	actor_reputation integer, 
+	gender text)
 </statement>
 			
 <statement>
@@ -34,6 +35,18 @@
 	create table if not exists genre
 	(_id integer primary key autoincrement,
 	genre_name text)
+</statement>
+	
+<statement>
+    create table if not exists actor_bonus
+	(actor_id integer,
+	genre_id integer)
+</statement>
+
+<statement>
+    create table if not exists director_bonus
+	(director_id integer,
+	genre_id integer)
 </statement>
 			
 <statement>
@@ -79,9 +92,6 @@
 <statement>insert into production_company (_id, name, budget, reputation) values ('7','Paramount', 500, 90)</statement> <!-- 7 -->
 <statement>insert into production_company (_id, name, budget, reputation) values ('8','Disney', 500, 90)</statement> <!-- 8 -->
 
-
-
-
 <statement>insert into distributor (distributor_name, distributor_desc) values ('20th Century Fox', 'Lovely chaps')</statement>	<!-- 1 -->
 <statement>insert into distributor (distributor_name, distributor_desc) values ('Pixar', 'Lovely chaps')</statement> 			<!-- 2 -->
 <statement>insert into distributor (distributor_name, distributor_desc) values ('Dreamworks', 'Lovely chaps')</statement>		<!-- 3 -->
@@ -89,6 +99,7 @@
 <statement>insert into distributor (distributor_name, distributor_desc) values ('Lucasarts', 'Lovely chaps')</statement>		<!-- 5 -->
 <statement>insert into distributor (distributor_name, distributor_desc) values ('Sony Pictures', 'Lovely chaps')</statement>	<!-- 6 -->
 <statement>insert into distributor (distributor_name, distributor_desc) values ('Paramount', 'Lovely chaps')</statement>		<!-- 7 -->
+<statement>insert into distributor (distributor_name, distributor_desc) values ('Independent', 'Independent')</statement>		<!-- 8 -->
 
 
 <!-- Genres -->
@@ -143,7 +154,6 @@
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Brian De Palma', 11, 46)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Spike Lee', 11, 45)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('David Yates', 11, 44)</statement>	
-<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Christopher Nolan ', 10, 43)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Richard Linklater', 10, 42)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Sofia Coppola', 10, 41)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Stephen Frears', 10, 40)</statement>	
@@ -151,7 +161,6 @@
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Guy Richie', 9, 37)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('JJ Abrams', 9, 36)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Phillip Noyce', 8, 35)</statement>	
-<statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Wes Anderson ', 8, 34)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Roland Emmerich', 8, 33)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('M. Night Shyamalan', 8, 32)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Marcus Nispel', 5, 20)</statement>	
@@ -164,423 +173,6 @@
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Uwe Boll', 3, 13)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Jason Friedberg and Aaron Seltzer', 3, 12)</statement>	
 <statement>insert into director (director_name, director_hire_cost, director_reputation) values ('Tommy Wiseau', 2, 11)</statement>	
-
-
-<!-- Actors -->
-
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sam Worthington', 8, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Will Smith', 25, 100)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Johnny Depp', 24, 98)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Leonardo DiCaprio', 24, 98)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Brad Pitt', 24, 98)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tom Hanks', 24, 98)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('George Clooney', 24, 98)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Denzel Washington', 24, 97)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Angelina Jolie', 24, 98)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kate Winslet', 19, 76)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Christian Bale', 21, 84)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Harrison Ford', 21, 86)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Mark Hamill', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Mike Myers', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Eddie Murphy', 19, 76)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Cameron Diaz', 19, 77)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Drew Barrymore', 19, 77)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ewan McGregor', 17, 69)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Liam Neeson', 17, 68)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Orlando Bloom', 16, 66)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tobey Maguire', 21, 84)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kirsten Dunst', 16, 65)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Matt Damon', 24, 96)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jack Nicholson', 24, 96)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Julia Roberts', 24, 96)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Adam Sandler', 24, 96)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tom Cruise', 24, 96)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Russell Crowe', 23, 95)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Will Ferrell', 23, 95)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Meryl Streep', 23, 95)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Robert De Niro', 23, 95)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ben Stiller', 23, 95)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jim Carrey', 23, 94)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Clint Eastwood', 23, 93)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Robert Downey', 23, 92)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Nicole Kidman', 23, 92)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Bruce Willis', 22, 91)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Nicolas Cage', 22, 90)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Al Pacino', 22, 90)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Keanu Reeves', 21, 85)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Mel Gibson', 21, 85)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Travolta', 21, 84)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Vince Vaughn', 20, 83)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Shia LaBeouf', 20, 83)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Reese Witherspoon', 20, 82)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jackie Chan', 20, 81)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Steve Carell', 20, 80)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Daniel Day-Lewis', 20, 80)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Charlize Theron', 20, 80)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Cate Blanchett', 19, 78)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Hugh Jackman', 19, 77)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jodie Foster', 19, 77)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Keira Knightley', 19, 77)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Gwyneth Paltrow', 19, 77)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sean Penn', 19, 77)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Daniel Craig', 19, 77)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Mark Wahlberg', 19, 76)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sacha Baron Cohen', 19, 76)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jake Gyllenhaal', 19, 76)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jack Black', 19, 76)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sandra Bullock', 19, 76)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Hugh Grant', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Matthew McConaughey', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jennifer Aniston', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Halle Berry', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Robert Redford', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Edward Norton', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Michael Douglas', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Richard Gere', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Dustin Hoffman', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Renee Zellweger', 18, 75)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Anthony Hopkins', 18, 74)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Clive Owen', 18, 74)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Robin Williams', 18, 74)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Hilary Swank', 18, 74)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jamie Foxx', 18, 74)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Woody Allen', 18, 73)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Penelope Cruz', 18, 73)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Pierce Brosnan', 18, 73)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Dwayne Johnson', 18, 73)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ashton Kutcher', 18, 73)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Philip Seymour Hoffman', 18, 73)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Bill Murray', 18, 73)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ben Affleck', 18, 73)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Scarlett Johansson', 18, 73)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jude Law', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Colin Farrell', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Anne Hathaway', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kate Hudson', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Natalie Portman', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Seth Rogen', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Owen Wilson', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Catherine Zeta-Jones', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Samuel L. Jackson', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('James McAvoy', 18, 72)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tommy Lee Jones', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Forest Whitaker', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tyler Perry', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Steve Martin', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Javier Bardem', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Viggo Mortensen', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kevin Spacey', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Helen Mirren', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jennifer Lopez', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Uma Thurman', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Naomi Watts', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kevin Costner', 17, 71)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Eric Bana', 17, 70)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sarah Jessica Parker', 17, 70)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Joaquin Phoenix', 17, 70)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Cusack', 17, 69)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jet Li', 17, 69)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jessica Alba', 17, 69)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Michelle Pfeiffer', 17, 69)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Demi Moore', 17, 69)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Dennis Quaid', 17, 69)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sylvester Stallone', 17, 69)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Brendan Fraser', 17, 69)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kate Beckinsale', 17, 68)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jennifer Garner', 17, 68)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Julianne Moore', 17, 68)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Rachel Weisz', 17, 68)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Katherine Heigl', 17, 68)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Morgan Freeman', 17, 68)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Rachel McAdams', 17, 68)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Martin Lawrence', 16, 67)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Salma Hayek', 16, 67)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jennifer Connelly', 16, 67)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Paul Giamatti', 16, 67)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Emma Thompson', 16, 66)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Antonio Banderas', 16, 66)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Susan Sarandon', 16, 66)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Don Cheadle', 16, 66)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kiefer Sutherland', 16, 66)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tim Robbins', 16, 66)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Billy Bob Thornton', 16, 66)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ice Cube', 16, 65)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Benicio Del Toro', 16, 65)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Diane Lane', 16, 65)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Vin Diesel', 16, 65)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ricky Gervais', 16, 65)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jason Statham', 16, 65)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tim Allen', 16, 65)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Josh Brolin', 16, 64)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Queen Latifah', 16, 64)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Robert Duvall', 16, 64)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ethan Hawke', 15, 63)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Matthew Broderick', 15, 63)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Diane Keaton', 15, 63)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Michael Cera', 15, 63)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ryan Gosling', 15, 63)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jessica Biel', 15, 63)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Annette Bening', 15, 62)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Glenn Close', 15, 62)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Lindsay Lohan', 15, 62)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ralph Fiennes', 15, 62)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Frances McDormand', 15, 62)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Meg Ryan', 15, 62)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ed Harris', 15, 62)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Gerard Butler', 15, 62)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Amy Adams', 15, 61)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kevin James', 15, 61)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ben Kingsley', 15, 61)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jason Bateman', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Michael Caine', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Aaron Eckhart', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kurt Russell', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tina Fey', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Adrien Brody', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Daniel Radcliffe', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ashley Judd', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Warren Beatty', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Christopher Walken', 15, 60)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kevin Kline', 14, 59)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ellen Page', 14, 59)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Woody Harrelson', 14, 59)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Mark Ruffalo', 14, 59)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Laura Linney', 14, 59)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jeff Bridges', 14, 59)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Miley Cyrus', 14, 59)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Luke Wilson', 14, 59)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Justin Timberlake', 14, 58)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sienna Miller', 14, 58)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Chris Tucker', 14, 58)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Malkovich', 14, 57)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Gary Oldman', 14, 57)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Judi Dench', 14, 57)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jeremy Irons', 14, 57)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Greg Kinnear', 14, 57)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Gael Garcia Bernal', 14, 57)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Laurence Fishburne', 14, 56)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kevin Bacon', 14, 56)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sigourney Weaver', 14, 56)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Zac Efron', 14, 56)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Terrence Howard', 14, 56)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Geoffrey Rush', 14, 56)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John C. Reilly', 14, 56)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jonathan Rhys-Meyers', 14, 56)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Billy Crystal', 13, 55)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Dakota Fanning', 13, 55)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Alec Baldwin', 13, 55)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Liev Schreiber', 13, 55)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Maggie Gyllenhaal', 13, 55)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kenneth Branagh', 13, 55)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('James Franco', 13, 55)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Patrick Dempsey', 13, 55)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Chris Rock', 13, 54)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Colin Firth', 13, 54)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ryan Reynolds', 13, 54)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Liv Tyler', 13, 54)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Gerard Depardieu', 13, 54)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Beyonce Knowles', 13, 54)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Barbra Streisand', 13, 54)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ryan Phillippe', 13, 54)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Christina Ricci', 13, 53)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Peter Sarsgaard', 13, 53)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Emile Hirsch', 13, 53)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ray Romano', 13, 53)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Josh Hartnett', 13, 52)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Charlie Sheen', 13, 52)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Paul Rudd', 13, 52)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Emily Blunt', 13, 52)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Eva Mendes', 13, 52)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Yun-Fat Chow', 13, 52)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('William H. Macy', 13, 52)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Casey Affleck', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ziyi Zhang', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Matt Dillon', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Nathan Lane', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kristin Scott Thomas', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Robin Wright Penn', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Zach Braff', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Hilary Duff', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jonah Hill', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Helen Hunt', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Anna Faris', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Edward Burns', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Hayden Christensen', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Topher Grace', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Emily Watson', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Andy Garcia', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Elijah Wood', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Elizabeth Banks', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Juliette Binoche', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Claire Danes', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tilda Swinton', 12, 51)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Dennis Hopper', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Goldie Hawn', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Katie Holmes', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Mandy Moore', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Roberto Benigni', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Billy Crudup', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Marion Cotillard', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Milla Jovovich', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tim Roth', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kim Basinger', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ian McKellen', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jon Favreau', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Audrey Tautou', 12, 50)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Djimon Hounsou', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jason Schwartzman', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kate Bosworth', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Amanda Bynes', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Rowan Atkinson', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Matthew Fox', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jon Heder', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Marlon Wayans', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jean Reno', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sarah Michelle Gellar', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Steve Buscemi', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Dane Cook', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Hugh Laurie', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Helena Bonham Carter', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Chris Cooper', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Damon Wayans', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Paul Bettany', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jessica Lange', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Eva Longoria Parker', 12, 49)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Turturro', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Albert Brooks', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Bette Midler', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Amy Poehler', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('David Duchovny', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Michael Keaton', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Nick Nolte', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Martin Sheen', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Christopher Guest', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('William Hurt', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Guy Pearce', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Channing Tatum', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Abigail Breslin', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Willem Dafoe', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Danny DeVito', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Stanley Tucci', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jon Voight', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jennifer Hudson', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Emily Mortimer', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Michelle Williams', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('James Gandolfini', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tom Wilkinson', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Selma Blair', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Rosario Dawson', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Holly Hunter', 12, 48)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Steve Coogan', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jeremy Piven', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Joan Allen', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Anjelica Huston', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Keri Russell', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Alan Rickman', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Thomas Haden Church', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Catherine Deneuve', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Josh Lucas', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sam Rockwell', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Bryce Dallas Howard', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Simon Pegg', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Toni Collette', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Gong Li', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Gabriel Byrne', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Seann William Scott', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Justin Long', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Gary Sinise', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sharon Stone', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Cuba Gooding', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jim Sturgess', 11, 47)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Richard Dreyfuss', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kelsey Grammer', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Patrick Stewart', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ken Watanabe', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ray Liotta', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jeff Daniels', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Harvey Keitel', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Cillian Murphy', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Paul Walker', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Denis Leary', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Cleese', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Val Kilmer', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Mickey Rourke', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Wesley Snipes', 11, 46)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Danny Glover', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jim Caviezel', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('50 Cent ', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jason Biggs', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jason Patric', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Patrick Wilson', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Christian Slater', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Taye Diggs', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Joseph Fiennes', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jared Leto', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jason Segel', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('David Strathairn', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Donald Sutherland', 11, 45)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Goodman', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Johnny Knoxville', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('James Marsden', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Matthew Perry', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Rainn Wilson', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Martin Short', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('LL Cool J', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Steve Zahn', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Krasinski', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Josh Duhamel', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Sam Neill', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Bill Paxton', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jeffrey Wright', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Stellan Skarsgard', 11, 44)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('James Woods', 10, 43)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('P. Diddy', 10, 43)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Paul Dano', 10, 43)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Stephen Rea', 10, 43)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jason Lee', 10, 43)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('David Spade', 10, 43)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Nick Cannon', 10, 43)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Leguizamo', 10, 43)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('David Schwimmer', 10, 42)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jimmy Smits', 10, 42)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ving Rhames', 10, 42)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jeremy Northam', 10, 42)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Hugo Weaving', 10, 42)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Derek Luke', 10, 42)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('George Lopez', 10, 42)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Cam Gigandet', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Stephen Chow', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Bill Pullman', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Alan Arkin', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tyrese Gibson', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jim Broadbent', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Timothy Olyphant', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('James Spader', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Til Schweiger', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Joe Pesci', 10, 41)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('James Caan', 10, 40)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Seth Green', 10, 40)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Lithgow', 10, 40)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Joseph Gordon-Levitt', 10, 40)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('John Hurt', 10, 40)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Eddie Izzard', 10, 40)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Ludacris', 10, 40)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Harry Connick', 10, 40)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Bradley Cooper', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Peter O''Toole', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Jean-Claude Van Damme', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Scott Speedman', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Robert Carlyle', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Benjamin Bratt', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Dougray Scott', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Chris Evans', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Dylan McDermott', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Dermot Mulroney', 9, 39)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Kal Penn', 5, 20)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Andy Samberg', 5, 20)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tom Selleck', 5, 20)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tom Green', 2, 10)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation) values ('Tommy Wiseau', 2, 10)</statement>
 
 <!-- Cast -->
 <statement>insert into cast (movie_id, actor_id) values (1, 1)</statement> <!-- avatar -->
@@ -601,13 +193,600 @@
 <statement>insert into cast (movie_id, actor_id) values (10, 3)</statement> <!-- spiderman -->
 <statement>insert into cast (movie_id, actor_id) values (10, 3)</statement> <!-- spiderman -->
 
+<statement>insert into director_bonus (director_id, genre_id) values (2, 1)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (2, 6)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (4, 1)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (10, 1)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (10, 5)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (12, 6)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (13, 1)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (13, 4)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (1, 6)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (1, 1)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (15, 4)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (16, 5)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (16, 7)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (18, 5)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (18, 7)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (23, 5)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (30, 1)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (30, 7)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (31, 4)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (3, 6)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (3, 1)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (50, 6)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (51, 2)</statement>
+<statement>insert into director_bonus (director_id, genre_id) values (51, 5)</statement>
 
-
-
-
-
-
-
-
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Leonardo DiCaprio', 24, 98, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (1, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (1, 3)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Johnny Depp', 24, 98, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (2, 3)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (2, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Brad Pitt', 24, 98, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (3, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (3, 3)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Angelina Jolie', 24, 98, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (4, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tom Hanks', 24, 98, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (5, 4)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (5, 5)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (5, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Will Smith', 24, 98, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (6, 5)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (6, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('George Clooney', 24, 98, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (7, 3)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (7, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Denzel Washington', 24, 97, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (8, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Matt Damon', 24, 96, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jack Nicholson', 24, 96, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 2)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Julia Roberts', 24, 96, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 3)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Adam Sandler', 24, 96, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tom Cruise', 24, 96, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Russell Crowe', 23, 95, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Will Ferrell', 23, 95, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Meryl Streep', 23, 95, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Robert De Niro', 23, 95, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ben Stiller', 23, 95, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jim Carrey', 23, 94, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Clint Eastwood', 23, 93, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Robert Downey', 23, 92, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Nicole Kidman', 23, 92, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Bruce Willis', 22, 91, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Nicolas Cage', 22, 90, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Al Pacino', 22, 90, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Harrison Ford', 21, 86, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Keanu Reeves', 21, 85, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Mel Gibson', 21, 85, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Christian Bale', 21, 84, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tobey Maguire', 21, 84, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 3)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Travolta', 21, 84, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Vince Vaughn', 20, 83, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tom Hardy', 20, 83, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Shia LaBeouf', 20, 83, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Reese Witherspoon', 20, 82, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jackie Chan', 20, 81, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Steve Carell', 20, 80, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Daniel Day-Lewis', 20, 80, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Charlize Theron', 20, 80, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Cate Blanchett', 19, 78, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Hugh Jackman', 19, 77, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jodie Foster', 19, 77, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Keira Knightley', 19, 77, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Gwyneth Paltrow', 19, 77, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sean Penn', 19, 77, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Drew Barrymore', 19, 77, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Daniel Craig', 19, 77, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Cameron Diaz', 19, 77, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Mark Wahlberg', 19, 76, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Eddie Murphy', 19, 76, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sacha Baron Cohen', 19, 76, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kate Winslet', 19, 76, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jake Gyllenhaal', 19, 76, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jack Black', 19, 76, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sandra Bullock', 19, 76, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Hugh Grant', 18, 75, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Matthew McConaughey', 18, 75, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jennifer Aniston', 18, 75, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Halle Berry', 18, 75, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Robert Redford', 18, 75, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Edward Norton', 18, 75, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Michael Douglas', 18, 75, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Richard Gere', 18, 75, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Dustin Hoffman', 18, 75, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Renee Zellweger', 18, 75, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Anthony Hopkins', 18, 74, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Clive Owen', 18, 74, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Robin Williams', 18, 74, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Hilary Swank', 18, 74, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jamie Foxx', 18, 74, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Woody Allen', 18, 73, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Penelope Cruz', 18, 73, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Pierce Brosnan', 18, 73, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Dwayne Johnson', 18, 73, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ashton Kutcher', 18, 73, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Philip Seymour Hoffman', 18, 73, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Bill Murray', 18, 73, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ben Affleck', 18, 73, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Scarlett Johansson', 18, 73, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 3)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jude Law', 18, 72, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Colin Farrell', 18, 72, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Mike Myers', 18, 72, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Anne Hathaway', 18, 72, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kate Hudson', 18, 72, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Natalie Portman', 18, 72, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 6)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 3)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Seth Rogen', 18, 72, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Owen Wilson', 18, 72, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Catherine Zeta-Jones', 18, 72, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Samuel L. Jackson', 18, 72, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('James McAvoy', 18, 72, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tommy Lee Jones', 17, 71, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Forest Whitaker', 17, 71, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tyler Perry', 17, 71, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Steve Martin', 17, 71, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Javier Bardem', 17, 71, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Viggo Mortensen', 17, 71, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kevin Spacey', 17, 71, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Helen Mirren', 17, 71, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jennifer Lopez', 17, 71, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Uma Thurman', 17, 71, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Naomi Watts', 17, 71, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kevin Costner', 17, 71, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Eric Bana', 17, 70, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sarah Jessica Parker', 17, 70, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Joaquin Phoenix', 17, 70, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ewan McGregor', 17, 69, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Cusack', 17, 69, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jet Li', 17, 69, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jessica Alba', 17, 69, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Michelle Pfeiffer', 17, 69, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Demi Moore', 17, 69, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Dennis Quaid', 17, 69, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sylvester Stallone', 17, 69, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Brendan Fraser', 17, 69, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kate Beckinsale', 17, 68, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jennifer Garner', 17, 68, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Julianne Moore', 17, 68, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Rachel Weisz', 17, 68, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Katherine Heigl', 17, 68, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Morgan Freeman', 17, 68, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Liam Neeson', 17, 68, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Rachel McAdams', 17, 68, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Martin Lawrence', 16, 67, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Salma Hayek', 16, 67, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jennifer Connelly', 16, 67, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Paul Giamatti', 16, 67, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Emma Thompson', 16, 66, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Antonio Banderas', 16, 66, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Orlando Bloom', 16, 66, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Susan Sarandon', 16, 66, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Don Cheadle', 16, 66, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kiefer Sutherland', 16, 66, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tim Robbins', 16, 66, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Billy Bob Thornton', 16, 66, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ice Cube', 16, 65, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Benicio Del Toro', 16, 65, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kirsten Dunst', 16, 65, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Diane Lane', 16, 65, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Vin Diesel', 16, 65, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ricky Gervais', 16, 65, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jason Statham', 16, 65, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tim Allen', 16, 65, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Josh Brolin', 16, 64, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Queen Latifah', 16, 64, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Robert Duvall', 16, 64, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ethan Hawke', 15, 63, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Matthew Broderick', 15, 63, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Diane Keaton', 15, 63, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Michael Cera', 15, 63, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ryan Gosling', 15, 63, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jessica Biel', 15, 63, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Annette Bening', 15, 62, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Glenn Close', 15, 62, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Lindsay Lohan', 15, 62, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ralph Fiennes', 15, 62, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Frances McDormand', 15, 62, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Meg Ryan', 15, 62, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ed Harris', 15, 62, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Gerard Butler', 15, 62, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Amy Adams', 15, 61, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kevin James', 15, 61, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ben Kingsley', 15, 61, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jason Bateman', 15, 60, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Michael Caine', 15, 60, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Aaron Eckhart', 15, 60, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kurt Russell', 15, 60, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tina Fey', 15, 60, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Adrien Brody', 15, 60, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Daniel Radcliffe', 15, 60, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ashley Judd', 15, 60, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Warren Beatty', 15, 60, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Christopher Walken', 15, 60, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kevin Kline', 14, 59, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ellen Page', 14, 59, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Woody Harrelson', 14, 59, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Mark Ruffalo', 14, 59, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 3)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Laura Linney', 14, 59, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jeff Bridges', 14, 59, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Miley Cyrus', 14, 59, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Luke Wilson', 14, 59, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Justin Timberlake', 14, 58, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sienna Miller', 14, 58, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Chris Tucker', 14, 58, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Malkovich', 14, 57, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Gary Oldman', 14, 57, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Judi Dench', 14, 57, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jeremy Irons', 14, 57, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Greg Kinnear', 14, 57, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Gael Garcia Bernal', 14, 57, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Laurence Fishburne', 14, 56, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kevin Bacon', 14, 56, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sigourney Weaver', 14, 56, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Zac Efron', 14, 56, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Terrence Howard', 14, 56, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Geoffrey Rush', 14, 56, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John C. Reilly', 14, 56, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jonathan Rhys-Meyers', 14, 56, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Billy Crystal', 13, 55, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Dakota Fanning', 13, 55, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Alec Baldwin', 13, 55, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Liev Schreiber', 13, 55, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Maggie Gyllenhaal', 13, 55, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kenneth Branagh', 13, 55, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('James Franco', 13, 55, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 3)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Patrick Dempsey', 13, 55, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Chris Rock', 13, 54, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Colin Firth', 13, 54, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ryan Reynolds', 13, 54, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Liv Tyler', 13, 54, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Gerard Depardieu', 13, 54, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Beyonce Knowles', 13, 54, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Barbra Streisand', 13, 54, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ryan Phillippe', 13, 54, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Christina Ricci', 13, 53, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Peter Sarsgaard', 13, 53, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Emile Hirsch', 13, 53, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ray Romano', 13, 53, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Josh Hartnett', 13, 52, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Charlie Sheen', 13, 52, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Paul Rudd', 13, 52, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Emily Blunt', 13, 52, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Eva Mendes', 13, 52, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Yun-Fat Chow', 13, 52, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('William H. Macy', 13, 52, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Casey Affleck', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ziyi Zhang', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Matt Dillon', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Nathan Lane', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kristin Scott Thomas', 12, 51, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Robin Wright Penn', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Zach Braff', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Hilary Duff', 12, 51, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jonah Hill', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Helen Hunt', 12, 51, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Anna Faris', 12, 51, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Edward Burns', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Hayden Christensen', 12, 51, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Topher Grace', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Emily Watson', 12, 51, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Andy Garcia', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Elijah Wood', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Elizabeth Banks', 12, 51, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Juliette Binoche', 12, 51, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Claire Danes', 12, 51, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tilda Swinton', 12, 51, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Dennis Hopper', 12, 50, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Goldie Hawn', 12, 50, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Katie Holmes', 12, 50, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Mandy Moore', 12, 50, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Roberto Benigni', 12, 50, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Billy Crudup', 12, 50, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Marion Cotillard', 12, 50, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 3)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Milla Jovovich', 12, 50, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tim Roth', 12, 50, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kim Basinger', 12, 50, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ian McKellen', 12, 50, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jon Favreau', 12, 50, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Audrey Tautou', 12, 50, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Djimon Hounsou', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jason Schwartzman', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kate Bosworth', 12, 49, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Amanda Bynes', 12, 49, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Rowan Atkinson', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Matthew Fox', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jon Heder', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Marlon Wayans', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jean Reno', 12, 49, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sarah Michelle Gellar', 12, 49, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Steve Buscemi', 12, 49, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Dane Cook', 12, 49, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Hugh Laurie', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Helena Bonham Carter', 12, 49, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Chris Cooper', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Damon Wayans', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Paul Bettany', 12, 49, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jessica Lange', 12, 49, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Eva Longoria Parker', 12, 49, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Turturro', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Albert Brooks', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Bette Midler', 12, 48, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Amy Poehler', 12, 48, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('David Duchovny', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Michael Keaton', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Nick Nolte', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Martin Sheen', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Christopher Guest', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('William Hurt', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Guy Pearce', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Channing Tatum', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Abigail Breslin', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Willem Dafoe', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Danny DeVito', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Stanley Tucci', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jon Voight', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jennifer Hudson', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Emily Mortimer', 12, 48, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Michelle Williams', 12, 48, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('James Gandolfini', 12, 48, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tom Wilkinson', 12, 48, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Selma Blair', 12, 48, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Rosario Dawson', 12, 48, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Holly Hunter', 12, 48, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Steve Coogan', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jeremy Piven', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Joan Allen', 11, 47, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Anjelica Huston', 11, 47, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Keri Russell', 11, 47, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Alan Rickman', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Thomas Haden Church', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Catherine Deneuve', 11, 47, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Josh Lucas', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sam Rockwell', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Bryce Dallas Howard', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Simon Pegg', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Toni Collette', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Gong Li', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Gabriel Byrne', 11, 47, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Seann William Scott', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Justin Long', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Gary Sinise', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sharon Stone', 11, 47, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Cuba Gooding', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jim Sturgess', 11, 47, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Richard Dreyfuss', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kelsey Grammer', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Patrick Stewart', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ken Watanabe', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ray Liotta', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jeff Daniels', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Harvey Keitel', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Cillian Murphy', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Paul Walker', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Denis Leary', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Cleese', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Val Kilmer', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Mickey Rourke', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Wesley Snipes', 11, 46, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Danny Glover', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jim Caviezel', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('50 Cent ', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jason Biggs', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jason Patric', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Patrick Wilson', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Christian Slater', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Taye Diggs', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Joseph Fiennes', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jared Leto', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jason Segel', 11, 45, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('David Strathairn', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Donald Sutherland', 11, 45, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Goodman', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Johnny Knoxville', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('James Marsden', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Matthew Perry', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Rainn Wilson', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Martin Short', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('LL Cool J', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Steve Zahn', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Krasinski', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Josh Duhamel', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sam Neill', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Bill Paxton', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jeffrey Wright', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Stellan Skarsgard', 11, 44, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('James Woods', 10, 43, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('P. Diddy', 10, 43, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Paul Dano', 10, 43, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Stephen Rea', 10, 43, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jason Lee', 10, 43, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('David Spade', 10, 43, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Nick Cannon', 10, 43, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Leguizamo', 10, 43, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('David Schwimmer', 10, 42, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jimmy Smits', 10, 42, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ving Rhames', 10, 42, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jeremy Northam', 10, 42, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Hugo Weaving', 10, 42, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Derek Luke', 10, 42, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('George Lopez', 10, 42, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Cam Gigandet', 10, 41, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Stephen Chow', 10, 41, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Bill Pullman', 10, 41, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Alan Arkin', 10, 41, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tyrese Gibson', 10, 41, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jim Broadbent', 10, 41, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Timothy Olyphant', 10, 41, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('James Spader', 10, 41, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Til Schweiger', 10, 41, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Joe Pesci', 10, 41, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('James Caan', 10, 40, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Seth Green', 10, 40, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Lithgow', 10, 40, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Joseph Gordon-Levitt', 10, 40, 'a')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Hurt', 10, 40, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Eddie Izzard', 10, 40, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ludacris', 10, 40, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Harry Connick', 10, 40, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Bradley Cooper', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Peter O''Toole', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jean-Claude Van Damme', 9, 39, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Scott Speedman', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Robert Carlyle', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Benjamin Bratt', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Dougray Scott', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Chris Evans', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Dylan McDermott', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Dermot Mulroney', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sean Bean', 9, 38, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Rachel Bilson', 9, 36, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Brendan Gleeson', 8, 32, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 1)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 3)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kelly Macdonald', 8, 32, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Adam Brody', 8, 32, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Chloë Grace Moretz', 7, 28, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('David Tennant', 6, 27, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Adrian Grenier', 6, 27, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Christopher Lee', 6, 25, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Julie Christie', 6, 24, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sarah Chalke', 6, 24, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Cobie Smulders', 6, 24, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ben McKenzie', 6, 24, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Warwick Davis', 5, 21, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kal Penn', 5, 20, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Andy Samberg', 5, 20, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tom Selleck', 5, 20, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Chris Hemsworth', 5, 20, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Neil Patrick Harris', 5, 20, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Robbie Coltrane', 4, 18, 'M')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Maya Rudolph', 4, 18, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kevin Connolly', 4, 17, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Helen McCrory', 4, 16, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sarah Bolger', 4, 16, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jeremy Renner', 4, 16, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Craig Robinson', 4, 16, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Natalia Tena', 4, 16, 'f')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 5)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 3)</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Billie Piper', 4, 16, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Saoirse Ronan', 4, 16, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Debi Mazar', 4, 16, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Samaire Armstrong', 3, 15, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sean Astin', 3, 15, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Andy Richter', 3, 14, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Julian Glover', 3, 12, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Angela Lansbury', 3, 12, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Michael Gambon', 2, 10, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Billy Boyd', 2, 10, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Ron Perlman', 2, 10, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jerry Stiller', 2, 10, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Asa Butterfield', 2, 10, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Carey Mulligan', 2, 10, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jennifer Lawrence', 2, 10, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Nadezhda Markina', 2, 10, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Kelly Rowan', 2, 10, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Blake Lively', 2, 10, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jessica Tuck', 2, 10, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('John Hill', 2, 10, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tom Hiddleston', 2, 10, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tom Green', 2, 10, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 4)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Elijah Kelley', 2, 10, 'm')</statement>
+<statement>insert into actor_bonus (actor_id, genre_id) values (999999, 7)</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tommy Wiseau', 2, 10, 'm')</statement>
 
 </sql>

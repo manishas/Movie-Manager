@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/backgroundgradient">
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="vertical" android:layout_width="match_parent"
-		android:layout_height="match_parent" android:weightSum="1">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundgradient" >
+
+	<LinearLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:weightSum="1" >
 
 		<ImageView
 		    android:id="@+id/imageView2"
@@ -12,27 +18,56 @@
 		    android:layout_gravity="center"
 		    android:src="@drawable/m_m_head" />
 
-		<ImageView
-		    android:id="@+id/imageView1"
-		    android:layout_width="265dp"
-		    android:layout_height="259dp"
-		    android:layout_gravity="center"
-		    android:src="@drawable/film_reel" />
+<ImageView
+    android:id="@+id/imageView1"
+    android:layout_width="184dp"
+    android:layout_height="181dp"
+    android:layout_gravity="center"
+    android:src="@drawable/film_reel" />
 			
-		<Button android:id="@+id/newgameButton" android:text="@string/newgame" android:layout_height="wrap_content" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
-		</Button>
-		<Button android:id="@+id/continuegameButton" android:text="@string/continuegame" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+		<Button
+		    android:id="@+id/newgameButton"
+		    android:layout_width="301dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:text="@string/newgame" >
+
 		</Button>
 
-		<Button android:id="@+id/boxofficeButton" android:layout_height="wrap_content" android:text="@string/seeboxoffice" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+		<Button
+		    android:id="@+id/continuegameButton"
+		    android:layout_width="300dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:text="@string/continuegame" >
+
+		</Button>
+
+		<Button
+		    android:id="@+id/boxofficeButton"
+		    android:layout_width="300dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:text="@string/seeboxoffice" >
+
 		</Button>
 		
-		<Button android:id="@+id/prefsButton" android:layout_height="wrap_content"
-			android:text="@string/prefs" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+		<Button
+		    android:id="@+id/prefsButton"
+		    android:layout_width="300dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:text="@string/prefs" >
+
 		</Button>
 		
-		<Button android:id="@+id/creditsButton" android:layout_height="wrap_content"
-			android:text="@string/credits" android:textSize="25sp" android:layout_gravity="center" android:layout_width="250dp">
+		<Button
+		    android:id="@+id/creditsButton"
+		    android:layout_width="300dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:text="@string/credits" >
+
 		</Button>
 
 	</LinearLayout>

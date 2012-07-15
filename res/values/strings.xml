@@ -23,7 +23,7 @@
 	
 	<!-- EULA/whats new -->
 	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add updates at least every two weeks. If you have a suggestion please contact me or leave a comment!</string>
-	<string name="updates">Updates in this version (21th Apr): Loads of new directors and actors, layouts for large screens, personal best movies list on box office screen, distributor comments on offers</string>
+	<string name="updates">Updates in this version (9th July): Improved UI, save/load games. A quit button for David :-) </string>
 	
 	<!-- start screen -->
 	<string name="newgame">New Game</string>
@@ -33,7 +33,7 @@
 	<string name="credits">Credits</string>
 	
 	<!-- credits dialogue -->
-	<string name="creditsText">All development by Simon Wielens. Inspired by Sim-Cinema Deluxe by Shannon Schroeder. Thanks to: Menu icons from @AndroidIcons. Paul, Dave, Gary and Conor for feedback. Niamh for putting up with me while I work on this app :-)</string>	
+	<string name="creditsText">All development by Simon Wielens. Icons/images/random genius by Andy Wielens. Inspired by Sim-Cinema Deluxe by Shannon Schroeder. Thanks to: Menu icons from @AndroidIcons. Paul, Dave, Gary, Conor, Brian, and Patrick Greig for feedback. Niamh for putting up with me while I work on this app :-)</string>	
 	
 	<!-- choose film screen -->
 	<string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
@@ -93,5 +93,6 @@
 	<string name="language3">Really Strong ****ing Language</string>
 	<string name="pitchFilmButton">Pitch your Movie</string>
 	<string name="load_game">Load Game</string>
+	<string name="censor_rating_image">Censor rating image</string>
 	
 </resources>
