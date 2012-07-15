@@ -714,7 +714,7 @@
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Harry Connick', 10, 40, 'm')</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (397, 1)</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Bradley Cooper', 9, 39, 'm')</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Peter O'Toole', 9, 39, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Peter O''Toole', 9, 39, 'm')</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Jean-Claude Van Damme', 9, 39, 'm')</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (400, 1)</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Scott Speedman', 9, 39, 'm')</statement>
