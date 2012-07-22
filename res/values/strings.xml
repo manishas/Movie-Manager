@@ -52,7 +52,8 @@
 	<string name="directorPrice">Price to hire: %s</string>
 	
 	<!-- choose actor screen -->
-	<string name="actor">Choose an actor to approach:</string>
+	<string name="actor">Choose a lead actor to approach:</string>
+	<string name="actor2">Co-star:</string>
 	<string name="actorPrice">Price to hire: %s</string>
 	
 	<!-- result screen -->
@@ -94,5 +95,9 @@
 	<string name="pitchFilmButton">Pitch your Movie</string>
 	<string name="load_game">Load Game</string>
 	<string name="censor_rating_image">Censor rating image</string>
+	<string name="hire_another_actor">Hire Another Actor</string>
+	<string name="make_this_film">Make this Film!</string>
+	<string name="no_data">No data</string>
+	<string name="movie_rating_was_">"Movie Rating was: "</string>
 	
 </resources>

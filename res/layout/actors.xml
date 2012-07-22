@@ -5,7 +5,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+	android:layout_height="wrap_content"
 	android:orientation="vertical" >
 	
 	<include layout="@layout/scorebar"/>
@@ -14,7 +14,7 @@
 		android:id="@+id/chosen"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="TextView"
+		android:text=""
 		android:textAppearance="?android:attr/textAppearanceLarge" >
 	</TextView>
 	<TextView
@@ -23,21 +23,42 @@
 		android:layout_height="wrap_content"
 		android:text="@string/actor" >
 	</TextView>
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actorLayout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical" >
 	<Spinner
 		android:id="@+id/spinner1"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		/>
+	</LinearLayout>
 	<TextView
 		android:id="@+id/actorPrice"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/actorPrice" />
-	<Button
-		android:id="@+id/produceFilm"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Make this Film!" />
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+
+	    <Button
+	        android:id="@+id/produceFilm"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/make_this_film" />
+
+	    <Button
+	        android:id="@+id/addActor"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/hire_another_actor" />
+	</LinearLayout>
+
 </LinearLayout>
 
 </ScrollView>

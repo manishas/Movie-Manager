@@ -2,11 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent" android:layout_height="match_parent">
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent" android:layout_height="match_parent"
+		android:layout_width="match_parent" android:layout_height="wrap_content"
 		android:orientation="vertical">
 		<include layout="@layout/scorebar" />
 		<TextView android:id="@+id/textView1" android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:text="Movie Rating was: "
+			android:layout_height="wrap_content" android:text="@string/movie_rating_was_"
 			android:textAppearance="?android:attr/textAppearanceMedium" />
 		<RatingBar android:id="@+id/ratingBar1"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"

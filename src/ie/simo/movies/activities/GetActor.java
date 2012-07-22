@@ -1,5 +1,9 @@
 package ie.simo.movies.activities;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ActorDbAdapter;
 import ie.simo.movies.dao.viewbinder.ActorSpinnerViewBinder;
@@ -15,6 +19,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,21 +27,26 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class GetActor extends ActivityWithMenu {
-	
+
 	private TextView chosen;
 	private TextView price;
 	private TextView budgetView;
 	private Spinner spinner;
 	private Button produceFilm;
+	private Button addActor;
 	private ActorDbAdapter db;
 	private ProductionCompany pc;
-	
+	private SparseArray<Actor> spinnerCache = new SparseArray<Actor>();
+	private View view;
+	private final String NO_CASH = "You cannot afford this cast! Choose again";
+	private final String SAME_ACTOR = "You cannot hire the same actor twice! Choose again";
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,47 +57,17 @@ public class GetActor extends ActivityWithMenu {
 
 		findAllViewsById();
 		Intent i = getIntent();
-		fillSpinner();
+		fillSpinner(spinner);
 		
 		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		Log.v(getLocalClassName(), "budget before actor: " + pc.getBudget());
 		chosen.setText(pc.getCurrentProject().toButtonText());
-		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
+		String msg = getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
 		budgetView.setText(pc.getBudget()+"");
 		
-		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {				
-				
-				if(spinner.getSelectedItem().toString() != null && !spinner.getSelectedItem().toString().equals("") )
-				{					
-					Cursor c = (Cursor) spinner.getSelectedItem();
-					Actor chosenActor = new Actor();
-					chosenActor.setName(c.getString(c.getColumnIndex(DBConsts.Actor.name)));
-					chosenActor.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Actor.hire_cost))));
-					
-					Cast cast = new Cast();
-					cast.getActors().add(chosenActor);
-					pc.getCurrentProject().setCast(cast);
-					//TODO handle this better
-					//chosenFilm.getCast().getActors().add(chosenActor);
-					String msg = getString(R.string.actorPrice , "$"+ chosenActor.getPriceToHire() + "M");
-					GetActor.this.price.setText(msg);
-					
-					budgetView.setText("$" + (pc.getBudget() - chosenActor.getPriceToHire()));
-				}
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				GetActor.this.spinner.setSelection(0);				
-			}
-			
-		});
+		spinner.setOnItemSelectedListener(new ActorSelectionListener());
 		
 		produceFilm.setOnClickListener(new View.OnClickListener() {
 			
@@ -95,6 +75,8 @@ public class GetActor extends ActivityWithMenu {
 			public void onClick(View v) {
 				
 				if(isValid()){
+					
+					db.close();
 					Intent i = new Intent();
 					i.setClass(GetActor.this, Result.class);
 					Log.v(getLocalClassName(), "Chosen cast: " + pc.getCurrentProject().getCast().toString());
@@ -105,37 +87,60 @@ public class GetActor extends ActivityWithMenu {
 					startActivity(i);
 				}
 				else{
-					makeToast();
+					if(!isPossibleSelection()){
+						makeToast(SAME_ACTOR);
+					}
+					if(!isUnderBudget()){
+						makeToast(NO_CASH);
+					}
 				}
-				
 			}
 		});
 		
-		
+		addActor.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Spinner extraSpinner = new Spinner(v.getContext());
+				fillSpinner(extraSpinner);
+				//remove already hired
+				extraSpinner.setOnItemSelectedListener(new ActorSelectionListener());
+				//add to view
+				((LinearLayout) view).addView(extraSpinner);	
+			}
+		});	
 	}
 	
-	private void  makeToast(){
-		Toast.makeText(this, "You can't afford this Actor! Choose again", Toast.LENGTH_SHORT).show();
-
+	private void  makeToast(String msg){
+		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
 	
 	private boolean isValid(){	
-		return (pc.getBudget() - pc.getCurrentProject().getCast().getCostOfActors() >= 0)? true : false;
+		return isUnderBudget() && isPossibleSelection();
 	}
-	
-	
-	
+
+	private boolean isPossibleSelection() {
+		HashSet<Actor> tempSet = new HashSet<Actor>();
+		tempSet.addAll(pc.getCurrentProject().getCast().getActors());
+		//ensure that all actor selections are unique
+		return pc.getCurrentProject().getCast().getActors().size() == tempSet.size();
+	}
+
+	private boolean isUnderBudget() {
+		return pc.getBudget() - pc.getCurrentProject().getCast().getCostOfActors() >= 0;
+	}
 	
 	private void findAllViewsById() {
 		chosen = (TextView) this.findViewById(R.id.chosen);
 		price = (TextView) this.findViewById(R.id.actorPrice);
 		spinner = (Spinner) this.findViewById(R.id.spinner1);
 		produceFilm = (Button) this.findViewById(R.id.produceFilm);
+		addActor = (Button) this.findViewById(R.id.addActor);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		view = findViewById(R.id.actorLayout);
 	}
 	
-	private void fillSpinner(){
-		 
+	private void fillSpinner(Spinner s){
 		Cursor c = db.fetchAllActors();
 		startManagingCursor(c);
 				
@@ -148,6 +153,37 @@ public class GetActor extends ActivityWithMenu {
 		  new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, c, from, to );
 		adapter.setViewBinder(new ActorSpinnerViewBinder());
 		// get reference to our spinner
-		spinner.setAdapter(adapter);
+		s.setAdapter(adapter);
+	}
+	
+	
+	private final class ActorSelectionListener implements OnItemSelectedListener {
+				
+		@Override
+		public void onItemSelected(AdapterView<?> theSpinner, View arg1, int arg2, long arg3) {				
+			
+			if(theSpinner.getSelectedItem().toString() != null && !theSpinner.getSelectedItem().toString().equals("") )
+			{					
+				Cursor c = (Cursor) theSpinner.getSelectedItem();
+				Actor chosenActor = new Actor();
+				chosenActor.setName(c.getString(c.getColumnIndex(DBConsts.Actor.name)));
+				chosenActor.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Actor.hire_cost))));
+				//if there is already an entry for this spinner, remove it
+				if(spinnerCache.get(theSpinner.getId()) != null){
+					pc.getCurrentProject().getCast().getActors().remove(spinnerCache.get(theSpinner.getId()));
+				}
+				spinnerCache.put(theSpinner.getId(), chosenActor);
+				pc.getCurrentProject().getCast().getActors().add(chosenActor);
+				//String msg = getString(R.string.actorPrice , "$"+ chosenActor.getPriceToHire() + "M");
+				//GetActor.this.price.setText(msg);
+				Log.v("CAST", pc.getCurrentProject().getCast().toString());
+				budgetView.setText("$" + (pc.getBudget() - pc.getCurrentProject().getCast().getCostOfActors()));
+			}
+		}
+		
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+			GetActor.this.spinner.setSelection(0);				
+		}
 	}
 }

@@ -2,14 +2,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent" android:layout_height="match_parent">
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent" android:layout_height="match_parent"
+		android:layout_width="match_parent" android:layout_height="wrap_content"
 		android:layout_margin="5dip" android:orientation="vertical">
 		<LinearLayout android:id="@+id/linearLayout1" android:baselineAligned="false"
 			android:layout_weight="1" android:layout_gravity="right" android:layout_height="match_parent" android:layout_width="wrap_content">
 			<ImageButton android:layout_height="wrap_content"
 				android:background="@drawable/help_icon" android:id="@+id/contentHelp"
 				android:layout_width="wrap_content"
-				android:layout_gravity="right"></ImageButton>
+				android:layout_gravity="right" android:contentDescription="Help Icon"></ImageButton>
 		</LinearLayout>
 		<LinearLayout android:id="@+id/linearLayout2" android:layout_width="match_parent"
 			android:orientation="vertical" android:layout_weight="1" android:layout_height="0dp">

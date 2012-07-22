@@ -28,7 +28,11 @@
 	cost integer,
 	producer_id text,
 	director_id integer,
-	distributor_id integer)
+	distributor_id integer,
+	composer_id integer,
+	sfx_id integer,
+	sound_id integer
+	)
 </statement>
 			
 <statement>

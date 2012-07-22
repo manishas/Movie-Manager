@@ -5,6 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cast implements Serializable {
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Cast: [");
+		for(Actor a : actors){
+			builder.append(a.getName()+",");
+		}
+		builder.append("]");
+		return builder.toString();
+	}
+
 	/**
 	 * 
 	 */

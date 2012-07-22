@@ -2,6 +2,17 @@
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
+                android:title="Career Mode (Beta)">
+                
+                <ListPreference
+                        android:title="Career Mode (Beta)"
+                        android:summary="Actors and Directors get unlocked as you gain a reputation by making movies"
+                        android:key="careerMode"
+                        android:defaultValue="digiGreen"
+                        android:entries="@array/ratingStyleArray"
+                        android:entryValues="@array/ratingStyleValues" />
+        </PreferenceCategory>
+    <PreferenceCategory
                 android:title="Film Censor">
                 
                 <ListPreference
