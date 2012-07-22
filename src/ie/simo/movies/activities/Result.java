@@ -10,19 +10,15 @@ import ie.simo.movies.domain.MovieSummary;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.generator.ReviewGenerator;
 import ie.simo.movies.scoring.earnings.EarningsCalculator;
-import ie.simo.movies.scoring.earnings.EarningsCalculatorFirstImpl;
+import ie.simo.movies.scoring.earnings.EarningsCalculatorWithActors;
 import ie.simo.movies.scoring.rating.RatingCalculator;
 
 import static ie.simo.movies.util.Consts.*;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -113,7 +109,7 @@ public class Result extends ActivityWithMenu {
 	private void init() {
 		font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf");
 		reviewer = new ReviewGenerator();
-		calculator = new EarningsCalculatorFirstImpl();
+		calculator = new EarningsCalculatorWithActors();
 		ratingCalc = new RatingCalculator();
 
 		findAllViewsById();
@@ -150,6 +146,9 @@ public class Result extends ActivityWithMenu {
 	}
 
 	private void returnToMakeFilmScreen() {
+		
+		setCompanyRep();
+		
 		Intent i = new Intent();
 		i.setClass(Result.this, MakeFilmActivity.class);
 		pc.setBudget(pc.getBudget() + shareOfEarnings);
@@ -164,6 +163,18 @@ public class Result extends ActivityWithMenu {
 		i.putExtra(COMPANY, pc);
 
 		startActivity(i);
+	}
+
+	private void setCompanyRep() {
+		int previousLevel = pc.getReputation()/15;
+		
+		int rep = 1 + (money/75);
+		
+		pc.setReputation(pc.getReputation() + rep);
+		
+		if(pc.getReputation()/15 > previousLevel){
+			longToast("Your reputation has increased, you will now be able to hire better Actors and Directors!");
+		}
 	}
 
 	private MovieSummary createMovieSummary(MovieInfo info) {

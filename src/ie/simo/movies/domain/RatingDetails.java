@@ -1,7 +1,11 @@
 package ie.simo.movies.domain;
 
 import java.io.Serializable;
-
+/**
+ * Class which maintains info about the censor rating details.
+ * @author Simon Wielens
+ *
+ */
 public class RatingDetails implements Serializable{
 	/**
 	 * 

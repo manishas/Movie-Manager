@@ -17,6 +17,7 @@ public class RatingCalculator {
 		
 		int count = 1;
 		double castRep = 0.0;
+		
 		for(Actor actor : cast.getActors())
 		{
 			castRep = castRep + ((actor.getReputation()/100)/count);
