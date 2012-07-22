@@ -154,7 +154,6 @@ public class Result extends ActivityWithMenu {
 		pc.setBudget(pc.getBudget() + shareOfEarnings);
 		
 		MovieSummary summary = createMovieSummary(pc.getCurrentProject());
-		//TODO see why this is coming back as null
 		if(pc.getBackCatalogue() == null){
 			pc.setBackCatalogue(new ArrayList<MovieSummary>());
 		}
@@ -169,11 +168,11 @@ public class Result extends ActivityWithMenu {
 		int previousLevel = pc.getReputation()/15;
 		
 		int rep = 1 + (money/75);
-		
+		Log.v("Rep: ", rep+"");
 		pc.setReputation(pc.getReputation() + rep);
 		
 		if(pc.getReputation()/15 > previousLevel){
-			longToast("Your reputation has increased, you will now be able to hire better Actors and Directors!");
+	//		longToast("Your reputation has increased, you will now be able to hire better Actors and Directors!");
 		}
 	}
 

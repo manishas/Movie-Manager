@@ -1,7 +1,9 @@
 package ie.simo.movies.activities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import ie.simo.movies.R;
@@ -43,10 +45,13 @@ public class GetActor extends ActivityWithMenu {
 	private Button addActor;
 	private ActorDbAdapter db;
 	private ProductionCompany pc;
-	private SparseArray<Actor> spinnerCache = new SparseArray<Actor>();
 	private View view;
 	private final String NO_CASH = "You cannot afford this cast! Choose again";
 	private final String SAME_ACTOR = "You cannot hire the same actor twice! Choose again";
+	private int id = 1;
+	
+	private List<Spinner> allSpinners = new ArrayList<Spinner>();
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,6 +63,7 @@ public class GetActor extends ActivityWithMenu {
 		findAllViewsById();
 		Intent i = getIntent();
 		fillSpinner(spinner);
+		allSpinners.add(spinner);
 		
 		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
 		Log.v(getLocalClassName(), "budget before actor: " + pc.getBudget());
@@ -102,11 +108,18 @@ public class GetActor extends ActivityWithMenu {
 			@Override
 			public void onClick(View v) {
 				Spinner extraSpinner = new Spinner(v.getContext());
+				allSpinners.add(extraSpinner);
+				extraSpinner.setId(nextID());
 				fillSpinner(extraSpinner);
 				//remove already hired
 				extraSpinner.setOnItemSelectedListener(new ActorSelectionListener());
 				//add to view
 				((LinearLayout) view).addView(extraSpinner);	
+			}
+
+			private int nextID() {
+				id += 1;
+				return id;
 			}
 		});	
 	}
@@ -164,18 +177,16 @@ public class GetActor extends ActivityWithMenu {
 			
 			if(theSpinner.getSelectedItem().toString() != null && !theSpinner.getSelectedItem().toString().equals("") )
 			{					
-				Cursor c = (Cursor) theSpinner.getSelectedItem();
-				Actor chosenActor = new Actor();
-				chosenActor.setName(c.getString(c.getColumnIndex(DBConsts.Actor.name)));
-				chosenActor.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Actor.hire_cost))));
-				//if there is already an entry for this spinner, remove it
-				if(spinnerCache.get(theSpinner.getId()) != null){
-					pc.getCurrentProject().getCast().getActors().remove(spinnerCache.get(theSpinner.getId()));
+				pc.getCurrentProject().getCast().getActors().clear();
+				for(Spinner spin : allSpinners){
+					Cursor c = (Cursor) spin.getSelectedItem();
+					Actor chosenActor = new Actor();
+					chosenActor.setName(c.getString(c.getColumnIndex(DBConsts.Actor.name)));
+					chosenActor.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Actor.hire_cost))));
+					pc.getCurrentProject().getCast().getActors().add(chosenActor);
 				}
-				spinnerCache.put(theSpinner.getId(), chosenActor);
-				pc.getCurrentProject().getCast().getActors().add(chosenActor);
-				//String msg = getString(R.string.actorPrice , "$"+ chosenActor.getPriceToHire() + "M");
-				//GetActor.this.price.setText(msg);
+				String msg = getString(R.string.actorPrice , "$"+ pc.getCurrentProject().getCast().getCostOfActors() + "M");
+				GetActor.this.price.setText(msg);
 				Log.v("CAST", pc.getCurrentProject().getCast().toString());
 				budgetView.setText("$" + (pc.getBudget() - pc.getCurrentProject().getCast().getCostOfActors()));
 			}

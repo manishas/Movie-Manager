@@ -54,7 +54,7 @@
 	<!-- choose actor screen -->
 	<string name="actor">Choose a lead actor to approach:</string>
 	<string name="actor2">Co-star:</string>
-	<string name="actorPrice">Price to hire: %s</string>
+	<string name="actorPrice">Price of Cast: %s</string>
 	
 	<!-- result screen -->
 	<string name="totalBoxOffice">The movie earned a grand total of: %s</string>

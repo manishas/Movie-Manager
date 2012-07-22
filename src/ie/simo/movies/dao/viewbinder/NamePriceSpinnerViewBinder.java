@@ -20,8 +20,6 @@ public abstract class NamePriceSpinnerViewBinder implements ViewBinder {
 	    String name = cursor.getString(NAME_COLUMN);
 	    String price = "$"+cursor.getInt(PRICE_COLUMN) + "M";
 	    
-	    Log.v("viewbinder", cursor.toString());
-	    
 	    textView.setText(name + " - " + price);
 
 	    return true;
