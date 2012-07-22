@@ -27,7 +27,6 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 	private MovieInfo meta2;
 	private MovieInfo meta3;
 	private Intent intent;
-	private ProductionCompany pc;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 		
 		Intent i = getIntent();
 		
-		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
+		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
 		generateScripts();
 		
@@ -80,13 +79,13 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 		intent = new Intent(getApplicationContext(),SetContent.class);
 		
 		if (target == script1)
-			pc.setCurrentProject(meta1);
+			getPc().setCurrentProject(meta1);
 		else if (target == script2)
-			pc.setCurrentProject(meta2);
+			getPc().setCurrentProject(meta2);
 		else if (target == script3)
-			pc.setCurrentProject(meta3);
+			getPc().setCurrentProject(meta3);
 		
-		intent.putExtra(COMPANY, pc);
+		intent.putExtra(COMPANY, getPc());
 		startActivity(intent);
 
 	}

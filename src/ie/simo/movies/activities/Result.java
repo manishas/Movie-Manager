@@ -34,7 +34,6 @@ public class Result extends ActivityWithMenu {
 	private TextView budgetView;
 	private TextView review;
 
-	private ProductionCompany pc;
 	private int shareOfEarnings;
 	private ReviewGenerator reviewer;
 
@@ -54,30 +53,30 @@ public class Result extends ActivityWithMenu {
 		init();
 		
 		Log.v(getLocalClassName(), "Film Details: "
-				+ pc.getCurrentProject().toString());
-		Log.v(getLocalClassName(), "Remaining Budget is: " + pc.getBudget());
+				+ getPc().getCurrentProject().toString());
+		Log.v(getLocalClassName(), "Remaining Budget is: " + getPc().getBudget());
 
 		// HOLY SHIT need to refactor the shit out of this whole method
-		float criticRating = (float) ratingCalc.getRating(pc
-				.getCurrentProject().getDirector().getReputation(), pc
+		float criticRating = (float) ratingCalc.getRating(getPc()
+				.getCurrentProject().getDirector().getReputation(), getPc()
 				.getCurrentProject().getCast());
 		
 		Log.v(getLocalClassName(), "Critic rating is: " + criticRating);
 
 		rating.setRating(criticRating);
 
-		money = calculator.calculate(pc.getCurrentProject(), criticRating);
+		money = calculator.calculate(getPc().getCurrentProject(), criticRating);
 		Log.v(getLocalClassName(), "Gross Earnings: " + money);
 
 		shareOfEarnings = getShareOfEarnings(money);
 		Log.v(getLocalClassName(), "share of earnings: " + shareOfEarnings);
 		String msg = getString(R.string.totalBoxOffice, "$" + money + "M");
 		String profit = getString(R.string.totalProfit,
-				"$" + (money - (pc.getCurrentProject().getTotalCost())) + "M");
+				"$" + (money - (getPc().getCurrentProject().getTotalCost())) + "M");
 
-		budgetView.setText("$" + (pc.getBudget() + shareOfEarnings) + "M");
+		budgetView.setText("$" + (getPc().getBudget() + shareOfEarnings) + "M");
 
-		review.setText(reviewer.writeReview(pc.getCurrentProject(),
+		review.setText(reviewer.writeReview(getPc().getCurrentProject(),
 				criticRating));
 		review.setTextColor(getResources().getColor(android.R.color.black));
 		review.setTypeface(font);
@@ -86,7 +85,7 @@ public class Result extends ActivityWithMenu {
 		cash.setText(msg);
 		profitView.setText(profit);
 
-		MovieSummary summary = createMovieSummary(pc.getCurrentProject());
+		MovieSummary summary = createMovieSummary(getPc().getCurrentProject());
 
 		saveToDatabase(summary);
 
@@ -115,7 +114,7 @@ public class Result extends ActivityWithMenu {
 		findAllViewsById();
 
 		Intent i = getIntent();
-		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
+		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 	}
 
 	private void saveToDatabase(MovieSummary summary) {
@@ -126,7 +125,7 @@ public class Result extends ActivityWithMenu {
 		
 		ProductionCompanyDbAdapter companyDb = new ProductionCompanyDbAdapter(this);
 		companyDb.openWritable();
-		companyDb.updateCompanyDetails(pc);
+		companyDb.updateCompanyDetails(getPc());
 		companyDb.close();
 	}
 
@@ -151,27 +150,27 @@ public class Result extends ActivityWithMenu {
 		
 		Intent i = new Intent();
 		i.setClass(Result.this, MakeFilmActivity.class);
-		pc.setBudget(pc.getBudget() + shareOfEarnings);
+		getPc().setBudget(getPc().getBudget() + shareOfEarnings);
 		
-		MovieSummary summary = createMovieSummary(pc.getCurrentProject());
-		if(pc.getBackCatalogue() == null){
-			pc.setBackCatalogue(new ArrayList<MovieSummary>());
+		MovieSummary summary = createMovieSummary(getPc().getCurrentProject());
+		if(getPc().getBackCatalogue() == null){
+			getPc().setBackCatalogue(new ArrayList<MovieSummary>());
 		}
-		pc.getBackCatalogue().add(summary);
-		pc.setCurrentProject(null);
-		i.putExtra(COMPANY, pc);
+		getPc().getBackCatalogue().add(summary);
+		getPc().setCurrentProject(null);
+		i.putExtra(COMPANY, getPc());
 
 		startActivity(i);
 	}
 
 	private void setCompanyRep() {
-		int previousLevel = pc.getReputation()/15;
+		int previousLevel = getPc().getReputation()/15;
 		
 		int rep = 1 + (money/75);
 		Log.v("Rep: ", rep+"");
-		pc.setReputation(pc.getReputation() + rep);
+		getPc().setReputation(getPc().getReputation() + rep);
 		
-		if(pc.getReputation()/15 > previousLevel){
+		if(getPc().getReputation()/15 > previousLevel){
 	//		longToast("Your reputation has increased, you will now be able to hire better Actors and Directors!");
 		}
 	}
@@ -187,7 +186,7 @@ public class Result extends ActivityWithMenu {
 	// TODO will have to change how this works
 	private int getShareOfEarnings(int totalEarnings) {
 
-		int profit = totalEarnings - (pc.getCurrentProject().getTotalCost());
+		int profit = totalEarnings - (getPc().getCurrentProject().getTotalCost());
 		Log.v(getLocalClassName(), "Profit: " + profit);
 
 		return (profit > 0) ? (profit / 5) : 0;

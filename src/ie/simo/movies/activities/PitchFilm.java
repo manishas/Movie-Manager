@@ -30,7 +30,6 @@ public class PitchFilm extends ActivityWithMenu {
 	private Button cancel;
 	private TableLayout table;
 	private TextView budgetView;
-	private ProductionCompany pc;
 	private DistributorDBAdapter db;
 
 	@Override
@@ -40,9 +39,9 @@ public class PitchFilm extends ActivityWithMenu {
 		findAllViewsById();
 		
 		Intent i = getIntent();
-		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
+		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
-		budgetView.setText("$" + pc.getBudget() + "M");
+		budgetView.setText("$" + getPc().getBudget() + "M");
 		
 		fillTable();
 		
@@ -51,7 +50,7 @@ public class PitchFilm extends ActivityWithMenu {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent();
-				i.putExtra(COMPANY, pc);
+				i.putExtra(COMPANY, getPc());
 				i.setClass(getApplicationContext(), MakeFilmActivity.class);
 				startActivity(i);
 			}
@@ -105,7 +104,7 @@ public class PitchFilm extends ActivityWithMenu {
 	        public void onClick(View v) {
 	        	String tag = (String) button.getTag();
 	        	if(tag.charAt(0)=='!'){
-		        	int offer = new Distributor().makeOffer(pc.getCurrentProject().getGenre(), pc.getCurrentProject().getRatingDetails());
+		        	int offer = new Distributor().makeOffer(getPc().getCurrentProject().getGenre(), getPc().getCurrentProject().getRatingDetails());
 					button.setText("$" + offer+ "M");
 					button.setTag(tag.substring(1));
 					toastOffer((String)button.getTag(),offer);
@@ -116,8 +115,8 @@ public class PitchFilm extends ActivityWithMenu {
 	        		Intent intent = new Intent(getApplicationContext(), GetDirector.class);
 	        		
 	        		intent.putExtra(DISTRIBUTOR, d);
-	        		pc.setBudget(pc.getBudget() + convertButtonLabelToInt(button.getText().toString()));
-	        		intent.putExtra(COMPANY, pc);
+	        		getPc().setBudget(getPc().getBudget() + convertButtonLabelToInt(button.getText().toString()));
+	        		intent.putExtra(COMPANY, getPc());
 	        		startActivity(intent);
 	        	}
 	        }

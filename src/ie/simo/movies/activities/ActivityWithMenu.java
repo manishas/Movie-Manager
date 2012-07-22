@@ -1,6 +1,8 @@
 package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
+import ie.simo.movies.dao.ProductionCompanyDbAdapter;
+import ie.simo.movies.domain.ProductionCompany;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -8,6 +10,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public abstract class ActivityWithMenu extends Activity {
+	
+	private ProductionCompany pc;
 
 	 // Initiating Menu XML file (menu.xml)
     @Override
@@ -31,15 +35,38 @@ public abstract class ActivityWithMenu extends Activity {
     		intent.addCategory(Intent.CATEGORY_HOME);
     	}
     	else if(item.getTitle().equals("Main Menu")){
+    		save();
     		intent.setClass(this, StartActivity.class);
     	}
     	else{
+    		save();
     		intent.setClass(this, BoxOffice.class);
     	}
     	
     	startActivity(intent);
     	
         return true;
-    }    
+    } 
+    
+    private void save(){
+    	ProductionCompanyDbAdapter companyDb = new ProductionCompanyDbAdapter(this);
+		companyDb.openWritable();
+		companyDb.updateCompanyDetails(pc);
+		companyDb.close();
+    }
+
+	/**
+	 * @return the pc
+	 */
+	public ProductionCompany getPc() {
+		return pc;
+	}
+
+	/**
+	 * @param pc the pc to set
+	 */
+	public void setPc(ProductionCompany pc) {
+		this.pc = pc;
+	}
 	
 }

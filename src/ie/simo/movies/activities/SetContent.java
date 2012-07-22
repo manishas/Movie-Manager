@@ -25,8 +25,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListener{
-
-	private ProductionCompany pc;
 	
 	private Censor censor;
 	
@@ -58,7 +56,7 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 		getStrings();
 		
 		Intent i = getIntent();
-		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
+		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
 		findAllViewsById();
 		setListeners();
@@ -67,7 +65,7 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 		onProgressChanged(sexLevel, 0, false);
 		onProgressChanged(languageLevel, 0, false);
 		
-		title.setText(getString(R.string.contentTitle) + pc.getCurrentProject().toButtonText());
+		title.setText(getString(R.string.contentTitle) + getPc().getCurrentProject().toButtonText());
 	}
 	
 	private void setListeners() {
@@ -80,7 +78,7 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent();
-				i.putExtra(COMPANY, pc);
+				i.putExtra(COMPANY, getPc());
 				i.setClass(SetContent.this, PitchFilm.class);
 				startActivity(i);
 			}
@@ -147,7 +145,7 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 
 		setRatingImage(thisMovie.getRating());
 		
-		pc.getCurrentProject().setRatingDetails(thisMovie);
+		getPc().getCurrentProject().setRatingDetails(thisMovie);
 	}
 
 	private void setRatingImage(Rating myRating) {

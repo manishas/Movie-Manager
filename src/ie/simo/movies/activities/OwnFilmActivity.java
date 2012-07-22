@@ -26,8 +26,6 @@ public class OwnFilmActivity extends ActivityWithMenu {
 	private Spinner spinner;
 	private Button director;
 	private MovieInfo info;
-	
-	private ProductionCompany pc;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +34,7 @@ public class OwnFilmActivity extends ActivityWithMenu {
 		
 		Intent i = getIntent();
 		
-		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
+		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
 		
 		findAllViewsById();
@@ -54,7 +52,7 @@ public class OwnFilmActivity extends ActivityWithMenu {
 					info.setTitle(text.getText().toString());
 					info.setGenre((Genre)spinner.getSelectedItem());
 					Intent intent = new Intent(getApplicationContext(), SetContent.class);
-					intent.putExtra(COMPANY, pc);
+					intent.putExtra(COMPANY, getPc());
 					startActivity(intent);
 				}
 				else{

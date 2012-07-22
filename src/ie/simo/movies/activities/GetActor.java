@@ -44,7 +44,6 @@ public class GetActor extends ActivityWithMenu {
 	private Button produceFilm;
 	private Button addActor;
 	private ActorDbAdapter db;
-	private ProductionCompany pc;
 	private View view;
 	private final String NO_CASH = "You cannot afford this cast! Choose again";
 	private final String SAME_ACTOR = "You cannot hire the same actor twice! Choose again";
@@ -65,13 +64,13 @@ public class GetActor extends ActivityWithMenu {
 		fillSpinner(spinner);
 		allSpinners.add(spinner);
 		
-		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);
-		Log.v(getLocalClassName(), "budget before actor: " + pc.getBudget());
-		chosen.setText(pc.getCurrentProject().toButtonText());
+		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
+		Log.v(getLocalClassName(), "budget before actor: " + getPc().getBudget());
+		chosen.setText(getPc().getCurrentProject().toButtonText());
 		String msg = getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
-		budgetView.setText(pc.getBudget()+"");
+		budgetView.setText(getPc().getBudget()+"");
 		
 		spinner.setOnItemSelectedListener(new ActorSelectionListener());
 		
@@ -85,10 +84,10 @@ public class GetActor extends ActivityWithMenu {
 					db.close();
 					Intent i = new Intent();
 					i.setClass(GetActor.this, Result.class);
-					Log.v(getLocalClassName(), "Chosen cast: " + pc.getCurrentProject().getCast().toString());
-					pc.setBudget(pc.getBudget()  - pc.getCurrentProject().getCast().getCostOfActors());
-					i.putExtra(COMPANY, pc);
-					Log.v(getLocalClassName(), "budget after cast: " + (pc.getBudget() - pc.getCurrentProject().getCast().getCostOfActors()));
+					Log.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentProject().getCast().toString());
+					getPc().setBudget(getPc().getBudget()  - getPc().getCurrentProject().getCast().getCostOfActors());
+					i.putExtra(COMPANY, getPc());
+					Log.v(getLocalClassName(), "budget after cast: " + (getPc().getBudget() - getPc().getCurrentProject().getCast().getCostOfActors()));
 					
 					startActivity(i);
 				}
@@ -134,13 +133,13 @@ public class GetActor extends ActivityWithMenu {
 
 	private boolean isPossibleSelection() {
 		HashSet<Actor> tempSet = new HashSet<Actor>();
-		tempSet.addAll(pc.getCurrentProject().getCast().getActors());
+		tempSet.addAll(getPc().getCurrentProject().getCast().getActors());
 		//ensure that all actor selections are unique
-		return pc.getCurrentProject().getCast().getActors().size() == tempSet.size();
+		return getPc().getCurrentProject().getCast().getActors().size() == tempSet.size();
 	}
 
 	private boolean isUnderBudget() {
-		return pc.getBudget() - pc.getCurrentProject().getCast().getCostOfActors() >= 0;
+		return getPc().getBudget() - getPc().getCurrentProject().getCast().getCostOfActors() >= 0;
 	}
 	
 	private void findAllViewsById() {
@@ -177,18 +176,18 @@ public class GetActor extends ActivityWithMenu {
 			
 			if(theSpinner.getSelectedItem().toString() != null && !theSpinner.getSelectedItem().toString().equals("") )
 			{					
-				pc.getCurrentProject().getCast().getActors().clear();
+				getPc().getCurrentProject().getCast().getActors().clear();
 				for(Spinner spin : allSpinners){
 					Cursor c = (Cursor) spin.getSelectedItem();
 					Actor chosenActor = new Actor();
 					chosenActor.setName(c.getString(c.getColumnIndex(DBConsts.Actor.name)));
 					chosenActor.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Actor.hire_cost))));
-					pc.getCurrentProject().getCast().getActors().add(chosenActor);
+					getPc().getCurrentProject().getCast().getActors().add(chosenActor);
 				}
-				String msg = getString(R.string.actorPrice , "$"+ pc.getCurrentProject().getCast().getCostOfActors() + "M");
+				String msg = getString(R.string.actorPrice , "$"+ getPc().getCurrentProject().getCast().getCostOfActors() + "M");
 				GetActor.this.price.setText(msg);
-				Log.v("CAST", pc.getCurrentProject().getCast().toString());
-				budgetView.setText("$" + (pc.getBudget() - pc.getCurrentProject().getCast().getCostOfActors()));
+				Log.v("CAST", getPc().getCurrentProject().getCast().toString());
+				budgetView.setText("$" + (getPc().getBudget() - getPc().getCurrentProject().getCast().getCostOfActors()));
 			}
 		}
 		

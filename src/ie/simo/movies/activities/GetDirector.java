@@ -33,7 +33,6 @@ public class GetDirector extends ActivityWithMenu {
 	private Spinner spinner;
 	private Button produceFilm;
 	private DirectorDbAdapter db;
-	private ProductionCompany pc;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,13 +46,13 @@ public class GetDirector extends ActivityWithMenu {
 		Intent i = getIntent();
 		fillSpinner();
 		
-		pc = (ProductionCompany) i.getSerializableExtra(COMPANY);		
+		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));		
 
-		chosen.setText(pc.getCurrentProject().toButtonText());
+		chosen.setText(getPc().getCurrentProject().toButtonText());
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
-		budgetView.setText(pc.getBudget()+"");
+		budgetView.setText(getPc().getBudget()+"");
 		
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -67,12 +66,12 @@ public class GetDirector extends ActivityWithMenu {
 					Director chosenDirector = new Director();
 					chosenDirector.setName(c.getString(c.getColumnIndex(DBConsts.Director.name)));
 					chosenDirector.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Director.hire_cost))));
-					pc.getCurrentProject().setDirector(chosenDirector);
+					getPc().getCurrentProject().setDirector(chosenDirector);
 
 					String msg = getString(R.string.directorPrice , "$"+chosenDirector.getPriceToHire()+"M");
 					GetDirector.this.price.setText(msg);
 					
-					budgetView.setText("$" + (pc.getBudget() - chosenDirector.getPriceToHire()));
+					budgetView.setText("$" + (getPc().getBudget() - chosenDirector.getPriceToHire()));
 				}
 			}
 
@@ -92,8 +91,8 @@ public class GetDirector extends ActivityWithMenu {
 					Intent i = new Intent();
 					i.setClass(GetDirector.this, GetActor.class);
 					
-					pc.setBudget(pc.getBudget() - pc.getCurrentProject().getDirector().getPriceToHire());
-					i.putExtra(COMPANY, pc);
+					getPc().setBudget(getPc().getBudget() - getPc().getCurrentProject().getDirector().getPriceToHire());
+					i.putExtra(COMPANY, getPc());
 					
 					startActivity(i);
 				}
@@ -113,7 +112,7 @@ public class GetDirector extends ActivityWithMenu {
 	}
 	
 	private boolean isValid(){	
-		return (pc.getBudget() - pc.getCurrentProject().getDirector().getPriceToHire() >= 0)? true : false;
+		return (getPc().getBudget() - getPc().getCurrentProject().getDirector().getPriceToHire() >= 0)? true : false;
 	}
 	
 	
