@@ -23,7 +23,7 @@
 	
 	<!-- EULA/whats new -->
 	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add updates at least every two weeks. If you have a suggestion please contact me or leave a comment!</string>
-	<string name="updates">Updates in this version (22th July): Improved UI, save/load games. Hire multiple actors. A quit button for David :-) </string>
+	<string name="updates">Updates in this version (23rd July): Fix crash on "Make own script" screen. Improved UI, save/load games. Hire multiple actors. A quit button for David :-) </string>
 	
 	<!-- start screen -->
 	<string name="newgame">New Game</string>

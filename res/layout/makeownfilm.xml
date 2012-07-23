@@ -1,20 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-	<LinearLayout
-	  xmlns:android="http://schemas.android.com/apk/res/android"
-	  android:orientation="vertical"
-	  android:layout_width="match_parent"
-	  android:layout_height="wrap_content">
-	  <include layout="@layout/scorebar"/>
-	    <TextView android:text="@+string/enterfilmname" android:id="@+id/enterfilmname" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-	    <EditText android:id="@+id/nametextfield" android:inputType="textCapWords" android:layout_width="match_parent" android:maxLength="50">
-	        <requestFocus></requestFocus>
-	    </EditText>
-	    <TextView android:text="@+string/selectgenre" android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-	    <Spinner android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/genrespinner"></Spinner>
-	    <Button android:layout_height="wrap_content" android:id="@+id/getdirectorbutton" android:text="@+string/makethisfilm" android:layout_gravity="center" android:layout_width="138dp"></Button>
-	    
-	</LinearLayout>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/scorebar" />
+
+        <TextView
+            android:id="@+id/enterfilmname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/enterfilmname" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/nametextfield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:maxLength="50" >
+
+            <requestFocus>
+            </requestFocus>
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/selectgenre" >
+        </TextView>
+
+        <Spinner
+            android:id="@+id/genrespinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </Spinner>
+
+        <Button
+            android:id="@+id/getdirectorbutton"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@+string/makethisfilm" >
+        </Button>
+    </LinearLayout>
+
 </ScrollView>
