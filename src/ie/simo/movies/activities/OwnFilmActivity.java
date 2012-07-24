@@ -51,6 +51,7 @@ public class OwnFilmActivity extends ActivityWithMenu {
 					info = new MovieInfo();
 					info.setTitle(text.getText().toString());
 					info.setGenre((Genre)spinner.getSelectedItem());
+					getPc().setCurrentProject(info);
 					Intent intent = new Intent(getApplicationContext(), SetContent.class);
 					intent.putExtra(COMPANY, getPc());
 					startActivity(intent);

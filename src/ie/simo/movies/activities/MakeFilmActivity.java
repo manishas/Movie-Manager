@@ -67,7 +67,8 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 			
 			@Override
 			public void onClick(View v) {
-				intent = new Intent(getApplicationContext(), OwnFilmActivity.class);		
+				intent = new Intent(getApplicationContext(), OwnFilmActivity.class);
+				intent.putExtra(COMPANY, getPc());
 				startActivity(intent);
 			}
 		});
