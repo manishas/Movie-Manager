@@ -1,5 +1,5 @@
 package ie.simo.movies.dao.viewbinder;
 
-public class DirectorSpinnerViewBinder extends NamePriceSpinnerViewBinder {
+public class DirectorSpinnerViewBinder extends NamePriceBonusSpinnerViewBinder {
 
 }

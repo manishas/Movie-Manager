@@ -1,22 +1,15 @@
 package ie.simo.movies.activities;
 
+import static ie.simo.movies.util.Consts.COMPANY;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.DirectorDbAdapter;
 import ie.simo.movies.dao.viewbinder.DirectorSpinnerViewBinder;
 import ie.simo.movies.domain.Director;
-import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
-
-import static ie.simo.movies.util.Consts.COMPANY;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -128,13 +121,16 @@ public class GetDirector extends ActivityWithMenu {
 	
 	private void fillSpinner(){
 		 
-		Cursor c = db.fetchAllDirectors();
+		Cursor c = db.getAllDirectorsWithBonuses();
 		startManagingCursor(c);
 				
 		// create an array to specify which fields we want to display
-		String[] from = new String[]{DBConsts.Director.name, DBConsts.Director.hire_cost};
+		String[] from = new String[]{DBConsts.Director.name, DBConsts.Director.hire_cost, DBConsts.Director.reputation,
+									 DBConsts.Genre.action, DBConsts.Genre.horror, 
+									 DBConsts.Genre.romance,  DBConsts.Genre.comedy,
+									 DBConsts.Genre.drama,  DBConsts.Genre.scifi,  DBConsts.Genre.kids};
 		// create an array of the display item we want to bind our data to
-		int[] to = new int[]{android.R.id.text1};
+		int[] to = new int[]{android.R.id.text1, android.R.id.icon};
 		// create simple cursor adapter
 		SimpleCursorAdapter adapter =
 		  new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, c, from, to );

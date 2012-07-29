@@ -1,14 +1,17 @@
 package ie.simo.movies.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Person implements Serializable{
 
 	private static final long serialVersionUID = -5518642644274052849L;
 	private String name;
 	private int priceToHire;
-	//persons reputation - affects box office score
+	//person's reputation - affects box office score
 	private int reputation;
+	private Set<Genre> bonuses = new HashSet<Genre>();
 	
 	
 	public int getPriceToHire() {
@@ -70,5 +73,15 @@ public abstract class Person implements Serializable{
 			return false;
 		}
 		return true;
+	}
+	public Set<Genre> getBonuses() {
+		return bonuses;
+	}
+	public void setBonuses(Set<Genre> bonuses) {
+		this.bonuses = bonuses;
+	}
+	
+	public void addBonus(Genre genre){
+		this.bonuses.add(genre);
 	}
 }
