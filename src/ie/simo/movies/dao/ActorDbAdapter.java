@@ -36,19 +36,20 @@ public class ActorDbAdapter {
 	
 	public Cursor getAllActorsWithBonuses(){
 		String query = "select a.*," +
-        "max(case when g._id = 1 then g.genre_name end) as Action," +
-        "max(case when g._id = 2 then g.genre_name end) as Horror," +
-        "max(case when g._id = 3 then g.genre_name end) as Romance," +
-        "max(case when g._id = 4 then g.genre_name end) as Comedy," +
-        "max(case when g._id = 5 then g.genre_name end) as Drama," +
-        "max(case when g._id = 6 then g.genre_name end) as SciFi," +
-        "max(case when g._id = 7 then g.genre_name end) as Kids" +
-        "from actor a join" +
-        "actor_bonus ab" +
-        "on a._id = ab.actor_id join" +
-        "genre g" +
-        "on ab.genre_id = g._id" +
-        "group by a.actor_name";
+        "max(case when g._id = 1 then g.genre_name end) as Action, " +
+        "max(case when g._id = 2 then g.genre_name end) as Horror, " +
+        "max(case when g._id = 3 then g.genre_name end) as Romance, " +
+        "max(case when g._id = 4 then g.genre_name end) as Comedy, " +
+        "max(case when g._id = 5 then g.genre_name end) as Drama, " +
+        "max(case when g._id = 6 then g.genre_name end) as SciFi, " +
+        "max(case when g._id = 7 then g.genre_name end) as Kids " +
+        "from actor a join " +
+        "actor_bonus ab " +
+        "on a._id = ab.actor_id join " +
+        "genre g " +
+        "on ab.genre_id = g._id "
+        + "group by a.actor_name " + 
+        "order by a.hire_cost";
 		
 		return database.rawQuery(query, null);
 	}

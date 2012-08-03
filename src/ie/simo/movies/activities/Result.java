@@ -32,6 +32,7 @@ public class Result extends ActivityWithMenu {
 	private TextView cash;
 	private TextView profitView;
 	private TextView budgetView;
+	private TextView compName;
 	private TextView review;
 
 	private int shareOfEarnings;
@@ -134,6 +135,7 @@ public class Result extends ActivityWithMenu {
 		rating = (RatingBar) this.findViewById(R.id.ratingBar1);
 		cash = (TextView) this.findViewById(R.id.totalEarnings);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		compName = (TextView)this.findViewById(R.id.companyName);
 		profitView = (TextView) this.findViewById(R.id.cashmoney);
 		review = (TextView) this.findViewById(R.id.review);
 	}

@@ -23,6 +23,7 @@ public class GetDirector extends ActivityWithMenu {
 	private TextView chosen;
 	private TextView price;
 	private TextView budgetView;
+	private TextView compName;
 	private Spinner spinner;
 	private Button produceFilm;
 	private DirectorDbAdapter db;
@@ -45,7 +46,7 @@ public class GetDirector extends ActivityWithMenu {
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
-		budgetView.setText(getPc().getBudget()+"");
+		setTitleBar();
 		
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -98,6 +99,11 @@ public class GetDirector extends ActivityWithMenu {
 		
 		
 	}
+
+	private void setTitleBar() {
+		budgetView.setText(getPc().getBudget()+"");
+		compName.setText(getPc().getName());
+	}
 	
 	private void  makeToast(){
 		Toast.makeText(this, "You can't afford this director! Choose again", Toast.LENGTH_SHORT).show();
@@ -117,6 +123,7 @@ public class GetDirector extends ActivityWithMenu {
 		spinner = (Spinner) this.findViewById(R.id.spinner1);
 		produceFilm = (Button) this.findViewById(R.id.produceFilm);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		compName = (TextView)this.findViewById(R.id.companyName);
 	}
 	
 	private void fillSpinner(){

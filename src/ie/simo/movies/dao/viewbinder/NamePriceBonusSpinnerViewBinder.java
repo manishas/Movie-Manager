@@ -26,7 +26,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 	    
 	    String bonuses = getBonuses(cursor);
 	    
-	    textView.setText(name + " - " + price +'\t'+ bonuses);
+	    textView.setText(name + " - " + price +" - "+ bonuses);
 
 	    return true;
 	}

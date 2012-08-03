@@ -40,6 +40,7 @@ public class GetActor extends ActivityWithMenu {
 	private TextView chosen;
 	private TextView price;
 	private TextView budgetView;
+	private TextView compName;
 	private Spinner spinner;
 	private Button produceFilm;
 	private Button addActor;
@@ -61,16 +62,18 @@ public class GetActor extends ActivityWithMenu {
 
 		findAllViewsById();
 		Intent i = getIntent();
+		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
+		
 		fillSpinner(spinner);
 		allSpinners.add(spinner);
 		
-		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
+		
 		Log.v(getLocalClassName(), "budget before actor: " + getPc().getBudget());
 		chosen.setText(getPc().getCurrentProject().toButtonText());
 		String msg = getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
-		budgetView.setText(getPc().getBudget()+"");
+		setTitleBar();
 		
 		spinner.setOnItemSelectedListener(new ActorSelectionListener());
 		
@@ -150,6 +153,12 @@ public class GetActor extends ActivityWithMenu {
 		addActor = (Button) this.findViewById(R.id.addActor);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 		view = findViewById(R.id.actorLayout);
+		compName = (TextView) findViewById(R.id.companyName);
+	}
+	
+	private void setTitleBar() {
+		budgetView.setText(getPc().getBudget()+"");
+		compName.setText(getPc().getName());
 	}
 	
 	private void fillSpinner(Spinner s){

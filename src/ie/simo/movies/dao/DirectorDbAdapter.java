@@ -46,8 +46,9 @@ public class DirectorDbAdapter {
         "director_bonus db " +
         "on d._id = db.director_id join " +
         "genre g " +
-        "on db.genre_id = g._id " +
-        "group by d.director_name ";
+        "on db.genre_id = g._id " 
+        + "group by d.director_name "
+        + "order by d.hire_cost";
 		return database.rawQuery(query, null);
 	}
 }
