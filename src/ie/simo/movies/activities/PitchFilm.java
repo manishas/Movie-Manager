@@ -37,13 +37,12 @@ public class PitchFilm extends ActivityWithMenu {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pitch);
-		findAllViewsById();
-		setTitleBar();
 		
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
-		budgetView.setText("$" + getPc().getBudget() + "M");
+		findAllViewsById();
+		setTitleBar();
 		
 		fillTable();
 		
