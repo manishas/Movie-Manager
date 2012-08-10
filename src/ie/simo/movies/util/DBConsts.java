@@ -7,6 +7,7 @@ public class DBConsts {
 		public static final String name = "actor_name";
 		public static final String hire_cost = "actor_hire_cost";
 		public static final String reputation = "actor_reputation";	
+		public static final String gender = "gender";
 	}
 	
 	public static class Director{
@@ -44,4 +45,13 @@ public class DBConsts {
 		public static final String lastModified = "last_modified";
 	}
 
+	public static class Genre{
+		public static final String action = "Action"; 
+		public static final String horror = "Horror";
+		public static final String romance = "Romance";
+		public static final String comedy = "Comedy"; 
+		public static final String drama = "Drama";
+		public static final String scifi = "SciFi";
+		public static final String kids = "Kids";
+	}
 }

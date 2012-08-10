@@ -44,6 +44,9 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 	private String [] sex;
 	private String [] language;
 	
+	private TextView budgetView;
+	private TextView compName;
+	
 	
 	public void onCreate(Bundle savedInstanceState) {
 		
@@ -59,6 +62,7 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
 		findAllViewsById();
+		setTitleBar();
 		setListeners();
 		
 		onProgressChanged(violenceLevel, 0, false);
@@ -148,6 +152,11 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 		getPc().getCurrentProject().setRatingDetails(thisMovie);
 	}
 
+	private void setTitleBar() {
+		budgetView.setText(getPc().getBudget()+"");
+		compName.setText(getPc().getName());
+	}
+	
 	private void setRatingImage(Rating myRating) {
 
 		switch(myRating){
@@ -175,6 +184,8 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 		pitchFilm = (Button) this.findViewById(R.id.pitchButton);
 		help = (ImageButton) this.findViewById(R.id.contentHelp);
 		title = (TextView) this.findViewById(R.id.setContentActivityTitle);
+		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		compName = (TextView)this.findViewById(R.id.companyName);
 		
 	}
 

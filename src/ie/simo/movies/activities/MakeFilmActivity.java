@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import static ie.simo.movies.util.Consts.COMPANY;
@@ -28,6 +29,9 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 	private MovieInfo meta3;
 	private Intent intent;
 
+	private TextView budgetView;
+	private TextView compName;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,7 +42,7 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 		Intent i = getIntent();
 		
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
-		
+		setTitleBar();
 		generateScripts();
 		
 		/*OnClickListener notImplYetListener = new OnClickListener() {
@@ -106,6 +110,13 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 		script3 = (Button) this.findViewById(R.id.script3);
 		getMore = (Button) this.findViewById(R.id.makeOwn);
 		makeOwn = (Button) this.findViewById(R.id.makeownfilm);
+		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		compName = (TextView) findViewById(R.id.companyName);
+	}
+	
+	private void setTitleBar() {
+		budgetView.setText(getPc().getBudget()+"");
+		compName.setText(getPc().getName());
 	}
 
 	public void longToast(CharSequence message) {
