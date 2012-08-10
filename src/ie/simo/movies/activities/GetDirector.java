@@ -128,16 +128,13 @@ public class GetDirector extends ActivityWithMenu {
 	
 	private void fillSpinner(){
 		 
-		Cursor c = db.getAllDirectorsWithBonuses();
+		Cursor c = db.fetchAllDirectors();
 		startManagingCursor(c);
 				
 		// create an array to specify which fields we want to display
-		String[] from = new String[]{DBConsts.Director.name, DBConsts.Director.hire_cost, DBConsts.Director.reputation,
-									 DBConsts.Genre.action, DBConsts.Genre.horror, 
-									 DBConsts.Genre.romance,  DBConsts.Genre.comedy,
-									 DBConsts.Genre.drama,  DBConsts.Genre.scifi,  DBConsts.Genre.kids};
+		String[] from = new String[]{DBConsts.Director.name, DBConsts.Director.hire_cost};
 		// create an array of the display item we want to bind our data to
-		int[] to = new int[]{android.R.id.text1, android.R.id.icon};
+		int[] to = new int[]{android.R.id.text1};
 		// create simple cursor adapter
 		SimpleCursorAdapter adapter =
 		  new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, c, from, to );
