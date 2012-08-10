@@ -1,30 +1,21 @@
 package ie.simo.movies.activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ActorDbAdapter;
 import ie.simo.movies.dao.viewbinder.ActorSpinnerViewBinder;
 import ie.simo.movies.domain.Actor;
-import ie.simo.movies.domain.Cast;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 
 import static ie.simo.movies.util.Consts.COMPANY;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.SparseArray;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;

@@ -26,6 +26,7 @@
 		<activity android:label="Box Office" android:name=".activities.BoxOffice"/>
 		<activity android:label="Your Movies" android:name=".activities.PersonalBest"/>
 		<activity android:label="Load Game" android:name=".activities.ContinueGameActivity"/>
+		<activity android:label="Special Effects" android:name=".activities.SpecialEffects"/>
 		
 	</application>
 </manifest>
