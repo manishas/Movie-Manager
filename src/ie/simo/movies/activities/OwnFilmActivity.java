@@ -39,8 +39,9 @@ public class OwnFilmActivity extends ActivityWithMenu {
 		
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
-		setTitleBar();
 		findAllViewsById();
+		
+		setTitleBar();
 		
 		Genre [] genres = Genre.values();
 		ArrayAdapter<Genre> adapter = new ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, genres);

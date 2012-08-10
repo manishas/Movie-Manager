@@ -112,10 +112,12 @@ public class Result extends ActivityWithMenu {
 		calculator = new EarningsCalculatorWithActors();
 		ratingCalc = new RatingCalculator();
 
-		findAllViewsById();
-
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
+		
+		findAllViewsById();
+		
+		setTitleBar();
 	}
 
 	private void saveToDatabase(MovieSummary summary) {
@@ -196,5 +198,10 @@ public class Result extends ActivityWithMenu {
 
 	public void longToast(CharSequence message) {
 		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+	}
+	
+	private void setTitleBar() {
+		budgetView.setText(getPc().getBudget()+"");
+		compName.setText(getPc().getName());
 	}
 }

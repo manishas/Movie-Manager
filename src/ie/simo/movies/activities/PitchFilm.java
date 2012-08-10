@@ -38,6 +38,7 @@ public class PitchFilm extends ActivityWithMenu {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pitch);
 		findAllViewsById();
+		setTitleBar();
 		
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
