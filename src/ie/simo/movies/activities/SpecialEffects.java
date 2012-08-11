@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
@@ -17,6 +18,7 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 	private SeekBar effectsLevel;
 	private TextView effectsDesc;
 	private String [] sfxComments;
+	private Spinner sfxCompanies;
 	
 	private TextView budgetView;
 	private TextView compName;
@@ -56,10 +58,9 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 	private void findAllViewsById() {
 		effectsDesc = (TextView) this.findViewById(R.id.sfxDesc);
 		effectsLevel= (SeekBar) this.findViewById(R.id.sfx);
-
+		sfxCompanies = (Spinner) this.findViewById(R.id.companiesSpinner);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 		compName = (TextView)this.findViewById(R.id.companyName);
-		
 	}
 	
 	/**

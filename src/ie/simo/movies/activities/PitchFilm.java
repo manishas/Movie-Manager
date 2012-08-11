@@ -1,7 +1,7 @@
 package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
-import ie.simo.movies.dao.DistributorDBAdapter;
+import ie.simo.movies.dao.DistributorDbAdapter;
 import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
@@ -31,7 +31,7 @@ public class PitchFilm extends ActivityWithMenu {
 	private TableLayout table;
 	private TextView budgetView;
 	private TextView compName;
-	private DistributorDBAdapter db;
+	private DistributorDbAdapter db;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,9 +62,9 @@ public class PitchFilm extends ActivityWithMenu {
 	 * Get Distributor data and add rows
 	 */
 	private void fillTable() {
-		db = new DistributorDBAdapter(this);
+		db = new DistributorDbAdapter(this);
 		db.open();
-		Cursor c = db.fetchAllDistributors();
+		Cursor c = db.selectAll();
 		if(c.getCount() > 0) {
 			c.moveToFirst();
 			while(!c.isAfterLast()){
