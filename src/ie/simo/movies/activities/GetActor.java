@@ -77,7 +77,7 @@ public class GetActor extends ActivityWithMenu {
 					
 					db.close();
 					Intent i = new Intent();
-					i.setClass(GetActor.this, Result.class);
+					i.setClass(GetActor.this, SpecialEffects.class);
 					Log.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentProject().getCast().toString());
 					getPc().setBudget(getPc().getBudget()  - getPc().getCurrentProject().getCast().getCostOfActors());
 					i.putExtra(COMPANY, getPc());

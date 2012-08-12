@@ -75,6 +75,15 @@
 	distributor_name text)
 </statement>
 
+<statement>
+	create table if not exists sfx 
+	(_id integer primary key autoincrement, 
+	sfx_name text not null, 
+	sfx_hire_cost integer,
+	sfx_reputation integer,
+	sfx_credits text)
+</statement>
+
 
 <!--genre/earned/cost/prod/dir/dist -->
 <statement>insert into movie (movie_name, tagline, genre_id, earnings, cost, producer_id, director_id, distributor_id) values ('Avatar', 'Enter the world', 1, 760, 310, '1', 1, 1)</statement>
@@ -795,4 +804,11 @@
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tommy Wiseau', 2, 10, 'm')</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sam Worthington', 8, 50, 'm')</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Mark Hamill', 12, 50, 'm')</statement>
+
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Industrial Light and Magic', 5, 90, 'Titanic, The Avengers, Transformers')</statement>
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Weta Digital', 4, 70, 'Lord of the Rings, Avatar, Prometheus')</statement>
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Double Negative', 5, 90, 'Inception, Harry Potter, The Dark Knight')</statement>
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Moving Picture Company', 5, 90, 'John Carter, Night at the Museum, Watchmen')</statement>
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Digital Domain', 5, 90, 'Tron:Legacy, The Fifth Element, Apollo 13')</statement>
+
 </sql>

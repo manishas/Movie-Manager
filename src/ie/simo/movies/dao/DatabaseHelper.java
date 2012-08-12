@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static final String DATABASE_NAME = "moviemanager";
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 4;
 
 	 protected Context context;
 	        
@@ -32,7 +32,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public void onCreate(SQLiteDatabase db) {
                 String s;
                 try {
-                	Toast.makeText(context, "Building database...", 2000);
                     InputStream in = context.getResources().openRawResource(R.raw.sql);
                     DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
                     Document doc = builder.parse(in, null);
