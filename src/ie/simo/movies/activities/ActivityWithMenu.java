@@ -30,11 +30,7 @@ public abstract class ActivityWithMenu extends Activity {
     public boolean onOptionsItemSelected(MenuItem item)
     {
     	Intent intent = new Intent();
-    	if(item.getTitle().equals("Quit")){
-    		intent = new Intent(Intent.ACTION_MAIN);
-    		intent.addCategory(Intent.CATEGORY_HOME);
-    	}
-    	else if(item.getTitle().equals("Main Menu")){
+    	if(item.getTitle().equals("Main Menu")){
     		save();
     		intent.setClass(this, StartActivity.class);
     	}
