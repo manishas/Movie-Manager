@@ -19,6 +19,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 	@Override
 	public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
 
+		//http://www.androidadb.com/class/si/SimpleCursorAdapter.html
 		TextView textView = (TextView) view;
 
 	    String name = cursor.getString(NAME_COLUMN);

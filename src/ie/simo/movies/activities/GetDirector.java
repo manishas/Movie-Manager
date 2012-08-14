@@ -130,10 +130,11 @@ public class GetDirector extends ActivityWithMenu {
 									 DBConsts.Genre.romance,  DBConsts.Genre.comedy,
 									 DBConsts.Genre.drama,  DBConsts.Genre.scifi,  DBConsts.Genre.kids};
 		// create an array of the display item we want to bind our data to
-		int[] to = new int[]{android.R.id.text1, android.R.id.icon};
+		int[] to = new int[]{R.id.starname, R.id.starprice, R.id.actionbonus, R.id.romancebonus, R.id.comedybonus,
+				R.id.dramabonus, R.id.scifibonus, R.id.horrorbonus, R.id.kidsbonus};
 		// create simple cursor adapter
 		SimpleCursorAdapter adapter =
-		  new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, c, from, to );
+		  new SimpleCursorAdapter(this, R.layout.spinner_row, c, from, to );
 		adapter.setViewBinder(new DirectorSpinnerViewBinder());
 		// get reference to our spinner
 		spinner.setAdapter(adapter);
