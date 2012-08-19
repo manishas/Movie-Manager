@@ -6,50 +6,60 @@
 
     <TextView
         android:id="@+id/starname"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="3"
         android:text="TextView" />
-
+
     <TextView
         android:id="@+id/starprice"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_weight="1"
         android:text="TextView" />
-
+
+	<LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" 
+	    android:layout_weight="1"
+	    android:gravity="right">
+
     <ImageView
         android:id="@+id/actionbonus"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/presence_offline" />
-    <ImageView
-        android:id="@+id/romancebonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/presence_online" />
-    <ImageView
-        android:id="@+id/horrorbonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/presence_online" />
-    <ImageView
-        android:id="@+id/comedybonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/presence_online" />
-    <ImageView
-        android:id="@+id/dramabonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/presence_online" />
-    <ImageView
-        android:id="@+id/kidsbonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/presence_online" />
-    <ImageView
-        android:id="@+id/scifibonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/presence_online" />
+        android:layout_height="wrap_content" android:gravity="right"/>
+	
+	    <ImageView
+	        android:id="@+id/romancebonus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" android:gravity="right"/>
+	
+	    <ImageView
+	        android:id="@+id/horrorbonus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" android:gravity="right" />
+	
+	    <ImageView
+	        android:id="@+id/comedybonus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" android:gravity="right"/>
+	
+	    <ImageView
+	        android:id="@+id/dramabonus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" android:gravity="right"/>
+	
+	    <ImageView
+	        android:id="@+id/kidsbonus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" android:gravity="right"/>
+	
+	    <ImageView
+	        android:id="@+id/scifibonus"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" android:gravity="right" />
+
+    </LinearLayout>
 
 </LinearLayout>
