@@ -1,7 +1,14 @@
 package ie.simo.movies.dao.viewbinder;
 
+import ie.simo.movies.R;
+import ie.simo.movies.activities.GetDirector;
+import ie.simo.movies.activities.StartActivity;
+import android.app.Activity;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 
@@ -16,33 +23,95 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 	private static final int SCIFI_COLUMN = 8;
 	private static final int KIDS_COLUMN = 9;
 
+	//TODO refactor this
 	@Override
 	public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
 
 		//http://www.androidadb.com/class/si/SimpleCursorAdapter.html
-		TextView textView = (TextView) view;
-
-	    String name = cursor.getString(NAME_COLUMN);
-	    String price = "$"+cursor.getInt(PRICE_COLUMN) + "M";
-	    
-	    String bonuses = getBonuses(cursor);
-	    
-	    textView.setText(name + " - " + price +'\t'+ bonuses);
+		
+		int viewId = view.getId();
+        if(viewId == R.id.starname){
+        	TextView textView = (TextView) view;
+        	textView.setText(cursor.getString(NAME_COLUMN));
+        }
+        else if(viewId == R.id.starprice){
+			TextView textView = (TextView) view;
+		    String price = "$"+cursor.getInt(PRICE_COLUMN) + "M";
+		    
+		    textView.setText( price);
+        }
+        else if(viewId == R.id.actionbonus){
+			ImageView imageView = (ImageView) view;
+			boolean hasBonus = cursor.getString(ACTION_COLUMN).length() > 0;
+			Drawable d = new Activity().getResources().getDrawable(setImage(hasBonus));
+			
+			imageView.setImageDrawable(d);
+		    
+        }
+        else if(viewId == R.id.actionbonus){
+			ImageView imageView = (ImageView) view;
+			boolean hasBonus = cursor.getString(ACTION_COLUMN).length() > 0;
+			Drawable d = new Activity().getResources().getDrawable(setImage(hasBonus));
+			
+			imageView.setImageDrawable(d);
+		    
+        }
+        else if(viewId == R.id.horrorbonus){
+			ImageView imageView = (ImageView) view;
+			boolean hasBonus = cursor.getString(HORROR_COLUMN).length() > 0;
+			Drawable d = new Activity().getResources().getDrawable(setImage(hasBonus));
+			
+			imageView.setImageDrawable(d);
+		    
+        }
+        else if(viewId == R.id.comedybonus){
+			ImageView imageView = (ImageView) view;
+			boolean hasBonus = cursor.getString(COMEDY_COLUMN).length() > 0;
+			Drawable d = new Activity().getResources().getDrawable(setImage(hasBonus));
+			
+			imageView.setImageDrawable(d);
+		    
+        }
+        else if(viewId == R.id.romancebonus){
+			ImageView imageView = (ImageView) view;
+			boolean hasBonus = cursor.getString(ROMANCE_COLUMN).length() > 0;
+			Drawable d = new Activity().getResources().getDrawable(setImage(hasBonus));
+			
+			imageView.setImageDrawable(d);
+		    
+        }
+        else if(viewId == R.id.dramabonus){
+			ImageView imageView = (ImageView) view;
+			boolean hasBonus = cursor.getString(DRAMA_COLUMN).length() > 0;
+			Drawable d = new Activity().getResources().getDrawable(setImage(hasBonus));
+			
+			imageView.setImageDrawable(d);
+		    
+        }
+        else if(viewId == R.id.scifibonus){
+			ImageView imageView = (ImageView) view;
+			boolean hasBonus = cursor.getString(SCIFI_COLUMN).length() > 0;
+			Drawable d = new Activity().getResources().getDrawable(setImage(hasBonus));
+			
+			imageView.setImageDrawable(d);
+		    
+        }
+        else if(viewId == R.id.kidsbonus){
+			ImageView imageView = (ImageView) view;
+			boolean hasBonus = cursor.getString(KIDS_COLUMN).length() > 0;
+			Drawable d = new Activity().getResources().getDrawable(setImage(hasBonus));
+			
+			imageView.setImageDrawable(d);
+		    
+        }
+        
 
 	    return true;
+      
 	}
 
-	private String getBonuses(Cursor cursor) {
-		
-		String bonus = (cursor.getString(ACTION_COLUMN) == null) ? "" : "A";
-		bonus += (cursor.getString(HORROR_COLUMN) == null) ? "" : "H";
-		bonus += (cursor.getString(ROMANCE_COLUMN) == null) ? "" : "R";
-		bonus += (cursor.getString(COMEDY_COLUMN) == null) ? "" : "C";
-		bonus += (cursor.getString(DRAMA_COLUMN) == null) ? "" : "D";
-		bonus += (cursor.getString(SCIFI_COLUMN) == null) ? "" : "S";
-		bonus += (cursor.getString(KIDS_COLUMN) == null) ? "" : "K";
-		
-		return bonus;
+	private int setImage(boolean hasBonus){
+		return hasBonus? android.R.drawable.presence_online : android.R.drawable.presence_online;
 	}
 
 }
