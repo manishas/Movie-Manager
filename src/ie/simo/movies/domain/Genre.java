@@ -27,6 +27,7 @@ public enum Genre {
 		return boxOffice;
 	}
 
+	
 	public static Genre getRandomGenre() {
 		Genre[] genres = Genre.values();
 		Random r = new Random();

@@ -1,10 +1,15 @@
 package ie.simo.movies.activities;
 
 import static ie.simo.movies.util.Consts.COMPANY;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import ie.simo.movies.R;
 import ie.simo.movies.dao.DirectorDbAdapter;
 import ie.simo.movies.dao.viewbinder.DirectorSpinnerViewBinder;
 import ie.simo.movies.domain.Director;
+import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import android.content.Intent;
@@ -59,6 +64,10 @@ public class GetDirector extends ActivityWithMenu {
 					Director chosenDirector = new Director();
 					chosenDirector.setName(c.getString(c.getColumnIndex(DBConsts.Director.name)));
 					chosenDirector.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Director.hire_cost))));
+					chosenDirector.setReputation(c.getInt(c.getColumnIndex(DBConsts.Director.reputation)));
+					Set <Genre> directorBonuses = createBonusSet(c);
+					chosenDirector.setBonuses(directorBonuses);
+					
 					getPc().getCurrentProject().setDirector(chosenDirector);
 
 					String msg = getString(R.string.directorPrice , "$"+chosenDirector.getPriceToHire()+"M");
@@ -66,6 +75,27 @@ public class GetDirector extends ActivityWithMenu {
 					
 					budgetView.setText("$" + (getPc().getBudget() - chosenDirector.getPriceToHire()));
 				}
+			}
+
+			private Set<Genre> createBonusSet(Cursor c) {
+				Set<Genre> bonusSet = new HashSet<Genre>();
+				Genre[] allGenres = {
+						Genre.Action, 
+						Genre.Horror, 
+						Genre.Romance, 
+						Genre.Comedy, 
+						Genre.Drama, 
+						Genre.ScienceFiction,
+						Genre.Kids};
+				
+				for(Genre g : allGenres){
+					if(c.getString(c.getColumnIndex(g.name())) != null){
+						bonusSet.add(g);
+					}
+				}
+				
+				return bonusSet;
+				
 			}
 
 			@Override

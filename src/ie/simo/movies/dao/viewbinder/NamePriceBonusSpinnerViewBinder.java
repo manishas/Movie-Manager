@@ -45,83 +45,63 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
         else if(viewId == R.id.actionbonus){
 			ImageView imageView = (ImageView) view;
 			boolean hasBonus = null != cursor.getString(ACTION_COLUMN);
-			if(hasBonus){
-				Drawable d = imageView.getContext().getResources().getDrawable(setImage());
-				imageView.setImageDrawable(d);
+			if(!hasBonus){
+				removeImage(imageView);
 			}
-			else removeImage(imageView);
-		    
         }
         else if(viewId == R.id.actionbonus){
 			ImageView imageView = (ImageView) view;
 			boolean hasBonus = null != cursor.getString(ACTION_COLUMN);
-			if(hasBonus){
-				Drawable d = imageView.getContext().getResources().getDrawable(setImage());
-				imageView.setImageDrawable(d);
+			if(!hasBonus){
+				removeImage(imageView);
 			}
-			else removeImage(imageView);
 		    
         }
         else if(viewId == R.id.horrorbonus){
 			ImageView imageView = (ImageView) view;
 			boolean hasBonus = null != cursor.getString(HORROR_COLUMN);
-			if(hasBonus){
-				Drawable d = imageView.getContext().getResources().getDrawable(setImage());
-				imageView.setImageDrawable(d);
+			if(!hasBonus){
+				removeImage(imageView);
 			}
-			else removeImage(imageView);
-			
-			
-		    
         }
         else if(viewId == R.id.comedybonus){
 			ImageView imageView = (ImageView) view;
 			boolean hasBonus = null != cursor.getString(COMEDY_COLUMN);
-			if(hasBonus){
-				Drawable d = imageView.getContext().getResources().getDrawable(setImage());
-				imageView.setImageDrawable(d);
+			if(!hasBonus){
+				removeImage(imageView);
 			}
-			else removeImage(imageView);
 		    
         }
         else if(viewId == R.id.romancebonus){
 			ImageView imageView = (ImageView) view;
 			boolean hasBonus = null != cursor.getString(ROMANCE_COLUMN);
-			if(hasBonus){
-				Drawable d = imageView.getContext().getResources().getDrawable(setImage());
-				imageView.setImageDrawable(d);
+			if(!hasBonus){
+				removeImage(imageView);
 			}
-			else removeImage(imageView);
 		    
         }
         else if(viewId == R.id.dramabonus){
 			ImageView imageView = (ImageView) view;
 			boolean hasBonus = null != cursor.getString(DRAMA_COLUMN);
-			if(hasBonus){
-				Drawable d = imageView.getContext().getResources().getDrawable(setImage());
-				imageView.setImageDrawable(d);
+			if(!hasBonus){
+				removeImage(imageView);
 			}
-			else removeImage(imageView);
 		    
         }
         else if(viewId == R.id.scifibonus){
 			ImageView imageView = (ImageView) view;
 			boolean hasBonus = null != cursor.getString(SCIFI_COLUMN);
-			if(hasBonus){
-				Drawable d = imageView.getContext().getResources().getDrawable(setImage());
-				imageView.setImageDrawable(d);
+			if(!hasBonus){
+				removeImage(imageView);
 			}
-			else removeImage(imageView);
 		    
         }
         else if(viewId == R.id.kidsbonus){
 			ImageView imageView = (ImageView) view;
 			boolean hasBonus = null != cursor.getString(KIDS_COLUMN);
-			if(hasBonus){
-				Drawable d = imageView.getContext().getResources().getDrawable(setImage());
-				imageView.setImageDrawable(d);
+			if(!hasBonus){
+				removeImage(imageView);
 			}
-			else removeImage(imageView);
 		    
         }
         return true;

@@ -24,41 +24,55 @@
 	    android:layout_height="wrap_content" 
 	    android:layout_weight="1"
 	    android:gravity="right">
-
+
     <ImageView
         android:id="@+id/actionbonus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:gravity="right"/>
-	
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:gravity="right"
+        android:src="@drawable/action_icon" />
+	
 	    <ImageView
 	        android:id="@+id/romancebonus"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" android:gravity="right"/>
-	
+	        android:layout_width="20dp"
+	        android:layout_height="20dp"
+	        android:gravity="right"
+	        android:src="@drawable/romance_icon" />
+	
 	    <ImageView
 	        android:id="@+id/horrorbonus"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" android:gravity="right" />
-	
+	        android:layout_width="20dp"
+	        android:layout_height="20dp"
+	        android:gravity="right"
+	        android:src="@drawable/horror_icon" />
+	
 	    <ImageView
 	        android:id="@+id/comedybonus"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" android:gravity="right"/>
-	
+	        android:layout_width="20dp"
+	        android:layout_height="20dp"
+	        android:gravity="right"
+	        android:src="@drawable/comedy_icon" />
+	
 	    <ImageView
 	        android:id="@+id/dramabonus"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" android:gravity="right"/>
-	
+	        android:layout_width="20dp"
+	        android:layout_height="20dp"
+	        android:gravity="right"
+	        android:src="@drawable/drama_icon" />
+	
 	    <ImageView
 	        android:id="@+id/kidsbonus"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" android:gravity="right"/>
-	
+	        android:layout_width="20dp"
+	        android:layout_height="20dp"
+	        android:gravity="right"
+	        android:src="@drawable/kids_icon" />
+
 	    <ImageView
 	        android:id="@+id/scifibonus"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content" android:gravity="right" />
+	        android:layout_width="15dp"
+	        android:layout_height="20dp"
+	        android:gravity="right"
+	        android:src="@drawable/scifi_icon" />
 
     </LinearLayout>
 
