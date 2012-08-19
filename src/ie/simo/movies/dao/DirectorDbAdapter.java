@@ -44,7 +44,7 @@ public class DirectorDbAdapter {
         "max(case when g._id = 7 then g.genre_name end) as Kids " +
         "from director d left outer join " +
         "director_bonus db " +
-        "on d._id = db.director_id join " +
+        "on d._id = db.director_id left outer join " +
         "genre g " +
         "on db.genre_id = g._id " +
         "group by d.director_name " +

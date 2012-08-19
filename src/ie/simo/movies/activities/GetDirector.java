@@ -158,11 +158,14 @@ public class GetDirector extends ActivityWithMenu {
 	
 	private void fillSpinner(){
 		 
-		Cursor c = db.fetchAllDirectors();
+		Cursor c = db.getAllDirectorsWithBonuses();
 		startManagingCursor(c);
 				
 		// create an array to specify which fields we want to display
-		String[] from = new String[]{DBConsts.Director.name, DBConsts.Director.hire_cost};
+		String[] from = new String[]{DBConsts.Director.name, DBConsts.Director.hire_cost, DBConsts.Director.reputation,
+				 DBConsts.Genre.action, DBConsts.Genre.horror, 
+				 DBConsts.Genre.romance,  DBConsts.Genre.comedy,
+				 DBConsts.Genre.drama,  DBConsts.Genre.scifi,  DBConsts.Genre.kids};
 		// create an array of the display item we want to bind our data to
 		int[] to = new int[]{R.id.starname, R.id.starprice, R.id.actionbonus, R.id.romancebonus, R.id.comedybonus,
 				R.id.dramabonus, R.id.scifibonus, R.id.horrorbonus, R.id.kidsbonus};

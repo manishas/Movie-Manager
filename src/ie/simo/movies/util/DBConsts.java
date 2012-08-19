@@ -51,7 +51,7 @@ public class DBConsts {
 		public static final String romance = "Romance";
 		public static final String comedy = "Comedy"; 
 		public static final String drama = "Drama";
-		public static final String scifi = "SciFi";
+		public static final String scifi = "ScienceFiction";
 		public static final String kids = "Kids";
 	}
 }

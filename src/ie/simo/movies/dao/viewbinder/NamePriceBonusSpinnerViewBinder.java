@@ -17,13 +17,14 @@ import android.widget.SimpleCursorAdapter.ViewBinder;
 public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 	private static final int NAME_COLUMN = 1;
 	private static final int PRICE_COLUMN = 2;
-	private static final int ACTION_COLUMN = 3;
-	private static final int HORROR_COLUMN = 4;
-	private static final int ROMANCE_COLUMN = 5;
-	private static final int COMEDY_COLUMN = 6;
-	private static final int DRAMA_COLUMN = 7;
-	private static final int SCIFI_COLUMN = 8;
-	private static final int KIDS_COLUMN = 9;
+	private static final int REP_COLUMN = 3; // not currently displayed
+	private static final int ACTION_COLUMN = 4;
+	private static final int HORROR_COLUMN = 5;
+	private static final int ROMANCE_COLUMN = 6;
+	private static final int COMEDY_COLUMN = 7;
+	private static final int DRAMA_COLUMN = 8;
+	private static final int SCIFI_COLUMN = 9;
+	private static final int KIDS_COLUMN = 10;
 
 	//TODO refactor this
 	@Override
@@ -48,6 +49,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 			if(!hasBonus){
 				removeImage(imageView);
 			}
+			else showImage(imageView);
         }
         else if(viewId == R.id.actionbonus){
 			ImageView imageView = (ImageView) view;
@@ -55,6 +57,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 			if(!hasBonus){
 				removeImage(imageView);
 			}
+			else showImage(imageView);
 		    
         }
         else if(viewId == R.id.horrorbonus){
@@ -63,6 +66,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 			if(!hasBonus){
 				removeImage(imageView);
 			}
+			else showImage(imageView);
         }
         else if(viewId == R.id.comedybonus){
 			ImageView imageView = (ImageView) view;
@@ -70,6 +74,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 			if(!hasBonus){
 				removeImage(imageView);
 			}
+			else showImage(imageView);
 		    
         }
         else if(viewId == R.id.romancebonus){
@@ -78,6 +83,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 			if(!hasBonus){
 				removeImage(imageView);
 			}
+			else showImage(imageView);
 		    
         }
         else if(viewId == R.id.dramabonus){
@@ -86,6 +92,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 			if(!hasBonus){
 				removeImage(imageView);
 			}
+			else showImage(imageView);
 		    
         }
         else if(viewId == R.id.scifibonus){
@@ -94,6 +101,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 			if(!hasBonus){
 				removeImage(imageView);
 			}
+			else showImage(imageView);
 		    
         }
         else if(viewId == R.id.kidsbonus){
@@ -102,6 +110,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 			if(!hasBonus){
 				removeImage(imageView);
 			}
+			else showImage(imageView);
 		    
         }
         return true;
@@ -109,7 +118,11 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 	}
 
 	private void removeImage(ImageView view) {
-		((LinearLayout) view.getParent()).removeView(view);
+		view.setVisibility(View.GONE);
+	}
+	
+	private void showImage(ImageView view) {
+		view.setVisibility(View.VISIBLE);
 	}
 
 

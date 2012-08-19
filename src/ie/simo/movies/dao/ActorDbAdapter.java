@@ -35,7 +35,7 @@ public class ActorDbAdapter {
 	
 	
 	public Cursor getAllActorsWithBonuses(){
-		String query = "select a.*," +
+		String query = "select a._id, a.actor_name, a.actor_hire_cost, a.actor_reputation," +
         "max(case when g._id = 1 then g.genre_name end) as Action, " +
         "max(case when g._id = 2 then g.genre_name end) as Horror, " +
         "max(case when g._id = 3 then g.genre_name end) as Romance, " +
@@ -45,7 +45,7 @@ public class ActorDbAdapter {
         "max(case when g._id = 7 then g.genre_name end) as Kids " +
         "from actor a left outer join " +
         "actor_bonus ab " +
-        "on a._id = ab.actor_id join " +
+        "on a._id = ab.actor_id left outer join " +
         "genre g " +
         "on ab.genre_id = g._id " +
         "group by a.actor_name " +
