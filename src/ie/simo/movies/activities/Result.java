@@ -32,6 +32,7 @@ public class Result extends ActivityWithMenu {
 	private TextView cash;
 	private TextView profitView;
 	private TextView budgetView;
+	private TextView compName;
 	private TextView review;
 
 	private int shareOfEarnings;
@@ -111,10 +112,12 @@ public class Result extends ActivityWithMenu {
 		calculator = new EarningsCalculatorWithActors();
 		ratingCalc = new RatingCalculator();
 
-		findAllViewsById();
-
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
+		
+		findAllViewsById();
+		
+		setTitleBar();
 	}
 
 	private void saveToDatabase(MovieSummary summary) {
@@ -134,6 +137,7 @@ public class Result extends ActivityWithMenu {
 		rating = (RatingBar) this.findViewById(R.id.ratingBar1);
 		cash = (TextView) this.findViewById(R.id.totalEarnings);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		compName = (TextView)this.findViewById(R.id.companyName);
 		profitView = (TextView) this.findViewById(R.id.cashmoney);
 		review = (TextView) this.findViewById(R.id.review);
 	}
@@ -194,5 +198,10 @@ public class Result extends ActivityWithMenu {
 
 	public void longToast(CharSequence message) {
 		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+	}
+	
+	private void setTitleBar() {
+		budgetView.setText(getPc().getBudget()+"");
+		compName.setText(getPc().getName());
 	}
 }

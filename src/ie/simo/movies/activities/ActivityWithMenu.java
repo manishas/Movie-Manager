@@ -56,14 +56,14 @@ public abstract class ActivityWithMenu extends Activity {
     }
 
 	/**
-	 * @return the pc
+	 * @return the current production company
 	 */
 	public ProductionCompany getPc() {
 		return pc;
 	}
 
 	/**
-	 * @param pc the pc to set
+	 * @param pc the production company to set
 	 */
 	public void setPc(ProductionCompany pc) {
 		this.pc = pc;

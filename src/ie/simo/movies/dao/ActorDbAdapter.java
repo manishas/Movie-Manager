@@ -41,7 +41,7 @@ public class ActorDbAdapter {
         "max(case when g._id = 3 then g.genre_name end) as Romance, " +
         "max(case when g._id = 4 then g.genre_name end) as Comedy, " +
         "max(case when g._id = 5 then g.genre_name end) as Drama, " +
-        "max(case when g._id = 6 then g.genre_name end) as SciFi, " +
+        "max(case when g._id = 6 then g.genre_name end) as ScienceFiction, " +
         "max(case when g._id = 7 then g.genre_name end) as Kids " +
         "from actor a left outer join " +
         "actor_bonus ab " +

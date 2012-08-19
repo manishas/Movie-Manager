@@ -30,18 +30,19 @@ public class PitchFilm extends ActivityWithMenu {
 	private Button cancel;
 	private TableLayout table;
 	private TextView budgetView;
+	private TextView compName;
 	private DistributorDBAdapter db;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pitch);
-		findAllViewsById();
 		
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
-		budgetView.setText("$" + getPc().getBudget() + "M");
+		findAllViewsById();
+		setTitleBar();
 		
 		fillTable();
 		
@@ -82,6 +83,7 @@ public class PitchFilm extends ActivityWithMenu {
 		table = (TableLayout) this.findViewById(R.id.pitchtable);
 		cancel = (Button) this.findViewById(R.id.pitchcancel);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		compName = (TextView)this.findViewById(R.id.companyName);
 	}
 	
 	
@@ -165,6 +167,11 @@ public class PitchFilm extends ActivityWithMenu {
 				
 		return distName + ": " + String.format(text, offer);
 		
+	}
+	
+	private void setTitleBar() {
+		budgetView.setText(getPc().getBudget()+"");
+		compName.setText(getPc().getName());
 	}
 	
 }

@@ -112,8 +112,5 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 		((LinearLayout) view.getParent()).removeView(view);
 	}
 
-	private int setImage(){
-		return android.R.drawable.presence_online;
-	}
 
 }

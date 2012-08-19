@@ -28,6 +28,7 @@ public class GetDirector extends ActivityWithMenu {
 	private TextView chosen;
 	private TextView price;
 	private TextView budgetView;
+	private TextView compName;
 	private Spinner spinner;
 	private Button produceFilm;
 	private DirectorDbAdapter db;
@@ -50,7 +51,7 @@ public class GetDirector extends ActivityWithMenu {
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
 		
-		budgetView.setText(getPc().getBudget()+"");
+		setTitleBar();
 		
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -128,6 +129,11 @@ public class GetDirector extends ActivityWithMenu {
 		
 		
 	}
+
+	private void setTitleBar() {
+		budgetView.setText(getPc().getBudget()+"");
+		compName.setText(getPc().getName());
+	}
 	
 	private void  makeToast(){
 		Toast.makeText(this, "You can't afford this director! Choose again", Toast.LENGTH_SHORT).show();
@@ -147,18 +153,16 @@ public class GetDirector extends ActivityWithMenu {
 		spinner = (Spinner) this.findViewById(R.id.spinner1);
 		produceFilm = (Button) this.findViewById(R.id.produceFilm);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		compName = (TextView)this.findViewById(R.id.companyName);
 	}
 	
 	private void fillSpinner(){
 		 
-		Cursor c = db.getAllDirectorsWithBonuses();
+		Cursor c = db.fetchAllDirectors();
 		startManagingCursor(c);
 				
 		// create an array to specify which fields we want to display
-		String[] from = new String[]{DBConsts.Director.name, DBConsts.Director.hire_cost, DBConsts.Director.reputation,
-									 DBConsts.Genre.action, DBConsts.Genre.horror, 
-									 DBConsts.Genre.romance,  DBConsts.Genre.comedy,
-									 DBConsts.Genre.drama,  DBConsts.Genre.scifi,  DBConsts.Genre.kids};
+		String[] from = new String[]{DBConsts.Director.name, DBConsts.Director.hire_cost};
 		// create an array of the display item we want to bind our data to
 		int[] to = new int[]{R.id.starname, R.id.starprice, R.id.actionbonus, R.id.romancebonus, R.id.comedybonus,
 				R.id.dramabonus, R.id.scifibonus, R.id.horrorbonus, R.id.kidsbonus};

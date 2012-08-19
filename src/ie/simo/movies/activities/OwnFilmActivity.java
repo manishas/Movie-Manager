@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import static ie.simo.movies.util.Consts.COMPANY;
@@ -26,6 +27,8 @@ public class OwnFilmActivity extends ActivityWithMenu {
 	private Spinner spinner;
 	private Button director;
 	private MovieInfo info;
+	private TextView budgetView;
+	private TextView compName;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,9 @@ public class OwnFilmActivity extends ActivityWithMenu {
 		
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
-		
 		findAllViewsById();
+		
+		setTitleBar();
 		
 		Genre [] genres = Genre.values();
 		ArrayAdapter<Genre> adapter = new ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, genres);
@@ -69,6 +73,13 @@ public class OwnFilmActivity extends ActivityWithMenu {
 		text = (EditText) this.findViewById(R.id.nametextfield);
 		spinner = (Spinner) this.findViewById(R.id.genrespinner);
 		director = (Button) this.findViewById(R.id.getdirectorbutton);
+		budgetView = (TextView) this.findViewById(R.id.budgetValue);
+		compName = (TextView) findViewById(R.id.companyName);
+	}
+	
+	private void setTitleBar() {
+		budgetView.setText(getPc().getBudget()+"");
+		compName.setText(getPc().getName());
 	}
   
 }
