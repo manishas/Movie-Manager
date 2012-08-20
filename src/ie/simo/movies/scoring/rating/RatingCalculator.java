@@ -38,7 +38,6 @@ public class RatingCalculator {
 	 */
 	private double falseFennellFunction() {
 		Random r = new Random();
-		//need to implement a fennell function
 		double rating = (r.nextGaussian() + 5) *.5; //will USUALLY give num between 0-5, so need to normalise it
 		if(rating < 0) rating = 0;
 		return rating;
