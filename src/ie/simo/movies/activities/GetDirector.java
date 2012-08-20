@@ -69,7 +69,7 @@ public class GetDirector extends ActivityWithMenu {
 					Set <Genre> directorBonuses = createBonusSet(c);
 					chosenDirector.setBonuses(directorBonuses);
 					
-					getPc().getCurrentProject().setDirector(chosenDirector);
+					getPc().setCurrentDirector(chosenDirector);
 
 					String msg = getString(R.string.directorPrice , "$"+chosenDirector.getPriceToHire()+"M");
 					GetDirector.this.price.setText(msg);
@@ -115,7 +115,7 @@ public class GetDirector extends ActivityWithMenu {
 					Intent i = new Intent();
 					i.setClass(GetDirector.this, GetActor.class);
 					
-					getPc().setBudget(getPc().getBudget() - getPc().getCurrentProject().getDirector().getPriceToHire());
+					getPc().setBudget(getPc().getBudget() - getPc().getCurrentDirector().getPriceToHire());
 					i.putExtra(COMPANY, getPc());
 					
 					startActivity(i);
@@ -141,7 +141,7 @@ public class GetDirector extends ActivityWithMenu {
 	}
 	
 	private boolean isValid(){	
-		return (getPc().getBudget() - getPc().getCurrentProject().getDirector().getPriceToHire() >= 0)? true : false;
+		return (getPc().getBudget() - getPc().getCurrentDirector().getPriceToHire() >= 0)? true : false;
 	}
 	
 	

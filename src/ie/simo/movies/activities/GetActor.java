@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ActorDbAdapter;
 import ie.simo.movies.dao.viewbinder.ActorSpinnerViewBinder;
 import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Cast;
+import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 
@@ -87,10 +89,10 @@ public class GetActor extends ActivityWithMenu {
 					db.close();
 					Intent i = new Intent();
 					i.setClass(GetActor.this, Result.class);
-					Log.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentProject().getCast().toString());
-					getPc().setBudget(getPc().getBudget()  - getPc().getCurrentProject().getCast().getCostOfActors());
+					Log.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentCast().toString());
+					getPc().setBudget(getPc().getBudget()  - getPc().getCurrentCast().getCostOfActors());
 					i.putExtra(COMPANY, getPc());
-					Log.v(getLocalClassName(), "budget after cast: " + (getPc().getBudget() - getPc().getCurrentProject().getCast().getCostOfActors()));
+					Log.v(getLocalClassName(), "budget after cast: " + (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors()));
 					
 					startActivity(i);
 				}
@@ -136,13 +138,13 @@ public class GetActor extends ActivityWithMenu {
 
 	private boolean isPossibleSelection() {
 		HashSet<Actor> tempSet = new HashSet<Actor>();
-		tempSet.addAll(getPc().getCurrentProject().getCast().getActors());
+		tempSet.addAll(getPc().getCurrentCast().getActors());
 		//ensure that all actor selections are unique
-		return getPc().getCurrentProject().getCast().getActors().size() == tempSet.size();
+		return getPc().getCurrentCast().size() == tempSet.size();
 	}
 
 	private boolean isUnderBudget() {
-		return getPc().getBudget() - getPc().getCurrentProject().getCast().getCostOfActors() >= 0;
+		return getPc().getBudget() - getPc().getCurrentCast().getCostOfActors() >= 0;
 	}
 	
 	private void findAllViewsById() {
@@ -189,20 +191,46 @@ public class GetActor extends ActivityWithMenu {
 			
 			if(theSpinner.getSelectedItem().toString() != null && !theSpinner.getSelectedItem().toString().equals("") )
 			{					
-				getPc().getCurrentProject().getCast().getActors().clear();
+				getPc().getCurrentCast().clear();
 				for(Spinner spin : allSpinners){
 					Cursor c = (Cursor) spin.getSelectedItem();
 					Actor chosenActor = new Actor();
 					chosenActor.setName(c.getString(c.getColumnIndex(DBConsts.Actor.name)));
 					chosenActor.setPriceToHire(Integer.parseInt(c.getString(c.getColumnIndex(DBConsts.Actor.hire_cost))));
-					getPc().getCurrentProject().getCast().getActors().add(chosenActor);
+					chosenActor.setReputation(c.getInt(c.getColumnIndex(DBConsts.Actor.reputation)));
+					chosenActor.setGender(c.getString(c.getColumnIndex(DBConsts.Actor.gender)));
+					Set <Genre> actorBonuses = createBonusSet(c);
+					chosenActor.setBonuses(actorBonuses);
+					getPc().getCurrentCast().add(chosenActor);
 				}
-				String msg = getString(R.string.actorPrice , "$"+ getPc().getCurrentProject().getCast().getCostOfActors() + "M");
+				String msg = getString(R.string.actorPrice , "$"+ getPc().getCurrentCast().getCostOfActors() + "M");
 				GetActor.this.price.setText(msg);
-				Log.v("CAST", getPc().getCurrentProject().getCast().toString());
-				budgetView.setText("$" + (getPc().getBudget() - getPc().getCurrentProject().getCast().getCostOfActors()));
+				Log.v("CAST", getPc().getCurrentCast().toString());
+				budgetView.setText("$" + (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors()));
 			}
 		}
+		
+		private Set<Genre> createBonusSet(Cursor c) {
+			Set<Genre> bonusSet = new HashSet<Genre>();
+			Genre[] allGenres = {
+					Genre.Action, 
+					Genre.Horror, 
+					Genre.Romance, 
+					Genre.Comedy, 
+					Genre.Drama, 
+					Genre.ScienceFiction,
+					Genre.Kids};
+			
+			for(Genre g : allGenres){
+				if(c.getString(c.getColumnIndex(g.name())) != null){
+					bonusSet.add(g);
+				}
+			}
+			
+			return bonusSet;
+			
+		}
+
 		
 		@Override
 		public void onNothingSelected(AdapterView<?> arg0) {

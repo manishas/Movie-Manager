@@ -2,17 +2,19 @@ package ie.simo.movies.scoring.rating;
 
 import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Cast;
+import ie.simo.movies.domain.Director;
 
 import java.util.Random;
 
 public class RatingCalculator {
-	public double getRating(int directorReputation, Cast cast){
+	public float getRating(Director director, Cast cast){
 		Random r = new Random();
+		//need to implement a fennell function
 		double rating = (r.nextGaussian() + 5) *.5; //will USUALLY give num between 0-5, so need to normalise it
 		if(rating < 0) rating = 0;
 		
 		//director rep = 0 - 100
-		double repBonus = directorReputation / 100;
+		double repBonus = director.getReputation() / 100;
 		rating = rating + repBonus;
 		
 		int count = 1;
@@ -35,6 +37,6 @@ public class RatingCalculator {
 		
 		rating = rating * 0.5;	
 		
-		return rating;
+		return (float)rating;
 	}
 }
