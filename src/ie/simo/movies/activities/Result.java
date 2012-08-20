@@ -58,7 +58,7 @@ public class Result extends ActivityWithMenu {
 		Log.v(getLocalClassName(), "Remaining Budget is: " + getPc().getBudget());
 
 		// HOLY SHIT need to refactor the shit out of this whole method
-		float criticRating = (float) ratingCalc.getRating(getPc().getCurrentDirector(), getPc().getCurrentCast());
+		float criticRating = (float) ratingCalc.getRating(getPc().getCurrentProject());
 		
 		Log.v(getLocalClassName(), "Critic rating is: " + criticRating);
 

@@ -84,4 +84,8 @@ public abstract class Person implements Serializable{
 	public void addBonus(Genre genre){
 		this.bonuses.add(genre);
 	}
+	
+	public boolean isGoodAt(Genre genre) {
+		return this.bonuses.contains(genre);
+	}
 }

@@ -31,7 +31,6 @@ public class Actor extends Person {
 			this.gender = Gender.F;
 		}
 	}
-
 }
 
 enum Gender {

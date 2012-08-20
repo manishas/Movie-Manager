@@ -3,28 +3,20 @@ package ie.simo.movies.scoring.rating;
 import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Cast;
 import ie.simo.movies.domain.Director;
+import ie.simo.movies.domain.MovieInfo;
 
 import java.util.Random;
 
 public class RatingCalculator {
-	public float getRating(Director director, Cast cast){
-		Random r = new Random();
-		//need to implement a fennell function
-		double rating = (r.nextGaussian() + 5) *.5; //will USUALLY give num between 0-5, so need to normalise it
-		if(rating < 0) rating = 0;
+	public float getRating(MovieInfo currentProject){
 		
-		//director rep = 0 - 100
-		double repBonus = director.getReputation() / 100;
-		rating = rating + repBonus;
+		double rating = falseFennellFunction();
+
+		double directorRepBonus = getDirectorRating(currentProject);
 		
-		int count = 1;
-		double castRep = 0.0;
+		rating = rating + directorRepBonus;
 		
-		for(Actor actor : cast.getActors())
-		{
-			castRep = castRep + ((actor.getReputation()/100)/count);
-			count++;
-		}
+		double castRep = getCastRating(currentProject);
 		
 		rating = rating + castRep;
 		
@@ -38,5 +30,45 @@ public class RatingCalculator {
 		rating = rating * 0.5;	
 		
 		return (float)rating;
+	}
+
+	/**
+	 * Classic false Fennell function implementation
+	 * @return rating
+	 */
+	private double falseFennellFunction() {
+		Random r = new Random();
+		//need to implement a fennell function
+		double rating = (r.nextGaussian() + 5) *.5; //will USUALLY give num between 0-5, so need to normalise it
+		if(rating < 0) rating = 0;
+		return rating;
+	}
+
+	private double getDirectorRating(MovieInfo currentProject) {
+		Director director = currentProject.getDirector();
+		double directorRepBonus = director.getReputation() / 100;
+		
+		if(director.isGoodAt(currentProject.getGenre())){
+			directorRepBonus *= 1.1;
+		}
+		return directorRepBonus;
+	}
+
+	private double getCastRating(MovieInfo currentProject) {
+		int count = 1;
+		double castRep = 0.0;
+		
+		for(Actor actor : currentProject.getCast().getActors())
+		{
+			double rep =  ((actor.getReputation()/100)/count);
+			if(actor.isGoodAt(currentProject.getGenre())){
+				rep *= 1.1;
+			}
+			
+			castRep += rep;
+				
+			count*=2;
+		}
+		return castRep;
 	}
 }
