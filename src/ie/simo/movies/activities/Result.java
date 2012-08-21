@@ -199,7 +199,7 @@ public class Result extends ActivityWithMenu {
 	}
 	
 	private void setTitleBar() {
-		budgetView.setText(getPc().getBudget()+"");
+		budgetView.setText("$"+getPc().getBudget()+"M");
 		compName.setText(getPc().getName());
 	}
 }

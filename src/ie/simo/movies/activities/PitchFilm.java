@@ -7,15 +7,11 @@ import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import static ie.simo.movies.util.Consts.*;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -96,6 +92,8 @@ public class PitchFilm extends ActivityWithMenu {
 		btn.setTag("!"+d.getName());
 		btn.setGravity(Gravity.FILL_HORIZONTAL);
 		btn.setOnClickListener(OnClickDoSomething(btn));
+		LinearLayout l = new LinearLayout(this);
+		
 		tbr.addView(tv);
 		tbr.addView(btn);
 		PitchFilm.this.table.addView(tbr);
@@ -170,7 +168,7 @@ public class PitchFilm extends ActivityWithMenu {
 	}
 	
 	private void setTitleBar() {
-		budgetView.setText(getPc().getBudget()+"");
+		budgetView.setText("$"+getPc().getBudget()+"M");
 		compName.setText(getPc().getName());
 	}
 	
