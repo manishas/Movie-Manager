@@ -13,8 +13,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -92,8 +95,6 @@ public class PitchFilm extends ActivityWithMenu {
 		btn.setTag("!"+d.getName());
 		btn.setGravity(Gravity.FILL_HORIZONTAL);
 		btn.setOnClickListener(OnClickDoSomething(btn));
-		LinearLayout l = new LinearLayout(this);
-		
 		tbr.addView(tv);
 		tbr.addView(btn);
 		PitchFilm.this.table.addView(tbr);
@@ -103,11 +104,14 @@ public class PitchFilm extends ActivityWithMenu {
 	    return new View.OnClickListener() {
 	        public void onClick(View v) {
 	        	String tag = (String) button.getTag();
+	        	//hacky...
 	        	if(tag.charAt(0)=='!'){
 		        	int offer = new Distributor().makeOffer(getPc().getCurrentProject().getGenre(), getPc().getCurrentProject().getRatingDetails());
 					button.setText("$" + offer+ "M");
 					button.setTag(tag.substring(1));
-					toastOffer((String)button.getTag(),offer);
+					TableRow row = (TableRow) button.getParent();
+
+					row.addView(makeOffer((String)button.getTag(),offer));
 				}
 	        	else{
 	        		Distributor d = new Distributor();
@@ -129,19 +133,21 @@ public class PitchFilm extends ActivityWithMenu {
     	return Integer.parseInt(label);
     }
     
-    private void toastOffer(String distributorName, int offer){
-    	Toast toast = Toast.makeText(getApplicationContext(),
-    			   getOfferText(distributorName, offer), Toast.LENGTH_SHORT);
-    			toast.setGravity(Gravity.CENTER, 0, 0);
-    			LinearLayout toastView = (LinearLayout) toast.getView();
-    			ImageView imageCodeProject = new ImageView(getApplicationContext());
-    			imageCodeProject.setImageResource(R.drawable.suits);
-    			toastView.addView(imageCodeProject, 0);
-    			toast.show();
+    private LinearLayout makeOffer(String distributorName, int offer){
     	
+    	LinearLayout layout = new LinearLayout(this);
+    	    	
+    	ImageView image = new ImageView(this);
+    	TextView tv = new TextView(this);
+    	
+    	tv.setText(getOfferText(offer));
+    	
+    	layout.addView(tv);
+    	
+    	return layout;
     }
-
-	private CharSequence getOfferText(String distName, int offer) {
+    
+	private CharSequence getOfferText(int offer) {
 		
 		String text = "";
 		if(offer == 0){
@@ -163,7 +169,7 @@ public class PitchFilm extends ActivityWithMenu {
 			text = getString(R.string.bestOffer);
 		}
 				
-		return distName + ": " + String.format(text, offer);
+		return String.format(text, offer);
 		
 	}
 	
