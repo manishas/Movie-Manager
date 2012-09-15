@@ -74,7 +74,7 @@ public class GetDirector extends ActivityWithMenu {
 					String msg = getString(R.string.directorPrice , "$"+chosenDirector.getPriceToHire()+"M");
 					GetDirector.this.price.setText(msg);
 					
-					budgetView.setText("$" + (getPc().getBudget() - chosenDirector.getPriceToHire()));
+					budgetView.setText(String.format("$%dM", (getPc().getBudget() - chosenDirector.getPriceToHire())));
 				}
 			}
 

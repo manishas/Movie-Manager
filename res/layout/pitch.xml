@@ -15,15 +15,15 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pitch your film to the Studios: " >
+            android:text="@string/pitch_your_film_to_the_studios_" >
         </TextView>
-
-        <TableLayout
-            android:id="@+id/pitchtable"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-        </TableLayout>
+            
+         <LinearLayout
+             android:id="@+id/pitchtable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        </LinearLayout>
 
         <Button
             android:id="@+id/pitchcancel"

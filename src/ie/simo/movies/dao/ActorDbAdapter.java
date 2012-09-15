@@ -50,7 +50,7 @@ public class ActorDbAdapter {
         "genre g " +
         "on ab.genre_id = g._id " +
         "group by a.actor_name " +
-        "order by a.actor_hire_cost desc";
+        "order by a.actor_reputation desc";
 		
 		return database.rawQuery(query, null);
 	}

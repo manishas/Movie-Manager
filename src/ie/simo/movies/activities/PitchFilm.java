@@ -4,6 +4,7 @@ import ie.simo.movies.R;
 import ie.simo.movies.dao.DistributorDBAdapter;
 import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.ProductionCompany;
+import ie.simo.movies.ui.component.PitchFilmRow;
 import ie.simo.movies.util.DBConsts;
 import static ie.simo.movies.util.Consts.*;
 
@@ -27,7 +28,7 @@ import android.widget.Toast;
 public class PitchFilm extends ActivityWithMenu {
 	
 	private Button cancel;
-	private TableLayout table;
+	private LinearLayout table;
 	private TextView budgetView;
 	private TextView compName;
 	private DistributorDBAdapter db;
@@ -79,7 +80,7 @@ public class PitchFilm extends ActivityWithMenu {
 	}
 	
 	private void findAllViewsById() {
-		table = (TableLayout) this.findViewById(R.id.pitchtable);
+		table = (LinearLayout) this.findViewById(R.id.pitchtable);
 		cancel = (Button) this.findViewById(R.id.pitchcancel);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 		compName = (TextView)this.findViewById(R.id.companyName);
@@ -87,17 +88,16 @@ public class PitchFilm extends ActivityWithMenu {
 	
 	
 	private void addNewRow(Distributor d){
-		TableRow tbr = new TableRow(this);
-		TextView tv = new TextView(this);
-		tv.setText(d.getName());
-		Button btn = new Button(this);
-		btn.setText(R.string.ask);
-		btn.setTag("!"+d.getName());
-		btn.setGravity(Gravity.FILL_HORIZONTAL);
-		btn.setOnClickListener(OnClickDoSomething(btn));
-		tbr.addView(tv);
-		tbr.addView(btn);
-		PitchFilm.this.table.addView(tbr);
+		
+		PitchFilmRow row = new PitchFilmRow(getApplicationContext());
+        
+		row.getDistributorName().setText(d.getName());
+		row.getDistributorOffer().setText(R.string.ask);
+		row.getDistributorOffer().setTag("!"+d.getName());
+		row.getDistributorOffer().setOnClickListener(OnClickDoSomething(row.getDistributorOffer()));
+		
+		table.addView(row);
+
 	}
 	
 	private View.OnClickListener OnClickDoSomething(final Button button)  {
@@ -109,9 +109,9 @@ public class PitchFilm extends ActivityWithMenu {
 		        	int offer = new Distributor().makeOffer(getPc().getCurrentProject().getGenre(), getPc().getCurrentProject().getRatingDetails());
 					button.setText("$" + offer+ "M");
 					button.setTag(tag.substring(1));
-					TableRow row = (TableRow) button.getParent();
+					PitchFilmRow row = (PitchFilmRow) button.getParent();
 
-					row.addView(makeOffer((String)button.getTag(),offer));
+					makeOffer(row, (String)button.getTag(),offer);
 				}
 	        	else{
 	        		Distributor d = new Distributor();
@@ -133,18 +133,8 @@ public class PitchFilm extends ActivityWithMenu {
     	return Integer.parseInt(label);
     }
     
-    private LinearLayout makeOffer(String distributorName, int offer){
-    	
-    	LinearLayout layout = new LinearLayout(this);
-    	    	
-    	ImageView image = new ImageView(this);
-    	TextView tv = new TextView(this);
-    	
-    	tv.setText(getOfferText(offer));
-    	
-    	layout.addView(tv);
-    	
-    	return layout;
+    private void makeOffer(PitchFilmRow row, String distributorName, int offer){
+    	row.getDistributorComment().setText(getOfferText(offer));
     }
     
 	private CharSequence getOfferText(int offer) {

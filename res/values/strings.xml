@@ -99,5 +99,6 @@
 	<string name="make_this_film">Make this Film!</string>
 	<string name="no_data">No data</string>
 	<string name="movie_rating_was_">"Movie Rating was: "</string>
+	<string name="pitch_your_film_to_the_studios_">"Pitch your film to the Studios: "</string>
 	
 </resources>

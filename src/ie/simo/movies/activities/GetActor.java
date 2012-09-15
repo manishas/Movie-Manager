@@ -198,7 +198,8 @@ public class GetActor extends ActivityWithMenu {
 				String msg = getString(R.string.actorPrice , "$"+ getPc().getCurrentCast().getCostOfActors() + "M");
 				GetActor.this.price.setText(msg);
 				Log.v("CAST", getPc().getCurrentCast().toString());
-				budgetView.setText("$" + (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors()));
+				budgetView.setText(String.format("$%dM", (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors())));
+				
 			}
 		}
 		

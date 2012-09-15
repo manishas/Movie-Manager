@@ -48,7 +48,7 @@ public class DirectorDbAdapter {
         "genre g " +
         "on db.genre_id = g._id " +
         "group by d.director_name " +
-        "order by d.director_hire_cost desc";
+        "order by d.director_reputation desc";
 
 		return database.rawQuery(query, null);
 	}
