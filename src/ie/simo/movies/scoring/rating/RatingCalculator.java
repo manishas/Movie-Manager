@@ -61,7 +61,7 @@ public class RatingCalculator {
 		{
 			double rep =  ((actor.getReputation()/100)/count);
 			if(actor.isGoodAt(currentProject.getGenre())){
-				rep *= 1.1;
+				rep *= 1.05;
 			}
 			
 			castRep += rep;
