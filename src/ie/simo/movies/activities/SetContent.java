@@ -13,9 +13,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -36,7 +33,6 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 	private SeekBar sexLevel;
 	private SeekBar languageLevel;
 	private ImageView ratingImg;
-	
 	private Button pitchFilm;
 	private ImageButton help;
 	
@@ -46,7 +42,6 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 	
 	private TextView budgetView;
 	private TextView compName;
-	
 	
 	public void onCreate(Bundle savedInstanceState) {
 		
@@ -153,7 +148,7 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 	}
 
 	private void setTitleBar() {
-		budgetView.setText(getPc().getBudget()+"");
+		budgetView.setText("$"+getPc().getBudget()+"M");
 		compName.setText(getPc().getName());
 	}
 	
@@ -186,7 +181,6 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 		title = (TextView) this.findViewById(R.id.setContentActivityTitle);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 		compName = (TextView)this.findViewById(R.id.companyName);
-		
 	}
 
 	@Override

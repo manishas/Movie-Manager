@@ -105,4 +105,17 @@ public class ProductionCompany implements Serializable {
 	public void setLastAccessedDate(String lastAccessedDate) {
 		this.lastModifiedDate = lastAccessedDate;
 	}
+
+	public Director getCurrentDirector() {
+		
+		return this.currentProject.getDirector();
+	}
+
+	public Cast getCurrentCast() {
+		return this.currentProject.getCast();
+	}
+
+	public void setCurrentDirector(Director director) {
+		this.currentProject.setDirector(director);
+	}
 }

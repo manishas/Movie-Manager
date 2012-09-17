@@ -238,19 +238,19 @@
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Johnny Depp', 24, 98, 'm')</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (2, 3)</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (2, 4)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Brad Pitt', 24, 98, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Brad Pitt', 24, 97, 'm')</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (3, 1)</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (3, 3)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Angelina Jolie', 24, 98, 'f')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Angelina Jolie', 24, 95, 'f')</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (4, 1)</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Tom Hanks', 24, 98, 'm')</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (5, 4)</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (5, 5)</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (5, 7)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Will Smith', 24, 98, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Will Smith', 24, 99, 'm')</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (6, 5)</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (6, 4)</statement>
-<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('George Clooney', 24, 98, 'm')</statement>
+<statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('George Clooney', 24, 95, 'm')</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (7, 3)</statement>
 <statement>insert into actor_bonus (actor_id, genre_id) values (7, 5)</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Denzel Washington', 24, 97, 'm')</statement>

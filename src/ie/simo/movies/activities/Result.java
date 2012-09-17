@@ -58,9 +58,7 @@ public class Result extends ActivityWithMenu {
 		Log.v(getLocalClassName(), "Remaining Budget is: " + getPc().getBudget());
 
 		// HOLY SHIT need to refactor the shit out of this whole method
-		float criticRating = (float) ratingCalc.getRating(getPc()
-				.getCurrentProject().getDirector().getReputation(), getPc()
-				.getCurrentProject().getCast());
+		float criticRating = (float) ratingCalc.getRating(getPc().getCurrentProject());
 		
 		Log.v(getLocalClassName(), "Critic rating is: " + criticRating);
 
@@ -201,7 +199,7 @@ public class Result extends ActivityWithMenu {
 	}
 	
 	private void setTitleBar() {
-		budgetView.setText(getPc().getBudget()+"");
+		budgetView.setText("$"+getPc().getBudget()+"M");
 		compName.setText(getPc().getName());
 	}
 }

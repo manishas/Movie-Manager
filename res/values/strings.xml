@@ -99,6 +99,7 @@
 	<string name="make_this_film">Make this Film!</string>
 	<string name="no_data">No data</string>
 	<string name="movie_rating_was_">"Movie Rating was: "</string>
+
 	<string name="level_of_special_effects">Choose the level of special effects/CGI in your movie</string>
 	<string name="sfx0">No special effects</string>
 	<string name="sfx1">Some effects</string>
@@ -107,4 +108,7 @@
 	<string name="sfx4">Very heavy use of CGI</string>
 	<string name="sfx5">Michael Bay</string>
 	<string name="total_sfx_cost_">Total SFX Cost:</string>
+	<string name="pitch_your_film_to_the_studios_">"Pitch your film to the Studios: "</string>
+	
+
 </resources>

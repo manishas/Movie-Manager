@@ -21,11 +21,12 @@ public class EarningsCalculatorWithActors implements EarningsCalculator{
 		
 		double cast = getTotalCastReputation(movie.getCast());
 		cast = cast/100;
-		cast += 1;
-		int director = movie.getDirector().getPriceToHire();
+		int director = movie.getDirector().getReputation() / 10;
 		double genreBonus = movie.getGenre().boxOffice();
 		
-		return (int) ((cast)*(20 + r.nextInt(80) * starRating)*(director) * (genreBonus) / 10);
+		int total = (int) ((cast)*(starRating)*(director)*(genreBonus));
+		int screens = r.nextInt(10) + 5;
+		return total * screens;
 
 	}
 	
@@ -40,8 +41,8 @@ public class EarningsCalculatorWithActors implements EarningsCalculator{
 		double denominator = 1.0;
 		double total = 0.0;
 		for(Actor a : cast.getActors()){
-			total += ((a.getPriceToHire()*4)/denominator);
-			denominator += 1;
+			total += ((a.getReputation())/denominator);
+			denominator *= 2;
 		}
 		
 		return total;

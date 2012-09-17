@@ -47,4 +47,17 @@ public class Cast implements Serializable {
 	public void sortCastByRep() {
 		//Collections.sort(actors, comparator)
 	}
+
+	public void add(Actor actor) {
+		this.actors.add(actor);
+	}
+
+	public int size() {
+		return this.actors.size();
+	}
+
+	public void clear() {
+		this.actors.clear();
+	}
+	
 }

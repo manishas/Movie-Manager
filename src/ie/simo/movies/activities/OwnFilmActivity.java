@@ -4,13 +4,9 @@ import ie.simo.movies.R;
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -78,8 +74,7 @@ public class OwnFilmActivity extends ActivityWithMenu {
 	}
 	
 	private void setTitleBar() {
-		budgetView.setText(getPc().getBudget()+"");
+		budgetView.setText("$"+getPc().getBudget()+"M");
 		compName.setText(getPc().getName());
-	}
-  
+	}  
 }
