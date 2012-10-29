@@ -36,6 +36,26 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content" />
 
+		<LinearLayout
+		    android:id="@+id/knownforlayout"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+
+			<TextView
+			    android:id="@+id/knownforlabel"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="@string/known_for_"
+			    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<TextView
+			    android:id="@+id/knownfor"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="" />
+
+		</LinearLayout>
+
 		<TextView
 		    android:id="@+id/credits"
 		    android:layout_width="wrap_content"
@@ -64,11 +84,11 @@
 		</LinearLayout>
 
 		<Button
-		    android:id="@+id/button1"
+		    android:id="@+id/sfxbutton"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_gravity="center"
-		    android:text="Button" />
+		    android:text="@string/make_this_film" />
 
 	</LinearLayout>
 	

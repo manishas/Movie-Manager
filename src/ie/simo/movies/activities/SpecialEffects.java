@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
@@ -35,10 +36,18 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 	private Spinner sfxCompanies;
 	private SfxDbAdapter db;
 	
-	//TODO add other textviews
 	private TextView budgetView;
 	private TextView compName;
+	private TextView knownFor;
+	private TextView sfxCost;
 	
+	private LinearLayout layout;
+	private Button done;
+	
+	private int totalEffectsCost = 0;
+	private int sfxStudioRep = 0;
+	
+	//TODO on back button it forgets which actors were selected
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,33 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 		sfxCompanies.setVisibility(View.INVISIBLE);
 		fillSpinner(sfxCompanies);
 		
+		done.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(isValid()){
+					Intent i = new Intent();
+					i.setClass(SpecialEffects.this, Result.class);
+					//TODO track the sfx chosen
+					getPc().setBudget(getPc().getBudget() - totalEffectsCost);
+					i.putExtra(COMPANY, getPc());
+					
+					startActivity(i);
+				}
+				else{
+					Toast.makeText(getApplicationContext(), "You can't afford ", Toast.LENGTH_LONG);
+				}
+				
+			}
+			
+			private boolean isValid() {
+				int budget = getPc().getBudget();
+				return (budget - totalEffectsCost >= 0) ? true : false;
+			}
+		});
+		
+		
+		
 		sfxCompanies.setOnItemSelectedListener(new OnItemSelectedListener(){
 
 			@Override
@@ -64,8 +100,16 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 				if(sfxCompanies.getSelectedItem().toString() != null && !sfxCompanies.getSelectedItem().toString().equals("") )
 				{					
 					Cursor c = (Cursor) sfxCompanies.getSelectedItem();
-					Toast.makeText(SpecialEffects.this, c.getString(c.getColumnIndex("sfx_credits")), Toast.LENGTH_LONG).show();
+					knownFor.setText(c.getString(c.getColumnIndex("sfx_credits")));
+					sfxStudioRep = c.getInt(c.getColumnIndex("sfx_reputation"));
+					setEffectsCost(sfxStudioRep);
 				}
+			}
+
+			public void setEffectsCost(int sfxRep) {
+				totalEffectsCost = effectsLevel.getProgress() * (sfxRep/10);
+				SpecialEffects.this.updateEffectsCost(effectsLevel.getProgress(), sfxRep/10);
+				
 			}
 
 			@Override
@@ -80,6 +124,13 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 		effectsLevel.setOnSeekBarChangeListener(this);
 		onProgressChanged(effectsLevel, 0, false);
 	}
+	
+	
+	public void updateEffectsCost(int progress, int sfxStudioRep){
+		
+		sfxCost.setText(String.format("$%dM", progress * sfxStudioRep/10));
+	}
+	
 	/**
 	 * Load strings into array
 	 */
@@ -100,11 +151,15 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 	 * Get all views
 	 */
 	private void findAllViewsById() {
-		effectsDesc = (TextView) this.findViewById(R.id.sfxDesc);
-		effectsLevel= (SeekBar) this.findViewById(R.id.sfx);
-		sfxCompanies = (Spinner) this.findViewById(R.id.companiesSpinner);
-		budgetView = (TextView) this.findViewById(R.id.budgetValue);
-		compName = (TextView)this.findViewById(R.id.companyName);
+		effectsDesc 	= (TextView) this.findViewById(R.id.sfxDesc);
+		effectsLevel	= (SeekBar) this.findViewById(R.id.sfx);
+		sfxCompanies 	= (Spinner) this.findViewById(R.id.companiesSpinner);
+		budgetView 		= (TextView) this.findViewById(R.id.budgetValue);
+		compName 		= (TextView)this.findViewById(R.id.companyName);
+		knownFor 		= (TextView)this.findViewById(R.id.knownfor);
+		layout 			= (LinearLayout) this.findViewById(R.id.knownforlayout);
+		sfxCost 		= (TextView) this.findViewById(R.id.sfxpricevalue);
+		done 			= (Button) this.findViewById(R.id.sfxbutton);
 	}
 	
 	private void fillSpinner(Spinner s){
@@ -129,6 +184,7 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 	 */
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 		effectsDesc.setText(sfxComments[progress]);
+		updateEffectsCost(progress, sfxStudioRep);
 		if(progress > 0){
 			showCompanies();
 		}
@@ -154,14 +210,12 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 	
 	private void showCompanies(){
 		sfxCompanies.setVisibility(View.VISIBLE);
-		
+		layout.setVisibility(View.VISIBLE);
 	}
 	
 	private void hideCompanies(){
 		sfxCompanies.setVisibility(View.INVISIBLE);
+		layout.setVisibility(View.INVISIBLE);
 		
 	}
-	
-	
-
 }

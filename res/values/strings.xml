@@ -109,6 +109,8 @@
 	<string name="sfx5">Michael Bay</string>
 	<string name="total_sfx_cost_">Total SFX Cost:</string>
 	<string name="pitch_your_film_to_the_studios_">"Pitch your film to the Studios: "</string>
+	<string name="known_for_">"Known For: "</string>
+	<string name="production_progress_d_">Production Progress: %d%</string>
 	
 
 </resources>
