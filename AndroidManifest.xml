@@ -13,7 +13,7 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		
+		<activity android:label="Production" android:name=".activities.Production"/>
 		<activity android:label="Preferences" android:name=".activities.Preferences"/>
 		<activity android:label="Choose Film" android:name=".activities.MakeFilmActivity"/>
 		<activity android:label="Choose Director" android:name=".activities.GetDirector"/>
