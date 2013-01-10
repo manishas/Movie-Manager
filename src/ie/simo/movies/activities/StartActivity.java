@@ -95,7 +95,7 @@ public class StartActivity extends Activity {
 			public void onClick(View v) {
 				
 				Activity a = StartActivity.this;
-				new InfoDialog(a, a.getString(ie.simo.movies.R.string.credits), a.getString(ie.simo.movies.R.string.creditsText)).show();
+				new InfoDialog(a, a.getString(R.string.credits), a.getString(R.string.creditsText)).show();
 			}
 		});
 	}

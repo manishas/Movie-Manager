@@ -5,8 +5,7 @@
     android:layout_gravity="fill"
     android:orientation="vertical" >
 
-    <include android:weight="1"
-        layout="@layout/scorebar" />
+    <include layout="@layout/scorebar" />
 
     <TextView
         android:id="@+id/productionprogresstv"
