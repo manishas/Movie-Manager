@@ -43,7 +43,6 @@ public class PitchFilm extends ActivityWithMenu {
 		
 		findAllViewsById();
 		setTitleBar();
-		
 		fillTable();
 		
 		cancel.setOnClickListener(new View.OnClickListener(){

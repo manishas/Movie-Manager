@@ -805,10 +805,10 @@
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Sam Worthington', 8, 50, 'm')</statement>
 <statement>insert into actor (actor_name, actor_hire_cost, actor_reputation, gender) values ('Mark Hamill', 12, 50, 'm')</statement>
 
-<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Industrial Light and Magic', 5, 90, 'Titanic, The Avengers, Transformers')</statement>
-<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Weta Digital', 4, 80, 'Lord of the Rings, Avatar, Prometheus')</statement>
-<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Double Negative', 5, 60, 'Inception, Harry Potter, The Dark Knight')</statement>
-<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Moving Picture Company', 5, 40, 'John Carter, Night at the Museum, Watchmen')</statement>
-<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Digital Domain', 5, 20, 'Tron:Legacy, The Fifth Element, Apollo 13')</statement>
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Industrial Light and Magic', 9, 90, 'Titanic, The Avengers, Transformers')</statement>
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Weta Digital', 8, 80, 'Lord of the Rings, Avatar, Prometheus')</statement>
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Double Negative', 6, 60, 'Inception, Harry Potter, The Dark Knight')</statement>
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Moving Picture Company', 4, 40, 'John Carter, Night at the Museum, Watchmen')</statement>
+<statement>insert into sfx (sfx_name, sfx_hire_cost, sfx_reputation, sfx_credits) values ('Digital Domain', 2, 20, 'Tron:Legacy, The Fifth Element, Apollo 13')</statement>
 
 </sql>

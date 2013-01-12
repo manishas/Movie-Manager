@@ -78,7 +78,7 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 					startActivity(i);
 				}
 				else{
-					Toast.makeText(getApplicationContext(), "You can't afford ", Toast.LENGTH_LONG);
+					Toast.makeText(getApplicationContext(), "You can't afford ", Toast.LENGTH_LONG).show();
 				}
 				
 			}
@@ -108,8 +108,7 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 
 			public void setEffectsCost(int sfxRep) {
 				totalEffectsCost = effectsLevel.getProgress() * (sfxRep/10);
-				SpecialEffects.this.updateEffectsCost(effectsLevel.getProgress(), sfxRep/10);
-				
+				SpecialEffects.this.updateEffectsCost(effectsLevel.getProgress(), sfxRep);
 			}
 
 			@Override
@@ -127,7 +126,6 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 	
 	
 	public void updateEffectsCost(int progress, int sfxStudioRep){
-		
 		sfxCost.setText(String.format("$%dM", progress * sfxStudioRep/10));
 	}
 	

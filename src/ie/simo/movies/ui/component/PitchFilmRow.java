@@ -3,6 +3,7 @@ package ie.simo.movies.ui.component;
 import ie.simo.movies.R;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ public class PitchFilmRow extends LinearLayout {
 		distributorOffer.setMinEms(4);
 		distributorName.setMinEms(7);
 		distributorComment.setMinEms(4);
+		distributorComment.setGravity(Gravity.FILL_VERTICAL);
     }
 	
 	/* Getters & Setters */
