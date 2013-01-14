@@ -111,6 +111,10 @@
 	<string name="pitch_your_film_to_the_studios_">"Pitch your film to the Studios: "</string>
 	<string name="known_for_">"Known For: "</string>
 	<string name="production_progress_d_">Production Progress: %d%</string>
+	<string name="previous">Previous</string>
+	<string name="rework_script">Rework script</string>
+	<string name="choose_this_producer">Choose this Producer</string>
+	<string name="next">Next</string>
 	
 
 </resources>
