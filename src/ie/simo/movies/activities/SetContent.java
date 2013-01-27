@@ -78,7 +78,7 @@ public class SetContent extends ActivityWithMenu implements OnSeekBarChangeListe
 			public void onClick(View v) {
 				Intent i = new Intent();
 				i.putExtra(COMPANY, getPc());
-				i.setClass(SetContent.this, PitchFilm.class);
+				i.setClass(SetContent.this, NewPitchFilm.class);
 				startActivity(i);
 			}
 		});

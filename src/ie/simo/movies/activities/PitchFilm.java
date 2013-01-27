@@ -60,7 +60,7 @@ public class PitchFilm extends ActivityWithMenu {
 	/**
 	 * Get Distributor data and add rows
 	 */
-	private void fillTable() {
+	public void fillTable() {
 		db = new DistributorDbAdapter(this);
 		db.open();
 		Cursor c = db.selectAll();

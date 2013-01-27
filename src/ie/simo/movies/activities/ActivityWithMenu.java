@@ -69,4 +69,7 @@ public abstract class ActivityWithMenu extends Activity {
 		this.pc = pc;
 	}
 	
+	public ActivityWithMenu(){
+		super();
+	}
 }

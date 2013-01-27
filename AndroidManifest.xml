@@ -19,7 +19,7 @@
 		<activity android:label="Choose Director" android:name=".activities.GetDirector"/>
 		<activity android:label="Box Office" android:name=".activities.AllTimeBoxOffice"/>
 		<activity android:label="Create your film" android:name=".activities.OwnFilmActivity"/>
-		<activity android:label="Pitch your Film" android:name=".activities.PitchFilm"/>
+		<activity android:label="Pitch your Film" android:name=".activities.NewPitchFilm"/>
 		<activity android:label="Result" android:name=".activities.Result"/>
 		<activity android:label="Choose Actor" android:name=".activities.GetActor"/>
 		<activity android:label="Set Content" android:name=".activities.SetContent"/>
