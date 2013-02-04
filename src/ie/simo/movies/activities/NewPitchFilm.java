@@ -3,12 +3,8 @@ package ie.simo.movies.activities;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
-import java.util.Stack;
-
 import ie.simo.movies.R;
 import ie.simo.movies.dao.DistributorDbAdapter;
 import ie.simo.movies.domain.Distributor;
@@ -19,24 +15,16 @@ import static ie.simo.movies.util.Consts.*;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
-import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -55,43 +43,43 @@ public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, O
 
     private Animation animFlipInNext,animFlipOutNext, animFlipInPrevious, animFlipOutPrevious;
 	
-	private Button next;
-	private Button previous;
-	private ImageView execPic;
+	private ImageView producerpic1, producerpic2, producerpic3;
 	private Button cancel;
-	private TextView offer;
+	private TextView producercomment1, producercomment2, producercomment3;
 	private Button rework;
 	private Button choose;
 	private Random random = new Random();
 	
-	private List<Offer> offers;
+	private ArrayList<Offer> offers = new ArrayList<Offer>();
 	
 	private TextView budgetView;
 	private TextView compName;
 	private DistributorDbAdapter db;
 	private ArrayList<Distributor> distributorList = new ArrayList<Distributor>();
 	
-	private List<Integer> images = Arrays.asList(new Integer[]{R.drawable.suits1, R.drawable.suits2});
+	private List<Integer> images = Arrays.asList(new Integer[]{R.drawable.suits1, R.drawable.suits2, R.drawable.suits3, R.drawable.suits4});
 	
 	private void findAllViewsById() {
-		next = (Button) this.findViewById(R.id.nextproducer);
-		previous = (Button) this.findViewById(R.id.previousproducer);
-		execPic = (ImageView) this.findViewById(R.id.producerpic);
-		offer = (TextView) this.findViewById(R.id.producercomment);
-		rework = (Button) this.findViewById(R.id.reworkscript);
+		
+		producerpic1 = (ImageView) this.findViewById(R.id.pitchimage1);
+		producerpic2 = (ImageView) this.findViewById(R.id.pitchimage2);
+		producerpic3 = (ImageView) this.findViewById(R.id.pitchimage3);
+
+		producercomment1 = (TextView) this.findViewById(R.id.pitchtext1);
+		producercomment2 = (TextView) this.findViewById(R.id.pitchtext2);
+		producercomment3 = (TextView) this.findViewById(R.id.pitchtext3);
+		
+		cancel = (Button) this.findViewById(R.id.reworkscript);
 		choose = (Button) this.findViewById(R.id.chooseproducer);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 		compName = (TextView)this.findViewById(R.id.companyName);
-		
         vf=(ViewFlipper)findViewById(R.id.ViewFlipper01);
-
         animFlipInNext = AnimationUtils.loadAnimation(this, R.anim.flipinnext);
         animFlipOutNext = AnimationUtils.loadAnimation(this, R.anim.flipoutnext);
         animFlipInPrevious = AnimationUtils.loadAnimation(this, R.anim.flipinprevious);
         animFlipOutPrevious = AnimationUtils.loadAnimation(this, R.anim.flipoutprevious);
 	}
 	
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -105,6 +93,7 @@ public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, O
 		
 		fetchDistributors();
 		getOffers();
+		showOffers();
 		
 		cancel.setOnClickListener(new View.OnClickListener(){
 
@@ -122,7 +111,7 @@ public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, O
 		assert(null != distributorList);
 		
 		//TODO increase to 3 when have more images
-		for(int i = 0; i< 2; i++){
+		for(int i = 0; i < 3; i++){
 			Distributor d = distributorList.get(i);
 			int money = d.makeOffer(getPc().getCurrentProject().getGenre(), getPc().getCurrentProject().getRatingDetails());
 			
@@ -135,7 +124,24 @@ public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, O
 	
 	
 	private void showOffers(){
-		//TODO implement
+		
+		int width = getWindowManager().getDefaultDisplay().getWidth();
+		
+		producerpic1.setImageResource(offers.get(0).getPic());
+		producerpic1.getLayoutParams().width = width;
+		producerpic1.getLayoutParams().height = width;
+		producercomment1.setText(offers.get(0).getOfferText() + ": $" + offers.get(0).getOfferValue() +"M");
+		
+		producerpic2.setImageResource(offers.get(1).getPic());
+		producerpic2.getLayoutParams().width = width;
+		producerpic2.getLayoutParams().height = width;
+		producercomment2.setText(offers.get(1).getOfferText() + ": $" + offers.get(1).getOfferValue() +"M");
+
+		producerpic3.setImageResource(offers.get(2).getPic());
+		producerpic3.getLayoutParams().width = width;
+		producerpic3.getLayoutParams().height = width;
+		producercomment3.setText(offers.get(2).getOfferText() + ": $" + offers.get(2).getOfferValue() +"M");
+
 	}
 	
 
@@ -260,6 +266,75 @@ public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, O
 		}
 	}
 	
-	
+    @Override
+
+    public boolean onTouchEvent(MotionEvent me){
+
+        return gestureScanner.onTouchEvent(me);
+
+    }
+
+    public boolean onDown(MotionEvent e){
+
+        return true;
+
+    }
+
+    //FLING gesture listener
+
+    public boolean onFling(MotionEvent e1,MotionEvent e2,float velocityX,float velocityY){
+
+        try {
+
+            if(e1.getX() > e2.getX() && Math.abs(e1.getX() - e2.getX()) > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+
+                Toast.makeText(this.getApplicationContext(), "Left", Toast.LENGTH_SHORT).show();
+
+                vf.setInAnimation(animFlipInPrevious);
+
+                vf.setOutAnimation(animFlipOutPrevious);
+
+                vf.showPrevious();
+
+            }else if (e1.getX() < e2.getX() && e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+
+                Toast.makeText(this.getApplicationContext(), "Right", Toast.LENGTH_SHORT).show();
+
+                vf.setInAnimation(animFlipInNext);
+
+                vf.setOutAnimation(animFlipOutNext);
+
+                vf.showNext();
+
+            }
+
+        } catch (Exception e) {
+
+            // nothing
+
+        }
+
+        return true;
+
+        
+
+    }
+
+    public boolean onScroll(MotionEvent e1,MotionEvent e2,float distanceX,float distanceY){
+        return true;
+    }
+    
+    public void onLongPress(MotionEvent e){}
+
+    public void onShowPress(MotionEvent e){}
+
+    public boolean onSingleTapUp(MotionEvent e){ return true;}
+
+
+	@Override
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

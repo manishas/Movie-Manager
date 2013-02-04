@@ -1,101 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical" >
+	
+	<include layout="@layout/scorebar"/>
+
+    <!-- header -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/swipe_left_and_right_to_view_offers"
+        />
 
     <LinearLayout
+        android:id="@+id/LinearLayout02"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
 
-        <include layout="@layout/scorebar" />
+        <ViewFlipper
+            android:id="@+id/ViewFlipper01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
-        <!-- producers -->
-            <ViewFlipper
-                android:id="@+id/ViewFlipper01"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" >
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
 
-                <!-- adding views to ViewFlipper -->
-				<!-- First Producer -->
-                <LinearLayout
-                    android:id="first"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                <TableRow android:layout_width="match_parent" >
 
                     <ImageView
-                        android:id="@+id/producerpic1"
-                        android:layout_width="175dp"
-                        android:layout_height="194dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:id="@+id/pitchimage1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/suits1" />
+                </TableRow>
+
+                <TableRow>
 
                     <TextView
-                        android:id="@+id/producercomment1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="ygkgjgyjgfjtyfg" />
-                </LinearLayout>
+                        android:id="@+id/pitchtext1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="We will offer you 50 quid" />
+                </TableRow>
+            </TableLayout>
 
-                <!-- Second Producer -->
-                <LinearLayout
-                    android:id="second"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="vertical" >
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TableRow android:layout_width="match_parent" >
 
                     <ImageView
-                        android:id="@+id/producerpic2"
-                        android:layout_width="175dp"
-                        android:layout_height="194dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:id="@+id/pitchimage2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/suits2" />
+                </TableRow>
+
+                <TableRow>
 
                     <TextView
-                        android:id="@+id/producercomment2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="ygkgjgyjgfjtyfg" />
-                </LinearLayout>
-				
-                <!-- Third Producer -->
-                <LinearLayout
-                    android:id="third"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="vertical" >
+                        android:id="@+id/pitchtext2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="We will offer you 50 quid" />
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TableRow android:layout_width="match_parent" >
 
                     <ImageView
-                        android:id="@+id/producerpic3"
-                        android:layout_width="175dp"
-                        android:layout_height="194dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:id="@+id/pitchimage3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/suits1" />
+                </TableRow>
+
+                <TableRow>
 
                     <TextView
-                        android:id="@+id/producercomment3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="ygkgjgyjgfjtyfg" />
-                </LinearLayout>
-            </ViewFlipper>
-
-        <!-- Footer -->
-        <LinearLayout
+                        android:id="@+id/pitchtext3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="We will offer you 50 quid" />
+                </TableRow>
+            </TableLayout>
+        </ViewFlipper>
+    </LinearLayout>
+    
+    
+    <!-- footer -->
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:orientation="horizontal" >
 
             <Button
@@ -115,5 +128,4 @@
                 android:text="@string/choose_this_producer" />
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>
