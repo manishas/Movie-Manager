@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical" >
-	
-	<include layout="@layout/scorebar"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <include layout="@layout/scorebar" />
 
     <!-- header -->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/swipe_left_and_right_to_view_offers"
-        />
+        android:text="@string/swipe_left_and_right_to_view_offers" />
 
     <LinearLayout
         android:id="@+id/LinearLayout02"
@@ -48,9 +43,10 @@
 
                     <TextView
                         android:id="@+id/pitchtext1"
-                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="We will offer you 50 quid" />
+                        android:lines="5"
+                        android:text="We will offer you 50 quid"
+                        android:width="0dip" />
                 </TableRow>
             </TableLayout>
 
@@ -72,9 +68,10 @@
 
                     <TextView
                         android:id="@+id/pitchtext2"
-                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="We will offer you 50 quid" />
+                        android:lines="5"
+                        android:text="We will offer you 50 quid"
+                        android:width="0dip" />
                 </TableRow>
             </TableLayout>
 
@@ -96,36 +93,37 @@
 
                     <TextView
                         android:id="@+id/pitchtext3"
-                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="We will offer you 50 quid" />
+                        android:lines="5"
+                        android:text="We will offer you 50 quid"
+                        android:width="0dip" />
                 </TableRow>
             </TableLayout>
         </ViewFlipper>
     </LinearLayout>
-    
-    
+
     <!-- footer -->
+
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/reworkscript"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_weight="1"
-                android:text="@string/rework_script" />
+        <Button
+            android:id="@+id/reworkscript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:text="@string/rework_script" />
 
-            <Button
-                android:id="@+id/chooseproducer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                android:text="@string/choose_this_producer" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/chooseproducer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:text="@string/choose_this_producer" />
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

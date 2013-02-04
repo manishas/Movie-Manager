@@ -29,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, OnGestureListener {
+public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener {
 
     protected GestureDetector gestureScanner;
 
@@ -84,6 +84,7 @@ public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, O
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.pitch2);
+		gestureScanner = new GestureDetector(this);
 		
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
@@ -130,17 +131,17 @@ public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, O
 		producerpic1.setImageResource(offers.get(0).getPic());
 		producerpic1.getLayoutParams().width = width;
 		producerpic1.getLayoutParams().height = width;
-		producercomment1.setText(offers.get(0).getOfferText() + ": $" + offers.get(0).getOfferValue() +"M");
+		producercomment1.setText(offers.get(0).getOfferText());
 		
 		producerpic2.setImageResource(offers.get(1).getPic());
 		producerpic2.getLayoutParams().width = width;
 		producerpic2.getLayoutParams().height = width;
-		producercomment2.setText(offers.get(1).getOfferText() + ": $" + offers.get(1).getOfferValue() +"M");
+		producercomment2.setText(offers.get(1).getOfferText());
 
 		producerpic3.setImageResource(offers.get(2).getPic());
 		producerpic3.getLayoutParams().width = width;
 		producerpic3.getLayoutParams().height = width;
-		producercomment3.setText(offers.get(2).getOfferText() + ": $" + offers.get(2).getOfferValue() +"M");
+		producercomment3.setText(offers.get(2).getOfferText());
 
 	}
 	
@@ -168,11 +169,7 @@ public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, O
 		db.close();
 		Collections.shuffle(getDistributorList());
 	}
-	
-    private void makeOffer(PitchFilmRow row, String distributorName, int offer){
-    	row.getDistributorComment().setText(getOfferText(offer));
-    }
-    
+	   
 	private CharSequence getOfferText(int offer) {
 		
 		String text = "";
@@ -329,12 +326,4 @@ public class NewPitchFilm extends ActivityWithMenu implements OnClickListener, O
     public void onShowPress(MotionEvent e){}
 
     public boolean onSingleTapUp(MotionEvent e){ return true;}
-
-
-	@Override
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
