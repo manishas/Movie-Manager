@@ -16,6 +16,7 @@ import static ie.simo.movies.util.Consts.*;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
@@ -49,6 +50,7 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 	private Button rework;
 	private Button choose;
 	private Random random = new Random();
+	private int currentIndex = 0;
 	
 	private ArrayList<Offer> offers = new ArrayList<Offer>();
 	
@@ -107,6 +109,23 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 			}
 			
 		});
+		
+		choose.setOnClickListener(new View.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				Offer o = offers.get(Math.abs(currentIndex % 3));
+				Distributor d = o.getDistributor();
+				Intent intent = new Intent(getApplicationContext(), GetDirector.class);
+        		
+        		intent.putExtra(DISTRIBUTOR, d);
+        		getPc().setBudget(getPc().getBudget() + o.getOfferValue());
+        		intent.putExtra(COMPANY, getPc());
+        		startActivity(intent);
+        		
+			}
+			
+		});
 	}
 	private void getOffers() {
 		assert(null != distributorList);
@@ -126,26 +145,28 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 	
 	private void showOffers(){
 		
-		int width = getWindowManager().getDefaultDisplay().getWidth();
+		int width = (getWindowManager().getDefaultDisplay().getWidth() / 4) * 3;
 		
 		producerpic1.setImageResource(offers.get(0).getPic());
 		producerpic1.getLayoutParams().width = width;
 		producerpic1.getLayoutParams().height = width;
-		producercomment1.setText(offers.get(0).getOfferText());
+		producercomment1.setText(Html.fromHtml(offerString(offers.get(0))));
 		
 		producerpic2.setImageResource(offers.get(1).getPic());
 		producerpic2.getLayoutParams().width = width;
 		producerpic2.getLayoutParams().height = width;
-		producercomment2.setText(offers.get(1).getOfferText());
+		producercomment2.setText(Html.fromHtml(offerString(offers.get(1))));
 
 		producerpic3.setImageResource(offers.get(2).getPic());
 		producerpic3.getLayoutParams().width = width;
 		producerpic3.getLayoutParams().height = width;
-		producercomment3.setText(offers.get(2).getOfferText());
+		producercomment3.setText(Html.fromHtml(offerString(offers.get(2))));
 
 	}
 	
-
+	private String offerString(Offer offer){
+		return String.format("<b>%s: $%dM</b><br/>%s", offer.getDistributor().getName(), offer.getOfferValue(), offer.getOfferText());
+	}
 
 	/**
 	 * Get unordered collection of distributors
@@ -285,23 +306,27 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 
             if(e1.getX() > e2.getX() && Math.abs(e1.getX() - e2.getX()) > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 
-                Toast.makeText(this.getApplicationContext(), "Left", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this.getApplicationContext(), "Left", Toast.LENGTH_SHORT).show();
 
                 vf.setInAnimation(animFlipInPrevious);
 
                 vf.setOutAnimation(animFlipOutPrevious);
 
                 vf.showPrevious();
+                
+                currentIndex--;
 
             }else if (e1.getX() < e2.getX() && e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 
-                Toast.makeText(this.getApplicationContext(), "Right", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this.getApplicationContext(), "Right", Toast.LENGTH_SHORT).show();
 
                 vf.setInAnimation(animFlipInNext);
 
                 vf.setOutAnimation(animFlipOutNext);
 
                 vf.showNext();
+                
+                currentIndex++;
 
             }
 
