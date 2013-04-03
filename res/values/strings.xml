@@ -116,6 +116,7 @@
 	<string name="choose_this_producer">Choose this Producer</string>
 	<string name="next">Next</string>
 	<string name="swipe_left_and_right_to_view_offers">Swipe left and right to view offers</string>
+	<string name="continue_to_set_content">Continue</string>
 	
 
 </resources>

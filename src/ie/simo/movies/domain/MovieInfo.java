@@ -9,6 +9,7 @@ public class MovieInfo implements Serializable {
 	private static final long serialVersionUID = -8148935241980798753L;
 	private String title;
 	private String tagline;
+	private String plot;
 	private Genre genre;
 	private Director director;
 	private Cast cast;
@@ -117,6 +118,14 @@ public class MovieInfo implements Serializable {
 
 	public void setRatingDetails(RatingDetails ratingDetails) {
 		this.ratingDetails = ratingDetails;
+	}
+
+	public String getPlot() {
+		return plot;
+	}
+
+	public void setPlot(String plot) {
+		this.plot = plot;
 	}
 
 }

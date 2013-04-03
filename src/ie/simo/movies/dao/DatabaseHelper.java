@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static final String DATABASE_NAME = "moviemanager";
-	private static final int DATABASE_VERSION = 4;
+	private static final int DATABASE_VERSION = 6;
 
 	 protected Context context;
 	        
@@ -52,6 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.execSQL("DROP TABLE IF EXISTS actor");
                 db.execSQL("DROP TABLE IF EXISTS director");
                 db.execSQL("DROP TABLE IF EXISTS genre");
+                db.execSQL("DROP TABLE IF EXISTS production_company");
                 //db.execSQL("DROP TABLE IF EXISTS producer");
                 db.execSQL("DROP TABLE IF EXISTS cast");
                 db.execSQL("DROP TABLE IF EXISTS distributor");

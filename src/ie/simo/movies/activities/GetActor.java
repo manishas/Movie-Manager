@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 public class GetActor extends ActivityWithMenu {
 
+	private int initialBudget;
 	private TextView chosen;
 	private TextView price;
 	private TextView budgetView;
@@ -60,6 +61,8 @@ public class GetActor extends ActivityWithMenu {
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
+		initialBudget = getPc().getBudget();
+		
 		fillSpinner(spinner);
 		allSpinners.add(spinner);
 		
@@ -85,7 +88,7 @@ public class GetActor extends ActivityWithMenu {
 					i.setClass(GetActor.this, SpecialEffects.class);
 
 					Log.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentCast().toString());
-					getPc().setBudget(getPc().getBudget()  - getPc().getCurrentCast().getCostOfActors());
+					getPc().setBudget(initialBudget - getPc().getCurrentCast().getCostOfActors());
 					i.putExtra(COMPANY, getPc());
 					Log.v(getLocalClassName(), "budget after cast: " + (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors()));
 					

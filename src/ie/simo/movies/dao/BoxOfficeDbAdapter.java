@@ -21,6 +21,7 @@ public class BoxOfficeDbAdapter {
 	public static final String PRODUCER = "producer_id";
 	public static final String DIRECTOR = "director_id";
 	public static final String DISTRIBUTOR ="distributor_id";
+	public static final String PLOT = "description";
 	
 	private Context context;
 	private SQLiteDatabase database;
@@ -41,6 +42,8 @@ public class BoxOfficeDbAdapter {
 	}
 
 	public long createMovie(MovieSummary movie) {
+		
+		//TODO hardcoded director + distributor
 		ContentValues values = new ContentValues();
 		values.put(MOVIE_NAME, movie.getInfo().getTitle());
 		values.put(EARNINGS, movie.getTotalEarnings());
@@ -49,6 +52,7 @@ public class BoxOfficeDbAdapter {
 		values.put(DIRECTOR,1);
 		values.put(COST, movie.getInfo().getDirector().getPriceToHire());
 		values.put(DISTRIBUTOR, 1);
+		values.put(PLOT, movie.getInfo().getPlot());
 		
 		return database.insert(DATABASE_TABLE, null, values);
 	}
@@ -65,5 +69,4 @@ public class BoxOfficeDbAdapter {
 		Cursor c = database.rawQuery( "select movie_name, director_name, earnings from movie, director where movie_name='"+"' and director._id = movie.director_id", null);
 		Log.v("DIRECTORQUERY", c.getString(c.getColumnIndex(DIRECTOR)));	
 	}
-	
 }

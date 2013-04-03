@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
-	package="ie.simo.movies" android:versionCode="14" android:versionName="0.24">
+	package="ie.simo.movies" android:versionCode="15" android:versionName="0.25">
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="12"/>
 
 	<!-- uses-permission android:name="android.permission.INTERNET"/> -->
@@ -27,6 +27,7 @@
 		<activity android:label="Your Movies" android:name=".activities.PersonalBest"/>
 		<activity android:label="Load Game" android:name=".activities.ContinueGameActivity"/>
 		<activity android:label="Special Effects" android:name=".activities.SpecialEffects"/>
+		<activity android:label="Plot Summary" android:name=".activities.PlotSummary"/>
 		
 	</application>
 </manifest>

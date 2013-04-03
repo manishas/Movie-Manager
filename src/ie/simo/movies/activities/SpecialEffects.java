@@ -70,15 +70,19 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 			public void onClick(View v) {
 				if(isValid()){
 					Intent i = new Intent();
+					Log.v("SFX: ", "before budget = " + getPc().getBudget() + ", sfx cost = " + totalEffectsCost);
 					i.setClass(SpecialEffects.this, Result.class);
 					//TODO track the sfx chosen
 					getPc().setBudget(getPc().getBudget() - totalEffectsCost);
+					
+					Log.v("SFX: ", "after budget = " + getPc().getBudget());
+					
 					i.putExtra(COMPANY, getPc());
 					
 					startActivity(i);
 				}
 				else{
-					Toast.makeText(getApplicationContext(), "You can't afford ", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "You can't afford these effectsd", Toast.LENGTH_LONG).show();
 				}
 				
 			}
@@ -183,6 +187,8 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
 		effectsDesc.setText(sfxComments[progress]);
 		updateEffectsCost(progress, sfxStudioRep);
+		totalEffectsCost = progress * sfxStudioRep/10;
+		
 		if(progress > 0){
 			showCompanies();
 		}
@@ -202,7 +208,7 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 	 * set contents of title bar
 	 */
 	private void setTitleBar() {
-		budgetView.setText(getPc().getBudget()+"");
+		budgetView.setText("$"+getPc().getBudget()+"M");
 		compName.setText(getPc().getName());
 	}
 	
