@@ -3,6 +3,8 @@ package ie.simo.movies.generator;
 import java.util.Random;
 
 public class PersonNameGenerator {
+	private Random rng = new Random();
+	
 	private static String[] maleName = {  "James", "John", "Robert", "Michael", "William",
 		"David", "Richard", "Charles", "Joseph", "Thomas", "Christopher",
 		"Daniel", "Paul", "Mark", "Donald", "George", "Kenneth", "Steven",
@@ -111,18 +113,40 @@ public class PersonNameGenerator {
 	};
 	
 	String getMaleName(){
-		Random r = new Random();
-		String first = maleName[r.nextInt(maleName.length)];
-		String last = surname[r.nextInt(surname.length)];
+		String first = getMaleFirstName();
+		String last = random(surname);
 		
 		return first + " " + last;
 	}
 	
 	String getfemaleName(){
-		Random r = new Random();
-		String first = femaleName[r.nextInt(femaleName.length)];
-		String last = surname[r.nextInt(surname.length)];
+		String first = getFemaleFirstName();
+		String last = random(surname);
 		
 		return first + " " + last;
+	}
+	
+	/**
+	 * Get a male or female first name
+	 * @return a first name
+	 */
+	public String getFirstName(){
+		return rng.nextBoolean() ? getMaleFirstName() : getFemaleFirstName();
+	}
+
+	public String getMaleFirstName() {
+		return random(maleName);
+	}
+	
+	public String getFemaleFirstName() {
+		return random(femaleName);
+	}
+	
+	/**
+	 * return random element from the array
+	 * @param array
+	 */
+	private String random(String [] array){
+		return array[rng.nextInt(array.length)];
 	}
 }

@@ -53,7 +53,6 @@ public class PlotSummary extends ActivityWithMenu {
 
 	private void setListeners() {
 		continueButton.setOnClickListener(new View.OnClickListener(){
-
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent();
@@ -61,7 +60,6 @@ public class PlotSummary extends ActivityWithMenu {
 				i.setClass(getApplicationContext(), SetContent.class);
 				startActivity(i);
 			}
-			
 		});
 	}
 

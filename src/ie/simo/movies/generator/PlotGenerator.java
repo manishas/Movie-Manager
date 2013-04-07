@@ -1,4 +1,5 @@
 package ie.simo.movies.generator;
+
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.generator.util.WordFactory;
 
@@ -15,7 +16,7 @@ public class PlotGenerator {
 	public String drama = "He was a %s %s who %s, and who %s. She was a %s %s who %s and %s. %s...";
 	public String comedy = "Funny stuff!";
 	public String horror = "Spooky stuff";
-	public String kids = "Some kids stuff";
+	public String kids = "When %s, the %s meets %s the %s, it looks like they will never be friends. But they must %s, and things will never be the same!";
 
 	/**
 	 * @param args
@@ -25,7 +26,7 @@ public class PlotGenerator {
 		System.out.println(pg.romcomPlot("The Notebook"));
 
 		System.out.println(pg.actionPlot(""));
-		
+
 		System.out.println(pg.dramaPlot());
 
 	}
@@ -55,7 +56,7 @@ public class PlotGenerator {
 				hero, goodJob2, mate, villain, outcome);
 	}
 
-	public String sciFiPlot() { 
+	public String sciFiPlot() {
 		return String.format(sciFi, "");
 	}
 
@@ -64,9 +65,10 @@ public class PlotGenerator {
 	}
 
 	public String dramaPlot() {
-		//He was a {adjective} {profession} who {goal/achievement}, who {describe}. She was {adjective} {profession} who {goal/achievement} and {describe}. Together they {did something}. Fighting the corrupt banks and stopping androids from stealing our identities. ";
-		
-		return String.format(drama, wf.getLowerCaseAdjective(), random(professions), random(desires), random(description), wf.getLowerCaseAdjective(), random(professions), random(desires), random(description), random(dramaTwist));
+		return String.format(drama, wf.getLowerCaseAdjective(),
+				random(professions), random(description), random(description),
+				wf.getLowerCaseAdjective(), random(professions),
+				random(description), random(description), random(dramaTwist));
 	}
 
 	public String horrorPlot() {
@@ -74,10 +76,15 @@ public class PlotGenerator {
 	}
 
 	public String kidsPlot() {
-		return String.format(kids, "");
+		return String.format(kids, png.getFirstName(), random(kidsCharacter),
+				png.getFirstName(), random(kidsCharacter), random(kidsGoal));
 	}
 
-	public String[] kidsCharacter = {"friendly dog", "inquisitive young girl", "sarcastic cat", "nerdy boy", "super rich boy", "silly puppy", "hilarious tiger", "lonely fish"};
+	public String[] kidsCharacter = { "friendly dog", "inquisitive young girl",
+			"sarcastic cat", "nerdy boy", "super rich boy", "silly puppy",
+			"hilarious tiger", "lonely fish", "smelly warthog", "funny meercat",
+			"bitter bird", "big lion"};
+	
 	public String[] professions = { "basketball player", "novelist",
 			"librarian", "fashion designer", "Lawyer", "chef", "waitress",
 			"News broadcaster", "journalist", "detective", "cop",
@@ -156,50 +163,62 @@ public class PlotGenerator {
 			"becoming the biggest drug lord in the world",
 			"killing millions of innocent people",
 			"bribing the judges and winning X-Factor" };
-	
-	private String [] dramaTwist = {
+
+	private String[] dramaTwist = {
 			"They must make the choice of which one of their children to give up for adoption",
 			"They then find out they have been framed for a crime they didn't commit",
 			"They are forced into witness protection after witnessing something no one should ever see",
 			"They have to come to terms with their dog getting sick",
 			"He must keep the family together while she struggles to get clean",
-			"She must take the kids when he becomes an abusive drunk"
-	};
-	
-	private String [] scifiTwist = {
-			"Together they joined a futuristic elite fighting force, fighting the corrupt banks and stopping androids from stealing our identities. "
+			"She must take the kids when he becomes an abusive drunk" };
+
+	private String[] scifiTwist = { "Together they joined a futuristic elite fighting force, fighting the corrupt banks and stopping androids from stealing our identities. " };
+
+	private String[] kidsGoal = {
+			"team up to beat the bullies at their own game", "learn to share",
+			"learn what friendship is all about", "find their way back home",
+			"help an alien phone home", "survive the whole summer at camp",
+			"defend their house from crazy burglars", "put their differences aside to win the championship",
+			"take the pridelands back from Scar and the hyenas"
 	};
 
 	// and who ------
-	private String[] description = { "had a a mullet and a heart of gold",
+	private String[] description = { "had a mullet", "had a heart of gold",
 			"had an amazing collection of pogs",
-			"was a former olympic gymnast", 
-			"played a mean ukelele", 
-			"won the vietnam war for America" };
-
-	// He was a {adjective} {profession} who ....
-	private String[] desires = { 
-			"yearned to be human", 
-			"wished upon a star",
-			"wanted to be a real boy", 
-			"wanted to rock", 
-			"had a lovely bottom" };
+			"was a former olympic gymnast", "played a mean ukelele",
+			"won the vietnam war for America",
+			"had a grudge against the government", "had an eyepatch",
+			"had a scar", "looked tough", "had long blonde hair",
+			"had an incredible talent for using google", "had enormous feet",
+			"was always well dressed", "was an heiress",
+			"had connections to the royal family", "yearned to be human",
+			"wished upon a star", "wanted to be a real boy", "wanted to rock",
+			"had a lovely bottom",
+			"had auditioned to be an understudy for the blue man group" };
 
 	private String random(String[] src) {
 		return src[r.nextInt(src.length - 1)];
 	}
 
 	public String createPlot(Genre g, String filmName) {
-		switch(g){
-		case Romance: return romcomPlot(filmName);
-		case Action: return actionPlot(filmName);
-		case Drama: return dramaPlot();
-		case Comedy: return comedyPlot();
-		case Horror: return horrorPlot();
-		case Kids: return kidsPlot();
-		case ScienceFiction: return sciFiPlot();
-		default: return "Unrecognised Genre...";
+		switch (g) {
+		case Romance:
+			return romcomPlot(filmName);
+		case Action:
+			return actionPlot(filmName);
+		case Drama:
+			return dramaPlot();
+		case Comedy:
+			return comedyPlot();
+		case Horror:
+			return horrorPlot();
+		case Kids:
+			return kidsPlot();
+		case ScienceFiction:
+			return sciFiPlot();
+		default:
+			return "Unrecognised Genre...";
 		}
-		
+
 	}
 }
