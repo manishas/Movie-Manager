@@ -1,4 +1,5 @@
 package ie.simo.movies.generator;
+import ie.simo.movies.domain.Genre;
 import ie.simo.movies.generator.util.WordFactory;
 
 import java.util.Random;
@@ -186,5 +187,19 @@ public class PlotGenerator {
 
 	private String random(String[] src) {
 		return src[r.nextInt(src.length - 1)];
+	}
+
+	public String createPlot(Genre g, String filmName) {
+		switch(g){
+		case Romance: return romcomPlot(filmName);
+		case Action: return actionPlot(filmName);
+		case Drama: return dramaPlot();
+		case Comedy: return comedyPlot();
+		case Horror: return horrorPlot();
+		case Kids: return kidsPlot();
+		case ScienceFiction: return sciFiPlot();
+		default: return "Unrecognised Genre...";
+		}
+		
 	}
 }

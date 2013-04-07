@@ -41,15 +41,6 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 		setTitleBar();
 		generateScripts();
 		
-		/*OnClickListener notImplYetListener = new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				longToast("Not implemented yet...");
-
-			}
-
-		};
-		*/
 		script1.setOnClickListener(this);
 		script2.setOnClickListener(this);
 		script3.setOnClickListener(this);
@@ -77,7 +68,7 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 	@Override
 	public void onClick(View target) {
 
-		intent = new Intent(getApplicationContext(),SetContent.class);
+		intent = new Intent(getApplicationContext(), PlotSummary.class);
 		
 		if (target == script1)
 			getPc().setCurrentProject(meta1);

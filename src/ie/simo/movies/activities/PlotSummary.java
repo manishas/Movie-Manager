@@ -3,12 +3,14 @@ package ie.simo.movies.activities;
 import static ie.simo.movies.util.Consts.COMPANY;
 import ie.simo.movies.R;
 import ie.simo.movies.censor.factory.CensorFactory;
+import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.generator.PlotGenerator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,15 +30,39 @@ public class PlotSummary extends ActivityWithMenu {
 
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
+		plotGenerator = new PlotGenerator();
+		Genre genre = getPc().getCurrentProject().getGenre();
+		String title = getPc().getCurrentProject().getTitle();
+		
 
 		findAllViewsById();
+		
+		filmTitle.setText(title + " ("+ genre.toString() + ")");
+		
+		generatePlot(genre, title);
+		
 		setTitleBar();
 		setListeners();
 	}
 
-	private void setListeners() {
-		// TODO Auto-generated method stub
+	private void generatePlot(Genre g, String title) {
+		String plot = plotGenerator.createPlot(g, title);
+		plotSummary.setText(plot);
+		getPc().getCurrentProject().setPlot(plot);
+	}
 
+	private void setListeners() {
+		continueButton.setOnClickListener(new View.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent();
+				i.putExtra(COMPANY, getPc());
+				i.setClass(getApplicationContext(), SetContent.class);
+				startActivity(i);
+			}
+			
+		});
 	}
 
 	private void findAllViewsById() {
