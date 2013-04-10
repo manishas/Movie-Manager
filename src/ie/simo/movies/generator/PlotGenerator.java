@@ -18,19 +18,6 @@ public class PlotGenerator {
 	public String horror = "Spooky stuff";
 	public String kids = "When %s, the %s meets %s the %s, it looks like they will never be friends. But they must %s, and things will never be the same!";
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		PlotGenerator pg = new PlotGenerator();
-		System.out.println(pg.romcomPlot("The Notebook"));
-
-		System.out.println(pg.actionPlot(""));
-
-		System.out.println(pg.dramaPlot());
-
-	}
-
 	private Random r = new Random();
 
 	public String romcomPlot(String movieName) {
@@ -57,7 +44,11 @@ public class PlotGenerator {
 	}
 
 	public String sciFiPlot() {
-		return String.format(sciFi, "");
+		return String.format(sciFi, wf.getLowerCaseAdjective(),
+				random(sciFiProfessions), random(description),
+				random(description), wf.getLowerCaseAdjective(),
+				random(sciFiProfessions), random(description),
+				random(description), random(scifiTwist));
 	}
 
 	public String comedyPlot() {
@@ -82,9 +73,9 @@ public class PlotGenerator {
 
 	public String[] kidsCharacter = { "friendly dog", "inquisitive young girl",
 			"sarcastic cat", "nerdy boy", "super rich boy", "silly puppy",
-			"hilarious tiger", "lonely fish", "smelly warthog", "funny meercat",
-			"bitter bird", "big lion"};
-	
+			"hilarious tiger", "lonely fish", "smelly warthog",
+			"funny meercat", "bitter bird", "big lion" };
+
 	public String[] professions = { "basketball player", "novelist",
 			"librarian", "fashion designer", "Lawyer", "chef", "waitress",
 			"News broadcaster", "journalist", "detective", "cop",
@@ -94,6 +85,13 @@ public class PlotGenerator {
 			"student", "Dentist", "Zoo keeper", "Aquarium cleaner",
 			"pool cleaner", "ski instructor", "janitor", "farmer",
 			"software developer", "graphic designer", "exotic dancer" };
+
+	public String[] sciFiProfessions = { "android", "android hunter", "alien",
+			"astronaut", "humanoid", "space cop", "space marine",
+			"terraformer", "planet explorer", "starship captain",
+			"space ninja", "space pirate", "alien lifeform",
+			"alien lifeform hunter", "asteroid miner", "space station janitor",
+			"clone", "renegade pilot", "space mutant" };
 
 	public String[] goodGuyJob = { "rookie cop", "US Marine", "fighter pilot",
 			"streetwise detective", "helicopter mechanic",
@@ -171,16 +169,16 @@ public class PlotGenerator {
 			"They have to come to terms with their dog getting sick",
 			"He must keep the family together while she struggles to get clean",
 			"She must take the kids when he becomes an abusive drunk" };
-
+	//
 	private String[] scifiTwist = { "Together they joined a futuristic elite fighting force, fighting the corrupt banks and stopping androids from stealing our identities. " };
 
 	private String[] kidsGoal = {
 			"team up to beat the bullies at their own game", "learn to share",
 			"learn what friendship is all about", "find their way back home",
 			"help an alien phone home", "survive the whole summer at camp",
-			"defend their house from crazy burglars", "put their differences aside to win the championship",
-			"take the pridelands back from Scar and the hyenas"
-	};
+			"defend their house from crazy burglars",
+			"put their differences aside to win the championship",
+			"take the pridelands back from Scar and the hyenas" };
 
 	// and who ------
 	private String[] description = { "had a mullet", "had a heart of gold",
@@ -197,7 +195,7 @@ public class PlotGenerator {
 			"had auditioned to be an understudy for the blue man group" };
 
 	private String random(String[] src) {
-		return src[r.nextInt(src.length - 1)];
+		return src[r.nextInt(src.length)];
 	}
 
 	public String createPlot(Genre g, String filmName) {
@@ -219,6 +217,5 @@ public class PlotGenerator {
 		default:
 			return "Unrecognised Genre...";
 		}
-
 	}
 }
