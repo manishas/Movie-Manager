@@ -2,6 +2,7 @@ package ie.simo.movies.dao;
 
 
 import ie.simo.movies.domain.MovieSummary;
+import ie.simo.movies.util.MMLogger;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -67,6 +68,6 @@ public class BoxOfficeDbAdapter {
 	
 	public void getMovieByName(String name){
 		Cursor c = database.rawQuery( "select movie_name, director_name, earnings from movie, director where movie_name='"+"' and director._id = movie.director_id", null);
-		Log.v("DIRECTORQUERY", c.getString(c.getColumnIndex(DIRECTOR)));	
+		MMLogger.v("DIRECTORQUERY", c.getString(c.getColumnIndex(DIRECTOR)));	
 	}
 }

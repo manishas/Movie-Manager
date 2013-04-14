@@ -23,7 +23,7 @@ public class GetImage {
 		// Create client and set our specific user-agent string
 		  HttpClient client = new DefaultHttpClient();
 		  HttpGet request = new HttpGet(String.format(URL, query));
-		  Log.d("GetImage", "making request");
+		  MMLogger.d("GetImage", "making request");
 		  try {
 		      HttpResponse response = client.execute(request);
 
@@ -52,7 +52,7 @@ public class GetImage {
 		      System.out.println(dataAsString);
 		      
 		  } catch (IOException e) {
-		     Log.d("error", e.getLocalizedMessage());
+		     MMLogger.d("error", e.getLocalizedMessage());
 		  }
 
 	    return dataAsString;

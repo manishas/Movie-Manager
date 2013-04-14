@@ -2,6 +2,7 @@ package ie.simo.movies.popup;
 
 import ie.simo.movies.R;
 import ie.simo.movies.activities.StartActivity;
+import ie.simo.movies.util.MMLogger;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -70,7 +71,7 @@ public class NewGame extends PopupDialog {
 	        		if(null != input.getEditableText().toString() && isValid(input.getEditableText().toString())){
 		        		
 	        			setCompanyName(input.getEditableText().toString());
-		        		Log.v("NEW COMPANY", getCompanyName());
+		        		MMLogger.v("NEW COMPANY", getCompanyName());
 		        		setOpened(false);
 		                dialogInterface.dismiss();
 		                

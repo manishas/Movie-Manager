@@ -52,4 +52,25 @@ public class DirectorDbAdapter {
 
 		return database.rawQuery(query, null);
 	}
+	
+	public Cursor getAllDirectorsFilteredByCost(int remainingBudget){
+		String query = "select d.*," +
+		"max(case when g._id = 1 then g.genre_name end) as Action, " +
+        "max(case when g._id = 2 then g.genre_name end) as Horror, " +
+        "max(case when g._id = 3 then g.genre_name end) as Romance, " +
+        "max(case when g._id = 4 then g.genre_name end) as Comedy, " +
+        "max(case when g._id = 5 then g.genre_name end) as Drama, " +
+        "max(case when g._id = 6 then g.genre_name end) as ScienceFiction, " +
+        "max(case when g._id = 7 then g.genre_name end) as Kids " +
+        "from director d left outer join " +
+        "director_bonus db " +
+        "on d._id = db.director_id left outer join " +
+        "genre g " +
+        "on db.genre_id = g._id " +
+        "where d.director_hire_cost <= " + remainingBudget +
+        " group by d.director_name " +
+        "order by d.director_reputation desc";
+
+		return database.rawQuery(query, null);
+	}
 }

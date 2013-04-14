@@ -14,6 +14,7 @@ import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
+import ie.simo.movies.util.MMLogger;
 
 import static ie.simo.movies.util.Consts.COMPANY;
 
@@ -67,7 +68,7 @@ public class GetActor extends ActivityWithMenu {
 		allSpinners.add(spinner);
 		
 		
-		Log.v(getLocalClassName(), "budget before actor: " + getPc().getBudget());
+		MMLogger.v(getLocalClassName(), "budget before actor: " + getPc().getBudget());
 		chosen.setText(getPc().getCurrentProject().toButtonText());
 		String msg = getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);
@@ -87,10 +88,10 @@ public class GetActor extends ActivityWithMenu {
 					Intent i = new Intent();
 					i.setClass(GetActor.this, SpecialEffects.class);
 
-					Log.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentCast().toString());
+					MMLogger.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentCast().toString());
 					getPc().setBudget(initialBudget - getPc().getCurrentCast().getCostOfActors());
 					i.putExtra(COMPANY, getPc());
-					Log.v(getLocalClassName(), "budget after cast: " + (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors()));
+					MMLogger.v(getLocalClassName(), "budget after cast: " + (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors()));
 					
 					startActivity(i);
 				}
@@ -162,7 +163,7 @@ public class GetActor extends ActivityWithMenu {
 	}
 	
 	private void fillSpinner(Spinner s){
-		Cursor c = db.getAllActorsWithBonuses();
+		Cursor c = db.getAllActorsFilteredByCost(getPc().getBudget());
 		startManagingCursor(c);
 				
 		String[] from = new String[]{DBConsts.Actor.name, DBConsts.Actor.hire_cost, DBConsts.Actor.reputation,
@@ -203,7 +204,7 @@ public class GetActor extends ActivityWithMenu {
 				}
 				String msg = getString(R.string.actorPrice , "$"+ getPc().getCurrentCast().getCostOfActors() + "M");
 				GetActor.this.price.setText(msg);
-				Log.v("CAST", getPc().getCurrentCast().toString());
+				MMLogger.v("CAST", getPc().getCurrentCast().toString());
 				budgetView.setText(String.format("$%dM", (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors())));
 				
 			}

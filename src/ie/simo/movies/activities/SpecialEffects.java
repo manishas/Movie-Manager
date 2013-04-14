@@ -10,6 +10,7 @@ import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
+import ie.simo.movies.util.MMLogger;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -70,12 +71,12 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 			public void onClick(View v) {
 				if(isValid()){
 					Intent i = new Intent();
-					Log.v("SFX: ", "before budget = " + getPc().getBudget() + ", sfx cost = " + totalEffectsCost);
+					MMLogger.v("SFX: ", "before budget = " + getPc().getBudget() + ", sfx cost = " + totalEffectsCost);
 					i.setClass(SpecialEffects.this, Result.class);
 					//TODO track the sfx chosen
 					getPc().setBudget(getPc().getBudget() - totalEffectsCost);
 					
-					Log.v("SFX: ", "after budget = " + getPc().getBudget());
+					MMLogger.v("SFX: ", "after budget = " + getPc().getBudget());
 					
 					i.putExtra(COMPANY, getPc());
 					

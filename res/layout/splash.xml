@@ -4,44 +4,67 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundgradient" >
 
-	<LinearLayout
-	    xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    android:weightSum="1" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1" >
 
-		<ImageView
-		    android:id="@+id/imageView2"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="center"
-		    android:src="@drawable/m_m_head" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/m_m_head" />
 
-<ImageView
-    android:id="@+id/imageView1"
-    android:layout_width="184dp"
-    android:layout_height="181dp"
-    android:layout_gravity="center"
-    android:src="@drawable/film_reel" />
-			
-		<Button android:id="@+id/newgameButton" android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:text="@string/newgame">
-		</Button>
-		<Button android:id="@+id/continuegameButton" android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:text="@string/continuegame">
-		</Button>
-		<Button android:id="@+id/boxofficeButton" android:layout_width="fill_parent"
-			android:layout_height="wrap_content" android:text="@string/seeboxoffice">
-		</Button>
-		
-		<Button android:id="@+id/prefsButton" android:layout_height="wrap_content"
-			android:text="@string/prefs" android:layout_width="fill_parent">
-		</Button>
-		
-		<Button android:id="@+id/creditsButton" android:layout_height="wrap_content"
-			android:text="@string/credits" android:layout_width="fill_parent">
-		</Button>
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="184dp"
+            android:layout_height="181dp"
+            android:layout_gravity="center"
+            android:src="@drawable/film_reel" />
 
-	</LinearLayout>
+        <Button
+            android:id="@+id/newgameButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newgame" >
+        </Button>
+
+        <Button
+            android:id="@+id/continuegameButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/continuegame" >
+        </Button>
+
+        <Button
+            android:id="@+id/boxofficeButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/seeboxoffice" >
+        </Button>
+
+        <Button
+            android:id="@+id/prefsButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prefs" >
+        </Button>
+
+        <Button
+            android:id="@+id/howToPlayButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/howtoplaytitle" >
+        </Button>
+
+        <Button
+            android:id="@+id/creditsButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/credits" >
+        </Button>
+    </LinearLayout>
+
 </ScrollView>

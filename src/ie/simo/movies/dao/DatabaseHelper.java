@@ -1,6 +1,7 @@
 package ie.simo.movies.dao;
 
 import ie.simo.movies.R;
+import ie.simo.movies.util.MMLogger;
 
 import java.io.InputStream;
 
@@ -39,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     for (int i=0; i<statements.getLength(); i++) {
                             s = statements.item(i).getChildNodes().item(0).getNodeValue();
                             db.execSQL(s);
-                            Log.d("DBHELPER","sql executed");
+                            MMLogger.d("DBHELPER","sql executed");
                     }
                 } catch (Throwable t) {
                         Toast.makeText(context, t.toString(), 50000).show();

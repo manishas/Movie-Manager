@@ -11,14 +11,17 @@ import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.ui.component.PitchFilmRow;
 import ie.simo.movies.util.DBConsts;
+import ie.simo.movies.util.MMLogger;
 import static ie.simo.movies.util.Consts.*;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -107,24 +110,21 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 				i.setClass(getApplicationContext(), MakeFilmActivity.class);
 				startActivity(i);
 			}
-			
 		});
 		
 		choose.setOnClickListener(new View.OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				Offer o = offers.get(Math.abs(currentIndex % 3));
+				Offer o = offers.get(Math.abs(currentIndex % 2));
 				Distributor d = o.getDistributor();
 				Intent intent = new Intent(getApplicationContext(), GetDirector.class);
-        		
+        		MMLogger.v(getLocalClassName(), offerString(o));
         		intent.putExtra(DISTRIBUTOR, d);
         		getPc().setBudget(getPc().getBudget() + o.getOfferValue());
         		intent.putExtra(COMPANY, getPc());
         		startActivity(intent);
-        		
 			}
-			
 		});
 	}
 	private void getOffers() {
@@ -150,6 +150,7 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 		producerpic1.setImageResource(offers.get(0).getPic());
 		producerpic1.getLayoutParams().width = width;
 		producerpic1.getLayoutParams().height = width;
+		//producerpic1.getLayoutParams().gravity = Gravity.CENTER;
 		producercomment1.setText(Html.fromHtml(offerString(offers.get(0))));
 		
 		producerpic2.setImageResource(offers.get(1).getPic());
@@ -285,20 +286,13 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 	}
 	
     @Override
-
     public boolean onTouchEvent(MotionEvent me){
-
         return gestureScanner.onTouchEvent(me);
-
     }
 
     public boolean onDown(MotionEvent e){
-
         return true;
-
     }
-
-    //FLING gesture listener
 
     public boolean onFling(MotionEvent e1,MotionEvent e2,float velocityX,float velocityY){
 
@@ -306,40 +300,25 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 
             if(e1.getX() > e2.getX() && Math.abs(e1.getX() - e2.getX()) > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 
-                //Toast.makeText(this.getApplicationContext(), "Left", Toast.LENGTH_SHORT).show();
-
                 vf.setInAnimation(animFlipInPrevious);
-
                 vf.setOutAnimation(animFlipOutPrevious);
-
                 vf.showPrevious();
-                
                 currentIndex--;
+                MMLogger.v(getLocalClassName(), "current index: "+ currentIndex);
 
             }else if (e1.getX() < e2.getX() && e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-
-                //Toast.makeText(this.getApplicationContext(), "Right", Toast.LENGTH_SHORT).show();
-
                 vf.setInAnimation(animFlipInNext);
-
                 vf.setOutAnimation(animFlipOutNext);
-
                 vf.showNext();
-                
                 currentIndex++;
-
+                MMLogger.v(getLocalClassName(), "current index: "+ currentIndex);
+                
             }
 
         } catch (Exception e) {
-
-            // nothing
-
+        	//TODO handle this exception
         }
-
         return true;
-
-        
-
     }
 
     public boolean onScroll(MotionEvent e1,MotionEvent e2,float distanceX,float distanceY){

@@ -6,6 +6,7 @@ import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.ui.component.PitchFilmRow;
 import ie.simo.movies.util.DBConsts;
+import ie.simo.movies.util.MMLogger;
 import static ie.simo.movies.util.Consts.*;
 
 import android.content.Intent;
@@ -128,7 +129,7 @@ public class PitchFilm extends ActivityWithMenu {
     
     private int convertButtonLabelToInt(String label){
     	label = label.substring(1,label.length()-1);
-    	Log.v("offer", label+"");
+    	MMLogger.v("offer", label+"");
     	return Integer.parseInt(label);
     }
     

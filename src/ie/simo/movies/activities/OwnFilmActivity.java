@@ -4,6 +4,7 @@ import ie.simo.movies.R;
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
+import ie.simo.movies.util.MMLogger;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,7 +58,7 @@ public class OwnFilmActivity extends ActivityWithMenu {
 					startActivity(intent);
 				}
 				else{
-					Log.v(getLocalClassName(), "empty title");
+					MMLogger.v(getLocalClassName(), "empty title");
 					Toast.makeText(getApplicationContext(), "Enter a name for your script!", Toast.LENGTH_LONG).show();
 				}
 			}

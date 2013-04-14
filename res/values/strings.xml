@@ -22,8 +22,12 @@
 	<string name="budgetlabel">Budget:</string>
 	
 	<!-- EULA/whats new -->
-	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add updates at least every two weeks. If you have a suggestion please contact me or leave a comment!</string>
-	<string name="updates">Updates in this version (24th July): Fix crash on "Make own script" screen (again!). Improved UI, save/load games. Hire multiple actors. A quit button for David :-) </string>
+	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add regular updates. If you have a suggestion please contact me or leave a comment!</string>
+	<string name="updates">Updates in this version (20th April): Films plots, Special effects, pitch film changed, how to play instructions</string>
+	
+	<!-- How to play -->
+	<string name="howtoplaytitle">How to play</string>
+	<string name="howtoplaycontent">The goal of the game is to become Hollywood\'s biggest film producer and to get to the top of the all time box office. You start by creating your production company, and choosing which script you would like to make into a film. You can also create your own script if you have your own idea. You send the script out to producers to get some investment, and then hire a director, actors, and get your special effects.</string>
 	
 	<!-- start screen -->
 	<string name="newgame">New Game</string>

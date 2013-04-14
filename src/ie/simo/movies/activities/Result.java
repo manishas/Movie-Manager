@@ -12,6 +12,7 @@ import ie.simo.movies.generator.ReviewGenerator;
 import ie.simo.movies.scoring.earnings.EarningsCalculator;
 import ie.simo.movies.scoring.earnings.EarningsCalculatorWithActors;
 import ie.simo.movies.scoring.rating.RatingCalculator;
+import ie.simo.movies.util.MMLogger;
 
 import static ie.simo.movies.util.Consts.*;
 
@@ -53,22 +54,22 @@ public class Result extends ActivityWithMenu {
 		
 		init();
 		
-		Log.v(getLocalClassName(), "Film Details: "
+		MMLogger.v(getLocalClassName(), "Film Details: "
 				+ getPc().getCurrentProject().toString());
-		Log.v(getLocalClassName(), "Remaining Budget is: " + getPc().getBudget());
+		MMLogger.v(getLocalClassName(), "Remaining Budget is: " + getPc().getBudget());
 
 		// HOLY SHIT need to refactor the shit out of this whole method
 		float criticRating = (float) ratingCalc.getRating(getPc().getCurrentProject());
 		
-		Log.v(getLocalClassName(), "Critic rating is: " + criticRating);
+		MMLogger.v(getLocalClassName(), "Critic rating is: " + criticRating);
 
 		rating.setRating(criticRating);
 
 		money = calculator.calculate(getPc().getCurrentProject(), criticRating);
-		Log.v(getLocalClassName(), "Gross Earnings: " + money);
+		MMLogger.v(getLocalClassName(), "Gross Earnings: " + money);
 
 		shareOfEarnings = getShareOfEarnings(money);
-		Log.v(getLocalClassName(), "share of earnings: " + shareOfEarnings);
+		MMLogger.v(getLocalClassName(), "share of earnings: " + shareOfEarnings);
 		String msg = getString(R.string.totalBoxOffice, "$" + money + "M");
 		String profit = getString(R.string.totalProfit,
 				"$" + (money - (getPc().getCurrentProject().getTotalCost())) + "M");
@@ -169,7 +170,7 @@ public class Result extends ActivityWithMenu {
 		int previousLevel = getPc().getReputation()/15;
 		
 		int rep = 1 + (money/75);
-		Log.v("Rep: ", rep+"");
+		MMLogger.v("Rep: ", rep+"");
 		getPc().setReputation(getPc().getReputation() + rep);
 		
 		if(getPc().getReputation()/15 > previousLevel){
@@ -189,7 +190,7 @@ public class Result extends ActivityWithMenu {
 	private int getShareOfEarnings(int totalEarnings) {
 
 		int profit = totalEarnings - (getPc().getCurrentProject().getTotalCost());
-		Log.v(getLocalClassName(), "Profit: " + profit);
+		MMLogger.v(getLocalClassName(), "Profit: " + profit);
 
 		return (profit > 0) ? (profit / 5) : 0;
 	}

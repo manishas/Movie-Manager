@@ -158,7 +158,7 @@ public class GetDirector extends ActivityWithMenu {
 	
 	private void fillSpinner(){
 		 
-		Cursor c = db.getAllDirectorsWithBonuses();
+		Cursor c = db.getAllDirectorsFilteredByCost(getPc().getBudget());
 		startManagingCursor(c);
 				
 		// create an array to specify which fields we want to display
