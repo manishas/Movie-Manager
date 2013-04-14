@@ -163,7 +163,7 @@ public class GetActor extends ActivityWithMenu {
 	}
 	
 	private void fillSpinner(Spinner s){
-		Cursor c = db.getAllActorsFilteredByCost(getPc().getBudget());
+		Cursor c = db.getAllActorsFilteredByCost(getPc().getBudget() - getPc().getCurrentCast().getCostOfActors());
 		startManagingCursor(c);
 				
 		String[] from = new String[]{DBConsts.Actor.name, DBConsts.Actor.hire_cost, DBConsts.Actor.reputation,

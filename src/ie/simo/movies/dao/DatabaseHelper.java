@@ -43,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             MMLogger.d("DBHELPER","sql executed");
                     }
                 } catch (Throwable t) {
-                        Toast.makeText(context, t.toString(), 50000).show();
+                        Toast.makeText(context, t.toString(), Toast.LENGTH_LONG).show();
                 }
         }
         //TODO make sure upgrade doesn't interfere wth existing save games

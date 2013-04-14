@@ -43,10 +43,10 @@ public class GetDirector extends ActivityWithMenu {
 
 		findAllViewsById();
 		Intent i = getIntent();
-		fillSpinner();
-		
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));		
 
+		fillSpinner();
+		
 		chosen.setText(getPc().getCurrentProject().toButtonText());
 		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
 		price.setText(msg);

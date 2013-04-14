@@ -47,6 +47,8 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 
     private Animation animFlipInNext,animFlipOutNext, animFlipInPrevious, animFlipOutPrevious;
 	
+    private int ARRAY_LAST_INDEX = 2;
+    
 	private ImageView producerpic1, producerpic2, producerpic3;
 	private Button cancel;
 	private TextView producercomment1, producercomment2, producercomment3;
@@ -116,7 +118,7 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 
 			@Override
 			public void onClick(View v) {
-				Offer o = offers.get(Math.abs(currentIndex % 2));
+				Offer o = offers.get(currentIndex);
 				Distributor d = o.getDistributor();
 				Intent intent = new Intent(getApplicationContext(), GetDirector.class);
         		MMLogger.v(getLocalClassName(), offerString(o));
@@ -304,13 +306,18 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
                 vf.setOutAnimation(animFlipOutPrevious);
                 vf.showPrevious();
                 currentIndex--;
+                if(currentIndex < 0) currentIndex = ARRAY_LAST_INDEX;
+                
                 MMLogger.v(getLocalClassName(), "current index: "+ currentIndex);
 
             }else if (e1.getX() < e2.getX() && e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
                 vf.setInAnimation(animFlipInNext);
                 vf.setOutAnimation(animFlipOutNext);
                 vf.showNext();
-                currentIndex++;
+                
+                currentIndex ++;
+                if(currentIndex > ARRAY_LAST_INDEX) currentIndex = 0;
+                
                 MMLogger.v(getLocalClassName(), "current index: "+ currentIndex);
                 
             }
