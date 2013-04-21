@@ -30,7 +30,13 @@ public class PlotSummary extends ActivityWithMenu {
 
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
-		plotGenerator = new PlotGenerator();
+		
+		//get preference for content, default to "PLAIN"
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this); 
+		Boolean contentPref = sharedPrefs.getBoolean(Preferences.MENTAL_DESCRIPTIONS, false);
+		String contentType = contentPref ? "MENTAL" : "PLAIN"; 
+		plotGenerator = new PlotGenerator(contentType);
+		
 		Genre genre = getPc().getCurrentProject().getGenre();
 		String title = getPc().getCurrentProject().getTitle();
 		

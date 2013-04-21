@@ -49,8 +49,7 @@ public class Preferences extends PreferenceActivity {
 	                    SharedPreferences customSharedPreference = getSharedPreferences(
 	                                    "movieManagerSharedPrefs", Activity.MODE_PRIVATE);
 	                    SharedPreferences.Editor editor = customSharedPreference.edit();
-	                    editor.putString(MENTAL_DESCRIPTIONS,
-	                                    newValue.toString());
+	                    editor.putBoolean(MENTAL_DESCRIPTIONS, (Boolean) newValue);
 	                    editor.commit();
 	                    return true;
 	            }

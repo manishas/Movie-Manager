@@ -1,6 +1,7 @@
 package ie.simo.movies.generator;
 
 import ie.simo.movies.domain.Genre;
+import ie.simo.movies.generator.util.KindOfExplicitPhraseProvider;
 import ie.simo.movies.generator.util.PhraseProvider;
 import ie.simo.movies.generator.util.WordProvider;
 
@@ -8,7 +9,7 @@ public class PlotGenerator {
 
 	private PersonNameGenerator png = new PersonNameGenerator();
 	private WordProvider wf = new WordProvider();
-	private PhraseProvider pp = new PhraseProvider();
+	private PhraseProvider pp;
 
 	public String romcom = "Life is tough for sexy %s %s until she meets %s, a hot %s. Things are going great until %s! Will they be able to overcome this? Will love find a way? Find out in %s!";
 	public String action = "%s is a %s who needs to stop an evil %s, %s, from %s. %s is joined by a %s, %s. With the odds against them, can they prevent %s from %s?";
@@ -17,6 +18,15 @@ public class PlotGenerator {
 	public String comedy = "Funny stuff!";
 	public String horror = "Spooky stuff";
 	public String kids = "When %s, the %s meets %s the %s, it looks like they will never be friends. But they must %s, and things will never be the same!";
+	
+	public PlotGenerator(String contentType){
+		if(contentType != "PLAIN"){
+			pp = new KindOfExplicitPhraseProvider();
+		}
+		else {
+			pp = new PhraseProvider();
+		}
+	}
 
 	public String romcomPlot(String movieName) {
 		String prof1 = pp.getProfession();

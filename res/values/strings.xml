@@ -52,11 +52,11 @@
 	
 	<!-- choose director screen -->
 	<string name="director1">You have chosen the script </string>
-	<string name="director2">Choose a Director to approach:</string>	
+	<string name="director2">Choose a Director to approach: (only showing directors you can afford)</string>	
 	<string name="directorPrice">Price to hire: %s</string>
 	
 	<!-- choose actor screen -->
-	<string name="actor">Choose a lead actor to approach:</string>
+	<string name="actor">Choose a lead actor to approach: (only showing actors you can afford)</string>
 	<string name="actor2">Co-star:</string>
 	<string name="actorPrice">Price of Cast: %s</string>
 	

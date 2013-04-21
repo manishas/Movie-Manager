@@ -15,49 +15,68 @@ public class PhraseProvider {
 	public String getKidsCharacter() {
 		return random(kidsCharacter);
 	}
-	
+
 	public String getSciFiProfession() {
 		return random(sciFiProfession);
 	}
-	
+
 	public String getGoodGuyJob() {
 		return random(goodGuyJob);
 	}
-	
+
 	public String getPersonDescription() {
 		return random(personDescription);
 	}
-	public String getRomanticComplication(){
+
+	public String getRomanticComplication() {
 		return random(romanticComplication);
 	}
-	
+
 	public String getBadGuyJob() {
 		return random(badGuyJob);
 	}
-	
+
 	public String getBadGoal() {
 		return random(badGoal);
 	}
-	
+
 	public String getBadOutcome() {
 		return random(badOutcome);
 	}
-	
+
 	public String getBadResult() {
 		return random(badResult);
 	}
+
 	public String getDramaTwist() {
 		return random(dramaTwist);
 	}
+
 	public String getKidsGoal() {
 		return random(kidsGoal);
 	}
-	
+
 	public String getSciFiTwist() {
 		return random(scifiTwist);
 	}
 
-	private String random(String[] sourceArray) {
+	public String getBadFilmReview() {
+		return random(badQualities);
+	}
+
+	public String getGoodFilmReview() {
+		return random(goodQualities);
+	}
+
+	public String getWeirdFilmReview() {
+		return random(weirdQualities);
+	}
+
+	public String getVanillaFilmReview() {
+		return random(vanillaQualities);
+	}
+
+	protected String random(String[] sourceArray) {
 		return sourceArray[r.nextInt(sourceArray.length)];
 	}
 
@@ -84,11 +103,11 @@ public class PhraseProvider {
 			"student", "Dentist", "Zoo keeper", "Aquarium cleaner",
 			"pool cleaner", "ski instructor", "janitor", "farmer",
 			"software developer", "graphic designer", "exotic dancer" };
-	
-	private String[] kidsCharacter = { "friendly dog", "inquisitive young girl",
-			"sarcastic cat", "nerdy boy", "super rich boy", "silly puppy",
-			"hilarious tiger", "lonely fish", "smelly warthog",
-			"funny meercat", "bitter bird", "big lion" };
+
+	private String[] kidsCharacter = { "friendly dog",
+			"inquisitive young girl", "sarcastic cat", "nerdy boy",
+			"super rich boy", "silly puppy", "hilarious tiger", "lonely fish",
+			"smelly warthog", "funny meercat", "bitter bird", "big lion" };
 
 	private String[] sciFiProfession = { "android", "android hunter", "alien",
 			"astronaut", "humanoid", "space cop", "space marine",
@@ -158,6 +177,7 @@ public class PhraseProvider {
 			"she finds out he is a thief",
 			"she finds out he is a Secret Agent",
 			"the Mayans predict the end of the world" };
+	
 	// can they prevent [person] from ..........?
 	private String[] badResult = { "achieving his goal",
 			"getting away with it", "destroying the world", "breaking the law",
@@ -184,5 +204,70 @@ public class PhraseProvider {
 			"put their differences aside to win the championship",
 			"take the pridelands back from Scar and the hyenas" };
 
+	protected String[] goodQualities = { "excellent", "good", "beautiful",
+			"outstanding", "absolutely marvelous", "stylish", "slick",
+			"hair-raising", "spine-tingling", "exhilarating",
+			"thought-provoking", "fascinating", "magnificent", "emotional",
+			"clever",
+
+			"entertaining",
+
+			"smart",
+
+			"funny",
+
+			"the kind of pleasure only my third wife could provide",
+
+			"beautiful, like watching butterfly's make out.",
+
+			// "exciting, like a transsexual hooker from Thailand",
+
+			"brilliant, as if a magician had made my mother in-law disappear",
+
+			"soothing, similar to cuddling a pool of puppies",
+
+			"entertaining, more so then the usual donkey shows I'm partial to",
+
+			"enjoyable",
+			"lovable",
+			"sensual, like getting stroked by a flamingo",
+			"wonderful, it was as if I had parachuted into a flower in a field of dreams. " };
+
+	protected String[] badQualities = {
+			"awful",
+			"bad",
+			"dreadful",
+			"utter nonsense",
+			"stupid",
+			"boring",
+			"dull",
+			"crap",
+			"disasterous",
+			"a waste of time",
+			"preposterous",
+			"absurd",
+			"improbable",
+			"shallow",
+			"superficial",
+			"incompetent",
+			"as bad as expected",
+			"incomprehensible",
+			"pretty offensive, blasphemous even",
+			"about as real as cher",
+			"like a chinese labor camp", "like being violated",
+			"the kind of thing that makes me re-think censorship",
+			"unsettling",
+			"woeful",
+			"abysmal",
+			"mediocre at best",
+			"distressing to say the least",
+	};
+
+	private String[] vanillaQualities = { "complete", "mediocre", "nice",
+			"interesting", "dark", "watchable", "thoughful", "alright",
+			"dramatic" };
+
+	private String[] weirdQualities = { "weird", "bizarre", "confusing",
+			"slightly creepy", "silly", };
 
 }

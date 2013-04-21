@@ -8,6 +8,7 @@ import ie.simo.movies.dao.ProductionCompanyDbAdapter;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
 import ie.simo.movies.domain.ProductionCompany;
+import ie.simo.movies.generator.PlotGenerator;
 import ie.simo.movies.generator.ReviewGenerator;
 import ie.simo.movies.scoring.earnings.EarningsCalculator;
 import ie.simo.movies.scoring.earnings.EarningsCalculatorWithActors;
@@ -17,8 +18,10 @@ import ie.simo.movies.util.MMLogger;
 import static ie.simo.movies.util.Consts.*;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -107,7 +110,12 @@ public class Result extends ActivityWithMenu {
 	 */
 	private void init() {
 		font = Typeface.createFromAsset(getAssets(), "OldNewspaperTypes.ttf");
-		reviewer = new ReviewGenerator();
+		
+		//get preference for content, default to "PLAIN"
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		Boolean reviewType = sharedPrefs.getBoolean(Preferences.MENTAL_DESCRIPTIONS, false);
+		String value = reviewType ? "MENTAL" : "PLAIN";
+		reviewer = new ReviewGenerator(value);
 		calculator = new EarningsCalculatorWithActors();
 		ratingCalc = new RatingCalculator();
 

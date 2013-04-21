@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- PreferenceCategory
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--
+         PreferenceCategory
                 android:title="Career Mode (Beta)">
                 
                 <ListPreference
@@ -11,25 +12,23 @@
                         android:defaultValue="digiGreen"
                         android:entries="@array/ratingStyleArray"
                         android:entryValues="@array/ratingStyleValues" />
-        </PreferenceCategory -->
-    <PreferenceCategory
-                android:title="Film Censor">
-                
-                <ListPreference
-                        android:title="@string/ratingTitle"
-                        android:summary="@string/ratingSummary"
-                        android:key="ratingStyle"
-                        android:defaultValue="digiGreen"
-                        android:entries="@array/ratingStyleArray"
-                        android:entryValues="@array/ratingStyleValues" />
-        </PreferenceCategory>
-        <PreferenceCategory android:title="Plot and film content" >
-	        <CheckBoxPreference
-	            android:title="Plot and review content"
-	            android:summary="Check if you want to include bizarre and potentially offensive stuff in plots and movie reviews?"
-	            android:key="mental"
-	            android:defaultValue="false"
-	            />
+        </PreferenceCategory
+    -->
+    <PreferenceCategory android:title="Film Censor" >
+        <ListPreference
+            android:defaultValue="digiGreen"
+            android:entries="@array/ratingStyleArray"
+            android:entryValues="@array/ratingStyleValues"
+            android:key="ratingStyle"
+            android:summary="@string/ratingSummary"
+            android:title="@string/ratingTitle" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Plot and film content" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="mental"
+            android:summary="Check if you want to include bizarre and potentially offensive stuff in plots and movie reviews?"
+            android:title="Plot and review content" />
     </PreferenceCategory>
 
 </PreferenceScreen>
