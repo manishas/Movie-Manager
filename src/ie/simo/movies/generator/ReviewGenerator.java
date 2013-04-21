@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.util.RandomNumberProvider;
 
 /**
  * Class to generate newspaper reviews
@@ -19,7 +20,7 @@ public class ReviewGenerator {
 		GOOD, BAD, INDIFFERENT
 	}
 	
-	Random randomGenerator = new Random();
+	Random randomGenerator = RandomNumberProvider.getInstance();
 	
 	String [] goodQualities = {
 			"excellent", "good", 

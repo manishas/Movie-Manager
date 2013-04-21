@@ -8,6 +8,7 @@ import java.util.Random;
 import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Cast;
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.util.RandomNumberProvider;
 /**
  * Earnings Calculator which uses Actors, Director and movie Rating 
  * @author Simon Wielens
@@ -17,7 +18,7 @@ public class EarningsCalculatorWithActors implements EarningsCalculator{
 
 	@Override
 	public int calculate(MovieInfo movie, float starRating) {
-		Random r = new Random();
+		Random r = RandomNumberProvider.getInstance();
 		
 		double cast = getTotalCastReputation(movie.getCast());
 		cast = cast/100;

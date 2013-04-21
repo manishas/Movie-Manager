@@ -5,9 +5,10 @@ import java.util.Random;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.production.AdType;
 import ie.simo.movies.production.ProductionEvent;
+import ie.simo.movies.util.RandomNumberProvider;
 
 public class ProductionEventGenerator {
-	private Random rng = new Random();
+	private Random rng = RandomNumberProvider.getInstance();
 	
 	public ProductionEvent runAd(AdType type){
 		return null;

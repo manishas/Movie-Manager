@@ -1,10 +1,11 @@
 package ie.simo.movies.generator.util;
 
+import ie.simo.movies.util.RandomNumberProvider;
+
 import java.util.Random;
 
-public class WordFactory {
-	private Random generator = new Random();
-
+public class WordProvider {
+	private Random generator = RandomNumberProvider.getInstance();
 	private String[] place = { "Space", "Paris", "LA", "New York", "Siberia",
 			"Tokyo", "Japan", "a Cave", "the Bedroom", "the Kitchen",
 			"the Street", "a Hole", "Holland", "Hong Kong", "Spain",

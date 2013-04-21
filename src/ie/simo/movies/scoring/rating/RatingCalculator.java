@@ -4,6 +4,7 @@ import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Cast;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.util.RandomNumberProvider;
 
 import java.util.Random;
 
@@ -37,7 +38,7 @@ public class RatingCalculator {
 	 * @return rating
 	 */
 	private double falseFennellFunction() {
-		Random r = new Random();
+		Random r = RandomNumberProvider.getInstance();
 		double rating = (r.nextGaussian() + 5) *.5; //will USUALLY give num between 0-5, so need to normalise it
 		if(rating < 0) rating = 0;
 		return rating;

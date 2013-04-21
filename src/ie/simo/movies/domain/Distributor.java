@@ -1,5 +1,7 @@
 package ie.simo.movies.domain;
 
+import ie.simo.movies.util.RandomNumberProvider;
+
 import java.io.Serializable;
 import java.util.Random;
 
@@ -10,10 +12,9 @@ public class Distributor implements Serializable{
 	private static final long serialVersionUID = 8589354959041174785L;
 	private String name;
 	private String description;
-	private Random random;
+	private Random random = RandomNumberProvider.getInstance();
 	
 	public Distributor(){
-		random = new Random();
 	}
 	
 	public String getName() {

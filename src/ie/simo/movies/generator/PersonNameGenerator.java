@@ -1,9 +1,11 @@
 package ie.simo.movies.generator;
 
+import ie.simo.movies.util.RandomNumberProvider;
+
 import java.util.Random;
 
 public class PersonNameGenerator {
-	private Random rng = new Random();
+	private Random rng = RandomNumberProvider.getInstance();
 	
 	private static String[] maleName = {  "James", "John", "Robert", "Michael", "William",
 		"David", "Richard", "Charles", "Joseph", "Thomas", "Christopher",

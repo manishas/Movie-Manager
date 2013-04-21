@@ -1,11 +1,13 @@
 package ie.simo.movies.generator;
 
-import ie.simo.movies.generator.util.WordFactory;
+import ie.simo.movies.generator.util.WordProvider;
+import ie.simo.movies.util.RandomNumberProvider;
+
 import java.util.Random;
 
 public class FilmNameGenerator {
 
-	private WordFactory wf = new WordFactory();
+	private WordProvider wf = new WordProvider();
 	
 	public String newFilmTitle() {
 
@@ -19,7 +21,7 @@ public class FilmNameGenerator {
 				String.format("The %s And The %s %s", wf.getNoun(),
 						wf.getAdjective(), wf.getNoun()) };
 
-		Random r = new Random();
+		Random r = RandomNumberProvider.getInstance();
 		return types[r.nextInt(types.length)];
 	}
 }

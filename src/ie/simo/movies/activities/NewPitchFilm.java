@@ -12,6 +12,7 @@ import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.ui.component.PitchFilmRow;
 import ie.simo.movies.util.DBConsts;
 import ie.simo.movies.util.MMLogger;
+import ie.simo.movies.util.RandomNumberProvider;
 import static ie.simo.movies.util.Consts.*;
 
 import android.content.Intent;
@@ -54,7 +55,7 @@ public class NewPitchFilm extends ActivityWithMenu implements OnGestureListener 
 	private TextView producercomment1, producercomment2, producercomment3;
 	private Button rework;
 	private Button choose;
-	private Random random = new Random();
+	private Random random = RandomNumberProvider.getInstance();
 	private int currentIndex = 0;
 	
 	private ArrayList<Offer> offers = new ArrayList<Offer>();

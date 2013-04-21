@@ -1,5 +1,7 @@
 package ie.simo.movies.domain;
 
+import ie.simo.movies.util.RandomNumberProvider;
+
 import java.util.Random;
 
 /**
@@ -30,7 +32,7 @@ public enum Genre {
 	
 	public static Genre getRandomGenre() {
 		Genre[] genres = Genre.values();
-		Random r = new Random();
+		Random r = RandomNumberProvider.getInstance();
 		return genres[r.nextInt(genres.length)];
 	}
 }

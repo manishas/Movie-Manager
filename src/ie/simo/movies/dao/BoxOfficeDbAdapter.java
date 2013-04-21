@@ -2,6 +2,7 @@ package ie.simo.movies.dao;
 
 
 import ie.simo.movies.domain.MovieSummary;
+import ie.simo.movies.util.DBConsts;
 import ie.simo.movies.util.MMLogger;
 import android.content.ContentValues;
 import android.content.Context;
@@ -50,12 +51,23 @@ public class BoxOfficeDbAdapter {
 		values.put(EARNINGS, movie.getTotalEarnings());
 		values.put(GENRE, movie.getInfo().getGenre().ordinal());
 		values.put(TAGLINE, movie.getInfo().getTagline());
-		values.put(DIRECTOR,1);
+		values.put(DIRECTOR, getDirectorIdFromName(movie.getInfo().getDirector().getName()));
 		values.put(COST, movie.getInfo().getDirector().getPriceToHire());
-		values.put(DISTRIBUTOR, 1);
+		// where the fuck does distributor get saved???
+		//values.put(DISTRIBUTOR, getDistributorIdFromName(movie.getInfo().));
 		values.put(PLOT, movie.getInfo().getPlot());
 		
 		return database.insert(DATABASE_TABLE, null, values);
+	}
+	
+	private int getDirectorIdFromName(String name){
+		Cursor c = database.rawQuery("SELECT d._id from director d where d.director_name = '"+name+"'", null);
+		return c.getInt(c.getColumnIndex(DBConsts.Director.id));
+	}
+	
+	private int getDistributorIdFromName(String name){
+		Cursor c = database.rawQuery("SELECT d._id from distributor d where d.distributor_name = '"+name+"'", null);
+		return c.getInt(c.getColumnIndex(DBConsts.Distributor.id));
 	}
 
 	public Cursor fetchAllMovies() {	//need to order
