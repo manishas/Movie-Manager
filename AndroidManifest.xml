@@ -1,33 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ie.simo.movies"
     android:installLocation="auto"
-	package="ie.simo.movies" android:versionCode="15" android:versionName="0.25">
-	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="12"/>
+    android:versionCode="15"
+    android:versionName="0.25" >
 
-	<!-- uses-permission android:name="android.permission.INTERNET"/> -->
-	<application android:icon="@drawable/ic_launcher"
-		android:label="@string/app_name">
-		<activity android:label="@string/app_name" android:name=".activities.StartActivity">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
-		<activity android:label="Production" android:name=".activities.Production"/>
-		<activity android:label="Preferences" android:name=".activities.Preferences"/>
-		<activity android:label="Choose Film" android:name=".activities.MakeFilmActivity"/>
-		<activity android:label="Choose Director" android:name=".activities.GetDirector"/>
-		<activity android:label="Box Office" android:name=".activities.AllTimeBoxOffice"/>
-		<activity android:label="Create your film" android:name=".activities.OwnFilmActivity"/>
-		<activity android:label="Pitch your Film" android:name=".activities.NewPitchFilm"/>
-		<activity android:label="Result" android:name=".activities.Result"/>
-		<activity android:label="Choose Actor" android:name=".activities.GetActor"/>
-		<activity android:label="Set Content" android:name=".activities.SetContent"/>
-		<activity android:label="Box Office" android:name=".activities.BoxOffice"/>
-		<activity android:label="Your Movies" android:name=".activities.PersonalBest"/>
-		<activity android:label="Load Game" android:name=".activities.ContinueGameActivity"/>
-		<activity android:label="Special Effects" android:name=".activities.SpecialEffects"/>
-		<activity android:label="Plot Summary" android:name=".activities.PlotSummary"/>
-		
-	</application>
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="12" />
+
+    <!-- uses-permission android:name="android.permission.INTERNET"/> -->
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name="ie.simo.movies.activities.StartActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ie.simo.movies.activities.Production"
+            android:label="Production"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.Preferences"
+            android:label="Preferences" />
+        <activity
+            android:name="ie.simo.movies.activities.MakeFilmActivity"
+            android:label="Choose Film"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.GetDirector"
+            android:label="Choose Director"
+            android:screenOrientation="portrait"  />
+        <activity
+            android:name="ie.simo.movies.activities.AllTimeBoxOffice"
+            android:label="Box Office" />
+        <activity
+            android:name="ie.simo.movies.activities.OwnFilmActivity"
+            android:label="Create your film"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="ie.simo.movies.activities.PitchFilm"
+            android:label="Pitch your Film"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.Result"
+            android:label="Result"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.GetActor"
+            android:label="Choose Actor" 
+            android:screenOrientation="portrait" 
+            />
+        <activity
+            android:name="ie.simo.movies.activities.SetContent"
+            android:label="Set Content"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.BoxOffice"
+            android:label="Box Office"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.PersonalBest"
+            android:label="Your Movies"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.ContinueGameActivity"
+            android:label="Load Game"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.SpecialEffects"
+            android:label="Special Effects"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.PlotSummary"
+            android:label="Plot Summary"
+            android:screenOrientation="portrait" />
+    </application>
+
 </manifest>

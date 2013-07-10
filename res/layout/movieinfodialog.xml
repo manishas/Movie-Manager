@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/movieinfodialog_movietitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oblivion"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RatingBar
+            android:id="@+id/movieinfodialog_reviewedRating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:rating="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/movieinfodialog_plot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A veteran assigned to extract Earth&apos;s remaining resources begins to question what he knows about his mission and himself. " />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/movieinfodialog_directorlabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/director_" />
+
+            <TextView
+                android:id="@+id/movieinfodialog_director"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Joseph Kosinski" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/movieinfodialog_starringlabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/starring_" />
+
+            <TextView
+                android:id="@+id/movieinfodialog_actors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tom Cruise, Morgan Freeman" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/budget_" />
+
+            <TextView
+                android:id="@+id/movieinfodialog_budget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$25,000,000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/gross_" />
+
+            <TextView
+                android:id="@+id/movieinfodialog_gross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$28,341,469" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

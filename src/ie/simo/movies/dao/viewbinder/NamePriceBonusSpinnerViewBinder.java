@@ -6,6 +6,7 @@ import ie.simo.movies.activities.StartActivity;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -33,6 +34,7 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 		//http://www.androidadb.com/class/si/SimpleCursorAdapter.html
 		
 		int viewId = view.getId();
+		//if(view.get
         if(viewId == R.id.starname){
         	TextView textView = (TextView) view;
         	textView.setText(cursor.getString(NAME_COLUMN));

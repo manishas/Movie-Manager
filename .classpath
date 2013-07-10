@@ -3,9 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="C:/Users/Niamh/Downloads/api-themoviedb-master/api-themoviedb-master/target/themoviedbapi-3.5-SNAPSHOT-null.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Niamh/.m2/repository/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Niamh/.m2/repository/org/slf4j/slf4j-jdk14/1.7.5/slf4j-jdk14-1.7.5.jar"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

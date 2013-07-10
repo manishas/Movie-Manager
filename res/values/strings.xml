@@ -1,126 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="ratingTitle">Classification Style</string>
-	<string name="ratingSummary">Type of censor ratings to be displayed (NC-17 / 18\'s etc)</string>
 
-	<string-array name="ratingStyleArray">
-		<item name="ie">Irish</item>
-		<item name="uk">UK</item>
-		<item name="usa">USA</item>
-	</string-array>
-	<string-array name="ratingStyleValues">
-		<item name="ie">ie</item>
-		<item name="uk">uk</item>
-		<item name="usa">usa</item>
-	</string-array>
-	
-	<string name="iconManUrl">http://www.visual-blast.com/graphics/icons/free-psd-icons-blogging-icon-set-bimbilini/</string>
-	
-	<!-- common -->
-	<string name="cancel">Cancel Production</string>
-	<string name="menu_boxoffice">Box Office</string>
-	<string name="budgetlabel">Budget:</string>
-	
-	<!-- EULA/whats new -->
-	<string name="eula">Movie Manager! This app is currently under active development, and I hope to add regular updates. If you have a suggestion please contact me or leave a comment!</string>
-	<string name="updates">Updates in this version (20th April): Films plots, Special effects, pitch film changed, how to play instructions</string>
-	
-	<!-- How to play -->
-	<string name="howtoplaytitle">How to play</string>
-	<string name="howtoplaycontent">The goal of the game is to become Hollywood\'s biggest film producer and to get to the top of the all time box office. You start by creating your production company, and choosing which script you would like to make into a film. You can also create your own script if you have your own idea. You send the script out to producers to get some investment, and then hire a director, actors, and get your special effects.</string>
-	
-	<!-- start screen -->
-	<string name="newgame">New Game</string>
-	<string name="continuegame">Continue Game</string>
-	<string name="seeboxoffice">All-time Box office</string>
-	<string name="prefs">Preferences</string>
-	<string name="credits">Credits</string>
-	
-	<!-- credits dialogue -->
-	<string name="creditsText">All development by Simon Wielens. Icons/images/random genius by Andy Wielens. Inspired by Sim-Cinema Deluxe by Shannon Schroeder. Thanks to: Menu icons from @AndroidIcons. Paul, Dave, Gary, Conor, Brian, and Patrick Greig for feedback. Niamh for putting up with me while I work on this app :-)</string>	
-	
-	<!-- choose film screen -->
-	<string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
-	<string name="app_name">Movie Manager</string>
-	<string name="makeown">"I'll make my own, thanks"</string>
-	<string name="getmore">Get more scripts…</string>
-	
-	<!-- make own film screen -->
-	<string name="enterfilmname">Enter the name of your film:</string>
-	<string name="selectgenre">Select your genre: </string>
-	<string name="makethisfilm">Make this film!</string>
-	
-	<!-- choose director screen -->
-	<string name="director1">You have chosen the script </string>
-	<string name="director2">Choose a Director to approach: (only showing directors you can afford)</string>	
-	<string name="directorPrice">Price to hire: %s</string>
-	
-	<!-- choose actor screen -->
-	<string name="actor">Choose a lead actor to approach: (only showing actors you can afford)</string>
-	<string name="actor2">Co-star:</string>
-	<string name="actorPrice">Price of Cast: %s</string>
-	
-	<!-- result screen -->
-	<string name="totalBoxOffice">The movie earned a grand total of: %s</string>
-	<string name="totalProfit">The movie earned a net profit of: %s</string>
-	
-	<!-- new game screen -->
-	<string name="choosecompanyname">Choose the name of your production company: </string>
-	<string name="newgamedialogtitle">New Game</string>
-	
-	<!-- pitch movie screen -->
-	<string name="ask">Ask</string>
-	<string name="noOffer1">Sorry, we aren\'t interested…</string>
-	<string name="noOffer2">We think your script is great. Best we can do is 20 bucks</string>
-	<string name="smallOffer">We aren\'t too sure, but we are willing to take a chance, here\'s $%dM</string> 
-	<string name="mediumOffer">We think the script has potential, here\'s $%dM</string> 
-	<string name="goodOffer">We really like the script, we can give you $%dM</string>  
-	<string name="bestOffer">We love it, now shut up and take our money.</string>
-	
-	<!-- content -->
-	<string name="contentTitle">Set the content level for: </string>
-	<string name="contentHelp">Set Content Help</string>
-	<string name="contentHelpMessage">Choose the type of content for your film. The stronger the content, the stricter the rating your film will get, which will reduce your potential audience. However, choose the content levels which would be appropriate for your movie\'s genre (e.g. a Kid\'s film with strong sex and violence would be a flop (as well as being a bit disturbing!) but a Horror film which is rated \'G\' will probably not be interesting enough to get movie-goers excited)</string>
-	<string name="violence">Violence</string>
-	<string name="violence0">None</string>
-	<string name="violence1">Mild</string>
-	<string name="violence2">Medium Violence</string>
-	<string name="violence3">Strong Violence and Gore</string>
-	<string name="sex">Sex</string>
-	<string name="sex0">None</string>
-	<string name="sex1">Mild/Innuendo</string>
-	<string name="sex2">Moderate Sex/Nudity</string>
-	<string name="sex3">Strong Sex and Nudity</string>
-	<string name="language">Profanity</string>
-	<string name="language0">None</string>
-	<string name="language1">Mild</string>
-	<string name="language2">Moderate Bad Language</string>
-	<string name="language3">Really Strong ****ing Language</string>
-	<string name="pitchFilmButton">Pitch your Movie</string>
-	<string name="load_game">Load Game</string>
-	<string name="censor_rating_image">Censor rating image</string>
-	<string name="hire_another_actor">Hire Another Actor</string>
-	<string name="make_this_film">Make this Film!</string>
-	<string name="no_data">No data</string>
-	<string name="movie_rating_was_">"Movie Rating was: "</string>
+    <string name="ratingTitle">Classification Style</string>
+    <string name="ratingSummary">Type of censor ratings to be displayed (NC-17 / 18\'s etc)</string>
 
-	<string name="level_of_special_effects">Choose the level of special effects/CGI in your movie</string>
-	<string name="sfx0">No special effects</string>
-	<string name="sfx1">Some effects</string>
-	<string name="sfx2">Some CGI</string>
-	<string name="sfx3">Lots of CGI scenes/Explosions</string>
-	<string name="sfx4">Very heavy use of CGI</string>
-	<string name="sfx5">Michael Bay</string>
-	<string name="total_sfx_cost_">Total SFX Cost:</string>
-	<string name="pitch_your_film_to_the_studios_">"Pitch your film to the Studios: "</string>
-	<string name="known_for_">"Known For: "</string>
-	<string name="production_progress_d_">Production Progress: %d%</string>
-	<string name="previous">Previous</string>
-	<string name="rework_script">Rework script</string>
-	<string name="choose_this_producer">Choose this Producer</string>
-	<string name="next">Next</string>
-	<string name="swipe_left_and_right_to_view_offers">Swipe left and right to view offers</string>
-	<string name="continue_to_set_content">Continue</string>
-	
+    <string-array name="ratingStyleArray">
+        <item name="ie">Irish</item>
+        <item name="uk">UK</item>
+        <item name="usa">USA</item>
+    </string-array>
+    <string-array name="ratingStyleValues">
+        <item name="ie">ie</item>
+        <item name="uk">uk</item>
+        <item name="usa">usa</item>
+    </string-array>
+
+    <string name="iconManUrl">http://www.visual-blast.com/graphics/icons/free-psd-icons-blogging-icon-set-bimbilini/</string>
+
+    <!-- common -->
+    <string name="cancel">Cancel Production</string>
+    <string name="menu_boxoffice">Box Office</string>
+    <string name="budgetlabel">Budget:</string>
+
+    <!-- EULA/whats new -->
+    <string name="eula">Movie Manager! This app is currently under active development, and I hope to add regular updates. If you have a suggestion please contact me or leave a comment!</string>
+    <string name="updates">Updates in this version (20th April): Films plots, Special effects, pitch film changed, how to play instructions</string>
+
+    <!-- How to play -->
+    <string name="howtoplaytitle">How to play</string>
+    <string name="howtoplaycontent">The goal of the game is to become Hollywood\'s biggest film producer and to get to the top of the all time box office. You start by creating your production company, and choosing which script you would like to make into a film. You can also create your own script if you have your own idea. You send the script out to producers to get some investment, and then hire a director, actors, and get your special effects.</string>
+
+    <!-- start screen -->
+    <string name="newgame">New Game</string>
+    <string name="continuegame">Continue Game</string>
+    <string name="seeboxoffice">All-time Box office</string>
+    <string name="prefs">Preferences</string>
+    <string name="credits">Credits</string>
+
+    <!-- credits dialogue -->
+    <string name="creditsText">All development by Simon Wielens. Icons/images/random genius by Andy Wielens. Inspired by Sim-Cinema Deluxe by Shannon Schroeder. Thanks to: Menu icons from @AndroidIcons. Paul, Dave, Gary, Conor, Brian, and Patrick Greig for feedback. Niamh for putting up with me while I work on this app :-)</string>
+
+    <!-- choose film screen -->
+    <string name="makefilm">You can either choose one of the 3 scripts below, or develop your own idea</string>
+    <string name="app_name">Movie Manager</string>
+    <string name="makeown">"I'll make my own, thanks"</string>
+    <string name="getmore">Get more scripts…</string>
+
+    <!-- make own film screen -->
+    <string name="enterfilmname">Enter the name of your film:</string>
+    <string name="selectgenre">Select your genre: </string>
+    <string name="makethisfilm">Make this film!</string>
+
+    <!-- choose director screen -->
+    <string name="director1">You have chosen the script </string>
+    <string name="director2">Choose a Director to approach: (only showing directors you can afford)</string>
+    <string name="directorPrice">Price to hire: %s</string>
+
+    <!-- choose actor screen -->
+    <string name="actor">Choose a lead actor to approach: (only showing actors you can afford)</string>
+    <string name="actor2">Co-star:</string>
+    <string name="actorPrice">Price of Cast: %s</string>
+
+    <!-- result screen -->
+    <string name="totalBoxOffice">The movie earned a grand total of: %s</string>
+    <string name="totalProfit">The movie earned a net profit of: %s</string>
+
+    <!-- new game screen -->
+    <string name="choosecompanyname">Choose the name of your production company: </string>
+    <string name="newgamedialogtitle">New Game</string>
+
+    <!-- pitch movie screen -->
+    <string name="ask">Ask</string>
+    <string name="noOffer1">Sorry, we aren\'t interested…</string>
+    <string name="noOffer2">We think your script is great. Best we can do is 20 bucks</string>
+    <string name="smallOffer">We aren\'t too sure, but we are willing to take a chance, here\'s $%dM</string>
+    <string name="mediumOffer">We think the script has potential, here\'s $%dM</string>
+    <string name="goodOffer">We really like the script, we can give you $%dM</string>
+    <string name="bestOffer">We love it, now shut up and take our money.</string>
+
+    <!-- content -->
+    <string name="contentTitle">Set the content level for: </string>
+    <string name="contentHelp">Set Content Help</string>
+    <string name="contentHelpMessage">Choose the type of content for your film. The stronger the content, the stricter the rating your film will get, which will reduce your potential audience. However, choose the content levels which would be appropriate for your movie\'s genre (e.g. a Kid\'s film with strong sex and violence would be a flop (as well as being a bit disturbing!) but a Horror film which is rated \'G\' will probably not be interesting enough to get movie-goers excited)</string>
+    <string name="violence">Violence</string>
+    <string name="violence0">None</string>
+    <string name="violence1">Mild</string>
+    <string name="violence2">Medium Violence</string>
+    <string name="violence3">Strong Violence and Gore</string>
+    <string name="sex">Sex</string>
+    <string name="sex0">None</string>
+    <string name="sex1">Mild/Innuendo</string>
+    <string name="sex2">Moderate Sex/Nudity</string>
+    <string name="sex3">Strong Sex and Nudity</string>
+    <string name="language">Profanity</string>
+    <string name="language0">None</string>
+    <string name="language1">Mild</string>
+    <string name="language2">Moderate Bad Language</string>
+    <string name="language3">Really Strong ****ing Language</string>
+    <string name="pitchFilmButton">Pitch your Movie</string>
+    <string name="load_game">Load Game</string>
+    <string name="censor_rating_image">Censor rating image</string>
+    <string name="hire_another_actor">Hire Another Actor</string>
+    <string name="make_this_film">Make this Film!</string>
+    <string name="no_data">No data</string>
+    <string name="movie_rating_was_">"Movie Rating was: "</string>
+    <string name="level_of_special_effects">Choose the level of special effects/CGI in your movie</string>
+    <string name="sfx0">No special effects</string>
+    <string name="sfx1">Some effects</string>
+    <string name="sfx2">Some CGI</string>
+    <string name="sfx3">Lots of CGI scenes/Explosions</string>
+    <string name="sfx4">Very heavy use of CGI</string>
+    <string name="sfx5">Michael Bay</string>
+    <string name="total_sfx_cost_">Total SFX Cost:</string>
+    <string name="pitch_your_film_to_the_studios_">"Pitch your film to the Studios: "</string>
+    <string name="known_for_">"Known For: "</string>
+    <string name="production_progress_d_">Production Progress: %d%</string>
+    <string name="previous">Previous</string>
+    <string name="rework_script">Rework script</string>
+    <string name="choose_this_producer">Choose this Producer</string>
+    <string name="next">Next</string>
+    <string name="swipe_left_and_right_to_view_offers">Swipe left and right to view offers</string>
+    <string name="continue_to_set_content">Continue</string>
+    <string name="title_activity_movie_info_dialog">MovieInfoDialog</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="gross_">"Gross: "</string>
+    <string name="budget_">"Budget: "</string>
+    <string name="starring_">"Starring: "</string>
+    <string name="director_">"Director: "</string>
 
 </resources>

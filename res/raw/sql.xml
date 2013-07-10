@@ -31,7 +31,10 @@
 	distributor_id integer,
 	composer_id integer,
 	sfx_id integer,
-	sound_id integer
+	sound_id integer,
+	star_rating integer,
+	review text,
+	censor_rating text
 	)
 </statement>
 			

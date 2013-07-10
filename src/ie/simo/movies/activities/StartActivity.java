@@ -112,7 +112,6 @@ public class StartActivity extends Activity {
 	}
 
 	private void findAllViewsById() {
-
 		newGame = (Button) this.findViewById(R.id.newgameButton);
 		continueGame = (Button) this.findViewById(R.id.continuegameButton);
 		boxOffice = (Button) this.findViewById(R.id.boxofficeButton);

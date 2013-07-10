@@ -14,6 +14,7 @@ public class MovieInfo implements Serializable {
 	private Director director;
 	private Cast cast;
 	private RatingDetails ratingDetails;
+	private Distributor distributor;
 	
 	/*
 	 * Getters & Setters
@@ -126,6 +127,14 @@ public class MovieInfo implements Serializable {
 
 	public void setPlot(String plot) {
 		this.plot = plot;
+	}
+
+	public Distributor getDistributor() {
+		return distributor;
+	}
+
+	public void setDistributor(Distributor distributor) {
+		this.distributor = distributor;
 	}
 
 }

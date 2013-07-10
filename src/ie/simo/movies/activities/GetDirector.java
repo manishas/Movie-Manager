@@ -14,6 +14,7 @@ import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -48,11 +49,10 @@ public class GetDirector extends ActivityWithMenu {
 		fillSpinner();
 		
 		chosen.setText(getPc().getCurrentProject().toButtonText());
-		String msg = "$25,000,000";// TODO get this programmatically - getString(R.string.directorPrice , spinner.getSelectedItem());
+		String msg = "";
 		price.setText(msg);
 		
 		setTitleBar();
-		
 		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
 
 			@Override
