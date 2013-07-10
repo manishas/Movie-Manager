@@ -38,6 +38,7 @@ public class Result extends ActivityWithMenu {
 	private TextView budgetView;
 	private TextView compName;
 	private TextView review;
+	private TextView explanation;
 
 	private int shareOfEarnings;
 	private ReviewGenerator reviewer;
@@ -87,6 +88,7 @@ public class Result extends ActivityWithMenu {
 
 		cash.setText(msg);
 		profitView.setText(profit);
+		explanation.setText(String.format(getString(R.string.moneyexplanation), shareOfEarnings));
 
 		MovieSummary summary = createMovieSummary(getPc().getCurrentProject());
 
@@ -147,6 +149,7 @@ public class Result extends ActivityWithMenu {
 		compName = (TextView)this.findViewById(R.id.companyName);
 		profitView = (TextView) this.findViewById(R.id.cashmoney);
 		review = (TextView) this.findViewById(R.id.review);
+		explanation = (TextView) this.findViewById(R.id.moneyexplanation);
 	}
 
 	@Override
