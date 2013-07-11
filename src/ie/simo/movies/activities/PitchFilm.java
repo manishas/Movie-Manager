@@ -41,6 +41,7 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
     private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private ViewFlipper vf;
+    private static final int NUMBER_OF_PICS = 3;
     private Animation animFlipInNext,animFlipOutNext, animFlipInPrevious, animFlipOutPrevious;
     private int ARRAY_LAST_INDEX = 2; 
 	private ImageView producerpic1, producerpic2, producerpic3;
@@ -113,7 +114,6 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 				Distributor d = o.getDistributor();
 				Intent intent = new Intent(getApplicationContext(), GetDirector.class);
         		MMLogger.v(getLocalClassName(), offerString(o));
-        		intent.putExtra(DISTRIBUTOR, d);
         		getPc().getCurrentProject().setDistributor(d);
         		getPc().setBudget(getPc().getBudget() + o.getOfferValue());
         		intent.putExtra(COMPANY, getPc());
@@ -123,24 +123,22 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 	}
 	private void getOffers() {
 		assert(null != distributorList);
-		
 		//TODO increase to 3 when have more images
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < NUMBER_OF_PICS; i++){
 			Distributor d = distributorList.get(i);
 			int money = d.makeOffer(getPc().getCurrentProject().getGenre(), getPc().getCurrentProject().getRatingDetails());
 			
 			Offer offer = new Offer(d, money, getOfferText(money), images.get(i).intValue());
 			offers.add(offer);
 		}
-		//TODO add self funded
-		
+		//TODO add self funded option for pitch film
 	}
 	
 	
 	private void showOffers(){
 		
 		int width = (getWindowManager().getDefaultDisplay().getWidth() / 4) * 3;
-		
+		//TODO refactor with array...
 		producerpic1.setImageResource(offers.get(0).getPic());
 		producerpic1.getLayoutParams().width = width;
 		producerpic1.getLayoutParams().height = width;

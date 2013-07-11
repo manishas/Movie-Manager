@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 public class Result extends ActivityWithMenu {
 
+	private static final int OLD_NEWSPAPER = 0xCCF8ECC2;
 	private RatingBar rating;
 	private Button tryAgain;
 	private TextView cash;
@@ -47,6 +48,12 @@ public class Result extends ActivityWithMenu {
 	private RatingCalculator ratingCalc;
 	
 	private int money;
+	//values used on front end
+	private String reviewText;
+	private float criticRating;
+	private MovieSummary summary;
+	private String msg;
+	private String profit;
 	
 	private Typeface font;
 
@@ -58,39 +65,12 @@ public class Result extends ActivityWithMenu {
 		
 		init();
 		
-		MMLogger.v(getLocalClassName(), "Film Details: "
-				+ getPc().getCurrentProject().toString());
+		MMLogger.v(getLocalClassName(), "Film Details: " + getPc().getCurrentProject().toString());
 		MMLogger.v(getLocalClassName(), "Remaining Budget is: " + getPc().getBudget());
-
-		// HOLY SHIT need to refactor the shit out of this whole method
-		float criticRating = (float) ratingCalc.getRating(getPc().getCurrentProject());
-		
-		MMLogger.v(getLocalClassName(), "Critic rating is: " + criticRating);
-
-		rating.setRating(criticRating);
-
-		money = calculator.calculate(getPc().getCurrentProject(), criticRating);
-		MMLogger.v(getLocalClassName(), "Gross Earnings: " + money);
-
-		shareOfEarnings = getShareOfEarnings(money);
-		MMLogger.v(getLocalClassName(), "share of earnings: " + shareOfEarnings);
-		String msg = getString(R.string.totalBoxOffice, "$" + money + "M");
-		String profit = getString(R.string.totalProfit,
-				"$" + (money - (getPc().getCurrentProject().getTotalCost())) + "M");
-
-		budgetView.setText("$" + (getPc().getBudget() + shareOfEarnings) + "M");
-
-		review.setText(reviewer.writeReview(getPc().getCurrentProject(),
-				criticRating));
-		review.setTextColor(getResources().getColor(android.R.color.black));
-		review.setTypeface(font);
-		review.setBackgroundColor(0xCCF8ECC2);
-
-		cash.setText(msg);
-		profitView.setText(profit);
-		explanation.setText(String.format(getString(R.string.moneyexplanation), shareOfEarnings));
-
-		MovieSummary summary = createMovieSummary(getPc().getCurrentProject());
+			
+		generateValues();
+		updateMovieMetadata();
+		displayValues();
 
 		saveToDatabase(summary);
 
@@ -105,6 +85,54 @@ public class Result extends ActivityWithMenu {
 		longToast("Your company earned $" + shareOfEarnings
 				+ "M that can be used for your next production");
 
+	}
+	/**
+	 * set the values of UI elements
+	 */
+	private void displayValues() {
+		rating.setRating(criticRating);
+		budgetView.setText("$" + (getPc().getBudget() + shareOfEarnings) + "M");
+		
+		review.setText(reviewText);
+		review.setTextColor(getResources().getColor(android.R.color.black));
+		review.setTypeface(font);
+		review.setBackgroundColor(OLD_NEWSPAPER);
+
+		cash.setText(msg);
+		profitView.setText(profit);
+		explanation.setText(String.format(getString(R.string.moneyexplanation), shareOfEarnings));
+		
+	}
+	
+	/**
+	 * Update any extra domain object values
+	 */
+	private void updateMovieMetadata() {
+		summary.getMetadata().setStarRating(criticRating);
+		summary.getMetadata().setCriticReview(reviewText);
+	}
+
+	private void generateValues() {
+		criticRating = (float) ratingCalc.getRating(getPc().getCurrentProject());
+		MMLogger.v(getLocalClassName(), "Critic rating is: " + criticRating);
+		
+		money = calculator.calculate(getPc().getCurrentProject(), criticRating);
+		MMLogger.v(getLocalClassName(), "Gross Earnings: " + money);
+		
+		shareOfEarnings = getShareOfEarnings(money);
+		MMLogger.v(getLocalClassName(), "share of earnings: " + shareOfEarnings);
+		
+		msg = getString(R.string.totalBoxOffice, "$" + money + "M");
+		profit = getString(R.string.totalProfit, "$" + (money - (getPc().getCurrentProject().getTotalCost())) + "M");
+		
+		reviewText = getReviewText(criticRating);
+		//finally...
+		summary = createMovieSummary(getPc().getCurrentProject());
+	}
+
+	private String getReviewText(float criticRating) {
+		return reviewer.writeReview(getPc().getCurrentProject(),
+				criticRating);
 	}
 
 	/**

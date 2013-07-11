@@ -75,6 +75,18 @@ public class PhraseProvider {
 	public String getVanillaFilmReview() {
 		return random(vanillaQualities);
 	}
+	
+	public String getHorrorBadguy() {
+		return random(horrorVillain);
+	}
+	
+	public String getComedyGuy() {
+		return random(comedyCharacter);
+	}
+	
+	public String getComedyTwist() {
+		return random(comedyTwist);
+	}
 
 	protected String random(String[] sourceArray) {
 		return sourceArray[r.nextInt(sourceArray.length)];
@@ -103,6 +115,15 @@ public class PhraseProvider {
 			"student", "Dentist", "Zoo keeper", "Aquarium cleaner",
 			"pool cleaner", "ski instructor", "janitor", "farmer",
 			"software developer", "graphic designer", "exotic dancer" };
+	
+	private String[] comedyCharacter = {
+		"class clown", "gangster rapper", "", "", "", "", "", "", "", "", ""	
+	};
+	
+	//they
+	private String[] comedyTwist = {
+			"have to go on an internship", "have to go undercover as old women", "have to ", "", "", "", "", "", "", "", ""	
+		};
 
 	private String[] kidsCharacter = { "friendly dog",
 			"inquisitive young girl", "sarcastic cat", "nerdy boy",
@@ -195,7 +216,9 @@ public class PhraseProvider {
 			"She must take the kids when he becomes an abusive drunk" };
 	//
 	private String[] scifiTwist = { "Together they joined a futuristic elite fighting force, fighting the corrupt banks and stopping androids from stealing our identities. " };
-
+	
+	private String[] horrorVillain = {"vampire", "zombie", "creepy little japanese girl", "g-g-ghost", "axe-murderer", "malevolent slime", "werewolf", "alien", "evil fog", "politician", "fat cat banker", "flock of evil birds", "mad scientist", "ex-lover, risen from the dead", "giant insect", "giant snake", "giant bat", "mutant"};
+	
 	private String[] kidsGoal = {
 			"team up to beat the bullies at their own game", "learn to share",
 			"learn what friendship is all about", "find their way back home",

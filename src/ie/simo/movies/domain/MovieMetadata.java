@@ -10,7 +10,21 @@ public class MovieMetadata {
 	private String dateReleased;
 	private int positiveHype;
 	private int negativeHype;
+	private double starRating;
+	private String criticReview;
 	
+	public String getCriticReview() {
+		return criticReview;
+	}
+	public void setCriticReview(String criticReview) {
+		this.criticReview = criticReview;
+	}
+	public double getStarRating() {
+		return starRating;
+	}
+	public void setStarRating(double starRating) {
+		this.starRating = starRating;
+	}
 	public String getDateReleased() {
 		return dateReleased;
 	}
