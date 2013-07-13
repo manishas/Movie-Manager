@@ -13,7 +13,41 @@ public class WordProvider {
 			"the Attic", "the Basement", "the Swamp", "the Forest",
 			"the Mountains", "the Mountain", "the Beach", "the Suburbs",
 			"the Ghetto", "South Central", "the Farm", "the Factory",
-			"the Nuclear Plant" };
+			"the Nuclear Plant", "Mount Everest", "the Amazon", "the jungle",
+			"the 7-11", "the Adult bookstore", "the Air Force base",
+			"the Airport", "the Amusement park", "the Antique store",
+			"the Apartment building", "the Arcade", "the Archaeological dig",
+			"the Archery range", "the Art supply store",
+			"the Auto wrecking yard", "the Bakery", "the Ball park",
+			"the Bank", "the Bar", "the Barbershop", "the Beach",
+			"the Beauty parlor", "the Bed and breakfast",
+			"the Billiard parlor", "the Bookstore", "the Boutique",
+			"the Bowling alley", "the Cabin", "the Cafe", "the Cathedral",
+			"the Cemetery", "the Church", "the City Hall", "the Clinic",
+			"the Computer store", "the Copy shop", "the Cruise ship",
+			"the Dance club", "the Day care center", "the Delicatessen",
+			"the Dentist's office", "the Discount store", "the Dormitory",
+			"the Duplex", "the Elementary school", "the Farm",
+			"the Fast food restaurant", "the Fishing boat", "the Gas station",
+			"the Gift shop", "the Golf course", "the Greenhouse",
+			"the Grocery store", "the Haunted house", "the Health food store",
+			"the High school", "the Hospital", "the Hotel",
+			"the House of ill repute", "the Inn", "the Jail",
+			"the Junior high school", "the Junkyard", "the Library",
+			"the Middle school", "the Mobile home park", "the Monastery",
+			"the Mortuary", "the Motel", "the Museum", "the Music store",
+			"the Newspaper office", "the Ocean liner",
+			"the Office supply store", "the Office building", "the Park",
+			"the Parking garage", "the Parking lot", "the Pastry shop",
+			"the Pet store", "the Pharmacy", "the Pizza place",
+			"the Planetarium", "the Post Office", "the Public restroom",
+			"the Radio station", "the Record store", "the Restaurant",
+			"the Retirement home", "the Seaside resort", "the Shoe store",
+			"the Shopping mall", "the Slum", "the Souvenir shop",
+			"the Stadium", "the State capitol building", "the Synagogue",
+			"the Tattoo parlor", "the Temple", "the Theater", "the Toolshed",
+			"the TV station", "the University", "the Used car lot",
+			"the Video store", "the YMCA" };
 
 	private String[] adjective = { "adorable", "adventurous", "aggressive",
 			"alert", "attractive", "average", "beautiful", "blue-eyed",
@@ -243,7 +277,7 @@ public class WordProvider {
 	public String getAdjective() {
 		return nounify(random(adjective));
 	}
-	
+
 	public String getLowerCaseAdjective() {
 		return random(adjective);
 	}
