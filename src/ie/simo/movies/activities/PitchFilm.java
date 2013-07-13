@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.DistributorDbAdapter;
@@ -158,7 +159,7 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 	}
 	
 	private String offerString(Offer offer){
-		return String.format("<b>%s: $%dM</b><br/>%s", offer.getDistributor().getName(), offer.getOfferValue(), offer.getOfferText());
+		return String.format(Locale.UK, "<b>%s: $%dM</b><br/>%s", offer.getDistributor().getName(), offer.getOfferValue(), offer.getOfferText());
 	}
 
 	/**

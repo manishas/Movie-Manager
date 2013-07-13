@@ -72,7 +72,8 @@ public class BoxOfficeDbAdapter {
 		values.put(DISTRIBUTOR, getDistributorIdFromName(movie.getInfo()
 				.getDistributor().getName()));
 		values.put(PLOT, movie.getInfo().getPlot());
-		values.put(STARS, movie.getMetadata().getStarRating());
+		//stars saved as integer, so double it to keep it a whole number
+		values.put(STARS, (int) movie.getMetadata().getStarRating() * 2);
 		values.put(REVIEW, movie.getMetadata().getCriticReview());
 		long id = database.insert(DATABASE_TABLE, null, values);
 		saveCast(id, movie.getInfo().getCast());

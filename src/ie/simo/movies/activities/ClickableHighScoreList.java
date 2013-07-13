@@ -2,7 +2,6 @@ package ie.simo.movies.activities;
 
 import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
-import ie.simo.movies.dao.cursor.BoxOfficeCursorAdapter;
 import ie.simo.movies.domain.Actor;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.util.DBConsts;
@@ -83,7 +82,7 @@ public abstract class ClickableHighScoreList extends ListActivity {
 		Director director = db.getDirectorFromId(c.getInt(c
 				.getColumnIndex(DBConsts.Movie.director)));
 
-		movieTitle.setText(c.getString(c.getColumnIndex(DBConsts.Movie.name)));
+		movieTitle.setText(c.getString(c.getColumnIndex(DBConsts.Movie.name)) + " (" + c.getString(c.getColumnIndex(DBConsts.Movie.genre)) + ")");
 		plot.setText(c.getString(c.getColumnIndex(DBConsts.Movie.desc)));
 		movieDirector.setText(director.getName());
 		totalMovieBudget.setText("$"
@@ -91,10 +90,9 @@ public abstract class ClickableHighScoreList extends ListActivity {
 		totalMovieGross.setText("$"
 				+ c.getInt(c.getColumnIndex(DBConsts.Movie.earnings))
 				+ ",000,000");
-		reviewedRating.setRating(c.getInt(c.getColumnIndex(DBConsts.Movie.stars)));
+		reviewedRating.setRating(getAsFloat(c.getInt(c.getColumnIndex(DBConsts.Movie.stars))));
 		c.close();
 
-		int i = db.getDirectorIdFromName("James Cameron");
 		movieActors.setText(makeActorList(actors));
 		dialog.setCanceledOnTouchOutside(true);
 		dialog.setOnDismissListener(new OnDismissListener() {
@@ -107,14 +105,20 @@ public abstract class ClickableHighScoreList extends ListActivity {
 		return dialog;
 	}
 
-	private String makeActorList(List<Actor> actors) {
+	public float getAsFloat(int savedValue) {
+		float f = (float) savedValue;
+		return (f > 0.0f) ? f/2.f : f;
+	}
+
+	//changed access modifier for testing
+	public String makeActorList(List<Actor> actors) {
 		StringBuilder buf = new StringBuilder();
 		for (Actor a : actors) {
 			buf.append(a.getName() + ", ");
 		}
 		// get rid of last comma
 		if (buf.length() > 0) {
-			buf.delete(buf.length() - 3, buf.length() - 1);
+			buf.delete(buf.length() - 2, buf.length());
 		}
 		return buf.toString();
 	}
