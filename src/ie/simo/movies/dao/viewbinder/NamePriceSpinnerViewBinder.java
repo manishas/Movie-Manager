@@ -1,7 +1,6 @@
 package ie.simo.movies.dao.viewbinder;
 
 import android.database.Cursor;
-import android.util.Log;
 import android.view.View;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;

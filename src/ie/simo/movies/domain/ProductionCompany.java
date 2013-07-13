@@ -7,8 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import android.text.format.Time;
-
 /**
  * Class to represent a production company, ie a 'game'
  * 

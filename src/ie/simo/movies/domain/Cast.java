@@ -2,7 +2,6 @@ package ie.simo.movies.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Cast implements Serializable {

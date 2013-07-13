@@ -1,8 +1,6 @@
 package ie.simo.movies.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Producer implements Serializable{
 

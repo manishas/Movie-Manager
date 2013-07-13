@@ -14,7 +14,6 @@ import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;

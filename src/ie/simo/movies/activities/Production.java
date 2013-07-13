@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import ie.simo.movies.R;
 import ie.simo.movies.generator.ProductionEventGenerator;
 import ie.simo.movies.production.ProductionEvent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;

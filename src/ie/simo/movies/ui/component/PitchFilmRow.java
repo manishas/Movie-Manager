@@ -2,10 +2,8 @@ package ie.simo.movies.ui.component;
 
 import ie.simo.movies.R;
 import android.content.Context;
-import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;

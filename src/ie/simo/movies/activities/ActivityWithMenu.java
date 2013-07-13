@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import ie.simo.movies.util.MMLogger;
 
 public abstract class ActivityWithMenu extends Activity {
 	

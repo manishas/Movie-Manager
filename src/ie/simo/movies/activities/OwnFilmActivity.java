@@ -7,7 +7,6 @@ import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.MMLogger;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;

@@ -1,8 +1,5 @@
 package ie.simo.movies.scoring.earnings;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import ie.simo.movies.domain.Actor;

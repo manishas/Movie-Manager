@@ -11,8 +11,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.util.Log;
-
 public class GetImage {
 	
 	public static final String URL = "http://www.google.com/search?tbm=isch&hl=en&q=%s&biw=1366&bih=665";

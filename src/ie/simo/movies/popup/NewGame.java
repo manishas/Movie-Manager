@@ -7,9 +7,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.text.InputFilter;
-import android.text.Spanned;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 

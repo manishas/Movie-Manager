@@ -1,16 +1,10 @@
 package ie.simo.movies.popup;
 
 import ie.simo.movies.R;
-import ie.simo.movies.activities.StartActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.text.InputFilter;
-import android.text.Spanned;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.Toast;
 
 /**
  * Popup dialog to get name of new production company from user

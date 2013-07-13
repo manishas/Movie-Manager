@@ -1,7 +1,6 @@
 package ie.simo.movies.scoring.rating;
 
 import ie.simo.movies.domain.Actor;
-import ie.simo.movies.domain.Cast;
 import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.util.RandomNumberProvider;

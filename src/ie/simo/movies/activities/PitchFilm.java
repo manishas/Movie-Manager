@@ -10,7 +10,6 @@ import ie.simo.movies.R;
 import ie.simo.movies.dao.DistributorDbAdapter;
 import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.ProductionCompany;
-import ie.simo.movies.ui.component.PitchFilmRow;
 import ie.simo.movies.util.DBConsts;
 import ie.simo.movies.util.MMLogger;
 import ie.simo.movies.util.RandomNumberProvider;
@@ -20,19 +19,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class PitchFilm extends ActivityWithMenu implements OnGestureListener {

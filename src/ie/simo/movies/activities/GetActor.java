@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import java.util.List;
 import java.util.Set;
 
 import ie.simo.movies.R;
@@ -20,9 +19,7 @@ import static ie.simo.movies.util.Consts.COMPANY;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;

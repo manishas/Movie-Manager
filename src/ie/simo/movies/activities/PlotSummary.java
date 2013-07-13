@@ -2,7 +2,6 @@ package ie.simo.movies.activities;
 
 import static ie.simo.movies.util.Consts.COMPANY;
 import ie.simo.movies.R;
-import ie.simo.movies.censor.factory.CensorFactory;
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.generator.PlotGenerator;
