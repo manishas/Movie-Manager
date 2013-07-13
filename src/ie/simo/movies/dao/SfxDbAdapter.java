@@ -1,9 +1,7 @@
 package ie.simo.movies.dao;
 
-import ie.simo.movies.util.DBConsts;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 public class SfxDbAdapter extends DbAdapter{
 	

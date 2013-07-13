@@ -28,6 +28,12 @@ public class DBConsts {
 		public static final String producer = "producer_id";
 		public static final String director = "director_id";
 		public static final String distributor = "distributor_id";
+		public static final String composer = "composer_id";
+		public static final String sfx ="sfx_id";
+		public static final String sound ="sound_id"; 
+		public static final String stars ="star_rating";
+		public static final String review ="review";
+		public static final String censor ="censor_rating";
 	}
 	
 	public static class Distributor{

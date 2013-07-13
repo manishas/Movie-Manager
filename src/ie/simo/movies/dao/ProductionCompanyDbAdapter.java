@@ -1,7 +1,6 @@
 package ie.simo.movies.dao;
 
 import ie.simo.movies.domain.ProductionCompany;
-import ie.simo.movies.util.DBConsts;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

@@ -1,12 +1,16 @@
 package ie.simo.movies.domain;
 
+import java.io.Serializable;
+
 /**
  * Class to track hype and date released of a movie
  * @author Simon Wielens
  *
  */
-public class MovieMetadata {
-	//
+public class MovieMetadata implements Serializable {
+
+	private static final long serialVersionUID = 6891162565166144842L;
+	
 	private String dateReleased;
 	private int positiveHype;
 	private int negativeHype;

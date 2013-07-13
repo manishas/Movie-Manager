@@ -91,6 +91,7 @@ public abstract class ClickableHighScoreList extends ListActivity {
 		totalMovieGross.setText("$"
 				+ c.getInt(c.getColumnIndex(DBConsts.Movie.earnings))
 				+ ",000,000");
+		reviewedRating.setRating(c.getInt(c.getColumnIndex(DBConsts.Movie.stars)));
 		c.close();
 
 		int i = db.getDirectorIdFromName("James Cameron");

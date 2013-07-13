@@ -17,6 +17,11 @@ public class MovieSummary implements Serializable{
 	private MovieInfo info;
 	private MovieMetadata metadata;
 	
+	public MovieSummary(){
+		metadata = new MovieMetadata();
+		info = new MovieInfo();
+	}
+	
 	public MovieInfo getInfo() {
 		return info;
 	}

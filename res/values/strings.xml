@@ -128,6 +128,7 @@
     <string name="budget_">"Budget: "</string>
     <string name="starring_">"Starring: "</string>
     <string name="director_">"Director: "</string>
-    <string name="moneyexplanation">After the distributor takes their cut for funding the project, you are left with $%d</string>
+    <string name="moneyexplanation">After the distributor takes their cut for funding the project, you are left with $%d profit</string>
+    <string name="try_again_">Try again?</string>
 
 </resources>

@@ -1,17 +1,9 @@
 package ie.simo.movies.dao.viewbinder;
 
 import ie.simo.movies.R;
-import ie.simo.movies.activities.GetDirector;
-import ie.simo.movies.activities.StartActivity;
-import android.app.Activity;
-import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 
