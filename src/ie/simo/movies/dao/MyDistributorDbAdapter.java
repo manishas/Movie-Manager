@@ -4,20 +4,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 
-public class DistributorDbAdapter extends DbAdapter{
+public class MyDistributorDbAdapter extends DbAdapter{
 
-	public DistributorDbAdapter(Context context) {
+	public MyDistributorDbAdapter(Context context) {
 		super(context);
 	}
 
 	@Override
-	public DistributorDbAdapter open() throws SQLException {
-		return (DistributorDbAdapter) super.open();
+	public MyDistributorDbAdapter open() throws SQLException {
+		return (MyDistributorDbAdapter) super.open();
 	}
 	
 	@Override
-	public DistributorDbAdapter openWritable() throws SQLException {
-		return (DistributorDbAdapter) super.openWritable();
+	public MyDistributorDbAdapter openWritable() throws SQLException {
+		return (MyDistributorDbAdapter) super.openWritable();
 	}
 
 

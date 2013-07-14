@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import ie.simo.movies.R;
-import ie.simo.movies.dao.DistributorDbAdapter;
+import ie.simo.movies.dao.MyDistributorDbAdapter;
 import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
@@ -50,7 +50,7 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 	private ArrayList<Offer> offers = new ArrayList<Offer>();
 	private TextView budgetView;
 	private TextView compName;
-	private DistributorDbAdapter db;
+	private MyDistributorDbAdapter db;
 	private ArrayList<Distributor> distributorList = new ArrayList<Distributor>();
 	private List<Integer> images = Arrays.asList(new Integer[]{R.drawable.suits1, R.drawable.suits2, R.drawable.suits3, R.drawable.suits4});
 
@@ -162,7 +162,7 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 	 */
 	public void fetchDistributors() {
 		getDistributorList().clear();
-		db = new DistributorDbAdapter(this);
+		db = new MyDistributorDbAdapter(this);
 		db.open();
 		Cursor c = db.selectAll();
 		if(c.getCount() > 0) {
