@@ -81,7 +81,7 @@ public abstract class ClickableHighScoreList extends ListActivity {
 		Director director = db.getDirectorFromId(c.getInt(c
 				.getColumnIndex(DBConsts.Movie.director)));
 
-		movieTitle.setText(c.getString(c.getColumnIndex(DBConsts.Movie.name)) + " (" + c.getString(c.getColumnIndex(DBConsts.Movie.genre)) + ")");
+		movieTitle.setText(c.getString(c.getColumnIndex(DBConsts.Movie.name)) + " (" + db.getGenreNameFromId(c.getInt(c.getColumnIndex(DBConsts.Movie.genre))) + ")");
 		plot.setText(c.getString(c.getColumnIndex(DBConsts.Movie.desc)));
 		movieDirector.setText(director.getName());
 		totalMovieBudget.setText("$"
