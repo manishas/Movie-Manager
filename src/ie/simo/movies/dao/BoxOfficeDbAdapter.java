@@ -59,8 +59,6 @@ public class BoxOfficeDbAdapter {
 	}
 
 	public long createMovie(MovieSummary movie) {
-
-		// TODO hardcoded director + distributor
 		ContentValues values = new ContentValues();
 		values.put(MOVIE_NAME, movie.getInfo().getTitle());
 		values.put(EARNINGS, movie.getTotalEarnings());
@@ -168,6 +166,17 @@ public class BoxOfficeDbAdapter {
 
 		c.close();
 		return lads;
+	}
+
+	public String getGenreNameFromId(int scifiId) {
+		String query = "SELECT * from genre where _id=?";
+		Cursor c = database.rawQuery(query, new String[] { scifiId + "" });
+		String genreName = "";
+		while (c.moveToNext()) {
+			genreName = c.getString(c.getColumnIndex("genre_name"));
+		}
+
+		return genreName;
 	}
 
 }

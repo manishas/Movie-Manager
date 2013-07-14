@@ -65,7 +65,7 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 					Intent i = new Intent();
 					MMLogger.v("SFX: ", "before budget = " + getPc().getBudget() + ", sfx cost = " + totalEffectsCost);
 					i.setClass(SpecialEffects.this, Result.class);
-					//TODO track the sfx chosen
+					getPc().getCurrentProject().setSpecialEffectsCompany(sfxCompanies.getSelectedItem().toString());
 					getPc().setBudget(getPc().getBudget() - totalEffectsCost);
 					
 					MMLogger.v("SFX: ", "after budget = " + getPc().getBudget());
@@ -75,7 +75,7 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 					startActivity(i);
 				}
 				else{
-					Toast.makeText(getApplicationContext(), "You can't afford these effectsd", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "You can't afford these effects", Toast.LENGTH_LONG).show();
 				}
 				
 			}

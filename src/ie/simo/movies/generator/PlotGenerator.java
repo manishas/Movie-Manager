@@ -15,28 +15,11 @@ public class PlotGenerator {
 	public String action = "%s is a %s who needs to stop an evil %s, %s, from %s. %s is joined by a %s, %s. With the odds against them, can they prevent %s from %s?";
 	public String sciFi = "He was a %s %s who %s, and who %s. She was a %s %s who %s and %s. %s...";
 	public String drama = "He was a %s %s who %s, and who %s. She was a %s %s who %s and %s. %s...";
-	public String comedy = "Funny stuff!";
-	public String horror = "";
+	public String comedy = "%s, A quirky %s and their crazy %s friend %s %s in this hilarious caper!";
+							
+	public String horror = "A %s %s %s in %s. %s";
 	public String kids = "When %s, the %s meets %s the %s, it looks like they will never be friends. But they must %s, and things will never be the same!";
 	
-	
-	/*
-	 * HORROR
-	 * A ruthless criminal gang takes a young couple hostage and goes to ground in an abandoned house in the middle of nowhere. When the captive girl is killed, the tables are unexpectedly turned. The gang finds themselves outsmarted by an urbane and seasoned killer determined to ensure that no one lives.
-	 * When a gang of masked, ax-wielding murderers descend upon the Davison family reunion, the hapless victims seem trapped...until an unlikely guest of the family proves to be the most talented killer of all.
-	 * Two friends. One a junkie forced to go cold turkey in an isolated cabin. Mysterious forces. Personal demons. Dark humor. Genre-bending horror filmmaking that'll make your head explode.
-	 * Francis must protect his very pregnant wife from a pack of murderous children and get the couple off the island alive.
-	 * A clown comes back from the dead to haunt those who took his life during a fatal party mishap.
-	 * Six high school seniors celebrating with day's excursion find themselves on rowboat attacked by man-eating fish and must decide who must be sacrificed as they fight their way back to shore.
-	 */
-	
-	/*
-	 * A veteran pot dealer creates a fake family as part of his plan to move a huge shipment of weed into the U.S. from Mexico.
-	 * Fast-talking agent Jack's insincere patter is his chief weapon, but it irritates his assistant Aaron, threatens his marriage to Caroline and gets him into trouble repping guru/author Dr. Sinja. Jack suffers karmic repercussions from Sinja's magical Bodhi tree, which sheds one leaf for each word Jack speaks. After one thousand words, Jack will die.
-	 * Big Earl, the owner of a Christmas tree lot in Compton, California runs into some trouble when his son Derrick crosses the line to prove to his father that he is a success.
-	 * A day in the life of a party store along Detroit's Six Mile Road owned by a conservative Black father and his son and daughter. A lot can happen on the corner... especially on the hottest day of the summer.
-	 * 
-	 */
 	
 	public PlotGenerator(String contentType){
 		if(contentType != "PLAIN"){
@@ -79,7 +62,7 @@ public class PlotGenerator {
 	}
 
 	public String comedyPlot() {
-		return String.format(comedy, "");
+		return String.format(comedy, png.getFirstName(), pp.getProfession(), pp.getProfession(), png.getFirstName(), pp.getComedyTwist());
 	}
 
 	public String dramaPlot() {
@@ -90,7 +73,7 @@ public class PlotGenerator {
 	}
 
 	public String horrorPlot() {
-		return String.format(horror, "");
+		return String.format(horror, pp.getHorrorAntagonist(), pp.getHorrorEvent(), pp.getHorrorVictim(), pp.getHorrorLocation(), pp.getHorrorCliffhanger());
 	}
 
 	public String kidsPlot() {

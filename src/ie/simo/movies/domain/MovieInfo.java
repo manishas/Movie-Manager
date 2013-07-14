@@ -15,6 +15,7 @@ public class MovieInfo implements Serializable {
 	private Cast cast;
 	private RatingDetails ratingDetails;
 	private Distributor distributor;
+	private String specialEffectsCompany;
 	
 	/*
 	 * Getters & Setters
@@ -135,6 +136,14 @@ public class MovieInfo implements Serializable {
 
 	public void setDistributor(Distributor distributor) {
 		this.distributor = distributor;
+	}
+
+	public String getSpecialEffectsCompany() {
+		return specialEffectsCompany;
+	}
+
+	public void setSpecialEffectsCompany(String specialEffectsCompany) {
+		this.specialEffectsCompany = specialEffectsCompany;
 	}
 
 }

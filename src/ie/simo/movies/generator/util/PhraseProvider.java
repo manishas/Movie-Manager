@@ -75,15 +75,11 @@ public class PhraseProvider {
 	public String getVanillaFilmReview() {
 		return random(vanillaQualities);
 	}
-	
-	public String getHorrorBadguy() {
+
+	public String getHorrorAntagonist() {
 		return random(horrorVillain);
 	}
-	
-	public String getComedyGuy() {
-		return random(comedyCharacter);
-	}
-	
+
 	public String getComedyTwist() {
 		return random(comedyTwist);
 	}
@@ -115,15 +111,11 @@ public class PhraseProvider {
 			"student", "Dentist", "Zoo keeper", "Aquarium cleaner",
 			"pool cleaner", "ski instructor", "janitor", "farmer",
 			"software developer", "graphic designer", "exotic dancer" };
-	
-	private String[] comedyCharacter = {
-		"class clown", "gangster rapper", "", "", "", "", "", "", "", "", ""	
-	};
-	
-	//they
-	private String[] comedyTwist = {
-			"have to go on an internship", "have to go undercover as old women", "have to ", "", "", "", "", "", "", "", ""	
-		};
+
+	// they
+	private String[] comedyTwist = { "have to go on an internship",
+			"have to go undercover as old women for the FBI", "get mixed up with the mafia", "have a hare-brained get-rich scheme", "get new careers as " + getProfession() + "s", "get competitive with a neighbour", "accidentally become astronauts",
+			"have to go back to school", "have to coach a kids soccer team", "have to move to a tiny rural town and become farmers", "join a band", "are mistaken for substitute teachers"};
 
 	private String[] kidsCharacter = { "friendly dog",
 			"inquisitive young girl", "sarcastic cat", "nerdy boy",
@@ -198,7 +190,7 @@ public class PhraseProvider {
 			"she finds out he is a thief",
 			"she finds out he is a Secret Agent",
 			"the Mayans predict the end of the world" };
-	
+
 	// can they prevent [person] from ..........?
 	private String[] badResult = { "achieving his goal",
 			"getting away with it", "destroying the world", "breaking the law",
@@ -216,9 +208,14 @@ public class PhraseProvider {
 			"She must take the kids when he becomes an abusive drunk" };
 	//
 	private String[] scifiTwist = { "Together they joined a futuristic elite fighting force, fighting the corrupt banks and stopping androids from stealing our identities. " };
-	
-	private String[] horrorVillain = {"vampire", "zombie", "creepy little japanese girl", "g-g-ghost", "axe-murderer", "malevolent slime", "werewolf", "alien", "evil fog", "politician", "fat cat banker", "flock of evil birds", "mad scientist", "ex-lover, risen from the dead", "giant insect", "giant snake", "giant bat", "mutant"};
-	
+
+	private String[] horrorVillain = { "ruthless criminal gang", "vampire",
+			"zombie", "creepy little japanese girl", "g-g-ghost",
+			"axe-murderer", "malevolent slime", "werewolf", "alien",
+			"evil fog", "politician", "fat cat banker", "flock of evil birds",
+			"mad scientist", "ex-lover, risen from the dead", "giant insect",
+			"giant snake", "giant bat", "mutant" };
+
 	private String[] kidsGoal = {
 			"team up to beat the bullies at their own game", "learn to share",
 			"learn what friendship is all about", "find their way back home",
@@ -230,67 +227,76 @@ public class PhraseProvider {
 	protected String[] goodQualities = { "excellent", "good", "beautiful",
 			"outstanding", "absolutely marvelous", "stylish", "slick",
 			"hair-raising", "spine-tingling", "exhilarating",
-			"thought-provoking", "fascinating", "magnificent", "emotional",
+			"thought-provoking", "fascinating", "magnificent",
+			"emotional",
 			"clever",
-
 			"entertaining",
-
 			"smart",
-
 			"funny",
-
 			"the kind of pleasure only my third wife could provide",
-
 			"beautiful, like watching butterfly's make out.",
-
 			// "exciting, like a transsexual hooker from Thailand",
-
 			"brilliant, as if a magician had made my mother in-law disappear",
-
 			"soothing, similar to cuddling a pool of puppies",
-
 			"entertaining, more so then the usual donkey shows I'm partial to",
-
-			"enjoyable",
-			"lovable",
+			"enjoyable", "lovable",
 			"sensual, like getting stroked by a flamingo",
 			"wonderful, it was as if I had parachuted into a flower in a field of dreams. " };
 
-	protected String[] badQualities = {
-			"awful",
-			"bad",
-			"dreadful",
-			"utter nonsense",
-			"stupid",
-			"boring",
-			"dull",
-			"crap",
-			"disasterous",
-			"a waste of time",
-			"preposterous",
-			"absurd",
-			"improbable",
-			"shallow",
-			"superficial",
-			"incompetent",
-			"as bad as expected",
-			"incomprehensible",
-			"pretty offensive, blasphemous even",
-			"about as real as cher",
+	protected String[] badQualities = { "awful", "bad", "dreadful",
+			"utter nonsense", "stupid", "boring", "dull", "crap",
+			"disasterous", "a waste of time", "preposterous", "absurd",
+			"improbable", "shallow", "superficial", "incompetent",
+			"as bad as expected", "incomprehensible",
+			"pretty offensive, blasphemous even", "about as real as cher",
 			"like a chinese labor camp", "like being violated",
 			"the kind of thing that makes me re-think censorship",
-			"unsettling",
-			"woeful",
-			"abysmal",
-			"mediocre at best",
-			"distressing to say the least",
-	};
+			"unsettling", "woeful", "abysmal", "mediocre at best",
+			"distressing to say the least", };
 
 	private String[] vanillaQualities = { "complete", "mediocre", "nice",
 			"interesting", "dark", "watchable", "thoughful", "alright",
 			"dramatic" };
 
 	private String[] weirdQualities = { "weird", "bizarre", "confusing",
-			"slightly creepy", "silly", };
+			"slightly creepy", "silly" };
+	private String[] horrorLocation = { "an abandoned house", "an evil hostel",
+			"an old mental asylum", "a deserted village", "a family reunion",
+			"a church", "a cabin in the woods", "a redneck town",
+			"a summer camp" };
+	private String[] horrorVictim = { "a gang of high school seniors",
+			"a gang of old friends",
+			"a family",
+			"a young couple",
+			"a " + getProfession() + " and his girlfriend",
+			"a " + getProfession() + " and his pregnant wife",
+			"a " + getProfession() + " and his girlfriend",
+			"a " + getProfession() + " and his pregnant wife",
+			"a " + getProfession() + " and his girlfriend",
+			"a " + getProfession() + " and his pregnant wife",
+			"a " + getProfession() + " and his girlfriend",
+			"a " + getProfession() + " and his pregnant wife", };
+	private String[] horrorCliffhanger = { "Will they escape?",
+			"Will their nightmare ever end?", "Will they become lunch?" };
+	private String[] horrorEvent = { "wants to enslave", "wants to torture",
+			"plans to kill", "plans to eat", "has a grisly plan for",
+			"terrorises", "attacks", "haunts", "stalks", "chases", "ambushes",
+			"kidnaps", "makes disturbing phone calls to" };
+
+	public String getHorrorLocation() {
+		return random(horrorLocation);
+	}
+
+	public String getHorrorVictim() {
+		return random(horrorVictim);
+	}
+
+	public String getHorrorEvent() {
+		return random(horrorEvent);
+	}
+
+	public String getHorrorCliffhanger() {
+		return random(horrorCliffhanger);
+	}
 
 }

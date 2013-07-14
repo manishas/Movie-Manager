@@ -2,6 +2,7 @@ package ie.simo.movies.generator.util;
 
 import ie.simo.movies.util.RandomNumberProvider;
 
+import java.util.Locale;
 import java.util.Random;
 
 public class WordProvider {
@@ -439,7 +440,7 @@ public class WordProvider {
 	 */
 	public String nounify(String word) {
 		String firstLetter = "" + word.charAt(0);
-		return firstLetter.toUpperCase() + word.substring(1);
+		return firstLetter.toUpperCase(Locale.UK) + word.substring(1);
 	}
 
 	public String getPluralNoun() {
