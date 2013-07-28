@@ -114,8 +114,15 @@ public class PhraseProvider {
 
 	// they
 	private String[] comedyTwist = { "have to go on an internship",
-			"have to go undercover as old women for the FBI", "get mixed up with the mafia", "have a hare-brained get-rich scheme", "get new careers as " + getProfession() + "s", "get competitive with a neighbour", "accidentally become astronauts",
-			"have to go back to school", "have to coach a kids soccer team", "have to move to a tiny rural town and become farmers", "join a band", "are mistaken for substitute teachers"};
+			"have to go undercover as old women for the FBI",
+			"get mixed up with the mafia",
+			"have a hare-brained get-rich scheme",
+			"get new careers as " + getProfession() + "s",
+			"get competitive with a neighbour",
+			"accidentally become astronauts", "have to go back to school",
+			"have to coach a kids soccer team",
+			"have to move to a tiny rural town and become farmers",
+			"join a band", "are mistaken for substitute teachers" };
 
 	private String[] kidsCharacter = { "friendly dog",
 			"inquisitive young girl", "sarcastic cat", "nerdy boy",
@@ -207,7 +214,21 @@ public class PhraseProvider {
 			"He must keep the family together while she struggles to get clean",
 			"She must take the kids when he becomes an abusive drunk" };
 	//
-	private String[] scifiTwist = { "Together they joined a futuristic elite fighting force, fighting the corrupt banks and stopping androids from stealing our identities. " };
+	private String[] scifiTwist = {
+			"They go on a mission to find the long lost planet where their ancestors came from, Earth!",
+			"They must escape a ship which has been infested with man eating aliens",
+			"They investigate a planet that looks capable of supporting human life, among other things...",
+			"They must fight against robots which have become self-aware and are out for revenge",
+			"They must go back in time to save the life of a resistance leader",
+			"They realise we are all living in a virtual world, created by the machines",
+			"They have to try to escape from an Alien trophy-hunter, here to collect their heads for his collection.",
+			"They must leave their home planet to try to terraform another one",
+			"They must find a way to sabotage an evil corporation that wants to make the population dependent on its new drug.",
+			"They must cross into another galaxy in order to save his dimension.",
+			"They must choose between long life and integrity in order to avert disaster and save their race from destruction. ",
+			"They must steal the enemy's secrets in order to save their people from slavery",
+			"They must build the ultimate weapon in order to avert disaster and save their community",
+			"Together they joined a futuristic elite fighting force, fighting the corrupt banks and stopping androids from stealing our identities. " };
 
 	private String[] horrorVillain = { "ruthless criminal gang", "vampire",
 			"zombie", "creepy little japanese girl", "g-g-ghost",
@@ -265,9 +286,7 @@ public class PhraseProvider {
 			"a church", "a cabin in the woods", "a redneck town",
 			"a summer camp" };
 	private String[] horrorVictim = { "a gang of high school seniors",
-			"a gang of old friends",
-			"a family",
-			"a young couple",
+			"a gang of old friends", "a family", "a young couple",
 			"a " + getProfession() + " and his girlfriend",
 			"a " + getProfession() + " and his pregnant wife",
 			"a " + getProfession() + " and his girlfriend",
