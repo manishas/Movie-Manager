@@ -1,6 +1,7 @@
 package ie.simo.movies.activities;
 
 import static ie.simo.movies.util.Consts.COMPANY;
+import static ie.simo.movies.util.Consts.OFFER;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +33,7 @@ public class GetDirector extends ActivityWithMenu {
 	private Spinner spinner;
 	private Button produceFilm;
 	private DirectorDbAdapter db;
+	private int pitchedBudget;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class GetDirector extends ActivityWithMenu {
 		findAllViewsById();
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));		
-
+		pitchedBudget = i.getIntExtra(OFFER, 0);
 		fillSpinner();
 		
 		chosen.setText(getPc().getCurrentProject().toButtonText());
@@ -175,4 +177,9 @@ public class GetDirector extends ActivityWithMenu {
 		// get reference to our spinner
 		spinner.setAdapter(adapter);
 	}  
+	
+	@Override
+	public void onBackPressed(){
+		getPc().setBudget(getPc().getBudget() - pitchedBudget);
+	}
 }

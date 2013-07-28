@@ -113,6 +113,7 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
         		getPc().getCurrentProject().setDistributor(d);
         		getPc().setBudget(getPc().getBudget() + o.getOfferValue());
         		intent.putExtra(COMPANY, getPc());
+        		intent.putExtra(OFFER, o.getOfferValue());
         		startActivity(intent);
 			}
 		});
