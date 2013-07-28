@@ -110,14 +110,22 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 				Distributor d = o.getDistributor();
 				Intent intent = new Intent(getApplicationContext(), GetDirector.class);
         		MMLogger.v(getLocalClassName(), offerString(o));
+
+        		MMLogger.d("budget on leaving pitch", "$"+getPc().getBudget());
         		getPc().getCurrentProject().setDistributor(d);
-        		getPc().setBudget(getPc().getBudget() + o.getOfferValue());
         		intent.putExtra(COMPANY, getPc());
         		intent.putExtra(OFFER, o.getOfferValue());
         		startActivity(intent);
 			}
 		});
 	}
+	
+	@Override
+	public void onRestart(){
+		super.onRestart();
+		MMLogger.d("budget re-starting", "$"+getPc().getBudget());
+	}
+	
 	private void getOffers() {
 		assert(null != distributorList);
 		//TODO increase to 3 when have more images

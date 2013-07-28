@@ -16,6 +16,7 @@ import ie.simo.movies.util.DBConsts;
 import ie.simo.movies.util.MMLogger;
 
 import static ie.simo.movies.util.Consts.COMPANY;
+import static ie.simo.movies.util.Consts.CAST;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -89,6 +90,7 @@ public class GetActor extends ActivityWithMenu {
 					MMLogger.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentCast().toString());
 					getPc().setBudget(initialBudget - getPc().getCurrentCast().getCostOfActors());
 					i.putExtra(COMPANY, getPc());
+					i.putExtra(CAST, getPc().getCurrentCast());
 					MMLogger.v(getLocalClassName(), "budget after cast: " + (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors()));
 					
 					startActivity(i);

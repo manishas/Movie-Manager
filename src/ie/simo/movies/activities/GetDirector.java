@@ -13,6 +13,7 @@ import ie.simo.movies.domain.Director;
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
+import ie.simo.movies.util.MMLogger;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -47,7 +48,10 @@ public class GetDirector extends ActivityWithMenu {
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));		
 		pitchedBudget = i.getIntExtra(OFFER, 0);
+		getPc().setBudget(getPc().getBudget() + pitchedBudget);
 		fillSpinner();
+		
+		MMLogger.d("budget on starting get Director", "$"+getPc().getBudget());
 		
 		chosen.setText(getPc().getCurrentProject().toButtonText());
 		String msg = "";
@@ -181,5 +185,9 @@ public class GetDirector extends ActivityWithMenu {
 	@Override
 	public void onBackPressed(){
 		getPc().setBudget(getPc().getBudget() - pitchedBudget);
+
+		MMLogger.d("pitched budget was ", "$"+pitchedBudget);
+		MMLogger.d("budget on leaving", "$"+getPc().getBudget());
+		super.onBackPressed();
 	}
 }
