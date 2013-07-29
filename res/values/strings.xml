@@ -24,7 +24,7 @@
 
     <!-- EULA/whats new -->
     <string name="eula">Movie Manager! This app is currently under active development, and I hope to add regular updates. If you have a suggestion please contact me or leave a comment!</string>
-    <string name="updates">Whats new in this version (July 29th): Films plots, Special effects, redesign of pitch film, how to play instructions, movies in the high score list are clickable so you can see their details, fixed the pitch film bug</string>
+    <string name="updates">Whats new in this version (July 29th): Films plots, Special effects, turn off strange reviews in the preferences, redesign of pitch film, how to play instructions, movies in the high score list are clickable so you can see their details, fixed the pitch film bug</string>
 
     <!-- How to play -->
     <string name="howtoplaytitle">How to play</string>

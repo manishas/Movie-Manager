@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.dao.ProductionCompanyDbAdapter;
+import ie.simo.movies.domain.AwardCategories;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
 import ie.simo.movies.domain.ProductionCompany;
@@ -13,6 +14,7 @@ import ie.simo.movies.scoring.earnings.EarningsCalculator;
 import ie.simo.movies.scoring.earnings.EarningsCalculatorWithActors;
 import ie.simo.movies.scoring.rating.RatingCalculator;
 import ie.simo.movies.util.MMLogger;
+import ie.simo.movies.util.RandomNumberProvider;
 
 import static ie.simo.movies.util.Consts.*;
 
@@ -53,6 +55,8 @@ public class Result extends ActivityWithMenu {
 	private String msg;
 	private String profit;
 	
+	private int awardsDue;
+	
 	private Typeface font;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,18 +75,50 @@ public class Result extends ActivityWithMenu {
 		displayValues();
 
 		saveToDatabase(summary);
+		awardsDue = calculateAwards(getPc().getCurrentProject());
+		MMLogger.v("AWARDS DUE", "" + awardsDue);
 
 		tryAgain.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				returnToMakeFilmScreen();
+				if(awardsDue == 0){
+					returnToMakeFilmScreen();
+				}
+				else{
+					goRentYourTux();
+				}
+			}
+
+			private void goRentYourTux() {
+				Intent i = prepareToLeaveResultScreen();
+				i.setClass(Result.this, OscarsActivity.class);
+				startActivity(i);
 			}
 		});
 
 		longToast("Your company earned $" + shareOfEarnings
 				+ "M that can be used for your next production");
 
+	}
+	
+	private int calculateAwards(MovieInfo currentProject) {
+		int totalPossibleAwards = AwardCategories.TOTAL_AWARDS;
+		int nominations = 0;
+		if(criticRating < 3.0){
+			return nominations;
+		}
+		else { //has a chance of winning
+			int totalConsiderations =  (int)((criticRating - 2.5) / 0.5);
+			while(totalConsiderations > 0){
+				if(RandomNumberProvider.getInstance().nextInt(5) == 4){
+					nominations++;
+				}
+				totalConsiderations--;
+			}
+		}
+		
+		return nominations;
 	}
 	/**
 	 * set the values of UI elements
@@ -183,13 +219,21 @@ public class Result extends ActivityWithMenu {
 		this.finish();
 		returnToMakeFilmScreen();
 	}
+	
+	
 
 	private void returnToMakeFilmScreen() {
-		
+		Intent i = prepareToLeaveResultScreen();
+		getPc().setCurrentProject(null);
+		i.setClass(Result.this, MakeFilmActivity.class);
+		startActivity(i);
+	}
+
+	private Intent prepareToLeaveResultScreen() {
 		setCompanyRep();
 		
 		Intent i = new Intent();
-		i.setClass(Result.this, MakeFilmActivity.class);
+		
 		getPc().setBudget(getPc().getBudget() + shareOfEarnings);
 		
 		MovieSummary summary = createMovieSummary(getPc().getCurrentProject());
@@ -197,12 +241,12 @@ public class Result extends ActivityWithMenu {
 			getPc().setBackCatalogue(new ArrayList<MovieSummary>());
 		}
 		getPc().getBackCatalogue().add(summary);
-		getPc().setCurrentProject(null);
 		i.putExtra(COMPANY, getPc());
-
-		startActivity(i);
+		i.putExtra(NOMINATIONS, awardsDue);
+		return i;
 	}
 
+	//TODO I have no idea what this means and where these numbers came from
 	private void setCompanyRep() {
 		int previousLevel = getPc().getReputation()/15;
 		

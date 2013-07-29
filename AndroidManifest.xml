@@ -81,6 +81,10 @@
             android:name="ie.simo.movies.activities.PlotSummary"
             android:label="Plot Summary"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="ie.simo.movies.activities.OscarsActivity"
+            android:label="Academy Awards"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

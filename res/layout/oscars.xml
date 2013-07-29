@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".OscarsActivity">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/oscar2011"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Best Actor"
+            android:id="@+id/awardName"
+            android:layout_below="@+id/imageView"
+            android:layout_alignLeft="@+id/imageView"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text='"And the nominees are..."'
+            android:id="@+id/host"
+            android:layout_below="@+id/awardName"
+            android:layout_alignLeft="@+id/awardName"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Jimmy in your movie, Johnny in Star wars, peter in Lord of the rings"
+            android:id="@+id/nominees"
+            android:layout_below="@+id/host"
+            android:layout_alignLeft="@+id/host"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="tap to continue..."
+            android:id="@+id/continueMsg"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/nominees"
+            android:layout_alignRight="@+id/nominees"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Congratulations!"
+            android:id="@+id/comment"
+            android:layout_below="@+id/nominees"
+            android:layout_alignLeft="@+id/nominees"/>
+
+</RelativeLayout>

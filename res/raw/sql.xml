@@ -34,8 +34,21 @@
 	sound_id integer,
 	star_rating integer,
 	review text,
-	censor_rating text
+	censor_rating text,
+	award_set integer
 	)
+</statement>
+
+<statement>
+	create table if not exists award_set
+	(_id integer primary key autoincrement,
+	movie_id integer, award_id integer)
+</statement>
+
+<statement>
+	create table if not exists award
+	(_id integer primary key autoincrement,
+	award_text text)
 </statement>
 			
 <statement>
