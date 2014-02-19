@@ -22,6 +22,7 @@ import static ie.simo.movies.util.Consts.COMPANY;
 
 public class OwnFilmActivity extends ActivityWithMenu implements OnClickListener{
 	
+	private static final String CONTINUE = "continue";
 	private EditText text;
 	private Spinner spinner;
 	private Button continueButton;
@@ -45,9 +46,8 @@ public class OwnFilmActivity extends ActivityWithMenu implements OnClickListener
 		Genre [] genres = Genre.values();
 		ArrayAdapter<Genre> adapter = new ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, genres);
 		spinner.setAdapter(adapter);
-		
-		//director.setOnClickListener(onClick());
-		
+		continueButton.setTag(CONTINUE);
+		continueButton.setOnClickListener(this);
 	}
 	
 	private void findAllViewsById() {
@@ -65,7 +65,7 @@ public class OwnFilmActivity extends ActivityWithMenu implements OnClickListener
 
 	@Override
 	public void onClick(View target) {
-		if(target == continueButton)
+		if(target.getTag().equals(CONTINUE))
 		{
 			if(text.getText() != null && !("".equals(text.getText().toString()))){
 				info = new MovieInfo();
@@ -83,7 +83,7 @@ public class OwnFilmActivity extends ActivityWithMenu implements OnClickListener
 				else
 				{
 					getPc().getCurrentProject().setPlot("");
-					intent = new Intent(getApplicationContext(), PitchFilm.class);
+					intent = new Intent(getApplicationContext(), SetContent.class);
 				}
 				
 				intent.putExtra(COMPANY, getPc());

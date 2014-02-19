@@ -41,9 +41,7 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 	private ImageView producerpic1, producerpic2, producerpic3;
 	private Button cancel;
 	private TextView producercomment1, producercomment2, producercomment3;
-	//private Button rework;
 	private Button choose;
-	//private Random random = RandomNumberProvider.getInstance();
 	private int currentIndex = 0;	
 	private ArrayList<Offer> offers = new ArrayList<Offer>();
 	private TextView budgetView;

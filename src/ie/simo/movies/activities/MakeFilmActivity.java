@@ -70,7 +70,15 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 	@Override
 	public void onClick(View target) {
 
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this); 
+		if (target == script1)
+			getPc().setCurrentProject(meta1);
+		else if (target == script2)
+			getPc().setCurrentProject(meta2);
+		else if (target == script3)
+			getPc().setCurrentProject(meta3);
+		
+		
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()); 
 		Boolean contentPref = sharedPrefs.getBoolean(Preferences.SHOW_PLOT, false);
 		if(contentPref)
 		{
@@ -78,15 +86,9 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 		}
 		else
 		{
+			intent = new Intent(getApplicationContext(), SetContent.class);
 			getPc().getCurrentProject().setPlot("");
-			intent = new Intent(getApplicationContext(), PitchFilm.class);
 		}
-		if (target == script1)
-			getPc().setCurrentProject(meta1);
-		else if (target == script2)
-			getPc().setCurrentProject(meta2);
-		else if (target == script3)
-			getPc().setCurrentProject(meta3);
 		
 		intent.putExtra(COMPANY, getPc());
 		startActivity(intent);
