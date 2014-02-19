@@ -4,7 +4,9 @@ import ie.simo.movies.R;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -68,8 +70,17 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 	@Override
 	public void onClick(View target) {
 
-		intent = new Intent(getApplicationContext(), PlotSummary.class);
-		
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this); 
+		Boolean contentPref = sharedPrefs.getBoolean(Preferences.SHOW_PLOT, false);
+		if(contentPref)
+		{
+			intent = new Intent(getApplicationContext(), PlotSummary.class);
+		}
+		else
+		{
+			getPc().getCurrentProject().setPlot("");
+			intent = new Intent(getApplicationContext(), PitchFilm.class);
+		}
 		if (target == script1)
 			getPc().setCurrentProject(meta1);
 		else if (target == script2)

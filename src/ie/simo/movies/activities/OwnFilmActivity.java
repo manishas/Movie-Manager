@@ -6,8 +6,11 @@ import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.MMLogger;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,11 +20,11 @@ import android.widget.Toast;
 
 import static ie.simo.movies.util.Consts.COMPANY;
 
-public class OwnFilmActivity extends ActivityWithMenu {
+public class OwnFilmActivity extends ActivityWithMenu implements OnClickListener{
 	
 	private EditText text;
 	private Spinner spinner;
-	private Button director;
+	private Button continueButton;
 	private MovieInfo info;
 	private TextView budgetView;
 	private TextView compName;
@@ -43,32 +46,14 @@ public class OwnFilmActivity extends ActivityWithMenu {
 		ArrayAdapter<Genre> adapter = new ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, genres);
 		spinner.setAdapter(adapter);
 		
-		director.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if(text.getText() != null && !("".equals(text.getText().toString()))){
-					info = new MovieInfo();
-					info.setTitle(text.getText().toString());
-					info.setGenre((Genre)spinner.getSelectedItem());
-					getPc().setCurrentProject(info);
-					Intent intent = new Intent(getApplicationContext(), PlotSummary.class);
-					intent.putExtra(COMPANY, getPc());
-					startActivity(intent);
-				}
-				else{
-					MMLogger.v(getLocalClassName(), "empty title");
-					Toast.makeText(getApplicationContext(), "Enter a name for your script!", Toast.LENGTH_LONG).show();
-				}
-			}
-		});
+		//director.setOnClickListener(onClick());
 		
 	}
 	
 	private void findAllViewsById() {
 		text = (EditText) this.findViewById(R.id.nametextfield);
 		spinner = (Spinner) this.findViewById(R.id.genrespinner);
-		director = (Button) this.findViewById(R.id.getdirectorbutton);
+		continueButton = (Button) this.findViewById(R.id.getdirectorbutton);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 		compName = (TextView) findViewById(R.id.companyName);
 	}
@@ -76,5 +61,38 @@ public class OwnFilmActivity extends ActivityWithMenu {
 	private void setTitleBar() {
 		budgetView.setText("$"+getPc().getBudget()+"M");
 		compName.setText(getPc().getName());
+	}
+
+	@Override
+	public void onClick(View target) {
+		if(target == continueButton)
+		{
+			if(text.getText() != null && !("".equals(text.getText().toString()))){
+				info = new MovieInfo();
+				info.setTitle(text.getText().toString());
+				info.setGenre((Genre)spinner.getSelectedItem());
+				getPc().setCurrentProject(info);
+				
+				Intent intent;
+				SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this); 
+				Boolean contentPref = sharedPrefs.getBoolean(Preferences.SHOW_PLOT, false);
+				if(contentPref)
+				{
+					intent = new Intent(getApplicationContext(), PlotSummary.class);
+				}
+				else
+				{
+					getPc().getCurrentProject().setPlot("");
+					intent = new Intent(getApplicationContext(), PitchFilm.class);
+				}
+				
+				intent.putExtra(COMPANY, getPc());
+				startActivity(intent);
+			}
+			else{
+				MMLogger.v(getLocalClassName(), "empty title");
+				Toast.makeText(getApplicationContext(), "Enter a name for your script!", Toast.LENGTH_LONG).show();
+			}
+		}
 	}  
 }

@@ -25,6 +25,11 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="Plot and film content" >
         <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="showPlot"
+            android:summary="Select this option if you would like to see the plot of your movie"
+            android:title="Show movie plots?" />
+        <CheckBoxPreference
             android:defaultValue="false"
             android:key="mental"
             android:summary="Check if you want to include bizarre and potentially offensive stuff in plots and movie reviews?"

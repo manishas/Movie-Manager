@@ -16,6 +16,7 @@ public class OtherHost extends Host {
 	@Override
 	protected String chooseWinner(List<MovieInfo> nominees) {
 		MovieInfo winner = chooseNominee(nominees);
+		getAward().setWinner(winner);
 		return winner.getTitle() + "!";
 	}
 

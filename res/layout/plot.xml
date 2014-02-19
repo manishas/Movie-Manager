@@ -24,14 +24,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <Button
-            android:id="@+id/goToContentButton"
-            android:layout_width="138dp"
+        
+        <EditText
+            android:id="@+id/plotSummaryEdit"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/continue_to_set_content" >
-        </Button>
+            android:minLines="3"
+            android:inputType="textCapSentences|textAutoCorrect|textMultiLine">
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/edit_plot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="1"
+                android:text="Edit Plot" />
+
+            <Button
+                android:id="@+id/goToContentButton"
+                android:layout_width="138dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:text="@string/continue_to_set_content" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

@@ -65,8 +65,11 @@ public class SpecialEffects extends ActivityWithMenu implements OnSeekBarChangeL
 					Intent i = new Intent();
 					MMLogger.v("SFX: ", "before budget = " + getPc().getBudget() + ", sfx cost = " + totalEffectsCost);
 					i.setClass(SpecialEffects.this, Result.class);
-					Cursor c = (Cursor) sfxCompanies.getSelectedItem();
-					getPc().getCurrentProject().setSpecialEffectsCompany(c.getString(c.getColumnIndex("sfx_name")));
+					if(totalEffectsCost > 0){
+					
+						Cursor c = (Cursor) sfxCompanies.getSelectedItem();
+						getPc().getCurrentProject().setSpecialEffectsCompany(c.getString(c.getColumnIndex("sfx_name")));
+					}
 					getPc().setBudget(getPc().getBudget() - totalEffectsCost);
 					getPc().getCurrentProject().setSfxCost(totalEffectsCost);
 					

@@ -5,17 +5,26 @@ import ie.simo.movies.R;
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.generator.PlotGenerator;
+import ie.simo.movies.util.MMLogger;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 public class PlotSummary extends ActivityWithMenu {
 
 	private Button continueButton;
+	private Button editSummaryButton;
+	private EditText editablePlotSummary;
 	private TextView filmTitle;
 	private TextView plotSummary;
 	private PlotGenerator plotGenerator;
@@ -42,6 +51,7 @@ public class PlotSummary extends ActivityWithMenu {
 
 		findAllViewsById();
 		
+		editablePlotSummary.setVisibility(View.INVISIBLE);
 		filmTitle.setText(title + " ("+ genre.toString() + ")");
 		
 		generatePlot(genre, title);
@@ -53,17 +63,48 @@ public class PlotSummary extends ActivityWithMenu {
 	private void generatePlot(Genre g, String title) {
 		String plot = plotGenerator.createPlot(g, title);
 		plotSummary.setText(plot);
-		getPc().getCurrentProject().setPlot(plot);
 	}
 
 	private void setListeners() {
 		continueButton.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				getPc().getCurrentProject().setPlot(plotSummary.getText().toString());
+				MMLogger.d("Plot: ", plotSummary.getText().toString());
 				Intent i = new Intent();
 				i.putExtra(COMPANY, getPc());
 				i.setClass(getApplicationContext(), SetContent.class);
 				startActivity(i);
+			}
+		});
+		
+		editSummaryButton.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				plotSummary.setVisibility(View.GONE);
+				editablePlotSummary.setVisibility(View.VISIBLE);
+				editablePlotSummary.setText(plotSummary.getText());
+			}
+		});
+		
+		editablePlotSummary.addTextChangedListener(new TextWatcher() {
+
+	          public void afterTextChanged(Editable s) {
+	        	  plotSummary.setText(editablePlotSummary.getText());
+	          }
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
@@ -74,6 +115,8 @@ public class PlotSummary extends ActivityWithMenu {
 		continueButton = (Button) this.findViewById(R.id.goToContentButton);
 		budgetView = (TextView) this.findViewById(R.id.budgetValue);
 		compName = (TextView)this.findViewById(R.id.companyName);
+		editSummaryButton = (Button) this.findViewById(R.id.edit_plot);
+		editablePlotSummary = (EditText) this.findViewById(R.id.plotSummaryEdit);
 	}
 	
 	private void setTitleBar() {

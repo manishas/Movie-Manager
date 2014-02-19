@@ -132,5 +132,6 @@
     <string name="try_again_">Try again?</string>
     <string name="make_another_movie">Make another movie</string>
     <string name="oscars_image_alt_text">Oscars image</string>
+    <string name="edit_plot">Edit Plot</string>
 
 </resources>
