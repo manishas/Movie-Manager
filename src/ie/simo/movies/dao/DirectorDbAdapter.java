@@ -1,5 +1,6 @@
 package ie.simo.movies.dao;
 
+import ie.simo.movies.domain.Director;
 import ie.simo.movies.util.DBConsts;
 import android.content.Context;
 import android.database.Cursor;
@@ -72,5 +73,20 @@ public class DirectorDbAdapter {
         "order by d.director_reputation desc";
 
 		return database.rawQuery(query, null);
+	}
+	
+	public Director getRandomDirector() {
+		Cursor c = database.rawQuery("SELECT * from Director ORDER BY Random() limit 1", null);
+		c.moveToFirst();
+		
+		Director director = createDirectorFromCursor(c);
+		
+		return director;
+	}
+
+	private Director createDirectorFromCursor(Cursor c) {
+		Director director = new Director();
+		director.setName(c.getString(c.getColumnIndex(DBConsts.Director.name)));
+		return director;
 	}
 }

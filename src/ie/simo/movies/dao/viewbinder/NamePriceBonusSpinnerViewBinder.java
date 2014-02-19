@@ -2,6 +2,7 @@ package ie.simo.movies.dao.viewbinder;
 
 import ie.simo.movies.R;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,20 +23,20 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
 	//TODO refactor this
 	@Override
 	public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-
-		//http://www.androidadb.com/class/si/SimpleCursorAdapter.html
 		
+		//if text view set to black text on android version < 3
 		int viewId = view.getId();
 		//if(view.get
         if(viewId == R.id.starname){
         	TextView textView = (TextView) view;
         	textView.setText(cursor.getString(NAME_COLUMN));
+        	setTextColour(textView);
         }
         else if(viewId == R.id.starprice){
 			TextView textView = (TextView) view;
 		    String price = "$"+cursor.getInt(PRICE_COLUMN) + "M";
-		    
 		    textView.setText( price);
+		    setTextColour(textView);
         }
         else if(viewId == R.id.actionbonus){
 			ImageView imageView = (ImageView) view;
@@ -109,6 +110,12 @@ public abstract class NamePriceBonusSpinnerViewBinder implements ViewBinder {
         }
         return true;
       
+	}
+
+	private void setTextColour(TextView textView) {
+		if(android.os.Build.VERSION.RELEASE.startsWith("2.")){
+			textView.setTextColor(Color.BLACK);
+		}
 	}
 
 	private void removeImage(ImageView view) {

@@ -169,13 +169,15 @@ public class BoxOfficeDbAdapter {
 	}
 
 	public String getGenreNameFromId(int scifiId) {
+		
+		MMLogger.v("Getting Genre name of", scifiId + "");
 		String query = "SELECT * from genre where _id=?";
 		Cursor c = database.rawQuery(query, new String[] { scifiId + "" });
 		String genreName = "";
 		while (c.moveToNext()) {
 			genreName = c.getString(c.getColumnIndex("genre_name"));
 		}
-
+		MMLogger.v("Genre of " + scifiId + " is", genreName);
 		return genreName;
 	}
 

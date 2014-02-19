@@ -3,32 +3,38 @@ package ie.simo.movies.activities;
 import static ie.simo.movies.util.Consts.COMPANY;
 import static ie.simo.movies.util.Consts.NOMINATIONS;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ie.simo.movies.R;
-import ie.simo.movies.domain.AwardCategories;
+import ie.simo.movies.domain.MovieInfo;
+import ie.simo.movies.domain.MovieSummary;
+import ie.simo.movies.domain.Oscars;
 import ie.simo.movies.domain.ProductionCompany;
+import ie.simo.movies.domain.award.Award;
+import ie.simo.movies.domain.award.AwardCategories;
+import ie.simo.movies.domain.award.AwardRound;
+import ie.simo.movies.generator.MovieInfoGenerator;
+import ie.simo.movies.util.RandomNumberProvider;
 import android.os.Bundle;
 import android.content.Intent;
+import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class OscarsActivity extends ActivityWithMenu {
-
-    private TextView awardName;
-    private TextView host;
-    private TextView nominees;
-    private TextView comment;
-    private TextView continueMsg;
-    
-    private List<String> awardList;
-
-    private int awardsWon = 0;
-    private int stageCount = 0;
-    private int nominations = 0;
-
-    private AwardCategories categories = new AwardCategories();
+	
+	private RelativeLayout view;
+	private TextView text;
+	private Oscars oscars;
+	private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,109 +43,84 @@ public class OscarsActivity extends ActivityWithMenu {
         
         Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
-		nominations = i.getIntExtra(NOMINATIONS, 0);
-        awardList = getAwardList();
-        getAllViews();
-
-        setAwardName();
-
-        showAward();
-
+		int nominations = i.getIntExtra(NOMINATIONS, 0);
+		
+		oscars = new Oscars(this.getApplicationContext(), nominations, getPc().getCurrentProject());
+		getAllViews();
+		button.setVisibility(View.INVISIBLE);
+		setOnClick();
+		text.setText(Html.fromHtml(oscars.getCurrentRound().getDisplayText()));
+        
     }
 
-    private List<String> getAwardList() {
-		//TODO get specific awards based on movie
-		return categories.getMyAwards(nominations);
+    private void setOnClick() {
+		view.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				if (!oscars.step()) {
+					text.setText(Html.fromHtml(oscars.getCurrentRound()
+							.getDisplayText()));
+				} else {
+					text.setText("Congratulations on your awards!");
+					button.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+		
+		button.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = prepareToLeaveOscarsScreen();
+				getPc().setCurrentProject(null);
+				i.setClass(OscarsActivity.this, MakeFilmActivity.class);
+				startActivity(i);
+			}
+
+			private Intent prepareToLeaveOscarsScreen() {
+				
+				Intent i = new Intent();
+				
+				getPc().setBudget(getPc().getBudget());
+				
+				MovieSummary summary = createMovieSummary(getPc().getCurrentProject());
+				
+				if(getPc().getBackCatalogue() == null){
+					getPc().setBackCatalogue(new ArrayList<MovieSummary>());
+				}
+				
+				getPc().getBackCatalogue().add(summary);
+				i.putExtra(COMPANY, getPc());
+				return i;
+			}
+
+			private MovieSummary createMovieSummary(MovieInfo currentProject) {
+				MovieSummary summary = new MovieSummary();
+				summary.setInfo(currentProject);
+				summary.setTotalCost(currentProject.getTotalCost());
+				//summary.setTotalEarnings(money);
+				return summary;
+			}
+		});
 	}
 
-	private void showHostIntro() {
-        host.setVisibility(View.VISIBLE);
-    };
-
-    private void showNominees(){
-    	
-    	nominees.setText(getNominees());
-        nominees.setVisibility(View.VISIBLE);
-    };
-
-    private CharSequence getNominees() {
-    	//TODO should be a list of nominees to help choosing.
-    	
-		// TODO Auto-generated method stub
-		return "";
+	public Oscars getOscars() {
+		return oscars;
 	}
 
-	private void andTheWinnerIs(){
-        host.setText("And the winner is...");
-        nominees.setVisibility(View.INVISIBLE);
-    };
-
-    private void announceWinner(){
-        nominees.setText("Jimmy from your Movie!!!");
-
-        nominees.setVisibility(View.VISIBLE);
-    };
-
-    private void commentToUser(){
-        comment.setText("Congratulations, you won!!");
-
-        comment.setVisibility(View.VISIBLE);
-    };
-
-    private void setAwardName() {
-        awardName.setText(awardList.get(nominations - 1));
-    }
+	public void setOscars(Oscars oscars) {
+		this.oscars = oscars;
+	}
 
     private void getAllViews(){
-        awardName = (TextView) this.findViewById(R.id.awardName);
-        host = (TextView) this.findViewById(R.id.host);
-        nominees = (TextView) this.findViewById(R.id.nominees);
-        comment = (TextView) this.findViewById(R.id.comment);
-        continueMsg = (TextView) this.findViewById(R.id.continueMsg);
+    	view = (RelativeLayout) findViewById(R.id.whole_screen);
+		text = (TextView) findViewById(R.id.comment);
+		button = (Button) findViewById(R.id.makeNewMovie);
     }
-
-    public void showAward(){
-        host.setVisibility(View.INVISIBLE);
-        nominees.setVisibility(View.INVISIBLE);
-        comment.setVisibility(View.INVISIBLE);
-    }
-
+    
     @Override
-    public boolean onTouchEvent(MotionEvent e){
-        super.onTouchEvent(e);
-        if(true){ //if applicable
-        	nextStage();
-        }
-        return false;
-    };
-
-    //TODO refactor this properly
-    private void nextStage() {
-        stageCount++;
-        if(stageCount == 1){
-            showHostIntro();
-        }
-        else if(stageCount == 2){
-            showNominees();
-        }
-        else if(stageCount == 3){
-            andTheWinnerIs();
-        }
-        else if(stageCount == 4){
-            announceWinner();
-        }
-        else if(stageCount == 5){
-            commentToUser();
-        }
-        else if(stageCount == 6){
-            if(nominations > 0){
-                stageCount = 0;
-                nominations--;
-            }
-            else{
-                //show summary and button to continue
-            }
-        }
-
-    };
+    public void onBackPressed(){
+    	Toast.makeText(getApplicationContext(), "You can't go back until after the ceremony!", Toast.LENGTH_LONG).show();
+    }
 }

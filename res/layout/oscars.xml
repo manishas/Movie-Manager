@@ -1,63 +1,62 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+<RelativeLayout
+    android:id="@+id/whole_screen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".OscarsActivity">
+    android:paddingTop="@dimen/activity_vertical_margin" >
 
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:src="@drawable/oscar2011"/>
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@drawable/oscar2011" 
+        android:contentDescription="@string/oscars_image_alt_text"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Best Actor"
-            android:id="@+id/awardName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=""
+            android:id="@+id/comment"
             android:layout_below="@+id/imageView"
             android:layout_alignLeft="@+id/imageView"/>
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text='"And the nominees are..."'
-            android:id="@+id/host"
-            android:layout_below="@+id/awardName"
-            android:layout_alignLeft="@+id/awardName"/>
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/comment"
+        android:layout_toLeftOf="@+id/makeNewMovie"
+        android:text="" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Jimmy in your movie, Johnny in Star wars, peter in Lord of the rings"
-            android:id="@+id/nominees"
-            android:layout_below="@+id/host"
-            android:layout_alignLeft="@+id/host"/>
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:text="" />
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="tap to continue..."
-            android:id="@+id/continueMsg"
-            android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/nominees"
-            android:layout_alignRight="@+id/nominees"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Congratulations!"
-            android:id="@+id/comment"
-            android:layout_below="@+id/nominees"
-            android:layout_alignLeft="@+id/nominees"/>
+    <Button
+        android:id="@+id/makeNewMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:text="@string/make_another_movie" />
 
 </RelativeLayout>
+
+</ScrollView>

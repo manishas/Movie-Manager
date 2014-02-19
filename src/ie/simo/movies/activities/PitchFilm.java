@@ -5,14 +5,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.MyDistributorDbAdapter;
 import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import ie.simo.movies.util.MMLogger;
-import ie.simo.movies.util.RandomNumberProvider;
 import static ie.simo.movies.util.Consts.*;
 
 import android.content.Intent;
@@ -34,7 +32,7 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 
     protected GestureDetector gestureScanner;
     private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
+    //private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private ViewFlipper vf;
     private static final int NUMBER_OF_PICS = 3;
@@ -43,16 +41,16 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 	private ImageView producerpic1, producerpic2, producerpic3;
 	private Button cancel;
 	private TextView producercomment1, producercomment2, producercomment3;
-	private Button rework;
+	//private Button rework;
 	private Button choose;
-	private Random random = RandomNumberProvider.getInstance();
+	//private Random random = RandomNumberProvider.getInstance();
 	private int currentIndex = 0;	
 	private ArrayList<Offer> offers = new ArrayList<Offer>();
 	private TextView budgetView;
 	private TextView compName;
 	private MyDistributorDbAdapter db;
 	private ArrayList<Distributor> distributorList = new ArrayList<Distributor>();
-	private List<Integer> images = Arrays.asList(new Integer[]{R.drawable.suits1, R.drawable.suits2, R.drawable.suits3, R.drawable.suits4});
+	private List<Integer> images = Arrays.asList(new Integer[]{R.drawable.char1, R.drawable.char2, R.drawable.char3, R.drawable.char4,  R.drawable.char5});
 
 	private void findAllViewsById() {
 		

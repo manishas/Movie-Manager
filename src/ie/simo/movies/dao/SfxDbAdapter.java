@@ -20,4 +20,13 @@ public class SfxDbAdapter extends DbAdapter{
 		return getDatabase().rawQuery(query, null);
 	}
 
+	public String getRandomCompany() {
+		Cursor c = getDatabase().rawQuery("SELECT * from sfx ORDER BY Random() limit 1", null);
+		c.moveToFirst();
+		
+		String name = c.getString(c.getColumnIndex("sfx_name"));
+		
+		return name;
+	}
+
 }

@@ -7,6 +7,8 @@ import java.io.Serializable;
  *
  */
 public class RatingDetails implements Serializable{
+
+	
 	/**
 	 * 
 	 */
@@ -64,5 +66,32 @@ public class RatingDetails implements Serializable{
 	public void setLanguage(int language) {
 		this.language = language;
 		updateRating();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof RatingDetails)) {
+			return false;
+		}
+		RatingDetails other = (RatingDetails) obj;
+		if (language != other.language) {
+			return false;
+		}
+		if (rating != other.rating) {
+			return false;
+		}
+		if (sex != other.sex) {
+			return false;
+		}
+		if (violence != other.violence) {
+			return false;
+		}
+		return true;
 	}
 }

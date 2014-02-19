@@ -1,5 +1,6 @@
 package ie.simo.movies.dao;
 
+import ie.simo.movies.domain.Actor;
 import ie.simo.movies.util.DBConsts;
 import android.content.Context;
 import android.database.Cursor;
@@ -75,5 +76,21 @@ public class ActorDbAdapter {
         "order by a.actor_reputation desc";
 		
 		return database.rawQuery(query, null);
+	}
+
+	public Actor getRandomActor() {
+		Cursor c = database.rawQuery("SELECT * from Actor ORDER BY Random() limit 1", null);
+		c.moveToFirst();
+		
+		Actor actor = createActorFromCursor(c);
+		
+		return actor;
+	}
+
+	private Actor createActorFromCursor(Cursor c) {
+		Actor actor = new Actor();
+		actor.setName(c.getString(c.getColumnIndex(DBConsts.Actor.name)));
+		actor.setGender(c.getString(c.getColumnIndex(DBConsts.Actor.gender)));
+		return actor;
 	}
 }

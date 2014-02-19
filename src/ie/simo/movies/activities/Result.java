@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.BoxOfficeDbAdapter;
 import ie.simo.movies.dao.ProductionCompanyDbAdapter;
-import ie.simo.movies.domain.AwardCategories;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
 import ie.simo.movies.domain.ProductionCompany;
@@ -75,7 +74,10 @@ public class Result extends ActivityWithMenu {
 		displayValues();
 
 		saveToDatabase(summary);
-		awardsDue = calculateAwards(getPc().getCurrentProject());
+		awardsDue = 5;//calculateAwards(getPc().getCurrentProject());
+		if(awardsDue > 0){
+			tryAgain.setText("Go to Awards Ceremony");
+		}
 		MMLogger.v("AWARDS DUE", "" + awardsDue);
 
 		tryAgain.setOnClickListener(new View.OnClickListener() {
@@ -103,8 +105,8 @@ public class Result extends ActivityWithMenu {
 	}
 	
 	private int calculateAwards(MovieInfo currentProject) {
-		int totalPossibleAwards = AwardCategories.TOTAL_AWARDS;
-		int nominations = 0;
+		//int totalPossibleAwards = AwardCategories.TOTAL_AWARDS;
+		int nominations = 0; //guarantee award for testing
 		if(criticRating < 3.0){
 			return nominations;
 		}
@@ -118,7 +120,9 @@ public class Result extends ActivityWithMenu {
 			}
 		}
 		
-		return nominations;
+		//return nominations;
+		
+		return 5; //no awards yet
 	}
 	/**
 	 * set the values of UI elements
@@ -219,8 +223,6 @@ public class Result extends ActivityWithMenu {
 		this.finish();
 		returnToMakeFilmScreen();
 	}
-	
-	
 
 	private void returnToMakeFilmScreen() {
 		Intent i = prepareToLeaveResultScreen();
