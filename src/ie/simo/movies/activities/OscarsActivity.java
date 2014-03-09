@@ -4,25 +4,14 @@ import static ie.simo.movies.util.Consts.COMPANY;
 import static ie.simo.movies.util.Consts.NOMINATIONS;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import ie.simo.movies.R;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.MovieSummary;
 import ie.simo.movies.domain.Oscars;
 import ie.simo.movies.domain.ProductionCompany;
-import ie.simo.movies.domain.award.Award;
-import ie.simo.movies.domain.award.AwardCategories;
-import ie.simo.movies.domain.award.AwardRound;
-import ie.simo.movies.generator.MovieInfoGenerator;
-import ie.simo.movies.util.RandomNumberProvider;
 import android.os.Bundle;
 import android.content.Intent;
 import android.text.Html;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
