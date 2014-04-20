@@ -104,7 +104,7 @@ public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 			public void onClick(View v) {
 				Offer o = offers.get(currentIndex);
 				Distributor d = o.getDistributor();
-				Intent intent = new Intent(getApplicationContext(), GetDirector.class);
+				Intent intent = new Intent(getApplicationContext(), GetDirector_.class);
         		MMLogger.v(getLocalClassName(), offerString(o));
 
         		MMLogger.d("budget on leaving pitch", "$"+getPc().getBudget());

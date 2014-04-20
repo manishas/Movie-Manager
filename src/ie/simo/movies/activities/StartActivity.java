@@ -73,7 +73,7 @@ public class StartActivity extends Activity {
 	@Click(R.id.continuegameButton)
 	protected void continueClick() {
 		Intent i = new Intent();
-		i.setClass(this, ContinueGameActivity.class);
+		i.setClass(this, ContinueGameActivity_.class);
 		startActivity(i);
 	}
 	

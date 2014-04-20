@@ -35,7 +35,7 @@
             android:label="Choose Film"
             android:screenOrientation="portrait" />
         <activity
-            android:name="ie.simo.movies.activities.GetDirector"
+            android:name="ie.simo.movies.activities.GetDirector_"
             android:label="Choose Director"
             android:screenOrientation="portrait"  />
         <activity
@@ -71,11 +71,11 @@
             android:label="Your Movies"
             android:screenOrientation="portrait" />
         <activity
-            android:name="ie.simo.movies.activities.ContinueGameActivity"
+            android:name="ie.simo.movies.activities.ContinueGameActivity_"
             android:label="Load Game"
             android:screenOrientation="portrait" />
         <activity
-            android:name="ie.simo.movies.activities.SpecialEffects"
+            android:name="ie.simo.movies.activities.SpecialEffects_"
             android:label="Special Effects"
             android:screenOrientation="portrait" />
         <activity

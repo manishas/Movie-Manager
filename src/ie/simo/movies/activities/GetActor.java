@@ -101,7 +101,7 @@ public class GetActor extends ActivityWithMenu {
 		if(isValid()) {
 			db.close();
 			Intent i = new Intent();
-			i.setClass(GetActor.this, SpecialEffects.class);
+			i.setClass(GetActor.this, SpecialEffects_.class);
 
 			MMLogger.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentCast().toString());
 			getPc().setBudget(initialBudget - getPc().getCurrentCast().getCostOfActors());

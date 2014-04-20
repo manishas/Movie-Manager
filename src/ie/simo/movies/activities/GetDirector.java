@@ -2,10 +2,6 @@ package ie.simo.movies.activities;
 
 import static ie.simo.movies.util.Consts.COMPANY;
 import static ie.simo.movies.util.Consts.OFFER;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import ie.simo.movies.R;
 import ie.simo.movies.dao.DirectorDbAdapter;
 import ie.simo.movies.dao.viewbinder.DirectorSpinnerViewBinder;
@@ -14,9 +10,17 @@ import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import ie.simo.movies.util.MMLogger;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ItemSelect;
+import org.androidannotations.annotations.ViewById;
+
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -26,25 +30,34 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@EActivity(R.layout.director)
 public class GetDirector extends ActivityWithMenu {
-	private TextView chosen;
-	private TextView price;
-	private TextView budgetView;
-	private TextView compName;
-	private Spinner spinner;
-	private Button produceFilm;
+	
+	@ViewById(R.id.chosen)
+	protected TextView chosen;
+	
+	@ViewById(R.id.directorPrice)
+	protected TextView price;
+	
+	@ViewById(R.id.budgetValue)
+	protected TextView budgetView;
+	
+	@ViewById(R.id.companyName)
+	protected TextView compName;
+	
+	@ViewById(R.id.spinner1)
+	protected Spinner spinner;
+	
+	@ViewById(R.id.produceFilm)
+	protected Button produceFilm;
+	
 	private DirectorDbAdapter db;
 	private int pitchedBudget;
 	
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.director);
-		
+	@AfterViews
+	public void onCreate() {
 		db = new DirectorDbAdapter(this);
 		db.open();
-
-		findAllViewsById();
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));		
 		pitchedBudget = i.getIntExtra(OFFER, 0);
@@ -99,9 +112,7 @@ public class GetDirector extends ActivityWithMenu {
 						bonusSet.add(g);
 					}
 				}
-				
 				return bonusSet;
-				
 			}
 
 			@Override
@@ -127,13 +138,11 @@ public class GetDirector extends ActivityWithMenu {
 				}
 				else{
 					makeToast();
-				}
-				
+				}	
 			}
-		});
-		
-		
+		});	
 	}
+	
 
 	private void setTitleBar() {
 		budgetView.setText("$"+getPc().getBudget()+"M");
@@ -147,18 +156,6 @@ public class GetDirector extends ActivityWithMenu {
 	
 	private boolean isValid(){	
 		return (getPc().getBudget() - getPc().getCurrentDirector().getPriceToHire() >= 0)? true : false;
-	}
-	
-	
-	
-	
-	private void findAllViewsById() {
-		chosen = (TextView) this.findViewById(R.id.chosen);
-		price = (TextView) this.findViewById(R.id.directorPrice);
-		spinner = (Spinner) this.findViewById(R.id.spinner1);
-		produceFilm = (Button) this.findViewById(R.id.produceFilm);
-		budgetView = (TextView) this.findViewById(R.id.budgetValue);
-		compName = (TextView)this.findViewById(R.id.companyName);
 	}
 	
 	private void fillSpinner(){

@@ -4,6 +4,9 @@ import static ie.simo.movies.util.Consts.COMPANY;
 
 import java.util.UUID;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ProductionCompanyDbAdapter;
 import ie.simo.movies.dao.cursor.ProductionCompanyCursorAdapter;
@@ -20,14 +23,13 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+@EActivity(R.layout.continuegame)
 public class ContinueGameActivity extends ListActivity {
 	
 	private ProductionCompanyDbAdapter db;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.continuegame);
+	@AfterViews
+	public void onCreate() {
 		
 		db = new ProductionCompanyDbAdapter(this);
 		db.openReadable();
