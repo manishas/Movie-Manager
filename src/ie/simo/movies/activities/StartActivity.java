@@ -1,17 +1,22 @@
 package ie.simo.movies.activities;
 
+import static ie.simo.movies.util.Consts.COMPANY;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ProductionCompanyDbAdapter;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.popup.InfoDialog;
 import ie.simo.movies.popup.NewGame;
 import ie.simo.movies.popup.SimpleEula;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import static ie.simo.movies.util.Consts.COMPANY;
 
 /**
  * First Activity which is opened when the game is started
@@ -19,26 +24,35 @@ import static ie.simo.movies.util.Consts.COMPANY;
  * @author Simon
  * 
  */
+
+@EActivity(R.layout.splash)
 public class StartActivity extends Activity {
 
-	private Button newGame;
-	private Button continueGame;
-	private Button boxOffice;
-	private Button credits;
-	private Button howToPlay;
-	private Button prefs;
+	@ViewById(R.id.newgameButton)
+	protected Button newGame;
+	
+	@ViewById(R.id.continuegameButton)
+	protected Button continueGame;
+	
+	@ViewById(R.id.boxofficeButton)
+	protected Button boxOffice;
+	
+	@ViewById(R.id.creditsButton)
+	protected Button credits;
+	
+	@ViewById(R.id.howToPlayButton)
+	protected Button howToPlay;
+	
+	@ViewById(R.id.prefsButton)
+	protected Button prefs;
+	
 	private NewGame dialog;
 	private ProductionCompanyDbAdapter db;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.splash);
+	@AfterViews
+	public void onCreate() {
 		db = new ProductionCompanyDbAdapter(this);
 		new SimpleEula(this).show();
-
-		findAllViewsById();
-		setUpListeners();
 		setContinueEnabled();
 	}
 
@@ -50,74 +64,46 @@ public class StartActivity extends Activity {
 		db.close();
 	}
 
-	private void setUpListeners() {
-		newGame.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-
-				dialog = new NewGame(StartActivity.this);
-				dialog.show();
-			}
-		});
-
-		continueGame.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				Intent i = new Intent();
-				i.setClass(StartActivity.this, ContinueGameActivity.class);
-				startActivity(i);
-			}
-		});
-
-		boxOffice.setOnClickListener(new View.OnClickListener() {
-
-			public void onClick(View v) {
-				Intent i = new Intent();
-				i.setClass(StartActivity.this, BoxOffice.class);
-				startActivity(i);
-			}
-		});
-
-		prefs.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent();
-				i.setClass(StartActivity.this, Preferences.class);
-				startActivity(i);
-			}
-		});
-
-		credits.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				Activity a = StartActivity.this;
-				new InfoDialog(a, a.getString(R.string.credits), a
-						.getString(R.string.creditsText)).show();
-			}
-		});
-
-		howToPlay.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				Activity a = StartActivity.this;
-				new InfoDialog(a, a.getString(R.string.howtoplaytitle), a
-						.getString(R.string.howtoplaycontent)).show();
-			}
-		});
+	@Click(R.id.newgameButton)
+	protected void newGameClick() {
+		dialog = new NewGame(this);
+		dialog.show();
 	}
+	
+	@Click(R.id.continuegameButton)
+	protected void continueClick() {
+		Intent i = new Intent();
+		i.setClass(this, ContinueGameActivity.class);
+		startActivity(i);
+	}
+	
+	@Click(R.id.boxofficeButton)
+	protected void boxOfficeClick(){
+		Intent i = new Intent();
+		i.setClass(this, BoxOffice.class);
+		startActivity(i);
+	}
+	
+	@Click(R.id.prefsButton)
+	protected void prefsClick() {
+		Intent i = new Intent();
+		i.setClass(this, Preferences.class);
+		startActivity(i);
+	}
+	
+	@Click(R.id.creditsButton)
+	protected void creditsClick() {
+		Activity a = this;
+		new InfoDialog(a, a.getString(R.string.credits), a
+				.getString(R.string.creditsText)).show();
+	}
+	
+	@Click (R.id.howToPlayButton)
+	protected void howToPlayClick() {
+		Activity a = this;
+		new InfoDialog(a, a.getString(R.string.howtoplaytitle), a
+				.getString(R.string.howtoplaycontent)).show();
 
-	private void findAllViewsById() {
-		newGame = (Button) this.findViewById(R.id.newgameButton);
-		continueGame = (Button) this.findViewById(R.id.continuegameButton);
-		boxOffice = (Button) this.findViewById(R.id.boxofficeButton);
-		prefs = (Button) this.findViewById(R.id.prefsButton);
-		howToPlay = (Button) this.findViewById(R.id.howToPlayButton);
-		credits = (Button) this.findViewById(R.id.creditsButton);
 	}
 
 	public void createNewGame() {

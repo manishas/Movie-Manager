@@ -6,6 +6,11 @@ import java.util.List;
 
 import java.util.Set;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ActorDbAdapter;
 import ie.simo.movies.dao.viewbinder.ActorSpinnerViewBinder;
@@ -31,33 +36,47 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+@EActivity(value = R.layout.actors)
 public class GetActor extends ActivityWithMenu {
-
-	private int initialBudget;
-	private TextView chosen;
-	private TextView price;
-	private TextView budgetView;
-	private TextView compName;
-	private Spinner spinner;
-	private Button produceFilm;
-	private Button addActor;
-	private ActorDbAdapter db;
-	private View view;
+	
 	private final String NO_CASH = "You cannot afford this cast! Choose again";
 	private final String SAME_ACTOR = "You cannot hire the same actor twice! Choose again";
+	private int initialBudget;
 	private int id = 1;
-	
+	private ActorDbAdapter db;
 	private List<Spinner> allSpinners = new ArrayList<Spinner>();
 	
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.actors);
+	//Views
+	@ViewById
+	protected TextView chosen;
+	
+	@ViewById(R.id.actorPrice)
+	protected TextView price;
+	
+	@ViewById(R.id.budgetValue)
+	protected TextView budgetView;
+	
+	@ViewById(R.id.companyName)
+	protected TextView compName;
+	
+	@ViewById(R.id.spinner1)
+	protected Spinner spinner;
+	
+	@ViewById
+	protected Button produceFilm;
+	
+	@ViewById
+	protected Button addActor;
+	
+	@ViewById(R.id.actorLayout)
+	protected View view;
+	
+	@AfterViews
+	public void onCreate() {
 		
 		db = new ActorDbAdapter(this);
 		db.open();
 
-		findAllViewsById();
 		Intent i = getIntent();
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		
@@ -65,8 +84,7 @@ public class GetActor extends ActivityWithMenu {
 		
 		fillSpinner(spinner);
 		allSpinners.add(spinner);
-		
-		
+				
 		MMLogger.v(getLocalClassName(), "budget before actor: " + getPc().getBudget());
 		chosen.setText(getPc().getCurrentProject().toButtonText());
 		String msg = getString(R.string.directorPrice , spinner.getSelectedItem());
@@ -75,56 +93,49 @@ public class GetActor extends ActivityWithMenu {
 		setTitleBar();
 		
 		spinner.setOnItemSelectedListener(new ActorSelectionListener());
-		
-		produceFilm.setOnClickListener(new View.OnClickListener() {
+	}
+	
+	@Click(R.id.produceFilm)
+	public void produceFilm() {
 			
-			@Override
-			public void onClick(View v) {
-				
-				if(isValid()){
-					
-					db.close();
-					Intent i = new Intent();
-					i.setClass(GetActor.this, SpecialEffects.class);
+		if(isValid()) {
+			db.close();
+			Intent i = new Intent();
+			i.setClass(GetActor.this, SpecialEffects.class);
 
-					MMLogger.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentCast().toString());
-					getPc().setBudget(initialBudget - getPc().getCurrentCast().getCostOfActors());
-					i.putExtra(COMPANY, getPc());
-					i.putExtra(CAST, getPc().getCurrentCast());
-					MMLogger.v(getLocalClassName(), "budget after cast: " + (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors()));
-					
-					startActivity(i);
-				}
-				else{
-					if(!isPossibleSelection()){
-						makeToast(SAME_ACTOR);
-					}
-					if(!isUnderBudget()){
-						makeToast(NO_CASH);
-					}
-				}
-			}
-		});
-		
-		addActor.setOnClickListener(new View.OnClickListener() {
+			MMLogger.v(getLocalClassName(), "Chosen cast: " + getPc().getCurrentCast().toString());
+			getPc().setBudget(initialBudget - getPc().getCurrentCast().getCostOfActors());
+			i.putExtra(COMPANY, getPc());
+			i.putExtra(CAST, getPc().getCurrentCast());
+			MMLogger.v(getLocalClassName(), "budget after cast: " + (getPc().getBudget() - getPc().getCurrentCast().getCostOfActors()));
 			
-			@Override
-			public void onClick(View v) {
-				Spinner extraSpinner = new Spinner(v.getContext());
-				allSpinners.add(extraSpinner);
-				extraSpinner.setId(nextID());
-				fillSpinner(extraSpinner);
-				//remove already hired
-				extraSpinner.setOnItemSelectedListener(new ActorSelectionListener());
-				//add to view
-				((LinearLayout) view).addView(extraSpinner);	
+			startActivity(i);
+		}
+		else{
+			if(!isPossibleSelection()){
+				makeToast(SAME_ACTOR);
 			}
-
-			private int nextID() {
-				id += 1;
-				return id;
+			if(!isUnderBudget()){
+				makeToast(NO_CASH);
 			}
-		});	
+		}
+	}
+	
+	@Click(R.id.addActor)
+	protected void clickListener() {
+		Spinner extraSpinner = new Spinner(getApplicationContext());
+		allSpinners.add(extraSpinner);
+		extraSpinner.setId(nextID());
+		fillSpinner(extraSpinner);
+		//remove already hired
+		extraSpinner.setOnItemSelectedListener(new ActorSelectionListener());
+		//add to view
+		((LinearLayout) view).addView(extraSpinner);
+	}
+	
+	private int nextID() {
+		id += 1;
+		return id;
 	}
 	
 	private void  makeToast(String msg){
@@ -144,17 +155,6 @@ public class GetActor extends ActivityWithMenu {
 
 	private boolean isUnderBudget() {
 		return getPc().getBudget() - getPc().getCurrentCast().getCostOfActors() >= 0;
-	}
-	
-	private void findAllViewsById() {
-		chosen = (TextView) this.findViewById(R.id.chosen);
-		price = (TextView) this.findViewById(R.id.actorPrice);
-		spinner = (Spinner) this.findViewById(R.id.spinner1);
-		produceFilm = (Button) this.findViewById(R.id.produceFilm);
-		addActor = (Button) this.findViewById(R.id.addActor);
-		budgetView = (TextView) this.findViewById(R.id.budgetValue);
-		view = findViewById(R.id.actorLayout);
-		compName = (TextView) findViewById(R.id.companyName);
 	}
 	
 	private void setTitleBar() {

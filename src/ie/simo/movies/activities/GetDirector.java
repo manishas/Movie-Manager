@@ -118,7 +118,7 @@ public class GetDirector extends ActivityWithMenu {
 				
 				if(isValid()){
 					Intent i = new Intent();
-					i.setClass(GetDirector.this, GetActor.class);
+					i.setClass(GetDirector.this, GetActor_.class);
 					
 					getPc().setBudget(getPc().getBudget() - getPc().getCurrentDirector().getPriceToHire());
 					i.putExtra(COMPANY, getPc());
