@@ -115,7 +115,7 @@ public class StartActivity extends Activity {
 		db.close();
 
 		Intent i = new Intent();
-		i.setClass(StartActivity.this, MakeFilmActivity.class);
+		i.setClass(StartActivity.this, MakeFilmActivity_.class);
 
 		i.putExtra(COMPANY, pc);
 		startActivity(i);

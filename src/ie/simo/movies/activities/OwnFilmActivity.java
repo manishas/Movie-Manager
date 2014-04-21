@@ -1,10 +1,17 @@
 package ie.simo.movies.activities;
 
+import static ie.simo.movies.util.Consts.COMPANY;
 import ie.simo.movies.R;
 import ie.simo.movies.domain.Genre;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.MMLogger;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,28 +25,34 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static ie.simo.movies.util.Consts.COMPANY;
-
-public class OwnFilmActivity extends ActivityWithMenu implements OnClickListener{
+@EActivity(R.layout.makeownfilm)
+public class OwnFilmActivity extends ActivityWithMenu {
 	
 	private static final String CONTINUE = "continue";
-	private EditText text;
-	private Spinner spinner;
-	private Button continueButton;
+	
+	@ViewById(R.id.nametextfield)
+	protected EditText text;
+	
+	@ViewById(R.id.genrespinner)
+	protected Spinner spinner;
+	
+	@ViewById(R.id.getdirectorbutton)
+	protected Button continueButton;
+	
+	@ViewById(R.id.budgetValue)
+	protected TextView budgetView;
+	
+	@ViewById(R.id.companyName)
+	protected TextView compName;
+	
 	private MovieInfo info;
-	private TextView budgetView;
-	private TextView compName;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.makeownfilm);
+	@AfterViews
+	public void onCreate() {
 		
 		Intent i = getIntent();
 		
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
-		
-		findAllViewsById();
 		
 		setTitleBar();
 		
@@ -47,15 +60,6 @@ public class OwnFilmActivity extends ActivityWithMenu implements OnClickListener
 		ArrayAdapter<Genre> adapter = new ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, genres);
 		spinner.setAdapter(adapter);
 		continueButton.setTag(CONTINUE);
-		continueButton.setOnClickListener(this);
-	}
-	
-	private void findAllViewsById() {
-		text = (EditText) this.findViewById(R.id.nametextfield);
-		spinner = (Spinner) this.findViewById(R.id.genrespinner);
-		continueButton = (Button) this.findViewById(R.id.getdirectorbutton);
-		budgetView = (TextView) this.findViewById(R.id.budgetValue);
-		compName = (TextView) findViewById(R.id.companyName);
 	}
 	
 	private void setTitleBar() {
@@ -63,7 +67,7 @@ public class OwnFilmActivity extends ActivityWithMenu implements OnClickListener
 		compName.setText(getPc().getName());
 	}
 
-	@Override
+	@Click(R.id.getdirectorbutton)
 	public void onClick(View target) {
 		if(target.getTag().equals(CONTINUE))
 		{

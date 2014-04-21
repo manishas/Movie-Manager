@@ -1,11 +1,17 @@
 package ie.simo.movies.activities;
 
+import static ie.simo.movies.util.Consts.COMPANY;
 import ie.simo.movies.R;
 import ie.simo.movies.domain.MovieInfo;
 import ie.simo.movies.domain.ProductionCompany;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,61 +19,59 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static ie.simo.movies.util.Consts.COMPANY;
-
+@EActivity(R.layout.main)
 public class MakeFilmActivity extends ActivityWithMenu implements OnClickListener {
 	/** Called when the activity is first created. */
-	private Button script1;
-	private Button script2;
-	private Button script3;
-	private Button getMore;
-	private Button makeOwn;
-	private MovieInfo meta1;
-	private MovieInfo meta2;
-	private MovieInfo meta3;
-	private Intent intent;
+	
+	@ViewById
+	protected Button script1;
+	
+	@ViewById
+	protected Button script2;
+	
+	@ViewById
+	protected Button script3;
+	
+	@ViewById(R.id.makeOwn)
+	protected Button getMore;
+	
+	@ViewById(R.id.makeownfilm)
+	protected Button makeOwn;
+	
+	@ViewById(R.id.budgetValue)
+	protected TextView budgetView;
+	
+	@ViewById(R.id.companyName)
+	protected TextView compName;
+	
+	protected MovieInfo meta1;
+	protected MovieInfo meta2;
+	protected MovieInfo meta3;
+	protected Intent intent;
 
-	private TextView budgetView;
-	private TextView compName;
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-
-		findAllViewsById();
+	@AfterViews
+	public void onCreate() {
 		
 		Intent i = getIntent();
 		
 		setPc((ProductionCompany) i.getSerializableExtra(COMPANY));
 		setTitleBar();
-		generateScripts();
-		
-		script1.setOnClickListener(this);
-		script2.setOnClickListener(this);
-		script3.setOnClickListener(this);
-
-		getMore.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				MakeFilmActivity.this.generateScripts();
-				
-			}
-		});
-		
-		makeOwn.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				intent = new Intent(getApplicationContext(), OwnFilmActivity.class);
-				intent.putExtra(COMPANY, getPc());
-				startActivity(intent);
-			}
-		});
+		generateScripts();	
+	}
+	
+	@Click(R.id.makeOwn)
+	protected void getMoreClicked() {
+		MakeFilmActivity.this.generateScripts();
+	}
+	
+	@Click(R.id.makeownfilm)
+	protected void makeOwnClicked() {
+		intent = new Intent(getApplicationContext(), OwnFilmActivity_.class);
+		intent.putExtra(COMPANY, getPc());
+		startActivity(intent);
 	}
 
-	@Override
+	@Click({R.id.script1, R.id.script2, R.id.script3})
 	public void onClick(View target) {
 
 		if (target == script1)
@@ -82,11 +86,11 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 		Boolean contentPref = sharedPrefs.getBoolean(Preferences.SHOW_PLOT, false);
 		if(contentPref)
 		{
-			intent = new Intent(getApplicationContext(), PlotSummary.class);
+			intent = new Intent(getApplicationContext(), PlotSummary_.class);
 		}
 		else
 		{
-			intent = new Intent(getApplicationContext(), SetContent.class);
+			intent = new Intent(getApplicationContext(), SetContent_.class);
 			getPc().getCurrentProject().setPlot("");
 		}
 		
@@ -104,16 +108,6 @@ public class MakeFilmActivity extends ActivityWithMenu implements OnClickListene
 		changeButtonText(script3, meta3);
 	}
 
-	private void findAllViewsById() {
-		script1 = (Button) this.findViewById(R.id.script1);
-		script2 = (Button) this.findViewById(R.id.script2);
-		script3 = (Button) this.findViewById(R.id.script3);
-		getMore = (Button) this.findViewById(R.id.makeOwn);
-		makeOwn = (Button) this.findViewById(R.id.makeownfilm);
-		budgetView = (TextView) this.findViewById(R.id.budgetValue);
-		compName = (TextView) findViewById(R.id.companyName);
-	}
-	
 	private void setTitleBar() {
 		budgetView.setText("$"+getPc().getBudget()+"M");
 		compName.setText(getPc().getName());

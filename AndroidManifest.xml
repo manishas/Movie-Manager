@@ -31,7 +31,7 @@
             android:name="ie.simo.movies.activities.Preferences"
             android:label="Preferences" />
         <activity
-            android:name="ie.simo.movies.activities.MakeFilmActivity"
+            android:name="ie.simo.movies.activities.MakeFilmActivity_"
             android:label="Choose Film"
             android:screenOrientation="portrait" />
         <activity
@@ -42,7 +42,7 @@
             android:name="ie.simo.movies.activities.AllTimeBoxOffice"
             android:label="Box Office" />
         <activity
-            android:name="ie.simo.movies.activities.OwnFilmActivity"
+            android:name="ie.simo.movies.activities.OwnFilmActivity_"
             android:label="Create your film"
             android:screenOrientation="portrait"/>
         <activity
@@ -59,7 +59,7 @@
             android:screenOrientation="portrait" 
             />
         <activity
-            android:name="ie.simo.movies.activities.SetContent"
+            android:name="ie.simo.movies.activities.SetContent_"
             android:label="Set Content"
             android:screenOrientation="portrait" />
         <activity
@@ -79,7 +79,7 @@
             android:label="Special Effects"
             android:screenOrientation="portrait" />
         <activity
-            android:name="ie.simo.movies.activities.PlotSummary"
+            android:name="ie.simo.movies.activities.PlotSummary_"
             android:label="Plot Summary"
             android:screenOrientation="portrait" />
         <activity
