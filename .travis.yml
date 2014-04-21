@@ -1,0 +1,10 @@
+language: java
+
+jdk:
+   - oraclejdk7
+   
+install: sudo apt-get install -y lib32stdc++6 lib32z1
+
+notifications:
+   email:
+      - manisha@shippable.com
