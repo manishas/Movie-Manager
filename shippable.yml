@@ -5,6 +5,8 @@ jdk:
    
 install: sudo apt-get install -y lib32stdc++6 lib32z1
 
+echo %ANDROID_HOME%
+
 notifications:
    email: 
       - manisha@shippable.com
