@@ -1,13 +1,6 @@
 package ie.simo.movies.activities;
 
 import static ie.simo.movies.util.Consts.COMPANY;
-
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.SeekBarProgressChange;
-import org.androidannotations.annotations.ViewById;
-
 import ie.simo.movies.R;
 import ie.simo.movies.censor.Censor;
 import ie.simo.movies.censor.factory.CensorFactory;
@@ -15,17 +8,21 @@ import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.domain.Rating;
 import ie.simo.movies.domain.RatingDetails;
 import ie.simo.movies.popup.InfoDialog;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.SeekBarProgressChange;
+import org.androidannotations.annotations.ViewById;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 @EActivity(R.layout.content)
@@ -143,7 +140,6 @@ public class SetContent extends ActivityWithMenu {
 		}
 
 		setRatingImage();
-
 	}
 
 	private void setRatingImage() {

@@ -16,7 +16,6 @@ import java.util.Set;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ItemSelect;
 import org.androidannotations.annotations.ViewById;
 
 import android.content.Intent;

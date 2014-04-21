@@ -1,16 +1,7 @@
 package ie.simo.movies.activities;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
-import java.util.Set;
-
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
-
+import static ie.simo.movies.util.Consts.CAST;
+import static ie.simo.movies.util.Consts.COMPANY;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.ActorDbAdapter;
 import ie.simo.movies.dao.viewbinder.ActorSpinnerViewBinder;
@@ -20,12 +11,18 @@ import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import ie.simo.movies.util.MMLogger;
 
-import static ie.simo.movies.util.Consts.COMPANY;
-import static ie.simo.movies.util.Consts.CAST;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;

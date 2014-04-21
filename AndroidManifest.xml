@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ie.simo.movies.activities.Production"
+            android:name="ie.simo.movies.activities.Production_"
             android:label="Production"
             android:screenOrientation="portrait" />
         <activity
@@ -46,11 +46,11 @@
             android:label="Create your film"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="ie.simo.movies.activities.PitchFilm"
+            android:name="ie.simo.movies.activities.PitchFilm_"
             android:label="Pitch your Film"
             android:screenOrientation="portrait" />
         <activity
-            android:name="ie.simo.movies.activities.Result"
+            android:name="ie.simo.movies.activities.Result_"
             android:label="Result"
             android:screenOrientation="portrait" />
         <activity
@@ -83,7 +83,7 @@
             android:label="Plot Summary"
             android:screenOrientation="portrait" />
         <activity
-            android:name="ie.simo.movies.activities.OscarsActivity"
+            android:name="ie.simo.movies.activities.OscarsActivity_"
             android:label="Academy Awards"
             android:screenOrientation="portrait" />
     </application>

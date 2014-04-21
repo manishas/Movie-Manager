@@ -1,23 +1,22 @@
 package ie.simo.movies.activities;
 
 import static ie.simo.movies.util.Consts.COMPANY;
+import ie.simo.movies.R;
+import ie.simo.movies.dao.ProductionCompanyDbAdapter;
+import ie.simo.movies.dao.cursor.ProductionCompanyCursorAdapter;
+import ie.simo.movies.util.DBConsts.ProductionCompany;
 
 import java.util.UUID;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 
-import ie.simo.movies.R;
-import ie.simo.movies.dao.ProductionCompanyDbAdapter;
-import ie.simo.movies.dao.cursor.ProductionCompanyCursorAdapter;
-import ie.simo.movies.util.DBConsts.ProductionCompany;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;

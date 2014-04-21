@@ -1,21 +1,26 @@
 package ie.simo.movies.activities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
+import static ie.simo.movies.util.Consts.COMPANY;
+import static ie.simo.movies.util.Consts.OFFER;
 import ie.simo.movies.R;
 import ie.simo.movies.dao.MyDistributorDbAdapter;
 import ie.simo.movies.domain.Distributor;
 import ie.simo.movies.domain.ProductionCompany;
 import ie.simo.movies.util.DBConsts;
 import ie.simo.movies.util.MMLogger;
-import static ie.simo.movies.util.Consts.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.text.Html;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
@@ -28,53 +33,65 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+@EActivity(R.layout.pitch2)
 public class PitchFilm extends ActivityWithMenu implements OnGestureListener {
 
+    private static final int NUMBER_OF_PICS = 3;
     protected GestureDetector gestureScanner;
     private static final int SWIPE_MIN_DISTANCE = 120;
-    //private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private ViewFlipper vf;
-    private static final int NUMBER_OF_PICS = 3;
     private Animation animFlipInNext,animFlipOutNext, animFlipInPrevious, animFlipOutPrevious;
     private int ARRAY_LAST_INDEX = 2; 
-	private ImageView producerpic1, producerpic2, producerpic3;
-	private Button cancel;
-	private TextView producercomment1, producercomment2, producercomment3;
-	private Button choose;
+    
+    @ViewById(R.id.ViewFlipper01)
+    protected ViewFlipper vf;
+    
+    @ViewById(R.id.pitchimage1)
+    protected ImageView producerpic1;
+    
+    @ViewById(R.id.pitchimage2)
+    protected ImageView producerpic2;
+    
+    @ViewById(R.id.pitchimage3)
+    protected ImageView producerpic3;
+
+    @ViewById(R.id.reworkscript)
+    protected Button cancel;
+
+    @ViewById(R.id.pitchtext1)
+    protected TextView producercomment1; 
+
+    @ViewById(R.id.pitchtext2)
+    protected TextView producercomment2;
+
+    @ViewById(R.id.pitchtext3)
+    protected TextView producercomment3;
+
+    @ViewById(R.id.chooseproducer)
+    protected Button choose;
+    
+    @ViewById(R.id.budgetValue)
+    protected TextView budgetView;
+    
+    @ViewById(R.id.companyName)
+    protected TextView compName;
+    
 	private int currentIndex = 0;	
 	private ArrayList<Offer> offers = new ArrayList<Offer>();
-	private TextView budgetView;
-	private TextView compName;
 	private MyDistributorDbAdapter db;
 	private ArrayList<Distributor> distributorList = new ArrayList<Distributor>();
 	private List<Integer> images = Arrays.asList(new Integer[]{R.drawable.char1, R.drawable.char2, R.drawable.char3, R.drawable.char4,  R.drawable.char5});
 
 	private void findAllViewsById() {
-		
-		producerpic1 = (ImageView) this.findViewById(R.id.pitchimage1);
-		producerpic2 = (ImageView) this.findViewById(R.id.pitchimage2);
-		producerpic3 = (ImageView) this.findViewById(R.id.pitchimage3);
-
-		producercomment1 = (TextView) this.findViewById(R.id.pitchtext1);
-		producercomment2 = (TextView) this.findViewById(R.id.pitchtext2);
-		producercomment3 = (TextView) this.findViewById(R.id.pitchtext3);
-		
-		cancel = (Button) this.findViewById(R.id.reworkscript);
-		choose = (Button) this.findViewById(R.id.chooseproducer);
-		budgetView = (TextView) this.findViewById(R.id.budgetValue);
-		compName = (TextView)this.findViewById(R.id.companyName);
-        vf=(ViewFlipper)findViewById(R.id.ViewFlipper01);
         animFlipInNext = AnimationUtils.loadAnimation(this, R.anim.flipinnext);
         animFlipOutNext = AnimationUtils.loadAnimation(this, R.anim.flipoutnext);
         animFlipInPrevious = AnimationUtils.loadAnimation(this, R.anim.flipinprevious);
         animFlipOutPrevious = AnimationUtils.loadAnimation(this, R.anim.flipoutprevious);
 	}
 	
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pitch2);
+	@AfterViews
+	public void onCreate() {
+		
 		gestureScanner = new GestureDetector(this);
 		
 		Intent i = getIntent();
